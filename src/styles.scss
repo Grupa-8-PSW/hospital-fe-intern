@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import
+'bootstrap/scss/functions',
+'bootstrap/scss/variables',
+'bootstrap/scss/mixins',
+'bootstrap/scss/buttons';
+
+$theme-colors: (
+  "primary": #c2185b,
+  "secondary": #b0bec5,
+  "danger": #f44336,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "light":      $light,
+  "dark":       $dark
+);
+
+body {
+  font-family: 'Poppins', sans-serif !important;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url(assets/fonts/Poppins-Regular.ttf) format("truetype");
+  font-weight: bold;
+}
+
+@import "bootstrap/scss/bootstrap";

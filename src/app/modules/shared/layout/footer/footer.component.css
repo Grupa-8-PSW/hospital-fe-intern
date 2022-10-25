@@ -1,9 +1,10 @@
 footer {
-  background-color: #212529;
+  background-color: #c2185b;
   height: 60px;
   color: #FFFFFF8C;
 }
 
 p {
   text-align: center;
+  color: #fff;
 }
