@@ -8,8 +8,8 @@ import { HospitalModule } from "./modules/hospital/hospital.module";
 import { PagesModule } from "./modules/pages/pages.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
-import { CreateBloodBankComponent } from './modules/manager/create-blood-bank/create-blood-bank.component';
 import { FormsModule } from "@angular/forms";
+import { CreateBloodBankComponent } from "./modules/hospital/create-blood-bank/create-blood-bank.component";
 
 @NgModule({
   declarations: [
@@ -25,8 +25,7 @@ import { FormsModule } from "@angular/forms";
     PagesModule,
     HospitalModule,
     SharedModule,
-    FormsModule,
-    HospitalModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

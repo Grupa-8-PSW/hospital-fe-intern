@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { CreateBloodBankComponent } from "./modules/manager/create-blood-bank/create-blood-bank.component";
 import { Routes, RouterModule } from "@angular/router";
+import { CreateBloodBankComponent } from "./modules/hospital/create-blood-bank/create-blood-bank.component";
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
 
