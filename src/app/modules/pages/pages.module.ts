@@ -4,6 +4,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ExaminationsComponent } from './examinations/examinations.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { HospitalModule } from '../hospital/hospital.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MaterialModule } from 'src/app/material/material.module';
   imports: [
     CommonModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HospitalModule
   ]
 })
 export class PagesModule { }
