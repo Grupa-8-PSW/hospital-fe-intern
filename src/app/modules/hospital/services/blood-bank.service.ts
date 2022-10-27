@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class BloodBankService {
 
-  apiHost: string = 'http://localhost:5174/';
+  apiHost: string = 'http://localhost:5131/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
 
   createBloodBank(bloodBank: any): Observable<any> {
-    return this.http.post<any>(this.apiHost + 'api/bloodBanks/', bloodBank, {'headers': this.headers});
+    return this.http.post<any>(this.apiHost + 'api/BloodBanks/', bloodBank, {'headers': this.headers});
   }
 
 }

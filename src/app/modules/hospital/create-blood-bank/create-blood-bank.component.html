@@ -11,17 +11,17 @@
                              <div class="valid-feedback">Email field is valid!</div>
                              <div class="invalid-feedback">Email field cannot be blank!</div>
                         </div>
-                         
+
                         <div class="col-md-12">
                             <input class="form-control" [(ngModel)]="bloodBank.name" type="text" name="name" placeholder="Name" required>
                              <div class="invalid-feedback">Name field cannot be blank!</div>
                         </div>
-                         
+
                         <div class="col-md-12">
                             <input class="form-control" [(ngModel)]="bloodBank.serverAddress" type="text" name="serverAddress" placeholder="Server address" required>
                              <div class="invalid-feedback">Server address field cannot be blank!</div>
                         </div>
-                        
+
                         <div class="form-button mt-3">
                             <button id="submit" (click)="createBloodBank()" type="submit" class="btn btn-primary">Register</button>
                         </div>
@@ -50,10 +50,10 @@
             <mat-label>Server address</mat-label>
             <input matInput [(ngModel)]="bloodBank.serverAddress">
         </mat-form-field><br>
-        
+
         <button mat-stroked-button (click)="createBloodBank()">
             Submit
-        </button> 
+        </button>
     </div>
 </div>
 -->

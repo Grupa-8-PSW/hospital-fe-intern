@@ -20,13 +20,13 @@ export class CreateBloodBankComponent{
     if (!this.isValidInput())
     {
       return;
-    } 
+    }
     window.alert(this.bloodBank.email)
     this.bloodBankService.createBloodBank(this.bloodBank).subscribe();
     this.emailService.sendEmail(this.bloodBank.email).subscribe();
   }
 
-  
+
   private isValidInput(): boolean {
     return this.bloodBank?.email != '' && this.bloodBank?.name != '' && this.bloodBank?.serverAddress != '';
   }

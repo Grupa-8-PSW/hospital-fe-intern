@@ -6,9 +6,10 @@ export class BloodBank {
 
     public constructor(obj?: any) {
         if (obj) {
+            this.email = obj.email;
             this.id = obj.id;
             this.name = obj.name;
-            this.serverAddress = obj.serverAddress;        
+            this.serverAddress = obj.serverAddress;
         }
     }
 }

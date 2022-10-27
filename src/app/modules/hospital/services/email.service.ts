@@ -8,14 +8,15 @@ import { Observable } from 'rxjs';
 
 export class EmailService {
 
-  apiHost: string = 'http://localhost:5174/';
+  apiHost: string = 'http://localhost:5131/';
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(email: any): Observable<any> {
-    window.alert(email);
-    return this.http.post<any>(this.apiHost + 'api/Email', email, {headers: this.headers});
+  sendEmail(mail: any): Observable<any> {
+    window.alert({ email: mail });
+    return this.http.post<any>(this.apiHost + 'api/Email', { email: mail }, {headers: this.headers});
   }
 
 }
