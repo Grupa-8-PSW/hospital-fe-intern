@@ -1,0 +1,55 @@
+<body class="body">
+    <form class="form">
+        <div *ngIf="shareData === 1" class="labels">
+            <div class="moveLabel">
+                <label>Room name:</label>
+                <input type="textbox" value="Room 1" class="textbox">
+            </div>
+            <div class="moveLabel"><label>Description:</label>
+                <input type="textbox" value="Stomatologija" class="textbox2">
+            </div>
+            <div class="moveLabel"><label>Work hour:</label>
+                <input type="textbox" class="textbox3">
+            </div>
+        </div>
+
+        <div *ngIf="shareData === 2" class="labels">
+            <div class="moveLabel">
+                <label>Room name:</label>
+                <input type="textbox" value="Room 2" class="textbox">
+            </div>
+            <div class="moveLabel"><label>Description:</label>
+                <input type="textbox" value="Otorinolangologija" class="textbox2">
+            </div>
+            <div class="moveLabel"><label>Work hour:</label>
+                <input type="textbox" class="textbox3">
+            </div>
+        </div>
+
+        <div *ngIf="shareData === 3" class="labels">
+            <div class="moveLabel">
+                <label>Room name:</label>
+                <input type="textbox" value="Room 3" class="textbox">
+            </div>
+            <div class="moveLabel"><label>Description:</label>
+                <input type="textbox" value="Kafeterija" class="textbox2">
+            </div>
+            <div class="moveLabel"><label>Work hour:</label>
+                <input type="textbox" class="textbox3">
+            </div>
+        </div>
+
+        <div *ngIf="shareData === 4" class="labels">
+            <div class="moveLabel">
+                <label>Room name:</label>
+                <input type="textbox" value="Room 4" class="textbox">
+            </div>
+            <div class="moveLabel"><label>Description:</label>
+                <input type="textbox" value="Pedijatrija" class="textbox2">
+            </div>
+            <div class="moveLabel"><label>Work hour:</label>
+                <input type="textbox" class="textbox3">
+            </div>
+        </div>
+    </form>
+</body>
