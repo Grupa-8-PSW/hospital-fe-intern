@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormComponent } from './floor/form/form.component';
+import { HospitalComponent } from './hospital/hospital.component';
+import { BuildingComponent } from './building/building.component';
 import { RoomsComponent } from './floor/rooms/rooms.component';
+import { FormComponent } from './floor/form/form.component';
 
 
 
 @NgModule({
   declarations: [
-    FormComponent,
-    RoomsComponent
+    HospitalComponent,
+    BuildingComponent,
+    RoomsComponent,
+    FormComponent
   ],
   imports: [
     CommonModule
