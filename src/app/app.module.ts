@@ -8,10 +8,14 @@ import { HospitalModule } from "./modules/hospital/hospital.module";
 import { PagesModule } from "./modules/pages/pages.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
+import { SignatureComponent } from "./modules/map/app/signature/signature.component";
+import { FormComponent } from "./modules/map/app/form/form.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignatureComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

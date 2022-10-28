@@ -8,9 +8,9 @@ describe('SignatureComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignatureComponent ]
+      declarations: [SignatureComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SignatureComponent);
     component = fixture.componentInstance;

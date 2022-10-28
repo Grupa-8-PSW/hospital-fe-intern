@@ -1,3 +1,11 @@
 .content-wrapper {
   height: 100vh;
 }
+
+.display {
+  display: flex;
+}
+
+.formControl {
+  margin-top: 130px;
+}

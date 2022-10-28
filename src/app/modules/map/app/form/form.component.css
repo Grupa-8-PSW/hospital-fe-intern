@@ -7,7 +7,7 @@
     margin-left: 100px;
     margin-top: 50px;
     background-color: red;
-    width: 400px;
+    width: 500px;
     height: 250px;
     border-radius: 8px;
     background: linear-gradient(90deg, rgba(223, 18, 35, 1) 21%, rgba(226, 70, 93, 1) 48%, rgba(224, 139, 152, 1) 89%);
@@ -36,11 +36,11 @@
 }
 
 .textbox {
-    margin-left: 60px;
+    margin-left: 52px;
 }
 
 .textbox2 {
-    margin-left: 62px;
+    margin-left: 58px;
 }
 
 .textbox3 {

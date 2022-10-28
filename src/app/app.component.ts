@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'HospitalFront';
+  state = false;
+  numberofRoom = "";
+  parentFunction(data) {
+    this.state = data;
+    console.log(data);
+  }
+
+  getNumberOfRoom(roomNum) {
+    this.numberofRoom = roomNum;
+  }
 }
