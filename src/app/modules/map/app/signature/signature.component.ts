@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { fabric } from "fabric";
 import { Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-signature',
@@ -32,32 +32,31 @@ export class SignatureComponent implements OnInit {
       width: 260,
       height: 160,
       fill: '',
-      stroke: 'black',
+      stroke: 'blue',
       strokeWidth: 3,
       top: 0,
       left: 0,
       selectable: false,
-      hoverCursor: "pointer"
+      hoverCursor: "pointer",
     });
 
     var rectangle2 = new fabric.Rect({
       width: 260,
       height: 160,
-      fill: 'lightblue',
+      fill: '',
       stroke: 'black',
       strokeWidth: 3,
       top: 0,
       left: 338,
       selectable: false,
       hoverCursor: "pointer",
-
     });
 
     var rectangle3 = new fabric.Rect({
       width: 260,
       height: 160,
       fill: '',
-      stroke: 'black',
+      stroke: 'red',
       strokeWidth: 3,
       top: 237,
       left: 0,
@@ -69,7 +68,7 @@ export class SignatureComponent implements OnInit {
       width: 260,
       height: 160,
       fill: '',
-      stroke: 'black',
+      stroke: 'pink',
       strokeWidth: 3,
       top: 237,
       left: 338,
@@ -178,14 +177,6 @@ export class SignatureComponent implements OnInit {
         this.numberOfStateEvent.emit(4);
       }
     })
-
-
   }
-
-  public chooseRoom(id: number) {
-    this.router.navigate(['/map']);
-  }
-
-
 }
 
