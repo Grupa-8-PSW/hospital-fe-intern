@@ -8,6 +8,7 @@ import { AddEditExaminationComponent } from "./examinations/add-edit-examination
 import { RoomDetailComponent } from "./room-detail/room-detail.component";
 import { RoomsComponent } from "./rooms/rooms.component";
 import { UpdateRoomComponent } from "./update-room/update-room.component";
+import { CheckBloodCountComponent } from './check-blood-count/check-blood-count.component';
 
 const routes: Routes = [
   { path: 'rooms', component: RoomsComponent },
@@ -22,7 +23,9 @@ const routes: Routes = [
     RoomDetailComponent,
     CreateRoomComponent,
     UpdateRoomComponent,
-    AddEditExaminationComponent
+    AddEditExaminationComponent,
+    CheckBloodCountComponent
+
   ],
   imports: [
     CommonModule,
