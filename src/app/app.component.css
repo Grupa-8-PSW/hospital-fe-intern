@@ -1,5 +1,6 @@
 .content-wrapper {
   height: 100vh;
+  background-color: lightgray;
 }
 
 .display {
@@ -7,5 +8,5 @@
 }
 
 .formControl {
-  margin-top: 130px;
+  margin-top: 50px;
 }
