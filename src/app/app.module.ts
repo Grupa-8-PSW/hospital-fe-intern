@@ -9,7 +9,7 @@ import { PagesModule } from "./modules/pages/pages.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
 import { FormsModule } from "@angular/forms";
-import { CreateBloodBankComponent } from "./modules/hospital/create-blood-bank/create-blood-bank.component";
+import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 
 @NgModule({
   declarations: [
