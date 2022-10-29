@@ -2,53 +2,298 @@
     <form class="form">
         <div *ngIf="shareData === 1" class="labels">
             <div class="moveLabel">
-                <label>Room name:</label>
-                <input type="textbox" value="Room 1" class="textbox">
+                <label class="h1Edit">
+                    <h1>Room name:</h1>
+                </label>
+                <label class="descLabel">201 Neurohirurgija</label>
             </div>
-            <div class="moveLabel"><label>Description:</label>
-                <input type="textbox" value="Stomatologija" class="textbox2">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Description:</h1>
+                </label>
+                <label class="descLabel">Ovde obavaljamo hirurske
+                    operacije</label>
             </div>
-            <div class="moveLabel"><label>Work hour:</label>
-                <input type="textbox" class="textbox3">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Work hour:</h1>
+                </label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day:</th>
+                            <th scope="col">From:</th>
+                            <th scope="col">To:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Monday
+                            </td>
+                            <td>
+                                8:00h
+                            </td>
+                            <td>
+                                17:00h
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>8:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>8:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>8:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>8:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>12:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>
+                                CLOSED
+                            </td>
+                            <td>
+                                CLOSED
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div *ngIf="shareData === 2" class="labels">
             <div class="moveLabel">
-                <label>Room name:</label>
-                <input type="textbox" value="Room 2" class="textbox">
+                <label class="h1Edit">
+                    <h1>Room name:</h1>
+                </label>
+                <label class="descLabel">202 Stomatologija</label>
             </div>
-            <div class="moveLabel"><label>Description:</label>
-                <input type="textbox" value="Otorinolangologija" class="textbox2">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Description:</h1>
+                </label>
+                <label class="descLabel">Ovde obavljamo pregled i negu zuba</label>
             </div>
-            <div class="moveLabel"><label>Work hour:</label>
-                <input type="textbox" class="textbox3">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Work hour:</h1>
+                </label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day:</th>
+                            <th scope="col">From:</th>
+                            <th scope="col">To:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Monday
+                            </td>
+                            <td>
+                                7:00h
+                            </td>
+                            <td>
+                                14:00h
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>7:00h</td>
+                            <td>14:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>7:00h</td>
+                            <td>14:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>7:00h</td>
+                            <td>14:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>7:00h</td>
+                            <td>14:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>10:00h</td>
+                            <td>15:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>
+                                CLOSED
+                            </td>
+                            <td>
+                                CLOSED
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div *ngIf="shareData === 3" class="labels">
             <div class="moveLabel">
-                <label>Room name:</label>
-                <input type="textbox" value="Room 3" class="textbox">
+                <label class="h1Edit">
+                    <h1>Room name:</h1>
+                </label>
+                <label class="descLabel">203 Otorinolaringologija</label>
             </div>
-            <div class="moveLabel"><label>Description:</label>
-                <input type="textbox" value="Kafeterija" class="textbox2">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Description:</h1>
+                </label>
+                <label class="descLabel">Ovde obavaljamo preglede za uho, grlo i nos</label>
             </div>
-            <div class="moveLabel"><label>Work hour:</label>
-                <input type="textbox" class="textbox3">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Work hour:</h1>
+                </label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day:</th>
+                            <th scope="col">From:</th>
+                            <th scope="col">To:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Monday
+                            </td>
+                            <td>
+                                9:00h
+                            </td>
+                            <td>
+                                17:00h
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>9:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>9:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>9:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>9:00h</td>
+                            <td>17:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>CLOSED</td>
+                            <td>CLOSED</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>
+                                CLOSED
+                            </td>
+                            <td>
+                                CLOSED
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div *ngIf="shareData === 4" class="labels">
             <div class="moveLabel">
-                <label>Room name:</label>
-                <input type="textbox" value="Room 4" class="textbox">
+                <label class="h1Edit">
+                    <h1>Room name:</h1>
+                </label>
+                <label class="descLabel">204 Rehabilitacija</label>
             </div>
-            <div class="moveLabel"><label>Description:</label>
-                <input type="textbox" value="Pedijatrija" class="textbox2">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Description:</h1>
+                </label>
+                <label class="descLabel">Ova prostorija nam sluzi za oporavak posle prelezane bolesti i nezgoda</label>
             </div>
-            <div class="moveLabel"><label>Work hour:</label>
-                <input type="textbox" class="textbox3">
+            <div class="moveLabel2"><label class="h1Edit">
+                    <h1>Work hour:</h1>
+                </label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Day:</th>
+                            <th scope="col">From:</th>
+                            <th scope="col">To:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Monday
+                            </td>
+                            <td>
+                                00:00h
+                            </td>
+                            <td>
+                                24:00h
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>00:00h</td>
+                            <td>24:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>00:00h</td>
+                            <td>24:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>00:00h</td>
+                            <td>24:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>00:00h</td>
+                            <td>24:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>00:00h</td>
+                            <td>24:00h</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>
+                                00:00h
+                            </td>
+                            <td>
+                                24:00h
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </form>

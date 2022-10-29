@@ -11,6 +11,8 @@ export class FormComponent implements OnInit {
 
   constructor() { }
 
+  countries: any;
+
   ngOnInit(): void {
   }
 

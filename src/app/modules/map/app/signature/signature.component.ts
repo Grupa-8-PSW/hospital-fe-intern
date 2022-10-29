@@ -38,6 +38,7 @@ export class SignatureComponent implements OnInit {
       left: 0,
       selectable: false,
       hoverCursor: "pointer",
+
     });
 
     var rectangle2 = new fabric.Rect({
@@ -68,12 +69,12 @@ export class SignatureComponent implements OnInit {
       width: 260,
       height: 160,
       fill: '',
-      stroke: 'pink',
+      stroke: 'blue',
       strokeWidth: 3,
       top: 237,
       left: 338,
       selectable: false,
-      hoverCursor: "pointer"
+      hoverCursor: "pointer",
     });
 
     var text = new fabric.Text('Room 1', {
