@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignatureComponent } from './signature.component';
+import { SignatureComponent } from './rooms.component';
 
 describe('SignatureComponent', () => {
   let component: SignatureComponent;

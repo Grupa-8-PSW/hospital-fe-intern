@@ -4,9 +4,9 @@ import { Output, EventEmitter } from '@angular/core';
 import { Router, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-signature',
-  templateUrl: './signature.component.html',
-  styleUrls: ['./signature.component.css']
+  selector: 'app-rooms',
+  templateUrl: './rooms.component.html',
+  styleUrls: ['./rooms.component.css']
 })
 export class SignatureComponent implements OnInit {
   canvas: any;

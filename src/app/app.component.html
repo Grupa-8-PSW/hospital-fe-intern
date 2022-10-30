@@ -1,8 +1,9 @@
 <app-header></app-header>
 <div class="content-wrapper">
-  <div class="display">
-    <app-signature (newItemEvent)="parentFunction($event)" (numberOfStateEvent)="getNumberOfRoom($event)">
-    </app-signature>
+  <router-outlet></router-outlet>
+  <div class="display" *ngIf="router.url === '/map/floors/rooms'">
+    <app-rooms (newItemEvent)="parentFunction($event)" (numberOfStateEvent)="getNumberOfRoom($event)">
+    </app-rooms>
     <app-form *ngIf="state" class="formControl" [shareData]="numberofRoom"></app-form>
   </div>
 </div>
