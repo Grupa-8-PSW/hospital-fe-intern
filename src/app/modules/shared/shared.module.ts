@@ -5,7 +5,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 
 
-
 @NgModule({
   declarations: [
     HeaderComponent,
