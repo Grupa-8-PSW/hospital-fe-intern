@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Raphael from 'raphael';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-building',
@@ -8,7 +9,7 @@ import Raphael from 'raphael';
 })
 export class BuildingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
 
@@ -37,7 +38,9 @@ export class BuildingComponent implements OnInit {
       let building = paper.rect(x, y, w, h, 2)
         .attr('fill', buildings[i].color)
         .click(function () {
-          alert('Selected');
+          //this.router.navigateByUrl('/map/floor');
+          location.assign('/map/floor');
+
         })
         .hover(function () {
           this.attr('opacity', 0.8);
