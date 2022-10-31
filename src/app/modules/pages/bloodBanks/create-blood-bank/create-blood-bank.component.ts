@@ -1,10 +1,11 @@
+import { ToastrModule } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BloodBank } from 'src/app/modules/hospital/model/bloodBank.model';
 
 import { BloodBankService } from '../services/blood-bank.service';
 import { EmailService } from '../services/email.service';
-
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-blood-bank',
@@ -14,23 +15,27 @@ import { EmailService } from '../services/email.service';
 export class CreateBloodBankComponent{
 
   public bloodBank: BloodBank = new BloodBank();
-   
-  constructor(private bloodBankService: BloodBankService, private emailService: EmailService ,private router: Router) { }
+  public errorMessage: string = '';
+
+  constructor(private bloodBankService: BloodBankService,
+              private router: Router,
+              private toastr: ToastrService) { }
 
   public createBloodBank() {
-    if (!this.isValidInput())
-    {
-      window.alert('empty field!');
-    }
 
     this.bloodBankService.createBloodBank(this.bloodBank).subscribe((res => {
       this.router.navigate(['/bloodBanks']);
-      }));
-  
+      this.toastr.success('Banka krvi "' + this.bloodBank.name + '" je registrovana', 'Registracija uspešna');
+      }),
+
+      (err) => {
+        this.errorMessage = err;
+        this.toastr.error(err.error, 'Status: ' + + err.status);
+      });
+
   }
 
 
-  private isValidInput(): boolean {
-    return this.bloodBank?.email != '' && this.bloodBank?.name != '' && this.bloodBank?.serverAddress != '';
-  }
 }
+
+
