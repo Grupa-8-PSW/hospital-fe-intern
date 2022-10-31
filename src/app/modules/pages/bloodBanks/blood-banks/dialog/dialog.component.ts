@@ -17,14 +17,45 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     this.bloodTypeForm = this.formBuilder.group({
       bloodType : ['', Validators.required],
+      quantity: ['']
     })
   }
   checkForBlood() {
     console.log(this.data)
     console.log(this.bloodTypeForm.value.bloodType)
-    var type = this.bloodTypeForm.value.bloodType;
-    this.api.checkBloodAvailabilty(this.data, type);
-    this.DialogRef.close();
+    if(this.bloodTypeForm.value.quantity !== ''){
+      var type = this.bloodTypeForm.value.bloodType;
+      var quant = this.bloodTypeForm.value.quantity;
+      var stat = false;
+      this.api.checkBlood(this.data, type, quant).subscribe(res => {
+        console.log(res);
+        stat = res;
+        var success = document.getElementById('mess2');
+        var fail = document.getElementById('mess1');
+        if(stat){
+          success?.setAttribute('style', 'color: green; display: block;');
+          fail?.setAttribute('style', 'color: red; display: none;');
+        } else {
+          fail?.setAttribute('style', 'color: red; display: block;');
+          success?.setAttribute('style', 'color: green; display: none;');
+        }
+      });
+    } else {
+      var type = this.bloodTypeForm.value.bloodType;
+      this.api.checkBloodAvailabilty(this.data, type).subscribe(res => {
+        console.log(res);
+        var success = document.getElementById('mess2');
+        var fail = document.getElementById('mess1');
+        if(res){
+          success?.setAttribute('style', 'color: green; display: block;');
+          fail?.setAttribute('style', 'color: red; display: none;');
+        } else {
+          fail?.setAttribute('style', 'color: red; display: block;');
+          success?.setAttribute('style', 'color: green; display: none;');
+        }
+      })
+    }
+    // this.DialogRef.close();
   }
 
 }

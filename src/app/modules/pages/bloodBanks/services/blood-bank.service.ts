@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -25,8 +26,14 @@ export class BloodBankService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('bloodBankId', bank.id);
     queryParams = queryParams.append('bloodType', type);
-    return this.http.get<boolean>(this.apiHost + 'api/BloodBankConnection', {params: queryParams, headers: this.headers}).subscribe(res=> {
-      console.log(res)
-    });
+    return this.http.get<boolean>(this.apiHost + 'api/BloodBankConnection', {params: queryParams, headers: this.headers});
+  }
+
+  checkBlood(bank: BloodBank, type: string, quantity: any) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('bloodBankId', bank.id);
+    queryParams = queryParams.append('bloodType', type);
+    queryParams = queryParams.append('quantity', quantity);
+    return this.http.get<boolean>('http://localhost:5131/CheckBloodAmount', {params: queryParams, headers: this.headers});
   }
 }
