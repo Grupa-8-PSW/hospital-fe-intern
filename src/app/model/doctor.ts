@@ -1,9 +1,8 @@
-
 export default interface Doctor {
   id: number,
   workTimeStart: string,
   workTimeEnd: string,
-  officeId: number,
+  roomId: number,
   firstName: string,
   lastName: string
 }

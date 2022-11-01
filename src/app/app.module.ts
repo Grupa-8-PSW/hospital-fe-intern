@@ -8,7 +8,7 @@ import { HospitalModule } from "./modules/hospital/hospital.module";
 import { PagesModule } from "./modules/pages/pages.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
-import { CoreModule } from "./modules/core/core.module";
+import { ExaminationModule } from "./modules/examination/examination.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { CoreModule } from "./modules/core/core.module";
     PagesModule,
     HospitalModule,
     SharedModule,
-    CoreModule
+    ExaminationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

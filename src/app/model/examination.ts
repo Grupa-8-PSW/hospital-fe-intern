@@ -1,7 +1,9 @@
+import { Moment } from "moment-timezone";
+
 export default interface Examination {
-  id: number,
+  id?: number,
   doctorId: number,
   patientId: number,
-  starts: Date,
+  startTime: Moment,
   duration: number,
 }

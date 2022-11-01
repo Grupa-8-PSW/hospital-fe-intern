@@ -8,8 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from "@angular/material-moment-adapter";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import * as moment from 'moment';
 
 @NgModule({
   declarations: [],
@@ -22,8 +25,9 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatIconModule,
     MatTooltipModule,
     MatFormFieldModule,
+    MatMomentDateModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -34,8 +38,21 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     MatIconModule,
     MatTooltipModule,
     MatFormFieldModule,
+    MatMomentDateModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatProgressSpinnerModule
+  ],
+  providers: [
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: {
+      parse: {
+        dateInput: "DD/MM/YYYY HH:mm"
+      },
+      display: {
+        dateInput: "DD/MM/YYYY"
+      }
+    }},
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}}
   ]
 })
 export class MaterialModule {}

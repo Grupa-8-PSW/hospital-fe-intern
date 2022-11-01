@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/app/material/material.module";
+import { SharedModule } from "../shared/shared.module";
 import { CreateRoomComponent } from "./create-room/create-room.component";
-import { AddEditExaminationComponent } from "./examinations/add-edit-examination/add-edit-examination.component";
 import { RoomDetailComponent } from "./room-detail/room-detail.component";
 import { RoomsComponent } from "./rooms/rooms.component";
 import { UpdateRoomComponent } from "./update-room/update-room.component";
@@ -21,16 +21,16 @@ const routes: Routes = [
     RoomsComponent,
     RoomDetailComponent,
     CreateRoomComponent,
-    UpdateRoomComponent,
-    AddEditExaminationComponent
+    UpdateRoomComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
-  exports: [ RouterModule, AddEditExaminationComponent ]
+  exports: [ RouterModule ]
 })
 export class HospitalModule { }
