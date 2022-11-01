@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Raphael from 'raphael';
+import { BuildingService } from './buildingService/building.service';
+
 
 @Component({
   selector: 'app-building',
@@ -8,9 +10,17 @@ import Raphael from 'raphael';
 })
 export class BuildingComponent implements OnInit {
 
-  constructor() { }
+  constructor(public buildingsService: BuildingService) { }
+
+  buildingsList: any;
 
   ngOnInit(): void {
+
+    this.buildingsService.getAllBuildings().subscribe(data => {
+      this.buildingsList = data;
+    })
+
+    //TREBALO BI DA JE TO TO,SAMO TREBA OVO buildingsList dalje koristiti umesto buildings(a) ispod
 
     let back = { x: 0, y: 0, w: 1000, h: 800, c: 'green' };
 
