@@ -5,11 +5,11 @@
 
 .form {
     margin-left: 100px;
-    background-color: red;
     width: 500px;
     height: 590px;
     border-radius: 8px;
-    background: linear-gradient(90deg, rgba(223, 18, 35, 1) 21%, rgba(226, 70, 93, 1) 48%, rgba(224, 139, 152, 1) 89%);
+    background-color: #c2185b;
+    color: white;
 }
 
 .labels {
@@ -20,12 +20,14 @@
     padding-top: 35px;
     text-align: left;
     padding-left: 40px;
+    color: white;
 }
 
 .moveLabel2 {
     padding-top: 0px;
     text-align: left;
     padding-left: 40px;
+    color: white;
 }
 
 .name {
@@ -53,14 +55,10 @@
 }
 
 tr:hover {
-    background-color: rgb(255, 106, 106);
+    background-color: #f44336;
 }
 
 .descLabel {
 
     margin-left: 20px;
-}
-
-.h1Edit {
-    text-decoration: underline;
 }

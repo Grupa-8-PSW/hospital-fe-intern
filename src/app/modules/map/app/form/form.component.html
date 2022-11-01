@@ -1,4 +1,4 @@
-<body class="body">
+<body class="body" style="color: white;">
     <form class="form">
         <div *ngIf="shareData === 1" class="labels">
             <div class="moveLabel">
@@ -13,7 +13,7 @@
                 <label class="descLabel">Ovde obavaljamo hirurske
                     operacije</label>
             </div>
-            <div class="moveLabel2"><label class="h1Edit">
+            <div class="moveLabel2"><label class="h1Edit" style="color: white;">
                     <h1>Work hour:</h1>
                 </label>
                 <table class="table table-striped">
@@ -295,6 +295,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div *ngIf="shareData > 4" class="labels">
+            <h1>Room building is in process...</h1>
         </div>
     </form>
 </body>
