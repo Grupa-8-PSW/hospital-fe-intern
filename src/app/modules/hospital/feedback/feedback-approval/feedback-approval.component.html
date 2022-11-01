@@ -1,0 +1,13 @@
+<div>
+    <ng-template ngFor let-item [ngForOf]="publicFeedbacks" let-i="index">
+        <mat-card>
+            <mat-card-title>{{item.patientFullName}}</mat-card-title>
+            <mat-card-subtitle>{{item.creationDate}}</mat-card-subtitle>
+            <mat-card-content>{{item.text}}</mat-card-content>
+            <mat-card-actions align="end">
+                <button *ngIf="item.status != 1" mat-raised-button color="primary" (click)="changeStatus(i, item.id, 1)">Approve</button>
+                <button *ngIf="item.status != 2" mat-raised-button color="warn" (click)="changeStatus(i, item.id, 2)">Deny</button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-template>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Feedback } from '../../model/feedback.model';
-import { FeedbackService } from '../../services/feedback.service';
+import { Feedback, FeedbackStatus } from '../model/feedback.model';
+import { FeedbackService } from '../services/feedback.service';
 
 @Component({
   selector: 'app-feedback-approval',
@@ -9,14 +9,20 @@ import { FeedbackService } from '../../services/feedback.service';
 })
 export class FeedbackApprovalComponent implements OnInit {
 
-  public feedbacks: Feedback[] = [];
+  public publicFeedbacks: Feedback[] = [];
 
   constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit(): void {
     this.feedbackService.getPublicFeedback().subscribe(res => {
-      this.feedbacks = res;
+      this.publicFeedbacks = res;
     });
+  }
+
+  changeStatus(index: number, id: number, status: FeedbackStatus): void {
+    this.feedbackService.changeStatus(id, status).subscribe(res => {
+      this.publicFeedbacks[index].status = status;
+    })
   }
 
 }
