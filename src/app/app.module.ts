@@ -12,6 +12,7 @@ import { SignatureComponent } from "./modules/map/rooms/rooms.component";
 import { FormComponent } from "./modules/map/form/form.component";
 import { BlankComponent } from './modules/map/blank/blank.component';
 import { FloorsComponent } from './modules/map/floors/floors.component';
+import { BuildingService } from "./modules/map/building/buildingService/building.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { FloorsComponent } from './modules/map/floors/floors.component';
     HospitalModule,
     SharedModule
   ],
-  providers: [],
+  providers: [BuildingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

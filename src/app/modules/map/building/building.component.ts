@@ -22,30 +22,31 @@ export class BuildingComponent implements OnInit {
 
     //TREBALO BI DA JE TO TO,SAMO TREBA OVO buildingsList dalje koristiti umesto buildings(a) ispod
 
-    let back = { x: 0, y: 0, w: 1000, h: 800, c: 'green' };
 
+    let back = { x: 0, y: 0, w: 1000, h: 800, c: 'green' };
+    /*
     let buildings = [
       { x: 100, y: 100, width: 450, height: 150, color: 'gray', name: 'One' },
       { x: 600, y: 100, width: 150, height: 450, color: 'gray', name: 'Too' },
       { x: 400, y: 600, width: 400, height: 130, color: 'gray', name: 'Tre' },
-    ];
+    ]; */
 
     let paper = Raphael("paper", 1000, 800);
 
     let background = paper.rect(back.x, back.y, back.w, back.h)
       .attr('fill', back.c);
 
-    for (let i = 0; i < buildings.length; i++) {
-      let x = buildings[i].x;
-      let y = buildings[i].y;
-      let w = buildings[i].width;
-      let h = buildings[i].height;
-      let name = buildings[i].name;
+    for (let i = 0; i < this.buildingsList.length; i++) {
+      let x = this.buildingsList[i].x;
+      let y = this.buildingsList[i].y;
+      let w = this.buildingsList[i].width;
+      let h = this.buildingsList[i].height;
+      let name = this.buildingsList[i].name;
       let textx = x + (w / 2);
       let texty = y + (h / 2);
 
       let building = paper.rect(x, y, w, h, 2)
-        .attr('fill', buildings[i].color)
+        .attr('fill', this.buildingsList[i].color)
         .click(function () {
 
           location.assign('/map/floor');
