@@ -9,7 +9,7 @@
 
 table {
     width: 100%;
-
+    background-color: white;
 }
 
 .table-title {
@@ -34,11 +34,16 @@ table {
 }
 
 th{
-    background-color: rgb(179, 43, 70);
+    background-color: rgba(250, 81, 19, 0.993);
     color: white;
 }
 
 p {
     float: left;
     margin-right: auto;
+}
+
+td{
+    color: black;
+
 }

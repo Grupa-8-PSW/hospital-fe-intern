@@ -1,4 +1,5 @@
 <div class="container mt-3">
+  <h1></h1>
   <section class="add-new-examination">
     <button mat-fab color="primary" class="mb-3" aria-label="Example icon button with a bookmark icon" (click)="addExamination()">
       <mat-icon>add</mat-icon>
@@ -14,11 +15,11 @@
       <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.duration}}</td>
   </ng-container>
   <ng-container matColumnDef="patientFirstName">
-    <th mat-header-cell *matHeaderCellDef class="cell-center"> PatientId </th>
-    <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.patientFirstName</td>
+    <th mat-header-cell *matHeaderCellDef class="cell-center"> PatientFirstName </th>
+    <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.patientFirstName}}</td>
 </ng-container>
 <ng-container matColumnDef="patientLastName">
-  <th mat-header-cell *matHeaderCellDef class="cell-center"> PatientId </th>
+  <th mat-header-cell *matHeaderCellDef class="cell-center"> PatientLastName </th>
   <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.patientLastName}}</td>
 </ng-container>
     

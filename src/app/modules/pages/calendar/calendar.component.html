@@ -1,0 +1,8 @@
+
+<div>
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+  </mat-card>
+  <button type="submit" class="btn btn-primary me-3" (click)="chooseDate()">Create</button>
+  <p>Selected date: {{selected}}</p>
+</div>

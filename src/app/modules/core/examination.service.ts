@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Examination } from '../hospital/model/examination';
@@ -8,7 +8,9 @@ import {Examination } from '../hospital/model/examination';
 })
 export class ExaminationService {
   dataUrl = 'data/examinations.json';
-
+  apiHost: string = 'http://localhost:16177/';
+  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  
   constructor(
     private http: HttpClient
   ) { }
@@ -30,9 +32,9 @@ export class ExaminationService {
     return null;
   }
 
-/*  getExaminationsByDate(): Observable<Examination[]> {
-    return this.http.get<Examination[]>(this.apiHost + 'api/examination/getByDate', {headers: this.headers});
-  }//parametri??
+  getExaminationsByDate(day:number, month:number, year:number): Observable<Examination[]> {
+    return this.http.get<Examination[]>(this.apiHost + 'api/examination/' + day + '/' + month + "/" + year, {headers: this.headers});
+  }
   
 /*
   getRooms(): Observable<Room[]> {

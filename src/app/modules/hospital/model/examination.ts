@@ -4,4 +4,7 @@ export class Examination {
   patientId: number=0
   starts: Date=new Date()
   duration: number=0
+  patientFirstName: string=""
+  patientLastName: string=""
+
 }
