@@ -1,0 +1,33 @@
+.home-left {
+  height: 100vh;
+  background-image: url("../../../../assets/images/home-left-image.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-right {
+  height: 100vh;
+  background-color: #ccd0dd;
+}
+
+.home-right .row {
+  margin: auto;
+}
+
+.info {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 1px 3px 5px rgba(0.2,0.2,0.2,0.1);
+  position: relative;
+}
+
+.info h2 {
+  font-size: 2rem;
+}
+
+.info h3 {
+  font-size: 1.25rem;
+}
+
+
