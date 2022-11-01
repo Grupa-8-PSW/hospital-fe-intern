@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
-import { BlankComponent } from "./modules/map/app/blank/blank.component";
+import { BlankComponent } from "./modules/map/blank/blank.component";
 import { BuildingComponent } from "./modules/map/building/building.component";
 import { FloorsComponent } from "./modules/map/floors/floors.component";
 

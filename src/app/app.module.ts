@@ -8,9 +8,9 @@ import { HospitalModule } from "./modules/hospital/hospital.module";
 import { PagesModule } from "./modules/pages/pages.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
-import { SignatureComponent } from "./modules/map/app/rooms/rooms.component";
-import { FormComponent } from "./modules/map/app/form/form.component";
-import { BlankComponent } from './modules/map/app/blank/blank.component';
+import { SignatureComponent } from "./modules/map/rooms/rooms.component";
+import { FormComponent } from "./modules/map/form/form.component";
+import { BlankComponent } from './modules/map/blank/blank.component';
 import { FloorsComponent } from './modules/map/floors/floors.component';
 
 @NgModule({
