@@ -12,9 +12,7 @@ export class SignatureComponent implements OnInit {
   canvas: any;
 
   state = false;
-  state2 = false;
-  state3 = false;
-  state4 = false;
+
 
   @Output() newItemEvent = new EventEmitter<boolean>();
 
@@ -24,160 +22,60 @@ export class SignatureComponent implements OnInit {
 
   ngOnInit(): void {
 
+    let roomsData = [
+      { x: 0, y: 0, roomWidth: 260, roomHeight: 160, roomColor: 'blue', name: 1 },
+      { x: 0, y: 338, roomWidth: 220, roomHeight: 140, roomColor: 'red', name: 2 },
+      { x: 237, y: 0, roomWidth: 300, roomHeight: 180, roomColor: 'blue', name: 3 },
+      { x: 237, y: 338, roomWidth: 200, roomHeight: 100, roomColor: 'red', name: 4 },
+    ];
+
+
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
     });
 
-    var rectangle = new fabric.Rect({
-      width: 260,
-      height: 160,
-      fill: '',
-      stroke: 'blue',
-      strokeWidth: 3,
-      top: 0,
-      left: 0,
-      selectable: false,
-      hoverCursor: "pointer",
+    for (let i = 0; i < roomsData.length; i++) {
+      let x = roomsData[i].x;
+      let y = roomsData[i].y;
+      let w = roomsData[i].roomWidth;
+      let h = roomsData[i].roomHeight;
+      let rc = roomsData[i].roomColor;
+      let name = roomsData[i].name;
 
-    });
+      let rectangle = new fabric.Rect({
+        width: w,
+        height: h,
+        fill: '',
+        stroke: rc,
+        strokeWidth: 3,
+        top: x,
+        left: y,
+        selectable: false,
+        hoverCursor: "pointer",
 
-    var rectangle2 = new fabric.Rect({
-      width: 260,
-      height: 160,
-      fill: '',
-      stroke: 'black',
-      strokeWidth: 3,
-      top: 0,
-      left: 338,
-      selectable: false,
-      hoverCursor: "pointer",
-    });
+      });
 
-    var rectangle3 = new fabric.Rect({
-      width: 260,
-      height: 160,
-      fill: '',
-      stroke: 'red',
-      strokeWidth: 3,
-      top: 237,
-      left: 0,
-      selectable: false,
-      hoverCursor: "pointer"
-    });
+      this.canvas.add(rectangle);
 
-    var rectangle4 = new fabric.Rect({
-      width: 260,
-      height: 160,
-      fill: '',
-      stroke: 'blue',
-      strokeWidth: 3,
-      top: 237,
-      left: 338,
-      selectable: false,
-      hoverCursor: "pointer",
-    });
-
-    var text = new fabric.Text('Room 1', {
-      fill: "black",
-      fontSize: 20,
-      top: 70,
-      left: 100
-    })
-
-    var text2 = new fabric.Text('Room 2', {
-      fill: "black",
-      fontSize: 20,
-      top: 70,
-      left: 435
-    })
-
-    var text3 = new fabric.Text('Room 3', {
-      fill: "black",
-      fontSize: 20,
-      top: 300,
-      left: 100
-    })
-
-    var text4 = new fabric.Text('Room 4', {
-      fill: "black",
-      fontSize: 20,
-      top: 300,
-      left: 435
-    })
-
-    this.canvas.add(text);
-    this.canvas.add(text2);
-    this.canvas.add(text3);
-    this.canvas.add(text4);
-
-    this.canvas.add(rectangle);
-    this.canvas.add(rectangle2);
-    this.canvas.add(rectangle3);
-    this.canvas.add(rectangle4);
-
-    rectangle.on('mousedown', () => {
-      this.state = false;
-      this.newItemEvent.emit(this.state);
-      this.state2 = false;
-      this.newItemEvent.emit(this.state2);
-      this.state3 = false;
-      this.newItemEvent.emit(this.state3);
-      this.state4 = false;
-      this.newItemEvent.emit(this.state4);
-      if (this.state === false) {
-        this.state = true;
+      rectangle.on('mousedown', () => {
+        this.state = false;
         this.newItemEvent.emit(this.state);
-        this.numberOfStateEvent.emit(1);
-      }
-    })
+        if (this.state === false) {
+          this.state = true;
+          this.newItemEvent.emit(this.state);
+          this.numberOfStateEvent.emit(i + 1);
+        }
+      })
 
-    rectangle2.on('mousedown', () => {
-      this.state = false;
-      this.newItemEvent.emit(this.state);
-      this.state2 = false;
-      this.newItemEvent.emit(this.state2);
-      this.state3 = false;
-      this.newItemEvent.emit(this.state3);
-      this.state4 = false;
-      this.newItemEvent.emit(this.state4);
-      if (this.state2 === false) {
-        this.state2 = true;
-        this.newItemEvent.emit(this.state2);
-        this.numberOfStateEvent.emit(2);
-      }
-    })
+      var text = new fabric.Text("Room" + name, {
+        fill: "black",
+        fontSize: 20,
+        top: x + h / 2.3,
+        left: y + w / 2.5
+      })
 
-    rectangle3.on('mousedown', () => {
-      this.state = false;
-      this.newItemEvent.emit(this.state);
-      this.state2 = false;
-      this.newItemEvent.emit(this.state2);
-      this.state3 = false;
-      this.newItemEvent.emit(this.state3);
-      this.state4 = false;
-      this.newItemEvent.emit(this.state4);
-      if (this.state3 === false) {
-        this.state3 = true;
-        this.newItemEvent.emit(this.state3);
-        this.numberOfStateEvent.emit(3);
-      }
-    })
+      this.canvas.add(text);
 
-    rectangle4.on('mousedown', () => {
-      this.state = false;
-      this.newItemEvent.emit(this.state);
-      this.state2 = false;
-      this.newItemEvent.emit(this.state2);
-      this.state3 = false;
-      this.newItemEvent.emit(this.state3);
-      this.state4 = false;
-      this.newItemEvent.emit(this.state4);
-      if (this.state4 === false) {
-        this.state4 = true;
-        this.newItemEvent.emit(this.state4);
-        this.numberOfStateEvent.emit(4);
-      }
-    })
+    }
   }
 }
-

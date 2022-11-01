@@ -15,7 +15,6 @@ export class AppComponent {
   numberofRoom = "";
   parentFunction(data) {
     this.state = data;
-    console.log(data);
   }
 
   getNumberOfRoom(roomNum) {
