@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { ExaminationService } from '../../core/examination.service';
+import {Examination } from '../../hospital/model/examination';
 
 @Component({
   selector: 'app-examinations',
@@ -9,11 +12,19 @@ import { Router } from '@angular/router';
 export class ExaminationsComponent implements OnInit {
   showAddExamination: boolean = false;
 
-  constructor(
-    private router: Router,
-  ) { }
+  public dataSource = new MatTableDataSource<Examination>();
+  public displayedColumns = ['starts', 'duration', 'patientId'];
+  public examinations: Examination[] = [];
+
+  constructor(private examinationService: ExaminationService, private router: Router) { }
 
   ngOnInit(): void {
+   /* this.examinationService.getExaminations().subscribe(res => {
+      this.examinations = res;*/
+      this.examinations.push(new Examination())
+      this.dataSource.data = this.examinations;
+
+//    })
   }
 
   addExamination() {
