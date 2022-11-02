@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import Examination from '../../../model/examination';
 import { ScheduleService } from '../schedule.service';
-import { PatientService } from '../../hospital/services/patient.service';
+import { PatientService } from '../../hospital/feedback/services/patient.service';
 import * as moment from 'moment';
 
 @Component({
