@@ -21,6 +21,15 @@ body {
   overflow-x: hidden;
 }
 
+.error-block {
+  color: crimson;
+  font-size: 14px;
+}
+
+.ng-invalid.ng-touched {
+  border-color: crimson;
+}
+
 @font-face {
   font-family: Poppins;
   src: url(assets/fonts/Poppins-Regular.ttf) format("truetype");
