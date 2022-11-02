@@ -130,9 +130,14 @@ export class CreateEditExaminationComponent implements OnInit {
         this.submitingError = "Failed to parse date and time";
         return;
       }
-      this.scheduleService.rescheduleExamination(
-        Number(this.examination?.id),
-        { startTime }).subscribe({
+      const examination : Examination = {
+        id: this.examination?.id,
+        doctorId: this.examination?.doctorId!,
+        patientId: Number(this.patient.value),
+        startTime: this.date.value.format("DD/MM/yyyy HH:mm"),
+        duration: Number(this.duration.value)
+      };
+      this.scheduleService.rescheduleExamination(examination).subscribe({
         next: (res) => {
           console.log(res);
           this.router.navigate(['/examinations']);
