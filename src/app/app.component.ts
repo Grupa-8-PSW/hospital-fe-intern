@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'HospitalFront';
   state = false;
   numberofRoom = "";
+
   parentFunction(data) {
     this.state = data;
   }

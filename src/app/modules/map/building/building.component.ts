@@ -28,14 +28,14 @@ export class BuildingComponent implements OnInit {
         let name = this.buildings[i].name;
         let textx = x + (w / 2);
         let texty = y + (h / 2);
+        let id = this.buildings[i].id;
 
         let building = paper.rect(x, y, w, h, 2)
           .attr('fill', this.buildings[i].color)
           .data("id", this.buildings[i].id)
           .click(function () {
-            alert(this.data("id"));
-            console.log(this);
-            // location.assign('/map/floor');
+
+            location.assign('/map/floor/' + id);
           })
           .hover(function () {
             this.attr('opacity', 0.8);
