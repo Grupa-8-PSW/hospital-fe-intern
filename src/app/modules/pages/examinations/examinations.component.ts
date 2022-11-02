@@ -22,10 +22,6 @@ export class ExaminationsComponent implements OnInit {
   constructor(private examinationService: ExaminationService, private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-   /* this.examinationService.getExaminations().subscribe(res => {
-      this.examinations = res;*/
-     // this.examinations.push(new Examination())
-     
      this.route.params.subscribe((params: Params) => {
        this.examinationService.getExaminationsByDate(params['day'], params['month'], params['year']).subscribe(res => {
          this.examinations = res;
@@ -38,4 +34,15 @@ export class ExaminationsComponent implements OnInit {
     this.router.navigate(['/examinations/create']);
   }
 
+  public getTime(date:Date) : string {
+    const dateObject = new Date(date)
+    return dateObject.getHours().toString() + ":" + dateObject.getMinutes().toString();
+  }
+
+  public getEndTime(date:Date, duration:number) : string {
+    const dateObject = new Date(date)
+    var newDateObj = new Date();
+    newDateObj.setTime(dateObject.getTime() + (duration * 60 * 1000));
+    return newDateObj.getHours().toString() + ":" + newDateObj.getMinutes().toString();
+  }
 }

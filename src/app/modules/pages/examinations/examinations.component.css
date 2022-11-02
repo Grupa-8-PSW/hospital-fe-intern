@@ -34,8 +34,11 @@ table {
 }
 
 th{
-    background-color: rgba(250, 81, 19, 0.993);
+    background-color: #c2185b;
     color: white;
+    font-family: Poppins;
+    font-size: 14px;
+
 }
 
 p {
@@ -45,5 +48,7 @@ p {
 
 td{
     color: black;
+    font-family: Poppins;
+    font-size: 14px;
 
 }
