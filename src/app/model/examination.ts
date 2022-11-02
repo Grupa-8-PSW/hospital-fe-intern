@@ -6,4 +6,6 @@ export default interface Examination {
   patientId: number,
   startTime: Moment,
   duration: number,
+  patientFirstName?: string
+  patientLastName?: string
 }
