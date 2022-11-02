@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
 import Patient from '../../../model/patient';
-import { parseAndSetTime, workingDaysFilter } from '../../shared/util/util';
+import { formatDate, parseAndSetTime, workingDaysFilter } from '../../shared/util/util';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import Examination from '../../../model/examination';
@@ -108,7 +108,7 @@ export class CreateEditExaminationComponent implements OnInit {
       const examination : Examination = {
         doctorId: 1,
         patientId: Number(this.patient.value),
-        startTime: this.date.value,
+        startTime: this.date.value.format("DD/MM/yyyy HH:mm"),
         duration: Number(this.duration.value)
       };
       console.log(examination);
@@ -119,7 +119,7 @@ export class CreateEditExaminationComponent implements OnInit {
         },
         error: (err) => {
           console.log(err);
-          this.submitingError = "Error creating examination";
+          this.submitingError = "Error creating examination, calendar full for that time";
           this.submitted = false;
         }
       });
