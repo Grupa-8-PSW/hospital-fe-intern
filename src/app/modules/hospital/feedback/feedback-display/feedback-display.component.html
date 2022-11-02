@@ -1,1 +1,12 @@
-<p>feedback-display works!</p>
+<div class="container mt-7">
+  <ng-template ngFor let-item [ngForOf]="Feedbacks" let-i="index">
+      <mat-card>
+          <mat-card-title *ngIf="item.patientFullName; else anonymous">{{item.patientFullName}}</mat-card-title>
+          <ng-template #anonymous>
+              <mat-card-title>Anonymous</mat-card-title>
+          </ng-template>
+          <mat-card-subtitle>{{item.creationDate}}</mat-card-subtitle>
+          <mat-card-content>{{item.text}}</mat-card-content>
+      </mat-card>
+  </ng-template>
+</div>
