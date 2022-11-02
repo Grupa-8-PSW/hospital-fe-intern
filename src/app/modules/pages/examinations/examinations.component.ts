@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ExaminationService } from '../../core/examination.service';
-import {Examination } from '../../hospital/model/examination';
+import { ScheduleService } from '../../examination/schedule.service';
+import Examination from '../../../model/examination';
 
 @Component({
   selector: 'app-examinations',
@@ -19,11 +19,11 @@ export class ExaminationsComponent implements OnInit {
 
 
 
-  constructor(private examinationService: ExaminationService, private router: Router,  private route: ActivatedRoute) { }
+  constructor(private scheduleService: ScheduleService, private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
      this.route.params.subscribe((params: Params) => {
-       this.examinationService.getExaminationsByDate(params['day'], params['month'], params['year']).subscribe(res => {
+       this.scheduleService.getExaminationsByDate(params['day'], params['month'], params['year']).subscribe(res => {
          this.examinations = res;
          this.dataSource.data = this.examinations;
       })
@@ -31,7 +31,10 @@ export class ExaminationsComponent implements OnInit {
   }
 
   addExamination() {
-    this.router.navigate(['/examinations/create']);
+    const date = this.route.snapshot.params['day'];
+    const month = this.route.snapshot.params['month'];
+    const year = this.route.snapshot.params['year'];
+    this.router.navigate([`/examinations/create/${date}/${month}/${year}`]);
   }
 
   public getTime(date:Date) : string {

@@ -38,4 +38,8 @@ export class ScheduleService {
   rescheduleExamination(id: number, object: any) : Observable<any> {
     return this.http.patch(this.examinationUrl + id, object, { headers: this.headers })
   }
+
+  getExaminationsByDate(day:number, month:number, year:number): Observable<Examination[]> {
+    return this.http.get<Examination[]>(this.examinationUrl + day + '/' + month + "/" + year, {headers: this.headers});
+  }
 }

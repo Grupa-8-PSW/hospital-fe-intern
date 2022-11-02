@@ -46,8 +46,22 @@ export class CreateEditExaminationComponent implements OnInit {
       startTime: new FormControl(null, [Validators.required]),
       duration: new FormControl('default', [this.noOptionSelectedValidator("duration")])
     });
-
+    this.examinationForm.get('date')?.disable();
     if (this.isAddMode) {
+      const date = this.route.snapshot.params['date'];
+      const month = this.route.snapshot.params['month'];
+      const year = this.route.snapshot.params['year'];
+      if (!date || !month || !year) {
+        // Privremeno na brzinu
+        console.log('err');
+        return;
+      }
+      this.examinationForm.patchValue({
+        patient: 'default',
+        date: moment(`${year}-${month}-${date}`),
+        startTime: null,
+        duration: 'default'
+      });
       this.loading = true;
       this.patientService.getAllPatients().subscribe({
         next: (patients) => {
