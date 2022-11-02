@@ -1,4 +1,25 @@
-#paper{
-    margin-left: 100;
-    margin-top: 100;
+.page{
+    width: 100%;
+
+    display: flex;
+}
+.left{
+    width: 50%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding-top: 100px;
+}
+.right{
+    width: 60%;
+    height: 100vh;
+    background-image: url("../../../../assets/images/home-left-image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.description{
+    font-size:xx-large;
+    margin-bottom: 50px;
+    font-size: 40px;
 }
