@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators, ValidatorFn } from '@angular/forms';
 import Patient from '../../../model/patient';
-import { formatDate, parseAndSetTime, workingDaysFilter } from '../../shared/util/util';
+import {parseAndSetTime, workingDaysFilter } from '../../shared/util/util';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import Examination from '../../../model/examination';
@@ -26,6 +26,9 @@ export class CreateEditExaminationComponent implements OnInit {
   // Mock data
   examination?: Examination;
   patients: Patient[] = [];
+  pathDate?: string;
+  pathMonth?: string;
+  pathYear?: string;
 
 
   constructor(
@@ -46,19 +49,19 @@ export class CreateEditExaminationComponent implements OnInit {
       startTime: new FormControl(null, [Validators.required]),
       duration: new FormControl('default', [this.noOptionSelectedValidator("duration")])
     });
-    this.examinationForm.get('date')?.disable();
     if (this.isAddMode) {
-      const date = this.route.snapshot.params['date'];
-      const month = this.route.snapshot.params['month'];
-      const year = this.route.snapshot.params['year'];
-      if (!date || !month || !year) {
+      this.pathDate = this.route.snapshot.params['date'];
+      this.pathMonth = this.route.snapshot.params['month'];
+      this.pathYear = this.route.snapshot.params['year'];
+      if (!this.pathDate || !this.pathMonth || !this.pathYear) {
         // Privremeno na brzinu
         console.log('err');
         return;
       }
+      this.examinationForm.get('date')?.disable();
       this.examinationForm.patchValue({
         patient: 'default',
-        date: moment(`${year}-${month}-${date}`),
+        date: moment(`${this.pathYear}-${this.pathMonth}-${this.pathDate}`),
         startTime: null,
         duration: 'default'
       });
@@ -89,7 +92,6 @@ export class CreateEditExaminationComponent implements OnInit {
                 duration: this.examination?.duration.toString()
               });
               this.examinationForm.get('patient')?.disable();
-              this.examinationForm.get('duration')?.disable();
               this.loading = false;
             },
             error: (err) => {
@@ -129,7 +131,7 @@ export class CreateEditExaminationComponent implements OnInit {
       this.scheduleService.createExamination(examination).subscribe({
         next: (res) => {
           console.log(res);
-          this.router.navigate(['/examinations']);
+          this.router.navigate([`/examinations/${this.pathDate}/${this.pathMonth}/${this.pathYear}`]);
         },
         error: (err) => {
           console.log(err);
@@ -154,7 +156,12 @@ export class CreateEditExaminationComponent implements OnInit {
       this.scheduleService.rescheduleExamination(examination).subscribe({
         next: (res) => {
           console.log(res);
-          this.router.navigate(['/examinations']);
+          const timeMoment = moment(examination.startTime, 'DD/MM/YYYY HH:mm');
+          // const date = timeMoment.date();
+          // const month = timeMoment.month();
+          // const year = timeMoment.month();
+          // const str = date + '/' + month + '/' + year;
+          this.router.navigate([`/examinations/${timeMoment.format("DD/MM/YYYY")}`]);
         },
         error: (err) => {
           console.log(err);

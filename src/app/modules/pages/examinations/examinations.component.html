@@ -5,7 +5,7 @@
       <mat-icon>add</mat-icon>
     </button>
   </section>
-  
+
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="starts">
         <th mat-header-cell *matHeaderCellDef class="cell-center"> Start </th>
@@ -14,16 +14,28 @@
     <ng-container matColumnDef="duration">
       <th mat-header-cell *matHeaderCellDef class="cell-center"> End</th>
       <td mat-cell *matCellDef="let ex" class="cell-center">{{getEndTime(ex.startTime, ex.duration)}}</td>
-  </ng-container>
-  <ng-container matColumnDef="patientFirstName">
+    </ng-container>
+    <ng-container matColumnDef="Patient Id">
+      <th mat-header-cell *matHeaderCellDef class="cell-center">Patient Id</th>
+      <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.patientId}}</td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="cell-center"></th>
+      <td mat-cell *matCellDef="let ex" class="cell-center">
+        <button mat-fab color="primary" (click)="handleEdit(ex.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  <!-- <ng-container matColumnDef="patientFirstName">
     <th mat-header-cell *matHeaderCellDef class="cell-center"> PatientFirstName </th>
     <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.patientFirstName}}</td>
 </ng-container>
 <ng-container matColumnDef="patientLastName">
   <th mat-header-cell *matHeaderCellDef class="cell-center"> PatientLastName </th>
   <td mat-cell *matCellDef="let ex" class="cell-center">{{ex.patientLastName}}</td>
-</ng-container>
-    
+</ng-container> -->
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

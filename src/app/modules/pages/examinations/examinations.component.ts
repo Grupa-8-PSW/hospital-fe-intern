@@ -13,11 +13,8 @@ export class ExaminationsComponent implements OnInit {
   showAddExamination: boolean = false;
 
   public dataSource = new MatTableDataSource<Examination>();
-  public displayedColumns = ['starts', 'duration', 'patientFirstName', 'patientLastName'];
+  public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit'];
   public examinations: Examination[] = [];
-
-
-
 
   constructor(private scheduleService: ScheduleService, private router: Router,  private route: ActivatedRoute) { }
 
@@ -47,5 +44,9 @@ export class ExaminationsComponent implements OnInit {
     var newDateObj = new Date();
     newDateObj.setTime(dateObject.getTime() + (duration * 60 * 1000));
     return newDateObj.getHours().toString() + ":" + newDateObj.getMinutes().toString();
+  }
+
+  public handleEdit(id: number) : void {
+    this.router.navigate([`/examinations/edit/${id}`])
   }
 }
