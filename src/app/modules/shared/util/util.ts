@@ -26,3 +26,13 @@ export const parseAndSetTime = (date: Moment, time: string) : Moment | null => {
 
   return date;
 }
+
+
+export const formatDate = (d: Date)  => {
+  var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes();
+
+  return datestring;
+}
+
+
+

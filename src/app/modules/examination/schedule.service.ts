@@ -35,8 +35,8 @@ export class ScheduleService {
     return this.http.post(this.examinationUrl, examination, { headers: this.headers });
   }
 
-  rescheduleExamination(id: number, object: any) : Observable<any> {
-    return this.http.patch(this.examinationUrl + id, object, { headers: this.headers })
+  rescheduleExamination(examination: Examination) : Observable<any> {
+    return this.http.put(this.examinationUrl + examination.id, examination, { headers: this.headers })
   }
 
   getExaminationsByDate(day:number, month:number, year:number): Observable<Examination[]> {
