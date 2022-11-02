@@ -25,7 +25,7 @@ export class CreateBloodBankComponent{
 
     this.bloodBankService.createBloodBank(this.bloodBank).subscribe((res => {
       this.router.navigate(['/bloodBanks']);
-      this.toastr.success('Banka krvi "' + this.bloodBank.name + '" je registrovana', 'Registracija uspešna');
+      this.toastr.success('Blood bank "' + this.bloodBank.name + '" is registered', 'Registration success !');
       }),
 
       (err) => {
