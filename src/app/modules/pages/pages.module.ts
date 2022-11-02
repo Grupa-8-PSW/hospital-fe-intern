@@ -4,6 +4,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ExaminationsComponent } from './examinations/examinations.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.component';
+import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 
@@ -11,6 +13,8 @@ import { CalendarComponent } from './calendar/calendar.component';
   declarations: [
     HomeComponent,
     ExaminationsComponent,
+    BloodBanksComponent,
+    DialogComponent,
     CalendarComponent,
   ],
   imports: [

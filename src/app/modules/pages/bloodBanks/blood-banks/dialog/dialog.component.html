@@ -1,0 +1,32 @@
+<h1>Check blood Availabilty</h1>
+<div mat-dialog-content>
+   <form [formGroup]="bloodTypeForm">
+    <p>
+        <mat-form-field appearance="fill" style="width:100%">
+            <mat-label>Select blood type</mat-label>
+            <mat-select formControlName="bloodType">
+              <mat-option value="Apos">A+</mat-option>
+              <mat-option value="Aneg">A-</mat-option>
+              <mat-option value="Bpos">B+</mat-option>
+              <mat-option value="Bneg">B-</mat-option>
+              <mat-option value="ABpos">AB+</mat-option>
+              <mat-option value="ABneg">AB-</mat-option>
+              <mat-option value="Opos">O-</mat-option>
+              <mat-option value="Oneg">O+</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline" style="width:100%">
+            <mat-label>Quantity (optional)</mat-label>
+            <input matInput formControlName="quantity">
+          </mat-form-field>
+        </p>
+        <p style="color: red; display: none;" id="mess1">Blood check failed. There is no queried blood.</p>
+        <p style="color: green; display: none;" id="mess2">Blood check was successful!</p>
+        <p>
+          <button mat-raised-button color="warn" (click)="checkForBlood()">Check</button>
+          <button ml-5 mat-raised-button color="primary" style="margin-left: 10px;" (click)="close()">Close</button>
+        </p>
+   </form>
+</div>

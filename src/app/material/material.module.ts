@@ -7,6 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -25,6 +30,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatTooltipModule,
     MatFormFieldModule,
+    MatOptionModule,
+    MatDialogModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatMomentDateModule,
     MatDatepickerModule,
     MatProgressSpinnerModule
@@ -38,6 +48,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatTooltipModule,
     MatFormFieldModule,
+    MatOptionModule,
+    MatDialogModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatMomentDateModule,
     MatDatepickerModule,
     MatProgressSpinnerModule
