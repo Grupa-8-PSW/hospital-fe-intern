@@ -12,7 +12,7 @@ import { ExaminationModule } from "./modules/examination/examination.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

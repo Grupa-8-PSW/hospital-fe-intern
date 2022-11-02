@@ -4,24 +4,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/app/material/material.module";
 import { SharedModule } from "../shared/shared.module";
-import { CreateRoomComponent } from "./create-room/create-room.component";
-import { RoomDetailComponent } from "./room-detail/room-detail.component";
-import { RoomsComponent } from "./rooms/rooms.component";
-import { UpdateRoomComponent } from "./update-room/update-room.component";
+import { FeedbackModule } from "./feedback/feedback.module";
+
 
 const routes: Routes = [
-  { path: 'rooms', component: RoomsComponent },
-  { path: 'rooms/add', component: CreateRoomComponent },
-  { path: 'rooms/:id', component: RoomDetailComponent },
-  { path: 'rooms/:id/update', component: UpdateRoomComponent }
+
 ];
 
 @NgModule({
   declarations: [
-    RoomsComponent,
-    RoomDetailComponent,
-    CreateRoomComponent,
-    UpdateRoomComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +20,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    FeedbackModule
   ],
   exports: [ RouterModule ]
 })
