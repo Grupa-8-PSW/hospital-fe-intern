@@ -2,7 +2,7 @@ import { query } from '@angular/animations';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BloodBank } from 'src/app/modules/hospital/model/bloodBank.model';
+import { BloodBank } from 'src/app/model/bloodBank.model';
 
 @Injectable({
   providedIn: 'root'

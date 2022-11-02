@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { BloodBank } from 'src/app/modules/hospital/model/bloodBank.model';
 import { BloodBankService } from '../services/blood-bank.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { BloodBank } from 'src/app/model/bloodBank.model';
 
 @Component({
   selector: 'app-blood-banks',

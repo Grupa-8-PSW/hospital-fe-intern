@@ -1,8 +1,7 @@
 import { ToastrModule } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BloodBank } from 'src/app/modules/hospital/model/bloodBank.model';
-
+import { BloodBank } from 'src/app/model/bloodBank.model';
 import { BloodBankService } from '../services/blood-bank.service';
 import { EmailService } from '../services/email.service';
 import { ToastrService} from 'ngx-toastr';

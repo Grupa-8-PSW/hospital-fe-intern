@@ -6,17 +6,22 @@ import { ExaminationsComponent } from './examinations/examinations.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.component';
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
+import { HospitalModule } from '../hospital/hospital.module';
+import { CalendarComponent } from './calendar/calendar.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
     ExaminationsComponent,
     BloodBanksComponent,
-    DialogComponent
+    DialogComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HospitalModule
   ]
 })
 export class PagesModule { }

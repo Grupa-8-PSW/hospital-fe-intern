@@ -1,0 +1,30 @@
+{
+  "examinations": [
+    {
+      "doctorId": 1,
+      "patientId": 1,
+      "startTime": "2022-10-20T18:00:00.000Z",
+      "duration": 90,
+      "id": 1
+    },
+    {
+      "doctorId": 1,
+      "patientId": 2,
+      "startTime": "2022-10-04T14:50:00.000Z",
+      "duration": 105,
+      "id": 2
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "FirstName": "Dragan",
+      "LastName": "Todorovic"
+    },
+    {
+      "id": 2,
+      "FirstName": "Miroslav",
+      "LastName": "Milovanovic"
+    }
+  ]
+}

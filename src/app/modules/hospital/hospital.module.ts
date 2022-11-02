@@ -3,9 +3,10 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { MaterialModule } from "src/app/material/material.module";
+import { SharedModule } from "../shared/shared.module";
 import { FeedbackModule } from "./feedback/feedback.module";
-import { AddEditExaminationComponent } from "./examinations/add-edit-examination/add-edit-examination.component";
 import { CheckBloodCountComponent } from './check-blood-count/check-blood-count.component';
+
 
 const routes: Routes = [
 
@@ -13,7 +14,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AddEditExaminationComponent,
     CheckBloodCountComponent
 
   ],
@@ -23,6 +23,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    SharedModule,
     FeedbackModule
   ],
   exports: [ RouterModule ]
