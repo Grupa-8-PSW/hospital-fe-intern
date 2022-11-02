@@ -1,14 +1,24 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Building } from '../../model/building.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BuildingService {
-    providedIn: 'root'
-    constructor(private http: HttpClient) { }
+  apiHost: string = 'http://localhost:5174/';
+  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    buildingUrl = 'http://localhost:5174/api/map/Building';
+  constructor(private http: HttpClient) { }
 
-    getAllBuildings() {
-        return this.http.get<any>(this.buildingUrl);
-    }
+  getBuildings(): Observable<Building[]> {
+    return this.http.get<Building[]>(this.apiHost + 'api/map/Building', {headers: this.headers});
+  }
+
+  buildingUrl = 'http://localhost:5174/api/map/Building';
+
+  getAllBuildings() {
+    return this.http.get<any>(this.buildingUrl);
+  }
 }
