@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FeedbackApprovalComponent } from './feedback-approval/feedback-approval.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
+import { FeedbackDisplayComponent } from './feedback-display/feedback-display.component';
 
 const routes: Routes = [
   { path: 'feedback/approval', component: FeedbackApprovalComponent }
@@ -10,7 +11,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    FeedbackApprovalComponent
+    FeedbackApprovalComponent,
+    FeedbackDisplayComponent
   ],
   imports: [
     CommonModule,
