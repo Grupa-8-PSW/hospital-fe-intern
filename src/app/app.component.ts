@@ -10,15 +10,4 @@ export class AppComponent {
 
   constructor(public router: Router) { }
 
-  title = 'HospitalFront';
-  state = false;
-  numberofRoom = "";
-
-  parentFunction(data) {
-    this.state = data;
-  }
-
-  getNumberOfRoom(roomNum) {
-    this.numberofRoom = roomNum;
-  }
 }

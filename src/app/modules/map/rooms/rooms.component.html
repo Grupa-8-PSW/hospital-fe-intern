@@ -1,3 +1,86 @@
 <div class="wholeApp">
     <canvas id="canvas" height="400" width="600"></canvas>
+
+    <body class="body" style="color: white;">
+        <form class="roomForm" *ngIf="state">
+            <div *ngIf="roomsData === 1" class="labels">
+                <div class="moveLabel">
+                    <label class="h1Edit">
+                        <h1>Room name:</h1>
+                    </label>
+                    <label class="descLabel">201 Neurohirurgija</label>
+                </div>
+                <div class="moveLabel2"><label class="h1Edit">
+                        <h1>Description:</h1>
+                    </label>
+                    <label class="descLabel">Ovde obavaljamo hirurske
+                        operacije</label>
+                </div>
+                <div class="moveLabel2"><label class="h1Edit" style="color: white;">
+                        <h1>Work hour:</h1>
+                    </label>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Day:</th>
+                                <th scope="col">From:</th>
+                                <th scope="col">To:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Monday
+                                </td>
+                                <td>
+                                    8:00h
+                                </td>
+                                <td>
+                                    17:00h
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>8:00h</td>
+                                <td>17:00h</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>8:00h</td>
+                                <td>17:00h</td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td>8:00h</td>
+                                <td>17:00h</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>8:00h</td>
+                                <td>17:00h</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>12:00h</td>
+                                <td>17:00h</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>
+                                    CLOSED
+                                </td>
+                                <td>
+                                    CLOSED
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div *ngIf="roomsData != 1" class="labels">
+                <h1>Room building is in process...</h1>
+            </div>
+        </form>
+    </body>
 </div>

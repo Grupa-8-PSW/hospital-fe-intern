@@ -6,21 +6,18 @@ import { Room } from '../model/rooms.model';
 import { RoomsService } from './roomsService/rooms.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
 export class SignatureComponent implements OnInit {
-  canvas: any;
 
+  roomsData = null;
+  canvas: any;
   state = false;
   id = null;
-
-
-  @Output() newItemEvent = new EventEmitter<boolean>();
-
-  @Output() numberOfStateEvent = new EventEmitter<any>();
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute) { }
 
@@ -40,13 +37,16 @@ export class SignatureComponent implements OnInit {
 
       for (let i = 0; i < this.rooms.length; i++) {
 
+        let id = this.rooms[i].id;
+        console.log(id);
         let x = this.rooms[i].x;
         let y = this.rooms[i].y;
         let w = this.rooms[i].width;
         let h = this.rooms[i].height;
         let rc = this.rooms[i].color;
         let name = this.rooms[i].name;
-        let fId = this.rooms[i].floorId;
+
+
 
 
         let rectangle = new fabric.Rect({
@@ -66,15 +66,14 @@ export class SignatureComponent implements OnInit {
 
         rectangle.on('mousedown', () => {
           this.state = false;
-          this.newItemEvent.emit(this.state);
           if (this.state === false) {
             this.state = true;
-            this.newItemEvent.emit(this.state);
-            this.numberOfStateEvent.emit(i + 1);
+            this.roomsData = id;
+            console.log(this.roomsData);
           }
         });
 
-        var text = new fabric.Text("Room" + name, {
+        var text = new fabric.Text(name, {
           fill: "black",
           fontSize: 20,
           top: x + h / 2.3,
