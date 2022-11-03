@@ -15,7 +15,7 @@
         <li class="nav-item">
           <a class="nav-link feedbacks-menu-trigger-btn" [matMenuTriggerFor]="menu">Feedbacks</a>
           <mat-menu class="bg-primary feedback-menu" #menu="matMenu">
-            <a class="nav-link text-secondary" mat-menu-item>Display</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/feedback/display">Display</a>
             <a class="nav-link text-secondary" mat-menu-item routerLink="/feedback/approval">Approvals</a>
           </mat-menu>
         </li>
