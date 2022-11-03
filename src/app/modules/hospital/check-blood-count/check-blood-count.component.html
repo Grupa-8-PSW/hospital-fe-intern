@@ -1,0 +1,24 @@
+<form class="form1" ngNativeValidate style="margin-top: 300px;" (ngSubmit)="fetchData()">
+    <div class="d1">
+        <label for="bank">Izaberite banku:</label>
+        <select name="b" id="bank" style="margin-left: 5px;" [(ngModel)]="bank" required>
+            <option *ngFor="let bank of Banks" [value]="bank.apiKey">{{bank.name}}</option>
+        </select>
+    </div>
+    <div class="d1">
+        <label for="bloodType">Izaberite krvnu grupu:</label>
+        <select name="bt" id="bloodType" style="margin-left: 5px;" [(ngModel)]="bloodType" required>
+            <option value="a-">A-</option>
+            <option value="A_POSITIVE">A+</option>
+            <option value="b-">B-</option>
+            <option value="b+">B+</option>
+            <option value="ab-">AB-</option>
+            <option value="ab+">AB+</option>
+            <option value="o+">0+</option>
+            <option value="o-">0-</option>
+        </select>
+    </div>
+    <label for="quant">Unesite potrebnu kolicinu krvi:</label>
+    <input id="quant" name="q" type="text" style="margin-left: 5px; margin-bottom: 10px;" required [(ngModel)]="quantity">     
+    <input type="submit" value="Proveri kolicinu" style="display: block; padding: 10px; background-color: #f44336; border: 0px; border-radius: 8%; color: white;">
+</form>

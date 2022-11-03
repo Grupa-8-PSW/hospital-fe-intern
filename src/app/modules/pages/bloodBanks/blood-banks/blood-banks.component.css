@@ -3,13 +3,12 @@
     margin: auto;
     margin-top: 20px;
     border-radius: 3px;
-    border: #DCD6CC 1px solid;
+    border: #c2185b 2px solid;
     background-color: white;
 }
 
 table {
     width: 100%;
-    background-color: white;
 }
 
 .table-title {
@@ -29,26 +28,12 @@ table {
     cursor: pointer;
 }
 
+
 .table-header {
     display: flex;
-}
-
-th{
-    background-color: #c2185b;
-    color: white;
-    font-family: Poppins;
-    font-size: 14px;
-
 }
 
 p {
     float: left;
     margin-right: auto;
-}
-
-td{
-    color: black;
-    font-family: Poppins;
-    font-size: 14px;
-
 }

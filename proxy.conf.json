@@ -4,5 +4,10 @@
 		"secure": false,
 		"changeOrigin": false,
 		"pathRewrite": {"^/api" : ""}
-	}
+	},
+	"/api/*": {
+        "target": "http://localhost:7131",
+        "secure": false,
+        "logLevel": "debug"
+    }
 }
