@@ -8,6 +8,7 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
+    ScheduleDialogComponent,
   ],
   imports: [
     CommonModule,

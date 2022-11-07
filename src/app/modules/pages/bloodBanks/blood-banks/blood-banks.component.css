@@ -1,3 +1,11 @@
+
+.scheduleReport {
+    margin: auto;
+    left: 10%;
+    top: 10%;
+    position: fixed;  
+}
+
 .container {
     width: 50%;
     margin: auto;

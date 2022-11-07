@@ -1,0 +1,20 @@
+<div>
+
+    
+    <div class="col-lg-6">
+        <div style="width: 43rem;">
+            <p >Schedule frequency of sending blood consumption reports.</p>
+            <br>
+            <h5 >Daily</h5>
+            <br>
+            <p> Choose time of sending reports:</p>
+            <input [(ngModel)]="time" type="time" id="appt" name="appt" min="09:00" max="18:00" required>
+
+            
+            <br>
+            <br>
+            <a routerLink="bloodBanks" class="btn btn-primary" (click)="schedule()" >Schedule</a>
+        </div>
+    </div>
+    
+</div>
