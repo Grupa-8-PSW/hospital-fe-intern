@@ -6,7 +6,8 @@ import { RoomsService } from './roomsService/rooms.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsService } from './roomsService/forms.service';
 import { Form } from '../model/form.model';
-
+import { Equipment } from '../model/equipment.model';
+import { EquipmentsService } from './roomsService/equipments.service';
 
 @Component({
   selector: 'app-rooms',
@@ -15,15 +16,25 @@ import { Form } from '../model/form.model';
 })
 export class SignatureComponent implements OnInit {
 
-  whichRoom = null;
+  roomNum = null;
   canvas: any;
   state = false;
   id = null;
+  stateAprooved = true;
+  canMoveForm = false;
+  percent = 0;
+  percentIsHun = false;
+  percentIsZero = true;
+  percentIsTwenty = false;
+  percentIsFourty = false;
+  percentIsSixty = false;
+  percentIsEighty = false;
 
-  constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService) { }
+  constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
   public rooms: Room[] = [];
   public forms: Form[] = [];
+  public equipments: Equipment[] = [];
   public datas = [];
 
   ngOnInit(): void {
@@ -34,11 +45,8 @@ export class SignatureComponent implements OnInit {
       isDrawingMode: false
     });
 
-
-
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
       this.rooms = res;
-
 
       for (let i = 0; i < this.rooms.length; i++) {
 
@@ -69,7 +77,8 @@ export class SignatureComponent implements OnInit {
           this.state = false;
           if (this.state === false) {
             this.state = true;
-            this.whichRoom = id;
+            this.roomNum = id;
+
             this.formsService.getForms().subscribe(res => {
               this.forms = res;
 
@@ -86,7 +95,7 @@ export class SignatureComponent implements OnInit {
                 let eSun = this.forms[i].endHourSunday;
 
 
-                if (this.whichRoom === roomId) {
+                if (this.roomNum === roomId) {
                   this.datas[0] = roomId;
                   this.datas[1] = name;
                   this.datas[2] = desc;
@@ -96,9 +105,27 @@ export class SignatureComponent implements OnInit {
                   this.datas[6] = eSat;
                   this.datas[7] = sSun;
                   this.datas[8] = eSun;
-                  console.log(this.datas[0]);
                 }
 
+              }
+            })
+
+            this.equipmentsService.getEquipmentsByRoomId(id).subscribe(res => {
+              this.equipments = res;
+
+
+              for (let j = 0; j < this.equipments.length; j++) {
+
+                let equipmentId = this.equipments[j].equipmentId;
+                let name = this.equipments[j].name;
+                let amount = this.equipments[j].amount;
+                let roomId = this.equipments[j].roomId;
+
+                if (roomId === id) {
+                  this.equipments[j].equipmentId = equipmentId;
+                  this.equipments[j].name = name;
+                  this.equipments[j].amount = amount;
+                }
               }
             })
           }
@@ -115,6 +142,93 @@ export class SignatureComponent implements OnInit {
 
       }
     })
+  }
 
+  moveEquipmentForm(event) {
+    event.preventDefault();
+    this.canMoveForm = true;
+  }
+
+  addPercent(event) {
+    console.log(this.percent);
+    event.preventDefault();
+
+    if (this.percent < 100) {
+      this.percent = this.percent + 25;
+    }
+
+    if (this.percent > 0) {
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+
+    if (this.percent === 25) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.percent === 50) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.percent === 75) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.percent === 100) {
+      this.percentIsHun = true;
+    }
+  }
+
+  removePercent(event) {
+    event.preventDefault();
+    this.percentIsHun = false;
+    if (this.percent > 0) {
+      this.percent = this.percent - 25;
+    }
+    if (this.percent === 25) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.percent === 50) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.percent === 75) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.percent === 0) {
+      this.percentIsZero = true;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+  }
+
+  scheduleMoving(event) {
+    event.preventDefault();
+    alert("SCEDULE !");
   }
 }

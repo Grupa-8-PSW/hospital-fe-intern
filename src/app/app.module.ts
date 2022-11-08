@@ -12,6 +12,7 @@ import { SignatureComponent } from "./modules/map/rooms/rooms.component";
 import { BlankComponent } from './modules/map/blank/blank.component';
 import { FloorsComponent } from './modules/map/floors/floors.component';
 import { BuildingService } from "./modules/map/building/buildingService/building.service";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BuildingService } from "./modules/map/building/buildingService/building
     MaterialModule,
     PagesModule,
     HospitalModule,
-    SharedModule
+    SharedModule,
+    MatProgressBarModule
   ],
   providers: [BuildingService],
   bootstrap: [AppComponent]
