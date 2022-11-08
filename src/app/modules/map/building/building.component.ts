@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Raphael from 'raphael';
 import { Building } from '../model/building.model';
 import { BuildingService } from './buildingService/building.service';
+import { Room } from '../model/rooms.model';
 
 
 @Component({
@@ -14,6 +15,10 @@ export class BuildingComponent implements OnInit {
   public buildings: Building[] = [];
 
   constructor(private buildingService: BuildingService) { }
+
+  public rooms: Room[] = [];
+  value: any;
+
 
   ngOnInit(): void {
 
@@ -48,6 +53,16 @@ export class BuildingComponent implements OnInit {
       }
     })
 
+
+    this.buildingService.getAllRooms().subscribe(res => {
+      this.rooms = res;
+
+      for (let i = 0; i < this.rooms.length; i++) {
+        let roomId = this.rooms[i].id;
+        let roomName = this.rooms[i].name;
+      }
+    })
+
     // let buildings = [
     //   { x: 100, y: 100, width: 450, height: 150, color: 'gray', name: 'One' },
     //   { x: 600, y: 100, width: 150, height: 450, color: 'gray', name: 'Too' },
@@ -63,4 +78,13 @@ export class BuildingComponent implements OnInit {
 
   }
 
+  selectedRoom(event) {
+    event.preventDefault();
+    console.log(event.target);
+    alert("SELECTOVANA SOBA");
+    this.buildingService.getAllRooms().subscribe(res => {
+      this.rooms = res;
+      this.rooms[0].color = "red";
+    })
+  }
 }

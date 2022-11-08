@@ -1,4 +1,37 @@
+<div class="general">
+    <div id="paper">
+    </div>
 
-<div id="paper">
+    <body class="body" style="color: white;">
+        <form class="roomForm">
+            <div class="labels">
+                <div class="moveLabel">
+                    <label class="h1Edit">
+                        <h1>Coa search</h1>
+                    </label>
+                </div>
+                <div class="moveLabel2">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id:</th>
+                                <th scope="col">Name:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let room of rooms; let i index" (click)="selectedRoom($event)">
+                                <td>
+                                    <h3>{{room.id}}</h3>
+                                </td>
+                                <td>
+                                    <h3>{{room.name}}</h3>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </body>
 
 </div>
