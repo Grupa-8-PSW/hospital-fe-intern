@@ -9,6 +9,7 @@ import { Form } from '../model/form.model';
 import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
 
+
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
@@ -55,7 +56,7 @@ export class SignatureComponent implements OnInit {
         let y = this.rooms[i].y;
         let w = this.rooms[i].width;
         let h = this.rooms[i].height;
-        let rc = this.rooms[i].color;
+        let rc = "blue";
         let name = this.rooms[i].name;
 
         let rectangle = new fabric.Rect({
@@ -150,7 +151,6 @@ export class SignatureComponent implements OnInit {
   }
 
   addPercent(event) {
-    console.log(this.percent);
     event.preventDefault();
 
     if (this.percent < 100) {

@@ -20,6 +20,7 @@ export class BuildingComponent implements OnInit {
   value: any;
 
 
+
   ngOnInit(): void {
 
     this.buildingService.getBuildings().subscribe(res => {
@@ -78,13 +79,12 @@ export class BuildingComponent implements OnInit {
 
   }
 
-  selectedRoom(event) {
-    event.preventDefault();
-    console.log(event.target);
-    alert("SELECTOVANA SOBA");
+  selectedRoom(roomId: number) {
     this.buildingService.getAllRooms().subscribe(res => {
       this.rooms = res;
-      this.rooms[0].color = "red";
+      this.rooms[roomId].color = "red";
     })
   }
+
+
 }

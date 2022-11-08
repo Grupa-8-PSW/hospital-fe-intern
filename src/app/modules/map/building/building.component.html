@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let room of rooms; let i index" (click)="selectedRoom($event)">
+                            <tr *ngFor="let room of rooms; let i index" (click)="selectedRoom(room.id)">
                                 <td>
                                     <h3>{{room.id}}</h3>
                                 </td>
