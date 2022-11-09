@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'calendar', component: CalendarComponent },
-  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
+  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent }
 ];
 
 
