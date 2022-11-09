@@ -3,6 +3,7 @@ import Raphael from 'raphael';
 import { Building } from '../model/building.model';
 import { BuildingService } from './buildingService/building.service';
 import { Room } from '../model/rooms.model';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,8 +14,9 @@ import { Room } from '../model/rooms.model';
 export class BuildingComponent implements OnInit {
 
   public buildings: Building[] = [];
+  changeRoom = "";
 
-  constructor(private buildingService: BuildingService) { }
+  constructor(private buildingService: BuildingService, private route: ActivatedRoute) { }
 
   public rooms: Room[] = [];
   value: any;
@@ -82,9 +84,8 @@ export class BuildingComponent implements OnInit {
   selectedRoom(roomId: number) {
     this.buildingService.getAllRooms().subscribe(res => {
       this.rooms = res;
-      this.rooms[roomId].color = "red";
+      //this.route.snapshot.data[this.rooms[roomId].id];
+      window.location.href = '/map/floor/rooms/' + this.rooms[roomId].floorId;
     })
   }
-
-
 }

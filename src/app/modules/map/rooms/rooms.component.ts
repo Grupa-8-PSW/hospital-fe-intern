@@ -46,6 +46,10 @@ export class SignatureComponent implements OnInit {
       isDrawingMode: false
     });
 
+    /* this._Activatedroute.data.subscribe(({ data }) => {
+       console.log(data);
+     }) */
+
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
       this.rooms = res;
 
@@ -121,6 +125,7 @@ export class SignatureComponent implements OnInit {
                 let name = this.equipments[j].name;
                 let amount = this.equipments[j].amount;
                 let roomId = this.equipments[j].roomId;
+
 
                 if (roomId === id) {
                   this.equipments[j].equipmentId = equipmentId;

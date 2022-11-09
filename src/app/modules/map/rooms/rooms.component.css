@@ -115,8 +115,8 @@ tr:hover {
     width: 700px;
     height: 550px;
     border-radius: 8px;
-    background-color: #c72a68;
-    color: white;
+    background-color: rgb(255, 252, 252);
+    color: black;
     position: absolute;
     border-color: black;
     border-width: thick;
@@ -156,7 +156,7 @@ tr:hover {
 }
 
 ::ng-deep .mat-progress-bar-fill::after {
-    background-color: #5e072a;
+    background-color: #f44336;
 }
 
 ::ng-deep .mat-progress-bar-buffer {
