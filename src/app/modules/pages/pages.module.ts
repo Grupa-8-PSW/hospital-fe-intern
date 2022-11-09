@@ -8,6 +8,8 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { PatientModule } from '../patient/patient.module';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { CalendarComponent } from './calendar/calendar.component';
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     MaterialModule,
-    HospitalModule
+    HospitalModule,
+    PatientModule
   ]
 })
 export class PagesModule { }
