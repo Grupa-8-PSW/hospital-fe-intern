@@ -1,27 +1,23 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { BloodConsumptionReport } from 'src/app/model/BloodConsumptionReport';
 import { ScheduleReportsService } from '../services/schedule-reports.service';
 import { DOCUMENT } from '@angular/common'; 
 import {FormBuilder, Validators} from '@angular/forms';
 
-
 @Component({
-  selector: 'app-schedule-dialog',
-  templateUrl: './schedule-dialog.component.html',
-  styleUrls: ['./schedule-dialog.component.css'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-schedule-component',
+  templateUrl: './schedule-component.component.html',
+  styleUrls: ['./schedule-component.component.css']
 })
-
-export class ScheduleDialogComponent implements OnInit {
+export class ScheduleComponentComponent implements OnInit {
 
   public bloodConsumptionReport: BloodConsumptionReport = new BloodConsumptionReport();
-  public startTime: any;
-  public startDate: any;
-  public periodInHours: any;
-  public months: any = 0;
-  public days: any;
-  public startPeriodConsumption: any;
+  public time: any;
+  public day: any;
+  public StartTime: any;
 
   constructor(
               private router: Router,
@@ -34,19 +30,20 @@ export class ScheduleDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  daily(): void {
-    window.alert(this.startTime);
-  }
-
   schedule(): void {
+    this.bloodConsumptionReport.startTime = this.time;
+    window.alert(this.time);
       this.reportService.createReport(this.bloodConsumptionReport).subscribe((res => {
  
     }));
 
   } 
 
+  scheduleWeekly(): void {
+    window.alert(this.StartTime);
+  }
+
   clickedDaily() {
-    this.periodInHours = 12;
     var daily = document.getElementById('dailyDiv') as HTMLElement;
     daily.className="btn btn-danger";
     daily.click();
@@ -63,7 +60,6 @@ export class ScheduleDialogComponent implements OnInit {
   }
 
   clickedWeekly() {
-    this.periodInHours = 84;
     var weekly = document.getElementById('weeklyDiv') as HTMLElement;
     weekly.className="btn btn-danger";
     weekly.click();
@@ -79,7 +75,6 @@ export class ScheduleDialogComponent implements OnInit {
   }
 
   clickedMonthly() {
-    this.periodInHours = 217;
     var monthly = document.getElementById('monthlyDiv') as HTMLElement;
     monthly.className="btn btn-danger";
     monthly.click();
@@ -117,14 +112,11 @@ export class ScheduleDialogComponent implements OnInit {
   }
 
 
-  // firstFormGroup = this._formBuilder.group({
-  //   firstCtrl: ['', Validators.required],
-  // });
-  // secondFormGroup = this._formBuilder.group({
-  //   secondCtrl: ['', Validators.required],
-  // });
-  // isEditable = false;
-
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  isEditable = false;
 }
-
-

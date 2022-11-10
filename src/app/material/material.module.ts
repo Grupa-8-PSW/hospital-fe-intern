@@ -19,10 +19,18 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from "@angular/material-mo
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as moment from 'moment';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatTimepickerModule } from 'mat-timepicker';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+
+
 @NgModule({
   declarations: [],
   imports: [
+    MatTimepickerModule,
     CommonModule,
+    NgxMaterialTimepickerModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,
@@ -32,6 +40,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatOptionModule,
     MatDialogModule,
+    MatStepperModule,
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
@@ -40,6 +49,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressSpinnerModule
   ],
   exports: [
+    MatTimepickerModule,
     CommonModule,
     MatInputModule,
     MatButtonModule,
@@ -50,6 +60,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatOptionModule,
     MatDialogModule,
+    NgxMaterialTimepickerModule,
+    MatStepperModule,
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
