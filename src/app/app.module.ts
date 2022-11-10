@@ -12,6 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 import {ToastrModule} from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
+import { MatStepperModule } from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ExaminationModule } from "./modules/examination/examination.module";
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatStepperModule,
     MaterialModule,
     PagesModule,
     HospitalModule,

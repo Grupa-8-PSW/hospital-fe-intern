@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-schedule-dialog',
