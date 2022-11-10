@@ -21,6 +21,7 @@ export class SignatureComponent implements OnInit {
   canvas: any;
   state = false;
   id = null;
+  roomId: number;
   stateAprooved = true;
   canMoveForm = false;
   percent = 0;
@@ -40,28 +41,37 @@ export class SignatureComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = this._Activatedroute.snapshot.paramMap.get("id");
+    this.id = this._Activatedroute.snapshot.paramMap.get("floorId");
+    this.roomId = parseInt(this._Activatedroute.snapshot.paramMap.get("roomId"));
+
 
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
     });
 
-    /* this._Activatedroute.data.subscribe(({ data }) => {
-       console.log(data);
-     }) */
-
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
       this.rooms = res;
 
+
       for (let i = 0; i < this.rooms.length; i++) {
+
+        // console.log(this.rooms[this.roomId].floorId);
+        // 
+
 
         let id = this.rooms[i].id;
         let x = this.rooms[i].x;
         let y = this.rooms[i].y;
         let w = this.rooms[i].width;
         let h = this.rooms[i].height;
-        let rc = "blue";
+        let rc: string;
         let name = this.rooms[i].name;
+        if (this.rooms[i].id === this.roomId) {
+          rc = "red"
+        }
+        else {
+          rc = "blue";
+        }
 
         let rectangle = new fabric.Rect({
           width: w,
@@ -75,7 +85,6 @@ export class SignatureComponent implements OnInit {
           hoverCursor: "pointer",
 
         });
-
         this.canvas.add(rectangle);
 
         rectangle.on('mousedown', () => {
@@ -145,7 +154,6 @@ export class SignatureComponent implements OnInit {
         });
 
         this.canvas.add(text);
-
       }
     })
   }
