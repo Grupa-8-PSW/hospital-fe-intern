@@ -32,6 +32,8 @@ export class SignatureComponent implements OnInit {
   percentIsSixty = false;
   percentIsEighty = false;
 
+
+
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
   public rooms: Room[] = [];
@@ -66,11 +68,22 @@ export class SignatureComponent implements OnInit {
         let h = this.rooms[i].height;
         let rc: string;
         let name = this.rooms[i].name;
+
+
+
         if (this.rooms[i].id === this.roomId) {
-          rc = "red"
+          rc = "#ff1a1a"
         }
-        else {
-          rc = "blue";
+        else if (this.rooms[i].type === 0) {
+          rc = "#9999ff";
+        } else if (this.rooms[i].type === 1) {
+          rc = "#ccffee";
+        } else if (this.rooms[i].type === 2) {
+          rc = "#eaaeae";
+        } else if (this.rooms[i].type === 3) {
+          rc = " #ff944d";
+        } else {
+          rc = "#fff4b3";
         }
 
         let rectangle = new fabric.Rect({

@@ -7,6 +7,7 @@ export class Room {
     color: string = "";
     name: string = "";
     floorId: number = 0;
+    type: number;
 
     public constructor(obj?: any) {
         if (obj) {
@@ -18,6 +19,7 @@ export class Room {
             this.color = obj.color;
             this.name = obj.name;
             this.floorId = obj.floorId;
+            this.type = obj.type;
         }
     }
 }
