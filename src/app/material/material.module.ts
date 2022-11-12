@@ -79,7 +79,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
         dateInput: "DD/MM/YYYY"
       }
     }},
-    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}}
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class MaterialModule {}

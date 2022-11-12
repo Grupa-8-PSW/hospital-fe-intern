@@ -3,9 +3,9 @@
         <ng-template matStepLabel>Choose start date and time</ng-template>
         
         <div class="stepHolder">
-            <mat-form-field appearance="fill" >
+            <mat-form-field appearance="fill"  >
                 <mat-label>Date</mat-label>
-                <input matInput [(ngModel)]="startDate" [matDatepicker]="picker1" >
+                <input  matInput [(ngModel)]="startDate"  [matDatepicker]="picker1" />
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
@@ -14,7 +14,7 @@
             <br>
             <mat-form-field appearance="fill">
                 <mat-label>Time</mat-label>
-                <input [(ngModel)]="startTime"  matTimepicker #t1="matTimepicker" >
+                <input [(ngModel)]="startTime" name="sds" matTimepicker #t1="matTimepicker" />
                 <mat-hint>HH:MM</mat-hint>
                 <mat-datepicker-toggle matSuffix></mat-datepicker-toggle>
             </mat-form-field>
@@ -22,7 +22,7 @@
             <br>
             <br>
             <div class="stepHolder">
-                <button mat-button matStepperNext (click)="daily()">Next</button>
+                <button mat-button matStepperNext (click)="startDateNext()">Next</button>
             </div>
         </div>
     </mat-step>
@@ -59,14 +59,16 @@
                     <br>
                     <mat-form-field appearance="fill">
                         <mat-label>Hours</mat-label>
-                        <input matTimepicker #t1="matTimepicker">
-                        
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodHours">
+                            <mat-option *ngFor="let index of [0,1,2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
                         <mat-hint>HH:MM</mat-hint>
                         
                     </mat-form-field>
                     <br>
                     <div class="stepHolder">
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="dailyNext()">Next</button>
                     </div>
                 </div>
 
@@ -77,26 +79,29 @@
                     <br>
                     <mat-form-field appearance="fill">
                         <mat-label>Days</mat-label>
-                        <mat-select value="6">
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodDays">
                             <mat-option value="1">1</mat-option>
                             <mat-option value="2">2</mat-option>
                             <mat-option value="3">3</mat-option>
-                            <mat-option value="3">4</mat-option>
-                            <mat-option value="3">5</mat-option>
-                            <mat-option value="3">6</mat-option>
+                            <mat-option value="4">4</mat-option>
+                            <mat-option value="5">5</mat-option>
+                            <mat-option value="6">6</mat-option>
                             
                             </mat-select>
                         </mat-form-field>
                     <br>
                     <mat-form-field appearance="fill">
                         <mat-label>Hours</mat-label>
-                        <input matTimepicker #t1="matTimepicker" >
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodHours">
+                            <mat-option *ngFor="let index of [0, 1, 2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
                         <mat-hint>HH:MM</mat-hint>
                         
                     </mat-form-field>
                     <br>
                     <div class="stepHolder">
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="WeeklyNext()">Next</button>
                     </div>
                 </div>
 
@@ -107,7 +112,7 @@
                     <br>  
                     <mat-form-field appearance="fill">
                         <mat-label>Days</mat-label>
-                        <mat-select value="6">
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodDays">
                             <mat-option *ngFor="let index of [0,1,2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
                             20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]" [value]="index">{{index}}</mat-option>
                         </mat-select>
@@ -115,13 +120,16 @@
                     <br>
                     <mat-form-field appearance="fill">
                         <mat-label>Hours</mat-label>
-                        <input matTimepicker #t1="matTimepicker" >
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodHours">
+                            <mat-option *ngFor="let index of [0, 1, 2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
                         <mat-hint>HH:MM</mat-hint>
                         
                     </mat-form-field>
                     <br>
                     <div class="stepHolder">
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="MonthlyNext()" >Next</button>
                     </div>
                 </div>
                 
@@ -134,18 +142,23 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Months</mat-label>
                             <input  
-                                type="number"
+                                min="0"
+                                name="ss"
                                 matInput
-                                [(ngModel)]="months"
+                                type="number"
+                                [(ngModel)]="customFrequencyMonths"
                                 >
                             </mat-form-field>
                             <br>
                             <mat-form-field appearance="fill">
                             <mat-label>Days</mat-label>
                             <input
-                            
+                                min="0"
+                                max="31"
+                                name="ss"
+                                [(ngModel)]="customFrequencyDays"
                                 type="number"
-                                matInput>
+                                matInput/>
                         </mat-form-field>
                     </div>
                     <br>
@@ -154,21 +167,30 @@
                         <br>  
                         <mat-form-field appearance="fill">
                             <mat-label>Months</mat-label>
-                            <input 
+                            <input  
+                                min="0"
+                                name="ss"
+                                matInput
                                 type="number"
-                                matInput>
+                                [(ngModel)]="ConsumptionPeriodMonths"
+                                >
                             </mat-form-field>
                             <br>
                             <mat-form-field appearance="fill">
-                            <mat-label>Days</mat-label>
-                            <input
-                                type="number"
-                                matInput>
-                        </mat-form-field>
+                                <mat-label>Days</mat-label>
+                                <input  
+                                    min="0"
+                                    max="31"
+                                    name="ss"
+                                    matInput
+                                    type="number"
+                                    [(ngModel)]="ConsumptionPeriodDays"
+                                    >
+                                </mat-form-field>
                     
                     <br>
                     <div class="stepHolder">
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="nextCustomPeriod()">Next</button>
                     </div>    
                     </div>
                 </div> 
@@ -177,11 +199,27 @@
     </mat-step>
 
     <mat-step>
+        <ng-template matStepLabel>
+          </ng-template>
         <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+        <mat-card>
+            <mat-card-header> You are now set everything. </mat-card-header>
+            <mat-card-content>
+                <br>
+                <p>Report start sending at: </p>
+                <p>    Date: {{startDate}}</p>
+                <p>    Time: {{startTime}}</p>
+                <p>    Frequency: {{frequencyPeriodInHours}} hours</p>
+                <br>
+                <p>Consumption period:</p>
+                <p>last {{ConsumptionPeriodHours}} hours </p>
+                
+                <br>
+            </mat-card-content>
+        </mat-card>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button matStepperPrevious>Done</button>
         </div>
     </mat-step>
 </mat-stepper>

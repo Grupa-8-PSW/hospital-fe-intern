@@ -4,6 +4,8 @@ import { BloodConsumptionReport } from 'src/app/model/BloodConsumptionReport';
 import { ScheduleReportsService } from '../services/schedule-reports.service';
 import { DOCUMENT } from '@angular/common'; 
 import {FormBuilder, Validators} from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
+import { Moment } from 'moment';
 
 
 @Component({
@@ -15,30 +17,59 @@ import {FormBuilder, Validators} from '@angular/forms';
 
 export class ScheduleDialogComponent implements OnInit {
 
+  selected?: Moment;
+
   public bloodConsumptionReport: BloodConsumptionReport = new BloodConsumptionReport();
   public startTime: any;
   public startDate: any;
-  public periodInHours: any;
-  public months: any = 0;
-  public days: any;
-  public startPeriodConsumption: any;
+  public frequencyPeriodInHours: any;
+  public customFrequencyMonths: any=0;
+  public customFrequencyDays: any=0;
+
+  public ConsumptionPeriodHours: any;
+  public ConsumptionPeriodDays: any;
+  public ConsumptionPeriodMonths:any = 0;
 
   constructor(
               private router: Router,
               private reportService: ScheduleReportsService,
               private _formBuilder: FormBuilder,
-              @Inject(DOCUMENT) document: Document) {
+              @Inject(DOCUMENT) document: Document,
+              private dateAdapter: DateAdapter<Date>) {
                 document.getElementById('el');
+                this.dateAdapter.setLocale('en-GB');
                }
 
   ngOnInit(): void {
   }
 
-  daily(): void {
-    window.alert(this.startTime);
+  dailyNext() {
+    window.alert(this.ConsumptionPeriodHours);
   }
 
+  WeeklyNext() {
+    this.calculatePeriod();
+    window.alert(this.ConsumptionPeriodHours);
+  
+  }
+
+  MonthlyNext() {
+    this.calculatePeriod();
+    window.alert(this.ConsumptionPeriodHours);
+  
+  }
+
+  calculatePeriod() {
+    var d = 24 * this.ConsumptionPeriodDays;
+    this.ConsumptionPeriodHours = this.ConsumptionPeriodHours + d;
+  }
+
+
   schedule(): void {
+      this.bloodConsumptionReport.ConsumptionPeriodHours = this.ConsumptionPeriodHours;
+      this.bloodConsumptionReport.frequencyPeriodInHours = this.frequencyPeriodInHours;
+      this.bloodConsumptionReport.startDate = this.startDate;
+      this.bloodConsumptionReport.startTime = this.startTime;
       this.reportService.createReport(this.bloodConsumptionReport).subscribe((res => {
  
     }));
@@ -46,7 +77,7 @@ export class ScheduleDialogComponent implements OnInit {
   } 
 
   clickedDaily() {
-    this.periodInHours = 12;
+    this.frequencyPeriodInHours = 24;
     var daily = document.getElementById('dailyDiv') as HTMLElement;
     daily.className="btn btn-danger";
     daily.click();
@@ -60,10 +91,11 @@ export class ScheduleDialogComponent implements OnInit {
     var annual = document.getElementById('annualDiv') as HTMLElement;
     annual.className="btn btn-dark";
 
+
   }
 
   clickedWeekly() {
-    this.periodInHours = 84;
+    this.frequencyPeriodInHours = 24*7;
     var weekly = document.getElementById('weeklyDiv') as HTMLElement;
     weekly.className="btn btn-danger";
     weekly.click();
@@ -76,10 +108,11 @@ export class ScheduleDialogComponent implements OnInit {
 
     var annual = document.getElementById('annualDiv') as HTMLElement;
     annual.className="btn btn-dark";
+
   }
 
   clickedMonthly() {
-    this.periodInHours = 217;
+    this.frequencyPeriodInHours = 217;
     var monthly = document.getElementById('monthlyDiv') as HTMLElement;
     monthly.className="btn btn-danger";
     monthly.click();
@@ -92,6 +125,7 @@ export class ScheduleDialogComponent implements OnInit {
 
     var annual = document.getElementById('annualDiv') as HTMLElement;
     annual.className="btn btn-dark";
+
   }
 
   clickedAnnual() { 
@@ -107,6 +141,10 @@ export class ScheduleDialogComponent implements OnInit {
 
     var weekly = document.getElementById('weeklyDiv') as HTMLElement;
     weekly.className="btn btn-dark";
+    
+    this.frequencyPeriodInHours = 0;
+
+
   }
 
   showDiv = {
@@ -116,14 +154,43 @@ export class ScheduleDialogComponent implements OnInit {
     annual : false
   }
 
+  nextCustomPeriod() {
+    this.frequencyPeriodInHours = this.customFrequencyDays * 24 + this.customFrequencyMonths*31*24;
+    
+    var m = 24*31* this.ConsumptionPeriodMonths;
+    var d = 24 * this.ConsumptionPeriodDays;
+    
+    this.ConsumptionPeriodHours =  d+m;
+    window.alert(this.ConsumptionPeriodHours);
+    window.alert(this.ConsumptionPeriodDays);
 
-  // firstFormGroup = this._formBuilder.group({
-  //   firstCtrl: ['', Validators.required],
-  // });
-  // secondFormGroup = this._formBuilder.group({
-  //   secondCtrl: ['', Validators.required],
-  // });
-  // isEditable = false;
+  }
+
+  startDateNext() {
+    
+    this.convertStartDateToString();
+    this.convertStartTimeToString();
+
+  }
+
+  convertStartTimeToString() {
+    let startTimeString = String(this.startTime);
+    var split = startTimeString.split(" ");
+    this.startTime = split[4];
+  }
+
+  convertStartDateToString() {
+    let startDateString = String(this.startDate);
+
+
+    var split = startDateString.split(" ");
+
+    var month = split[1];
+    var day = split[2];
+    var year = split[3];
+    this.startDate = day+"/"+month+"/"+year;
+  }
+
 
 }
 
