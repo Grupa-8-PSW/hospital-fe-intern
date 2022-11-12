@@ -6,6 +6,8 @@ import { DOCUMENT } from '@angular/common';
 import {FormBuilder, Validators} from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Moment } from 'moment';
+import { ThisReceiver } from '@angular/compiler';
+import * as moment from 'moment';
 
 
 @Component({
@@ -21,7 +23,7 @@ export class ScheduleDialogComponent implements OnInit {
 
   public bloodConsumptionReport: BloodConsumptionReport = new BloodConsumptionReport();
   public startTime: any;
-  public startDate: any;
+  public startDate: any = Date.now;
   public frequencyPeriodInHours: any;
   public customFrequencyMonths: any=0;
   public customFrequencyDays: any=0;
@@ -40,22 +42,36 @@ export class ScheduleDialogComponent implements OnInit {
                 this.dateAdapter.setLocale('en-GB');
                }
 
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: [ this.startDate, Validators.requiredTrue],
+    secCtrl: ['', Validators.required]
+  });
+  
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  isLinear = true;
+
   ngOnInit(): void {
+    const date = new Date();
+    
+    this.startDate = date;
+    
   }
 
   dailyNext() {
-    window.alert(this.ConsumptionPeriodHours);
+    
   }
 
   WeeklyNext() {
     this.calculatePeriod();
-    window.alert(this.ConsumptionPeriodHours);
+    
   
   }
 
   MonthlyNext() {
     this.calculatePeriod();
-    window.alert(this.ConsumptionPeriodHours);
+    
   
   }
 
@@ -70,6 +86,12 @@ export class ScheduleDialogComponent implements OnInit {
       this.bloodConsumptionReport.frequencyPeriodInHours = this.frequencyPeriodInHours;
       this.bloodConsumptionReport.startDate = this.startDate;
       this.bloodConsumptionReport.startTime = this.startTime;
+
+      window.alert(this.bloodConsumptionReport.ConsumptionPeriodHours);
+      window.alert(this.bloodConsumptionReport.frequencyPeriodInHours);
+      window.alert(this.bloodConsumptionReport.startDate);  
+    window.alert(this.bloodConsumptionReport.startTime);     
+      
       this.reportService.createReport(this.bloodConsumptionReport).subscribe((res => {
  
     }));
@@ -161,8 +183,6 @@ export class ScheduleDialogComponent implements OnInit {
     var d = 24 * this.ConsumptionPeriodDays;
     
     this.ConsumptionPeriodHours =  d+m;
-    window.alert(this.ConsumptionPeriodHours);
-    window.alert(this.ConsumptionPeriodDays);
 
   }
 

@@ -13,6 +13,6 @@ export class ScheduleReportsService {
   constructor(private http: HttpClient) { }
 
   createReport(bloodConsumptionReport: any): Observable<any> {
-    return this.http.post<any>(this.apiHost + 'api/BloodConsumptionConfiguration/daily', bloodConsumptionReport, {'headers': this.headers});
+    return this.http.post<any>(this.apiHost + 'api/BloodConsumptionConfiguration', bloodConsumptionReport, {'headers': this.headers});
   }
 }

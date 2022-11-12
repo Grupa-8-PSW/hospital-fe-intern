@@ -1,20 +1,20 @@
-<mat-stepper linear #stepper>
+<mat-stepper  linear #stepper>
     <mat-step>
         <ng-template matStepLabel>Choose start date and time</ng-template>
         
         <div class="stepHolder">
             <mat-form-field appearance="fill"  >
                 <mat-label>Date</mat-label>
-                <input  matInput [(ngModel)]="startDate"  [matDatepicker]="picker1" />
+                <input [min]="startDate"  matInput [(ngModel)]="startDate"  [matDatepicker]="picker1" />
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
+                <mat-datepicker  #picker1></mat-datepicker>
             </mat-form-field>
             <br>
             <br>
             <mat-form-field appearance="fill">
                 <mat-label>Time</mat-label>
-                <input [(ngModel)]="startTime" name="sds" matTimepicker #t1="matTimepicker" />
+                <input [min]="startTime" [(ngModel)]="startTime" name="sds" matTimepicker #t1="matTimepicker" />
                 <mat-hint>HH:MM</mat-hint>
                 <mat-datepicker-toggle matSuffix></mat-datepicker-toggle>
             </mat-form-field>
@@ -63,7 +63,7 @@
                             <mat-option *ngFor="let index of [0,1,2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
                             20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
                         </mat-select>
-                        <mat-hint>HH:MM</mat-hint>
+                        
                         
                     </mat-form-field>
                     <br>
@@ -96,7 +96,7 @@
                             <mat-option *ngFor="let index of [0, 1, 2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
                             20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
                         </mat-select>
-                        <mat-hint>HH:MM</mat-hint>
+                        
                         
                     </mat-form-field>
                     <br>
@@ -124,7 +124,7 @@
                             <mat-option *ngFor="let index of [0, 1, 2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
                             20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
                         </mat-select>
-                        <mat-hint>HH:MM</mat-hint>
+                        
                         
                     </mat-form-field>
                     <br>
@@ -219,7 +219,7 @@
         </mat-card>
         <div>
             <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button matStepperPrevious>Done</button>
+            <button mat-button (click)="schedule()" mat-dialog-close>Done</button>
         </div>
     </mat-step>
 </mat-stepper>

@@ -1,8 +1,8 @@
 export class BloodConsumptionReport {
     startTime: string = '';
     startDate: string = '';
-    frequencyPeriodInHours: Int32Array | undefined;
-    ConsumptionPeriodHours: Int32Array | undefined;
+    frequencyPeriodInHours: Uint32Array | undefined;
+    ConsumptionPeriodHours: Uint32Array | undefined;
     
 
     public constructor(obj?: any) {
