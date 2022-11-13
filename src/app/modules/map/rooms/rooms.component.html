@@ -95,6 +95,13 @@
         </div>
         <div *ngIf="percentIsTwenty">
             <label class="mainLabelMove">Odaberite destinaciju:</label>
+            <div class="roomDestination">
+                <tr  *ngFor="let room of allRooms; let i index" (click)="selectRoom(room.name)" >
+                    <td>
+                        <h3>{{room.name}}</h3>
+                    </td>
+                </tr>
+            </div> 
         </div>
         <div *ngIf="percentIsFourty">
             <label class="mainLabelMove">Datum od do:</label>
@@ -104,7 +111,7 @@
         </div>
         <div class="buttons">
             <button class="backButton" (click)="removePercent($event)">Back</button>
-            <button class="nextButton" *ngIf = "eqAmouont>=2"(click)="addPercent($event)">Next</button>
+            <button class="nextButton" (click)="addPercent($event)">Next</button>
         </div>
     </div>
     <div *ngIf="percentIsHun">

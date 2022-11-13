@@ -41,6 +41,7 @@ export class SignatureComponent implements OnInit {
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
   public rooms: Room[] = [];
+  public allRooms: Room[] = [];
   public forms: Form[] = [];
   public equipments: Equipment[] = [];
   public datas = [];
@@ -53,6 +54,9 @@ export class SignatureComponent implements OnInit {
 
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
+    });
+    this.roomsService.getRooms().subscribe(res => {
+      this.allRooms = res;
     });
 
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
@@ -264,6 +268,10 @@ export class SignatureComponent implements OnInit {
   getAmount(amount : number){
     console.log(amount);
     this.eqAmouont = amount;
+  }
+
+  selectRoom(selectedRoom){
+    console.log(selectedRoom)
   }
 
 }

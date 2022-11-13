@@ -13,7 +13,6 @@ import { FloorsComponent } from './modules/map/floors/floors.component';
 import { BuildingService } from "./modules/map/building/buildingService/building.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BuildingComponent } from "./modules/map/building/building.component";
-import { BuildingResolveService } from "./modules/map/building/building.resolve.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +32,7 @@ import { BuildingResolveService } from "./modules/map/building/building.resolve.
     SharedModule,
     MatProgressBarModule
   ],
-  providers: [BuildingService,BuildingResolveService],
+  providers: [BuildingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

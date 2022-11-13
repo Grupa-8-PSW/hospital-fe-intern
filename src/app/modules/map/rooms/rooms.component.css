@@ -125,8 +125,10 @@ tr:hover {
 }
 
 .buttons {
-    margin-top: 328px;
+    position:absolute;
+    bottom:30px;
     text-align: center;
+    left: 46px;
 }
 
 .nextButton {
@@ -182,4 +184,10 @@ tr:hover {
     position: absolute;
     left:auto;
     margin-left: 270px;
+}
+
+.roomDestination{
+    font-size: 100px;
+    overflow-y:auto;
+    height: 320px;
 }
