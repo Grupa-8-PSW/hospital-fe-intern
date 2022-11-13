@@ -177,3 +177,9 @@ tr:hover {
     font-size: 24px;
     margin-left: 240px;
 }
+
+.textbox{
+    position: absolute;
+    left:auto;
+    margin-left: 270px;
+}

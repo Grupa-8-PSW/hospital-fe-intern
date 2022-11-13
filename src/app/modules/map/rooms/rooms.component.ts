@@ -31,6 +31,10 @@ export class SignatureComponent implements OnInit {
   percentIsFourty = false;
   percentIsSixty = false;
   percentIsEighty = false;
+  eqAmouont = 0;
+  value = 0;
+  
+  
 
 
 
@@ -176,44 +180,47 @@ export class SignatureComponent implements OnInit {
     this.canMoveForm = true;
   }
 
+  onChange(value){
+    this.value =value.value;
+  }
+
   addPercent(event) {
     event.preventDefault();
+    if(this.eqAmouont<this.value || this.value<=0) 
+      alert("Uneli ste losu kolicinu");
+    else{
+      if (this.percent < 100) {
+        this.percent = this.percent + 25;
+      }
 
-    if (this.percent < 100) {
-      this.percent = this.percent + 25;
-    }
+      if (this.percent > 0) {
+        this.percentIsZero = false;
+        this.percentIsTwenty = false;
+        this.percentIsFourty = false;
+        this.percentIsSixty = false;
+      }
 
-    if (this.percent > 0) {
-      this.percentIsZero = false;
-      this.percentIsTwenty = false;
-      this.percentIsFourty = false;
-      this.percentIsSixty = false;
-      this.percentIsEighty = false;
-    }
-
-    if (this.percent === 25) {
-      this.percentIsTwenty = true;
-      this.percentIsZero = false;
-      this.percentIsFourty = false;
-      this.percentIsSixty = false;
-      this.percentIsEighty = false;
-    }
-    if (this.percent === 50) {
-      this.percentIsFourty = true;
-      this.percentIsZero = false;
-      this.percentIsTwenty = false;
-      this.percentIsSixty = false;
-      this.percentIsEighty = false;
-    }
-    if (this.percent === 75) {
-      this.percentIsSixty = true;
-      this.percentIsZero = false;
-      this.percentIsTwenty = false;
-      this.percentIsFourty = false;
-      this.percentIsEighty = false;
-    }
-    if (this.percent === 100) {
-      this.percentIsHun = true;
+      if (this.percent === 25) {
+        this.percentIsTwenty = true;
+        this.percentIsZero = false;
+        this.percentIsFourty = false;
+        this.percentIsSixty = false;
+      }
+      if (this.percent === 50) {
+        this.percentIsFourty = true;
+        this.percentIsZero = false;
+        this.percentIsTwenty = false;
+        this.percentIsSixty = false;
+      }
+      if (this.percent === 75) {
+        this.percentIsSixty = true;
+        this.percentIsZero = false;
+        this.percentIsTwenty = false;
+        this.percentIsFourty = false;
+      }
+      if (this.percent === 100) {
+        this.percentIsHun = true;
+      }
     }
   }
 
@@ -228,28 +235,24 @@ export class SignatureComponent implements OnInit {
       this.percentIsZero = false;
       this.percentIsFourty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 50) {
       this.percentIsFourty = true;
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 75) {
       this.percentIsSixty = true;
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 0) {
       this.percentIsZero = true;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
   }
 
@@ -257,4 +260,10 @@ export class SignatureComponent implements OnInit {
     event.preventDefault();
     alert("SCEDULE !");
   }
+  
+  getAmount(amount : number){
+    console.log(amount);
+    this.eqAmouont = amount;
+  }
+
 }

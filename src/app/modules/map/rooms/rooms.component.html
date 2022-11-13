@@ -68,7 +68,7 @@
                     <th scope="col" *ngIf="stateAprooved">{{equip.equipmentId}}</th>
                     <th scope="col" *ngIf="stateAprooved">{{equip.name}}</th>
                     <th scope="col" *ngIf="stateAprooved">{{equip.amount}}</th>
-                    <th scope="col"><button class="moveButton" (click)="moveEquipmentForm($event)">Move</button></th>
+                    <th scope="col"><button class="moveButton" (click)="moveEquipmentForm($event); getAmount(equip.amount)">Move</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -89,6 +89,9 @@
         </div>
         <div *ngIf="percentIsZero">
             <label class="mainLabelMove">Odaberite kolicinu:</label>
+            <div class="textbox">
+                <input (change)="onChange($event.target)" type="text"  id="input">
+            </div>
         </div>
         <div *ngIf="percentIsTwenty">
             <label class="mainLabelMove">Odaberite destinaciju:</label>
@@ -101,7 +104,7 @@
         </div>
         <div class="buttons">
             <button class="backButton" (click)="removePercent($event)">Back</button>
-            <button class="nextButton" (click)="addPercent($event)">Next</button>
+            <button class="nextButton" *ngIf = "eqAmouont>=2"(click)="addPercent($event)">Next</button>
         </div>
     </div>
     <div *ngIf="percentIsHun">
