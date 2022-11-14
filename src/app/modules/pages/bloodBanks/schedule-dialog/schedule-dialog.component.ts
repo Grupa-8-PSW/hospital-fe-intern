@@ -6,9 +6,6 @@ import { DOCUMENT } from '@angular/common';
 import {FormBuilder, Validators} from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Moment } from 'moment';
-import { ThisReceiver } from '@angular/compiler';
-import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-schedule-dialog',
@@ -18,8 +15,6 @@ import * as moment from 'moment';
 })
 
 export class ScheduleDialogComponent implements OnInit {
-
-  selected?: Moment;
 
   public bloodConsumptionReport: BloodConsumptionReport = new BloodConsumptionReport();
   public startTime: any;
@@ -33,45 +28,36 @@ export class ScheduleDialogComponent implements OnInit {
   public ConsumptionPeriodMonths:any = 0;
 
   constructor(
-              private router: Router,
-              private reportService: ScheduleReportsService,
-              private _formBuilder: FormBuilder,
-              @Inject(DOCUMENT) document: Document,
-              private dateAdapter: DateAdapter<Date>) {
-                document.getElementById('el');
-                this.dateAdapter.setLocale('en-GB');
-               }
+    private router: Router,
+    private reportService: ScheduleReportsService,
+    private _formBuilder: FormBuilder,
+    @Inject(DOCUMENT) document: Document,
+    private dateAdapter: DateAdapter<Date>) {
+      
+      document.getElementById('el');
+      this.dateAdapter.setLocale('en-GB');
+    }
 
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: [ this.startDate, Validators.requiredTrue],
-    secCtrl: ['', Validators.required]
-  });
-  
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
-  isLinear = true;
-
+               
   ngOnInit(): void {
-    const date = new Date();
-    
+    const date = new Date(); 
     this.startDate = date;
     
-  }
-
-  dailyNext() {
-    
+  }            
+      
+  showDiv = {
+    daily : false,
+    weekly : false,
+    monthly : false,
+    annual : false
   }
 
   WeeklyNext() {
-    this.calculatePeriod();
-    
-  
+    this.calculatePeriod();   
   }
 
   MonthlyNext() {
-    this.calculatePeriod();
-    
+    this.calculatePeriod();  
   
   }
 
@@ -86,12 +72,7 @@ export class ScheduleDialogComponent implements OnInit {
       this.bloodConsumptionReport.frequencyPeriodInHours = this.frequencyPeriodInHours;
       this.bloodConsumptionReport.startDate = this.startDate;
       this.bloodConsumptionReport.startTime = this.startTime;
-
-      window.alert(this.bloodConsumptionReport.ConsumptionPeriodHours);
-      window.alert(this.bloodConsumptionReport.frequencyPeriodInHours);
-      window.alert(this.bloodConsumptionReport.startDate);  
-    window.alert(this.bloodConsumptionReport.startTime);     
-      
+    
       this.reportService.createReport(this.bloodConsumptionReport).subscribe((res => {
  
     }));
@@ -169,13 +150,6 @@ export class ScheduleDialogComponent implements OnInit {
 
   }
 
-  showDiv = {
-    daily : false,
-    weekly : false,
-    monthly : false,
-    annual : false
-  }
-
   nextCustomPeriod() {
     this.frequencyPeriodInHours = this.customFrequencyDays * 24 + this.customFrequencyMonths*31*24;
     
@@ -201,7 +175,6 @@ export class ScheduleDialogComponent implements OnInit {
 
   convertStartDateToString() {
     let startDateString = String(this.startDate);
-
 
     var split = startDateString.split(" ");
 

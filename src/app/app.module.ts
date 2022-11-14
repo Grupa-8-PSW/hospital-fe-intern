@@ -13,13 +13,11 @@ import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-bloo
 import {ToastrModule} from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import { ScheduleComponentComponent } from './modules/pages/bloodBanks/schedule-component/schedule-component.component';
- 
+
 @NgModule({
   declarations: [
     AppComponent,
     CreateBloodBankComponent,
-    ScheduleComponentComponent
   ],
   imports: [
     BrowserModule,
