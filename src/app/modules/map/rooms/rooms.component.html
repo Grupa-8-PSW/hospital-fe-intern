@@ -68,7 +68,8 @@
                     <th scope="col" *ngIf="stateAprooved">{{equip.equipmentId}}</th>
                     <th scope="col" *ngIf="stateAprooved">{{equip.name}}</th>
                     <th scope="col" *ngIf="stateAprooved">{{equip.amount}}</th>
-                    <th scope="col"><button class="moveButton" (click)="moveEquipmentForm($event); getAmount(equip.amount)">Move</button></th>
+                    <th scope="col"><button class="moveButton"
+                            (click)="moveEquipmentForm($event); getAmount(equip.amount)">Move</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -90,21 +91,32 @@
         <div *ngIf="percentIsZero">
             <label class="mainLabelMove">Odaberite kolicinu:</label>
             <div class="textbox">
-                <input (change)="onChange($event.target)" type="text"  id="input">
+                <input (change)="onChange($event.target)" type="text" id="input">
             </div>
         </div>
         <div *ngIf="percentIsTwenty">
             <label class="mainLabelMove">Odaberite destinaciju:</label>
             <div class="roomDestination">
-                <tr  *ngFor="let room of allRooms; let i index" (click)="selectRoom(room.name)" >
+                <tr *ngFor="let room of allRooms; let i index" (click)="selectRoom(room.name)">
                     <td>
                         <h3>{{room.name}}</h3>
                     </td>
                 </tr>
-            </div> 
+            </div>
         </div>
         <div *ngIf="percentIsFourty">
             <label class="mainLabelMove">Datum od do:</label>
+            <div class="calendars">
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="startDate"></mat-calendar>
+                </mat-card>
+
+                <mat-card class="demo-inline-calendar-card2">
+                    <mat-calendar [(selected)]="endDate"></mat-calendar>
+                </mat-card>
+            </div>
+            <p>Selected date: {{startDate}}</p>
+            <p>Selected date: {{endDate}}</p>
         </div>
         <div *ngIf="percentIsSixty">
             <label class="mainLabelMove">Unos trajanja premeštanja:</label>

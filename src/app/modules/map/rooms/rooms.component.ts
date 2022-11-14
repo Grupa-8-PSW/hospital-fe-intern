@@ -33,10 +33,8 @@ export class SignatureComponent implements OnInit {
   percentIsEighty = false;
   eqAmouont = 0;
   value = 0;
-  
-  
-
-
+  startDate: Date | null;
+  endDate: Date | null;
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
@@ -184,15 +182,15 @@ export class SignatureComponent implements OnInit {
     this.canMoveForm = true;
   }
 
-  onChange(value){
-    this.value =value.value;
+  onChange(value) {
+    this.value = value.value;
   }
 
   addPercent(event) {
     event.preventDefault();
-    if(this.eqAmouont<this.value || this.value<=0) 
+    if (this.eqAmouont < this.value || this.value <= 0)
       alert("Uneli ste losu kolicinu");
-    else{
+    else {
       if (this.percent < 100) {
         this.percent = this.percent + 25;
       }
@@ -264,13 +262,13 @@ export class SignatureComponent implements OnInit {
     event.preventDefault();
     alert("SCEDULE !");
   }
-  
-  getAmount(amount : number){
+
+  getAmount(amount: number) {
     console.log(amount);
     this.eqAmouont = amount;
   }
 
-  selectRoom(selectedRoom){
+  selectRoom(selectedRoom) {
     console.log(selectedRoom)
   }
 

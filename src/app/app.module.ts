@@ -13,6 +13,8 @@ import { FloorsComponent } from './modules/map/floors/floors.component';
 import { BuildingService } from "./modules/map/building/buildingService/building.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BuildingComponent } from "./modules/map/building/building.component";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { BuildingComponent } from "./modules/map/building/building.component";
     PagesModule,
     HospitalModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [BuildingService],
   bootstrap: [AppComponent]

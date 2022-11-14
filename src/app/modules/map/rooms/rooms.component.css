@@ -112,8 +112,8 @@ tr:hover {
 }
 
 .canMoveForm {
-    width: 700px;
-    height: 550px;
+    width: 780px;
+    height: 600px;
     border-radius: 8px;
     background-color: rgb(255, 252, 252);
     color: black;
@@ -122,11 +122,12 @@ tr:hover {
     border-width: thick;
     top: 200px;
     left: 400px;
+    align-items: center;
 }
 
 .buttons {
-    position:absolute;
-    bottom:30px;
+    position: absolute;
+    bottom: 30px;
     text-align: center;
     left: 46px;
 }
@@ -136,7 +137,7 @@ tr:hover {
     width: 100px;
     height: 50px;
     font-size: 22px;
-    margin-left: 370px;
+    margin-left: 400px;
     border-radius: 5px;
 }
 
@@ -145,7 +146,7 @@ tr:hover {
     width: 100px;
     height: 50px;
     font-size: 22px;
-    margin-left: 10px;
+    margin-left: 30px;
     border-radius: 5px;
 }
 
@@ -153,7 +154,7 @@ tr:hover {
     margin-top: 20px;
     height: 30px;
     width: 350px;
-    margin-left: 190px;
+    margin-left: 210px;
     color: black;
 }
 
@@ -170,24 +171,46 @@ tr:hover {
 }
 
 .percentLabel {
-    margin-left: 350px;
+    margin-left: 378px;
     font-size: 15px;
 }
 
 .mainLabelMove {
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 24px;
-    margin-left: 240px;
+    margin-left: 280px;
 }
 
-.textbox{
+.textbox {
     position: absolute;
-    left:auto;
-    margin-left: 270px;
+    left: auto;
+    margin-left: 290px;
 }
 
-.roomDestination{
+.roomDestination {
     font-size: 100px;
-    overflow-y:auto;
+    overflow-y: auto;
     height: 320px;
+    margin-left: 300px;
+    margin-top: 50px;
+}
+
+.calendars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    color: #c2185b;
+}
+
+.demo-inline-calendar-card {
+    width: 300px;
+    height: 350px;
+    margin-right: 10px;
+}
+
+.demo-inline-calendar-card2 {
+    width: 300px;
+    height: 350px;
+    margin-left: 10px;
 }
