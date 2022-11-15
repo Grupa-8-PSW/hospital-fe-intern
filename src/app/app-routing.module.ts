@@ -8,7 +8,6 @@ import { CalendarComponent } from "./modules/pages/calendar/calendar.component";
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
 import { CheckBloodCountComponent } from "./modules/hospital/check-blood-count/check-blood-count.component";
-import { CreateRoomComponent } from "./modules/hospital/create-room/create-room.component";
 import { CreateTreatmentHistoryComponent } from "./modules/treatment-history/create-treatment-history/create-treatment-history.component";
 import { DischargePatientComponent } from "./modules/treatment-history/discharge-patient/discharge-patient.component";
 import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe-therapy/prescribe-therapy.component";
