@@ -1,1 +1,32 @@
-<p>create-treatment-history works!</p>
+<mat-spinner *ngIf="loading" class="col-4 mx-auto mt-5"></mat-spinner>
+<div class="error-block" *ngIf="fetchingError">
+  {{fetchingError}}
+</div>
+<div class="card fs-6 text-dark col-4 mx-auto mt-5" *ngIf="!loading && !fetchingError">
+  
+  <div class="card-body">
+    <form [formGroup]="treatmentHistoryForm" (submit)="onSubmit($event)">
+      <div class="mb-3 col-12">
+        <label for="patient" class="form-label">Patient</label>
+        <select name="patient" class="form-control" formControlName="patient">
+          <option value="default" disabled>Select Patient</option>
+          <option *ngFor="let patient of patients" [value]="patient.id">
+            {{patient.id}}
+          </option>
+        </select>
+        <span class="error-block" *ngIf="!patient.valid && patient.touched">
+          Please select patient
+        </span>
+      </div>
+      
+      <div class="buttons-wrapper mt-4">
+        <button type="submit" class="btn btn-primary me-3" >{{submitted ? "Creating..." : "Create"}}</button>
+      </div>
+
+      <div class="error-block" *ngIf="submitingError">
+        {{submitingError}}
+      </div>
+
+    </form>
+  </div>
+</div>
