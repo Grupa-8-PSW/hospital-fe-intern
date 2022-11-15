@@ -8,6 +8,7 @@ import { CalendarComponent } from "./modules/pages/calendar/calendar.component";
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
 import { CheckBloodCountComponent } from "./modules/hospital/check-blood-count/check-blood-count.component";
+import { BloodComponent } from "./modules/pages/blood/blood.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'calendar', component: CalendarComponent },
-  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent }
+  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
+  { path: 'blood', component: BloodComponent}
 ];
 
 
