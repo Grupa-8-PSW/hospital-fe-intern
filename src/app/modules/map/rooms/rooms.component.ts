@@ -8,6 +8,7 @@ import { FormsService } from './roomsService/forms.service';
 import { Form } from '../model/form.model';
 import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
+import { formatPercent } from '@angular/common';
 
 
 @Component({
@@ -35,6 +36,9 @@ export class SignatureComponent implements OnInit {
   value = 0;
   startDate: Date | null;
   endDate: Date | null;
+  roomType: string;
+  praviNiz: string;
+
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
@@ -43,6 +47,8 @@ export class SignatureComponent implements OnInit {
   public forms: Form[] = [];
   public equipments: Equipment[] = [];
   public datas = [];
+  public niz = [];
+
 
   ngOnInit(): void {
 
@@ -65,8 +71,6 @@ export class SignatureComponent implements OnInit {
 
         // console.log(this.rooms[this.roomId].floorId);
         // 
-
-
         let id = this.rooms[i].id;
         let x = this.rooms[i].x;
         let y = this.rooms[i].y;
@@ -74,6 +78,25 @@ export class SignatureComponent implements OnInit {
         let h = this.rooms[i].height;
         let rc: string;
         let name = this.rooms[i].name;
+
+
+        if (this.rooms[i].type === 0) {
+          this.roomType = "OTHER"
+        } else if (this.rooms[i].type === 1) {
+          this.roomType = "RECOVERY"
+        } else if (this.rooms[i].type === 2) {
+          this.roomType = "CAFETERIA"
+        } else if (this.rooms[i].type === 3) {
+          this.roomType = "OPERATIONS"
+        } else if (this.rooms[i].type === 4) {
+          this.roomType = "STORAGE ROOM"
+        }
+
+        this.niz[i] = this.roomType;
+        this.praviNiz
+
+
+        console.log(this.niz[i]);
 
 
 
@@ -92,6 +115,9 @@ export class SignatureComponent implements OnInit {
           rc = "#fff4b3";
         }
 
+
+
+
         let rectangle = new fabric.Rect({
           width: w,
           height: h,
@@ -107,6 +133,8 @@ export class SignatureComponent implements OnInit {
         this.canvas.add(rectangle);
 
         rectangle.on('mousedown', () => {
+          console.log(this.niz[i]);
+          this.praviNiz = this.niz[i];
           this.state = false;
           if (this.state === false) {
             this.state = true;

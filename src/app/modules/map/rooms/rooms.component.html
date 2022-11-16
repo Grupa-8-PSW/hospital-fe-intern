@@ -11,6 +11,11 @@
                     <label class="descLabel">{{datas[1]}}</label>
                 </div>
                 <div class="moveLabel2"><label class="h1Edit">
+                        <h1>Room type:</h1>
+                    </label>
+                    <label class="descLabel">{{praviNiz}}</label>
+                </div>
+                <div class="moveLabel2"><label class="h1Edit">
                         <h1>Description:</h1>
                     </label>
                     <label class="descLabel">{{datas[2]}}</label>
@@ -115,8 +120,6 @@
                     <mat-calendar [(selected)]="endDate"></mat-calendar>
                 </mat-card>
             </div>
-            <p>Selected date: {{startDate}}</p>
-            <p>Selected date: {{endDate}}</p>
         </div>
         <div *ngIf="percentIsSixty">
             <label class="mainLabelMove">Unos trajanja premeštanja:</label>

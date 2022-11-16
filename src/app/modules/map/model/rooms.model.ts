@@ -9,6 +9,7 @@ export class Room {
     floorId: number = 0;
     type: number;
 
+
     public constructor(obj?: any) {
         if (obj) {
             this.id = obj.id;
