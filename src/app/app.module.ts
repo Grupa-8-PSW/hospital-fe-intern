@@ -12,6 +12,7 @@ import { FormsModule } from "@angular/forms";
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 import {ToastrModule} from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ExaminationModule } from "./modules/examination/examination.module";
     SharedModule,
     FormsModule,
     ToastrModule.forRoot(),
-    ExaminationModule
+    ExaminationModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
