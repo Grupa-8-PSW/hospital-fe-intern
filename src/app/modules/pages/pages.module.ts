@@ -8,6 +8,7 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     CommonModule,
     AppRoutingModule,
     MaterialModule,
-    HospitalModule
+    HospitalModule,
+    FlexLayoutModule
   ]
 })
 export class PagesModule { }
