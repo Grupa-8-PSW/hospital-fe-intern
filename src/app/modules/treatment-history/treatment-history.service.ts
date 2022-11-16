@@ -18,7 +18,7 @@ export class TreatmentHistoryService {
     private http: HttpClient
   ) { }
 
-  getAllTreatmentHistorys() : Observable<TreatmentHistory[]> {
+  getAllTreatmentHistories() : Observable<TreatmentHistory[]> {
     return this.http.get<TreatmentHistory[]>(this.treatmentHistoryUrl);
   }
 
