@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
+import Room from 'src/app/model/room';
 
 
 @Injectable({
@@ -11,7 +12,9 @@ import TreatmentHistory from 'src/app/model/treatmentHistory';
 })
 export class TreatmentHistoryService {
 
-  treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory/`;
+  treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory`;
+  roomUrl = `${environment.apiUrL}/map/floor/rooms/Room/free`;
+
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(
@@ -34,9 +37,12 @@ export class TreatmentHistoryService {
     );
   }
 
-  createTreatmentHistory(treatmentHistory: TreatmentHistory): Observable<any> {
-    return this.http.post(this.treatmentHistoryUrl, treatmentHistory, { headers: this.headers });
+  createTreatmentHistory(treatmentHistoryDTO: TreatmentHistory): Observable<any> {
+    return this.http.post(this.treatmentHistoryUrl, treatmentHistoryDTO, { headers: this.headers });
   }
 
-  
+  getFreeRooms() : Observable<Room[]> {
+    return this.http.get<Room[]>(this.roomUrl);
+  }
+
 }

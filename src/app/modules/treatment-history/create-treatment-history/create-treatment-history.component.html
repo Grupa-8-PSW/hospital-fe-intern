@@ -1,4 +1,3 @@
-<mat-spinner *ngIf="loading" class="col-4 mx-auto mt-5"></mat-spinner>
 <div class="error-block" *ngIf="fetchingError">
   {{fetchingError}}
 </div>
@@ -11,11 +10,25 @@
         <select name="patient" class="form-control" formControlName="patient">
           <option value="default" disabled>Select Patient</option>
           <option *ngFor="let patient of patients" [value]="patient.id">
-            {{patient.id}}
+            {{patient.id}} {{patient.firstName}} {{patient.lastName}}
           </option>
         </select>
         <span class="error-block" *ngIf="!patient.valid && patient.touched">
           Please select patient
+        </span>
+      </div>
+
+
+      <div class="mb-3 col-12">
+        <label for="room" class="form-label">Room</label>
+        <select name="room" class="form-control" formControlName="room">
+          <option value="default" disabled>Select Room</option>
+          <option *ngFor="let room of rooms" [value]="room.id">
+            {{room.id}}
+          </option>
+        </select>
+        <span class="error-block" *ngIf="!room.valid && room.touched">
+          Please select room
         </span>
       </div>
       

@@ -8,5 +8,6 @@ export default interface TreatmentHistory {
   dischargeReason?: string,
   patientId: number,
   bedId?: number,
-  reason: string
+  reason: string,
+  roomId: number
 }
