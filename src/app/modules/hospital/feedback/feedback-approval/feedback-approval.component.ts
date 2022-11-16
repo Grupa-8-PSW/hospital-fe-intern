@@ -11,7 +11,8 @@ export class FeedbackApprovalComponent implements OnInit {
 
   public publicFeedbacks: Feedback[] = [];
 
-  constructor(private feedbackService: FeedbackService) { }
+  constructor(private feedbackService: FeedbackService) {
+  }
 
   ngOnInit(): void {
     this.feedbackService.getPublicFeedback().subscribe(res => {
