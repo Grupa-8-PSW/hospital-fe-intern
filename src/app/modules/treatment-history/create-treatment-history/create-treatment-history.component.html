@@ -19,6 +19,18 @@
       </div>
 
 
+      
+
+      <div class="mb-3 col-12">
+        <label for="reason" class="form-label">Reason</label>
+        <textarea id="name" class="form-control" type="text" formControlName="reason">
+        </textarea>
+        <span class="error-block" *ngIf="!patient.valid && patient.touched">
+          Please select reason
+        </span>
+      </div>
+
+
       <div class="mb-3 col-12">
         <label for="room" class="form-label">Room</label>
         <select name="room" class="form-control" formControlName="room">

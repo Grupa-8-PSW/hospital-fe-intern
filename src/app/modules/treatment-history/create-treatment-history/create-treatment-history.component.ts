@@ -38,6 +38,8 @@ export class CreateTreatmentHistoryComponent implements OnInit {
     this.treatmentHistoryForm = new FormGroup({
       patient: new FormControl<string>('default', [this.noOptionSelectedValidator("patient")]),
       room: new FormControl<string>('default', [this.noOptionSelectedValidator("room")]),
+      reason: new FormControl<string>('', { updateOn: 'submit' }),
+
     });
 
     this.loading = true;
@@ -77,7 +79,7 @@ export class CreateTreatmentHistoryComponent implements OnInit {
 
     const treatmentHistory : TreatmentHistory = {
       patientId: Number(this.patient.value),
-      reason : 'reason',  //popravi!
+      reason : String(this.reason),  //popravi!
       roomId: Number(this.room.value)
     };
 
