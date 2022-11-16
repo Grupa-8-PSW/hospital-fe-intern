@@ -1,4 +1,5 @@
 import { Moment } from "moment-timezone";
+import Patient from "./patient";
 
 export default interface TreatmentHistory {
   id?: number,
@@ -10,4 +11,5 @@ export default interface TreatmentHistory {
   bedId?: number,
   reason: string,
   roomId: number
+  patient?: Patient //?
 }
