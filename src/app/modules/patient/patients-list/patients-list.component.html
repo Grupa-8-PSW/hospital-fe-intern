@@ -1,26 +1,33 @@
-<div class="row g-0">
-    <div class="col-md-12">
+<div class="row g-0 mt-3">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10 text-center">
+      <h1>Patients by age group</h1>
       <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Firstname</th>
-          <th scope="col">Lastname</th>
-          <th scope="col">Email</th>
-          <th scope="col">PIN</th>
-          <th scope="col">Gender</th>
-          <th scope="col">Blood Type</th>
+          <th scope="col">Age group</th>
+          <th scope="col">Number of patients</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let patient of patients; let i = index">
-          <td>{{patient.firstName}}</td>
-          <td>{{patient.lastName}}</td>
-          <td>{{patient.email}}</td>
-          <td>{{patient.pin}}</td>
-          <td>{{patient.gender}}</td>
-          <td>{{patient.bloodType}}</td>
+        <tr>
+          <td>0-18</td>
+          <td>{{ageStatistic.zeroToEighteen}}</td>
+        </tr>
+        <tr>
+          <td>19-64</td>
+          <td>{{ageStatistic.nineteenToSixtyFour}}</td>
+        </tr>
+        <tr>
+          <td>65+</td>
+          <td>{{ageStatistic.sixtyFivePlus}}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="col-md-1">
+      
   </div>
 </div>

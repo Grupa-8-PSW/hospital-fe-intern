@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Patient from 'src/app/model/patient';
+import PatientAgeStatistic from 'src/app/model/patient-age-statistic.model';
 import { PatientService } from '../../hospital/feedback/services/patient.service';
 
 @Component({
@@ -9,19 +10,23 @@ import { PatientService } from '../../hospital/feedback/services/patient.service
 })
 export class PatientsListComponent implements OnInit {
 
-  patients: Patient[];
+  ageStatistic: PatientAgeStatistic;
 
   constructor(private patientService: PatientService) { 
-    this.patients = [];
+    this.ageStatistic = {
+      zeroToEighteen: 0,
+      nineteenToSixtyFour: 0,
+      sixtyFivePlus: 0
+    };
   }
 
   ngOnInit(): void {
-    this.getPatients();
+    this.getPatientAgeStatistic();
   }
 
-  getPatients(){
-    this.patientService.getAllPatients().subscribe((res: Patient[]) => {
-      this.patients = res;
+  getPatientAgeStatistic(){
+    this.patientService.getPatientAgeStatistic().subscribe((res: PatientAgeStatistic) => {
+      this.ageStatistic = res;
     });
   }
 
