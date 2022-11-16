@@ -9,6 +9,8 @@ import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.componen
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-d
     CommonModule,
     AppRoutingModule,
     MaterialModule,
-    HospitalModule
+    HospitalModule,
+    FlexLayoutModule
   ]
 })
 export class PagesModule { }

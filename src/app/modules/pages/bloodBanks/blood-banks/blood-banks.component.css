@@ -3,10 +3,12 @@
     margin: auto;
     left: 10%;
     top: 10%;
-    position: fixed;  
+    position: fixed;
 }
 
-.container {
+
+.containerm {
+
     width: 50%;
     margin: auto;
     margin-top: 20px;
@@ -41,7 +43,40 @@ table {
     display: flex;
 }
 
-p {
-    float: left;
-    margin-right: auto;
-}
+
+
+
+th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    }
+
+    mat-toolbar {
+      justify-content: space-between;
+  }
+
+  .content {
+      padding: 16px;
+  }
+
+  .content > mat-card {
+      margin-bottom: 16px;
+  }
+
+  .align{
+    width: 350px;
+    align-items: center;
+    padding-left: 50px;
+  }
+
+  .zoom {
+    transition: transform .3s; /* Animation */
+  }
+
+  .zoom:hover {
+    transform: scale(1.07); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
