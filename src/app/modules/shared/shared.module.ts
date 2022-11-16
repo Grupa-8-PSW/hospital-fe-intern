@@ -4,7 +4,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
-
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import {MatMenuModule} from '@angular/material/menu';
   imports: [
     CommonModule,
     RouterModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule
   ],
   exports: [
     HeaderComponent,

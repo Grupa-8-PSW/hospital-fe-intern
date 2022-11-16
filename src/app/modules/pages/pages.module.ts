@@ -9,6 +9,7 @@ import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.componen
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
+    ScheduleDialogComponent,
   ],
   imports: [
     CommonModule,

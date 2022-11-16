@@ -13,15 +13,17 @@ import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-bloo
 import {ToastrModule} from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateBloodBankComponent
+    CreateBloodBankComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxMaterialTimepickerModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,

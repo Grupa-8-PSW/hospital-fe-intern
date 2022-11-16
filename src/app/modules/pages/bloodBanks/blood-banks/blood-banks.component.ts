@@ -8,6 +8,7 @@ import { BloodBank } from 'src/app/model/bloodBank.model';
 import { BloodBankNewsService } from '../services/blood-bank-news.service';
 import { BloodBankNews } from 'src/app/model/bloodBankNews';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 
 @Component({
   selector: 'app-blood-banks',
@@ -31,6 +32,13 @@ export class BloodBanksComponent implements OnInit {
       this.dataSource.data = this.bloodBanks;
     })
     this.getAllNews();
+  }
+
+  public schedule() {
+    this.dialog.open(ScheduleDialogComponent, {
+      width: '50%',
+      height: '80%'
+    })
   }
 
   public addBloodBank() {
