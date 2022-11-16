@@ -38,7 +38,10 @@ export class SignatureComponent implements OnInit {
   endDate: Date | null;
   roomType: string;
   praviNiz: string;
-
+  minDate = new Date()
+  days = 0;
+  hours = 0;
+  minutes = 0;
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
@@ -214,43 +217,65 @@ export class SignatureComponent implements OnInit {
     this.value = value.value;
   }
 
+  onChange1(value) {
+    this.days = value.value;
+  }
+
+  onChange2(value) {
+    this.hours = value.value;
+  }
+
+  onChange3(value) {
+    this.minutes = value.value;
+  }
+
   addPercent(event) {
     event.preventDefault();
-    if (this.eqAmouont < this.value || this.value <= 0)
+    if (this.eqAmouont < this.value || this.value <= 0){
       alert("Uneli ste losu kolicinu");
-    else {
-      if (this.percent < 100) {
-        this.percent = this.percent + 25;
-      }
+    }
+    if(this.days<0 || this.hours<0 || this.minutes<0){
+      alert("No no!!!! Dont't use negative time")
+    }
+    this.minutes = this.days*1440 + this.hours*60 + this.minutes;
+    console.log(this.minutes);
 
-      if (this.percent > 0) {
-        this.percentIsZero = false;
-        this.percentIsTwenty = false;
-        this.percentIsFourty = false;
-        this.percentIsSixty = false;
-      }
+    
+    if (this.percent < 100) {
+      this.percent = this.percent + 25;
+    }
 
-      if (this.percent === 25) {
-        this.percentIsTwenty = true;
-        this.percentIsZero = false;
-        this.percentIsFourty = false;
-        this.percentIsSixty = false;
+    if (this.percent > 0) {
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+    }
+
+    if (this.percent === 25) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+    }
+    if (this.percent === 50) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+    }
+
+    if (this.percent === 75) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+    }
+    if (this.percent === 100) {
+      if(this.minutes==0){
+        alert("You can't teleport equipment bro!!!");
       }
-      if (this.percent === 50) {
-        this.percentIsFourty = true;
-        this.percentIsZero = false;
-        this.percentIsTwenty = false;
-        this.percentIsSixty = false;
-      }
-      if (this.percent === 75) {
-        this.percentIsSixty = true;
-        this.percentIsZero = false;
-        this.percentIsTwenty = false;
-        this.percentIsFourty = false;
-      }
-      if (this.percent === 100) {
-        this.percentIsHun = true;
-      }
+      this.percentIsHun = true;
     }
   }
 

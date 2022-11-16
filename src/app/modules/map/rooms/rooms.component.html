@@ -96,7 +96,7 @@
         <div *ngIf="percentIsZero">
             <label class="mainLabelMove">Odaberite kolicinu:</label>
             <div class="textbox">
-                <input (change)="onChange($event.target)" type="text" id="input">
+                <input (keyup)="onChange($event.target)" type="text" id="input">
             </div>
         </div>
         <div *ngIf="percentIsTwenty">
@@ -123,6 +123,18 @@
         </div>
         <div *ngIf="percentIsSixty">
             <label class="mainLabelMove">Unos trajanja premeštanja:</label>
+            <div>
+                <label class="durationLabel">Dani:</label>
+                <input class="inputDuration1" (keyup)="onChange1($event.target)" type="text" id="input">
+            </div>
+            <div>
+                <label class="durationLabel">Sati:</label>
+                <input class="inputDuration2" (keyup)="onChange2($event.target)" type="text" id="input">
+            </div>
+            <div>
+                <label class="durationLabel">Minuti:</label>
+                <input class="inputDuration3" (keyup)="onChange3($event.target)" type="text" id="input">
+            </div>
         </div>
         <div class="buttons">
             <button class="backButton" (click)="removePercent($event)">Back</button>

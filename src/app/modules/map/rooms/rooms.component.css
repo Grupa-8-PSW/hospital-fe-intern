@@ -191,8 +191,7 @@ tr:hover {
     font-size: 100px;
     overflow-y: auto;
     height: 320px;
-    margin-left: 300px;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .calendars {
@@ -200,7 +199,6 @@ tr:hover {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    color: #c2185b;
 }
 
 .demo-inline-calendar-card {
@@ -213,4 +211,25 @@ tr:hover {
     width: 300px;
     height: 350px;
     margin-left: 10px;
+}
+.mat-form-field-hint-wrapper ng-tns-c75-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted{
+    background-color: #d61462;
+}
+
+.durationLabel{
+    margin-top: 50px;
+    margin-left: 250px;
+    font-size: 24px;
+}
+
+.inputDuration1{
+    margin-left: 50px;
+}
+
+.inputDuration2{
+    margin-left: 60px;
+}
+
+.inputDuration3{
+    margin-left: 32px;
 }
