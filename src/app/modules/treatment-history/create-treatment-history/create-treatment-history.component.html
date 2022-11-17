@@ -1,0 +1,57 @@
+<div class="error-block" *ngIf="fetchingError">
+  {{fetchingError}}
+</div>
+<div class="card fs-6 text-dark col-4 mx-auto mt-5" *ngIf="!loading && !fetchingError">
+  
+  <div class="card-body">
+    <form [formGroup]="treatmentHistoryForm" (submit)="onSubmit($event)">
+      <div class="mb-3 col-12">
+        <label for="patient" class="form-label">Patient</label>
+        <select name="patient" class="form-control" formControlName="patient">
+          <option value="default" disabled>Select Patient</option>
+          <option *ngFor="let patient of patients" [value]="patient.id">
+            {{patient.id}} {{patient.firstName}} {{patient.lastName}}
+          </option>
+        </select>
+        <span class="error-block" *ngIf="!patient.valid && patient.touched">
+          Please select patient
+        </span>
+      </div>
+
+
+      
+
+      <div class="mb-3 col-12">
+        <label for="reason" class="form-label">Reason</label>
+        <textarea id="name" class="form-control" type="text" formControlName="reason">
+        </textarea>
+        <span class="error-block" *ngIf="!patient.valid && patient.touched">
+          Please select reason
+        </span>
+      </div>
+
+
+      <div class="mb-3 col-12">
+        <label for="room" class="form-label">Room</label>
+        <select name="room" class="form-control" formControlName="room">
+          <option value="default" disabled>Select Room</option>
+          <option *ngFor="let room of rooms" [value]="room.id">
+            {{room.id}}
+          </option>
+        </select>
+        <span class="error-block" *ngIf="!room.valid && room.touched">
+          Please select room
+        </span>
+      </div>
+      
+      <div class="buttons-wrapper mt-4">
+        <button type="submit" class="btn btn-primary me-3" >{{submitted ? "Creating..." : "Create"}}</button>
+      </div>
+
+      <div class="error-block" *ngIf="submitingError">
+        {{submitingError}}
+      </div>
+
+    </form>
+  </div>
+</div>
