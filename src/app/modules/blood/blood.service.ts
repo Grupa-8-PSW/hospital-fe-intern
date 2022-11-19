@@ -17,4 +17,8 @@ export class BloodService {
   getAll(): Observable<Blood[]> {
     return this.http.get<Blood[]>(this.baseUrl).pipe();
   }
+
+  createBloodRequest(bloodRequest: any): void {
+
+  }
 }
