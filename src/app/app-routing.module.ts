@@ -29,7 +29,8 @@ const routes: Routes = [
   { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent},
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
-  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent}
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent }
 ];
 
 

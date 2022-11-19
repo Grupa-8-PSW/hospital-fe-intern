@@ -13,6 +13,7 @@ import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-bloo
 import {ToastrModule} from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
+import { BloodModule } from "./modules/blood/blood.module";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-hi
     FormsModule,
     ToastrModule.forRoot(),
     ExaminationModule,
-    TreatmentHistoryModule
+    TreatmentHistoryModule,
+    BloodModule
   ],
   providers: [],
   bootstrap: [AppComponent]
