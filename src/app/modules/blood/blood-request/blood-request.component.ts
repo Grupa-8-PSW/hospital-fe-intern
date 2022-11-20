@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Moment } from 'moment';
 import { BloodService } from '../blood.service';
 import { BloodType } from '../model/BloodType';
+import BloodUnitRequest from '../model/BloodUnitRequest';
 
 @Component({
   selector: 'app-blood-request',
@@ -40,9 +41,23 @@ export class BloodRequestComponent implements OnInit {
       reason: this.reason.value,
       when: this.deliveryDate.value.format('DD/MM/YYYY')
     };
+    const bloodUnitRequest : BloodUnitRequest = {
+      id: 1,
+      type: this.getBlodTypeName(this.bloodType.value).toString(),
+      amount: this.amount.value,
+      reason: this.reason.value,
+      creationDate: this.deliveryDate.value.format('DD/MM/YYYY')
+    };
+
     console.log(bloodRequest);
 
-    this.resetForm();
+    this.bloodService.createBloodRequest(bloodUnitRequest).subscribe({
+      next: (res) => {
+        console.log(res);
+        },
+      error: (err) => {
+       }
+      });
   }
 
   get reason() : FormControl {
