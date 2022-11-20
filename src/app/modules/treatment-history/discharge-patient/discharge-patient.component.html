@@ -1,1 +1,31 @@
-<p>discharge-patient works!</p>
+<div class="card fs-6 text-dark col-4 mx-auto mt-5">
+
+    <div class="card-header bg-secondary text-dark fs-3 py-4">
+        <h2>Discharge patient *moze ime*</h2>
+    </div>
+
+    <div class="card-body">
+
+        <form [formGroup]="dischargeForm" (submit)="onSubmit($event)">
+            <div class="mb-3 col-12">
+                <label>{{treatmentHistory?.id}}</label>
+            </div>
+            <div class="mb-3 col-12">
+        
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose date</mat-label>
+                    <input matInput [matDatepicker]="dp" [formControl]="date" formControlName="date" class="datepicker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                </mat-form-field>
+            </div>
+           
+
+            <div class="buttons-wrapper mt-4">
+                <button type="submit" class="btn btn-primary me-3">{{submitted ? "Discharging patient..." : "Discharge patient"}}</button>
+            </div>
+     
+        </form>
+    </div>
+</div>

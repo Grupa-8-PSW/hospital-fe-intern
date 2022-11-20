@@ -26,21 +26,26 @@ export class TreatmentHistoryService {
   }
 
   getTreatmentHistoryById(id: number): Observable<TreatmentHistory> {
-    return this.http.get<TreatmentHistory>(this.treatmentHistoryUrl + id).pipe(
+    return this.http.get<TreatmentHistory>(this.treatmentHistoryUrl + "/" + id).pipe(
       map(treatmentHistory => {
         return {
           ...treatmentHistory,
-          startDate: moment(treatmentHistory.startDate),
-          endDate: moment(treatmentHistory.endDate)
+          //startDate: moment(treatmentHistory.startDate),
+          //endDate: string(treatmentHistory.endDate)
         }
       })
     );
   }
 
-  createTreatmentHistory(treatmentHistoryDTO: TreatmentHistory): Observable<any> {
-    return this.http.post(this.treatmentHistoryUrl, treatmentHistoryDTO, { headers: this.headers });
+  createTreatmentHistory(treatmentHistory: TreatmentHistory): Observable<any> {
+    return this.http.post(this.treatmentHistoryUrl, treatmentHistory, { headers: this.headers });
   }
 
+  finishTreatmentHistory(treatmentHistory: TreatmentHistory): Observable<any> {
+    return this.http.put(this.treatmentHistoryUrl + "/finish/" + treatmentHistory.id, treatmentHistory, { headers: this.headers });
+  }
+ 
+  //move to room service
   getFreeRooms() : Observable<Room[]> {
     return this.http.get<Room[]>(this.roomUrl);
   }
