@@ -102,7 +102,7 @@
         <div *ngIf="percentIsTwenty">
             <label class="mainLabelMove">Odaberite destinaciju:</label>
             <div class="roomDestination">
-                <tr *ngFor="let room of allRooms; let i index" (click)="selectRoom(room.name)">
+                <tr *ngFor="let room of allRooms; let i index" (click)="selectRoom(room.id)">
                     <td>
                         <h3>{{room.name}}</h3>
                     </td>
@@ -112,35 +112,39 @@
         <div *ngIf="percentIsFourty">
             <label class="mainLabelMove">Datum od do:</label>
             <div class="calendars">
-                <mat-card class="demo-inline-calendar-card">
-                    <mat-calendar [(selected)]="startDate"></mat-calendar>
-                </mat-card>
-
-                <mat-card class="demo-inline-calendar-card2">
-                    <mat-calendar [(selected)]="endDate"></mat-calendar>
-                </mat-card>
+                <div (click)="getStartDate(startDate)">
+                    <mat-card class="demo-inline-calendar-card">
+                        <mat-calendar [(selected)]="startDate"></mat-calendar>
+                    </mat-card>
+                </div>
+                <div (click)="getEndDate(endDate)">
+                    <mat-card class="demo-inline-calendar-card2">
+                        <mat-calendar [(selected)]="endDate"></mat-calendar>
+                    </mat-card>
+                </div>
             </div>
-        </div>
-        <div *ngIf="percentIsSixty">
-            <label class="mainLabelMove">Unos trajanja premeštanja:</label>
-            <div>
-                <label class="durationLabel">Dani:</label>
-                <input class="inputDuration1" (keyup)="onChange1($event.target)" type="text" id="input">
-            </div>
-            <div>
-                <label class="durationLabel">Sati:</label>
-                <input class="inputDuration2" (keyup)="onChange2($event.target)" type="text" id="input">
-            </div>
-            <div>
-                <label class="durationLabel">Minuti:</label>
-                <input class="inputDuration3" (keyup)="onChange3($event.target)" type="text" id="input">
-            </div>
-        </div>
-        <div class="buttons">
-            <button class="backButton" (click)="removePercent($event)">Back</button>
-            <button class="nextButton" (click)="addPercent($event)">Next</button>
         </div>
     </div>
+    <div *ngIf="percentIsSixty">
+        <label class="mainLabelMove">Unos trajanja premeštanja:</label>
+        <div>
+            <label class="durationLabel">Dani:</label>
+            <input class="inputDuration1" (keyup)="onChange1($event.target)" type="text" id="input">
+        </div>
+        <div>
+            <label class="durationLabel">Sati:</label>
+            <input class="inputDuration2" (keyup)="onChange2($event.target)" type="text" id="input">
+        </div>
+        <div>
+            <label class="durationLabel">Minuti:</label>
+            <input class="inputDuration3" type="text" id="input">
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="backButton" (click)="removePercent($event)">Back</button>
+        <button class="nextButton" (click)="addPercent($event)">Next</button>
+    </div>
+
     <div *ngIf="percentIsHun">
         <mat-progress-bar mode="determinate" value={{percent}} class="progressBar">
         </mat-progress-bar>

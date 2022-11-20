@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { fabric } from "fabric";
 import { Router, RouterLinkActive } from '@angular/router';
 import { Room } from '../model/rooms.model';
+import { EquipmentTransferDTO } from '../model/equipmentTransferDTO.model';
+import { FreeSpaceForTransfer } from '../model/freeSpaceForTransfer.model';
 import { RoomsService } from './roomsService/rooms.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsService } from './roomsService/forms.service';
@@ -51,6 +53,7 @@ export class SignatureComponent implements OnInit {
   public equipments: Equipment[] = [];
   public datas = [];
   public niz = [];
+  public equipmentTransferDTO = new EquipmentTransferDTO();
 
 
   ngOnInit(): void {
@@ -118,9 +121,6 @@ export class SignatureComponent implements OnInit {
           rc = "#fff4b3";
         }
 
-
-
-
         let rectangle = new fabric.Rect({
           width: w,
           height: h,
@@ -136,7 +136,7 @@ export class SignatureComponent implements OnInit {
         this.canvas.add(rectangle);
 
         rectangle.on('mousedown', () => {
-          console.log(this.niz[i]);
+          this.equipmentTransferDTO.fromRoomId = id;
           this.praviNiz = this.niz[i];
           this.state = false;
           if (this.state === false) {
@@ -223,24 +223,30 @@ export class SignatureComponent implements OnInit {
 
   onChange2(value) {
     this.hours = value.value;
+    this.equipmentTransferDTO.duration = this.hours + this.days * 24;
   }
 
-  onChange3(value) {
-    this.minutes = value.value;
+  getStartDate(startDate) {
+    this.equipmentTransferDTO.startDate = startDate;
+    console.log(startDate);
+  }
+
+  getEndDate(endDate) {
+    this.equipmentTransferDTO.endDate = endDate;
   }
 
   addPercent(event) {
     event.preventDefault();
-    if (this.eqAmouont < this.value || this.value <= 0){
+    if (this.eqAmouont < this.value || this.value <= 0) {
       alert("Uneli ste losu kolicinu");
     }
-    if(this.days<0 || this.hours<0 || this.minutes<0){
+    if (this.days < 0 || this.hours < 0 || this.minutes < 0) {
       alert("No no!!!! Dont't use negative time")
     }
-    this.minutes = this.days*1440 + this.hours*60 + this.minutes;
+    this.minutes = this.days * 1440 + this.hours * 60 + this.minutes;
     console.log(this.minutes);
 
-    
+
     if (this.percent < 100) {
       this.percent = this.percent + 25;
     }
@@ -272,7 +278,7 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
     }
     if (this.percent === 100) {
-      if(this.minutes==0){
+      if (this.minutes == 0) {
         alert("You can't teleport equipment bro!!!");
       }
       this.percentIsHun = true;
@@ -317,12 +323,14 @@ export class SignatureComponent implements OnInit {
   }
 
   getAmount(amount: number) {
+    this.equipmentTransferDTO.amount = amount;
     console.log(amount);
     this.eqAmouont = amount;
   }
 
-  selectRoom(selectedRoom) {
-    console.log(selectedRoom)
+  selectRoom(selectedRoomId: number) {
+    this.equipmentTransferDTO.toRoomId = selectedRoomId;
+    console.log(selectedRoomId)
   }
 
 }
