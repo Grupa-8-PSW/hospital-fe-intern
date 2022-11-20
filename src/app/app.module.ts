@@ -14,6 +14,7 @@ import {ToastrModule} from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { BloodModule } from "./modules/blood/blood.module";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ToastrModule.forRoot(),
     ExaminationModule,
     TreatmentHistoryModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BloodModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,8 @@ import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.componen
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BloodModule } from '../blood/blood.module';
+import { BloodComponent } from './blood/blood.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
+    BloodComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BloodModule
   ]
 })
 export class PagesModule { }
