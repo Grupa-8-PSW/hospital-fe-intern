@@ -22,7 +22,7 @@ export class RoomsService {
         return this.http.get<Room[]>(this.apiHost + 'api/map/floor/rooms/Room/get/by/floor/' + id, { headers: this.headers });
     }
 
-    getTransferedEquipment(dto: EquipmentTransferDTO): Observable<FreeSpaceForTransfer> {
-        return this.http.post<FreeSpaceForTransfer>(this.apiHost + 'api/map/floor/rooms/Room/get/transferedEquipment', { headers: this.headers });
+    getFreeSpaceList(dto: EquipmentTransferDTO): Observable<FreeSpaceForTransfer[]> {
+        return this.http.post<FreeSpaceForTransfer[]>(this.apiHost + 'api/map/floor/rooms/Room/get/transferedEquipment', dto);
     }
 }

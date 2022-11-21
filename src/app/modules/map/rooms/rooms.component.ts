@@ -11,6 +11,7 @@ import { Form } from '../model/form.model';
 import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
 import { formatPercent } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class SignatureComponent implements OnInit {
   days = 0;
   hours = 0;
   minutes = 0;
+  freeSpaceList: FreeSpaceForTransfer[];
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
@@ -53,7 +55,7 @@ export class SignatureComponent implements OnInit {
   public equipments: Equipment[] = [];
   public datas = [];
   public niz = [];
-  public equipmentTransferDTO = new EquipmentTransferDTO();
+  public equipmentTransferDTO: EquipmentTransferDTO;
 
 
   ngOnInit(): void {
@@ -61,6 +63,14 @@ export class SignatureComponent implements OnInit {
     this.id = this._Activatedroute.snapshot.paramMap.get("floorId");
     this.roomId = parseInt(this._Activatedroute.snapshot.paramMap.get("roomId"));
 
+    this.equipmentTransferDTO = {
+      amount: null,
+      fromRoomId: null,
+      toRoomId: null,
+      startDate: null,
+      endDate: null,
+      duration: null,
+    }
 
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
@@ -100,11 +110,6 @@ export class SignatureComponent implements OnInit {
 
         this.niz[i] = this.roomType;
         this.praviNiz
-
-
-        console.log(this.niz[i]);
-
-
 
         if (this.rooms[i].id === this.roomId) {
           rc = "#ff1a1a"
@@ -228,7 +233,6 @@ export class SignatureComponent implements OnInit {
 
   getStartDate(startDate) {
     this.equipmentTransferDTO.startDate = startDate;
-    console.log(startDate);
   }
 
   getEndDate(endDate) {
@@ -244,8 +248,6 @@ export class SignatureComponent implements OnInit {
       alert("No no!!!! Dont't use negative time")
     }
     this.minutes = this.days * 1440 + this.hours * 60 + this.minutes;
-    console.log(this.minutes);
-
 
     if (this.percent < 100) {
       this.percent = this.percent + 25;
@@ -320,17 +322,20 @@ export class SignatureComponent implements OnInit {
   scheduleMoving(event) {
     event.preventDefault();
     alert("SCEDULE !");
+    this.roomsService.getFreeSpaceList(this.equipmentTransferDTO).subscribe(res => {
+      console.log(res);
+      console.log(this.equipmentTransferDTO);
+    })
+
   }
 
   getAmount(amount: number) {
     this.equipmentTransferDTO.amount = amount;
-    console.log(amount);
     this.eqAmouont = amount;
   }
 
   selectRoom(selectedRoomId: number) {
     this.equipmentTransferDTO.toRoomId = selectedRoomId;
-    console.log(selectedRoomId)
   }
 
 }

@@ -1,14 +1,12 @@
 export class FreeSpaceForTransfer {
 
-    dateFrom: Date;
-    dateTo: Date;
-    duration: number;
+    startTime: Date;
+    endTime: Date;
 
     public constructor(obj?: any) {
         if (obj) {
-            this.dateFrom = obj.dateFrom;
-            this.dateTo = obj.dateTo;
-            this.duration = obj.duration;
+            this.startTime = obj.startTime;
+            this.endTime = obj.endTime;
         }
     }
 }
