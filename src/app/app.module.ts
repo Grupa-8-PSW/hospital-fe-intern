@@ -15,6 +15,8 @@ import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-bloo
 import { PagesModule } from "./modules/pages/pages.module";
 import { SharedModule } from "./modules/shared/shared.module";
 
+import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
+import { BloodModule } from "./modules/blood/blood.module";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { SharedModule } from "./modules/shared/shared.module";
     FormsModule,
     ToastrModule.forRoot(),
     ExaminationModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TreatmentHistoryModule,
+    BloodModule
   ],
   providers: [],
   bootstrap: [AppComponent]
