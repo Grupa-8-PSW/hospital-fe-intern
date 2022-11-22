@@ -21,6 +21,7 @@ export class SignatureComponent implements OnInit {
   canvas: any;
   state = false;
   id = null;
+  roomId: number;
   stateAprooved = true;
   canMoveForm = false;
   percent = 0;
@@ -31,6 +32,8 @@ export class SignatureComponent implements OnInit {
   percentIsSixty = false;
   percentIsEighty = false;
 
+
+
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
   public rooms: Room[] = [];
@@ -40,7 +43,9 @@ export class SignatureComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = this._Activatedroute.snapshot.paramMap.get("id");
+    this.id = this._Activatedroute.snapshot.paramMap.get("floorId");
+    this.roomId = parseInt(this._Activatedroute.snapshot.paramMap.get("roomId"));
+
 
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
@@ -49,15 +54,37 @@ export class SignatureComponent implements OnInit {
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
       this.rooms = res;
 
+
       for (let i = 0; i < this.rooms.length; i++) {
+
+        // console.log(this.rooms[this.roomId].floorId);
+        // 
+
 
         let id = this.rooms[i].id;
         let x = this.rooms[i].x;
         let y = this.rooms[i].y;
         let w = this.rooms[i].width;
         let h = this.rooms[i].height;
-        let rc = "blue";
+        let rc: string;
         let name = this.rooms[i].name;
+
+
+
+        if (this.rooms[i].id === this.roomId) {
+          rc = "#ff1a1a"
+        }
+        else if (this.rooms[i].type === 0) {
+          rc = "#9999ff";
+        } else if (this.rooms[i].type === 1) {
+          rc = "#ccffee";
+        } else if (this.rooms[i].type === 2) {
+          rc = "#eaaeae";
+        } else if (this.rooms[i].type === 3) {
+          rc = " #ff944d";
+        } else {
+          rc = "#fff4b3";
+        }
 
         let rectangle = new fabric.Rect({
           width: w,
@@ -71,7 +98,6 @@ export class SignatureComponent implements OnInit {
           hoverCursor: "pointer",
 
         });
-
         this.canvas.add(rectangle);
 
         rectangle.on('mousedown', () => {
@@ -122,6 +148,7 @@ export class SignatureComponent implements OnInit {
                 let amount = this.equipments[j].amount;
                 let roomId = this.equipments[j].roomId;
 
+
                 if (roomId === id) {
                   this.equipments[j].equipmentId = equipmentId;
                   this.equipments[j].name = name;
@@ -140,7 +167,6 @@ export class SignatureComponent implements OnInit {
         });
 
         this.canvas.add(text);
-
       }
     })
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Raphael from 'raphael';
 import { FloorsService } from './floorsService/floors.service';
 import { Floor } from '../model/floors.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
