@@ -31,7 +31,7 @@ export class BloodBanksComponent implements OnInit {
       this.bloodBanks = res;
       this.dataSource.data = this.bloodBanks;
     })
-    this.getAllNews();
+    // this.getAllNews();
   }
 
   public schedule() {

@@ -16,12 +16,13 @@ import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-bloo
 import { PagesModule } from "./modules/pages/pages.module";
 import { SharedModule } from "./modules/shared/shared.module";
 import { BloodModule } from "./modules/blood/blood.module";
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateBloodBankComponent,
+    CreateBloodBankComponent
   ],
   imports: [
     BrowserModule,
@@ -38,10 +39,12 @@ import { BloodModule } from "./modules/blood/blood.module";
     ExaminationModule,
     FlexLayoutModule,
     TreatmentHistoryModule,
-    BloodModule
+    BloodModule,
 
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
