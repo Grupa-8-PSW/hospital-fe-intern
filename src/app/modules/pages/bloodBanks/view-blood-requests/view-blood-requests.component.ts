@@ -21,8 +21,10 @@ export class ViewBloodRequestsComponent {
 
   ngOnInit(): void {
     this.service.getBloodRequests().subscribe(res => {
+      const result = res.filter((r: any) => {
+        return r.status === 2;
+      })
       this.requests = res;
-      console.log(this.requests);
     })
   }
 
