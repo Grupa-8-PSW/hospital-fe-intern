@@ -13,7 +13,7 @@ import { BloodTypePipe } from '../pipes/blood-type.pipe';
 export class ViewBloodRequestsComponent {
 
   requests: BloodUnitRequest[] = [];
-  displayedColumns: string[] = ['id', 'amountL', 'type', 'reason', 'creationDate', 'approve', 'reject'];
+  displayedColumns: string[] = ['id', 'amountL', 'type', 'reason', 'creationDate', 'approve','wrong' , 'reject'];
 
   dataSource = new MatTableDataSource(this.requests);
 
