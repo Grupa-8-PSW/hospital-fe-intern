@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Patient from 'src/app/model/patient';
 import PatientAgeStatistic from 'src/app/model/patient-age-statistic.model';
 import { PatientService } from '../../hospital/feedback/services/patient.service';
@@ -10,9 +10,9 @@ import { PatientService } from '../../hospital/feedback/services/patient.service
 })
 export class PatientsListComponent implements OnInit {
 
-  ageStatistic: PatientAgeStatistic;
+  @Input() ageStatistic: PatientAgeStatistic;
 
-  constructor(private patientService: PatientService) { 
+  constructor() { 
     this.ageStatistic = {
       zeroToEighteen: 0,
       nineteenToSixtyFour: 0,
@@ -21,13 +21,7 @@ export class PatientsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPatientAgeStatistic();
-  }
-
-  getPatientAgeStatistic(){
-    this.patientService.getPatientAgeStatistic().subscribe((res: PatientAgeStatistic) => {
-      this.ageStatistic = res;
-    });
+    
   }
 
 }

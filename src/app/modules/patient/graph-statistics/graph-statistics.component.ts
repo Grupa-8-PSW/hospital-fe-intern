@@ -1,19 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
+import { Component, Input, OnChanges } from '@angular/core';
+import { ChartConfiguration, ChartData } from 'chart.js';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
+import PatientBloodTypeStatistic from 'src/app/model/patient-blood-type-statistic.model';
+import PatientGenderStatistic from 'src/app/model/patient-gender-statistic.model';
 
 @Component({
   selector: 'app-graph-statistics',
   templateUrl: './graph-statistics.component.html',
   styleUrls: ['./graph-statistics.component.css']
 })
-export class GraphStatisticsComponent implements OnInit {
+export class GraphStatisticsComponent implements OnChanges {
+
+  @Input() genderStatistic: PatientGenderStatistic;
+  @Input() bloodTypeStatistic: PatientBloodTypeStatistic;
+  graphsLoaded: boolean;
+
+  constructor() {
+    this.genderStatistic = {
+      male: 0,
+      female: 0
+    };
+    this.bloodTypeStatistic = {
+      zeroPositive: 0,
+      zeroNegative: 0,
+      aPositive: 0,
+      aNegative: 0,
+      bPositive: 0,
+      bNegative: 0,
+      abPositive: 0,
+      abNegative: 0
+    };
+    this.graphsLoaded = false;
+  }
+
+  ngOnChanges() {
+    this.barChartData.datasets[0].data = [
+      this.genderStatistic.male, 
+      this.genderStatistic.female
+    ];
+
+    this.pieChartData.datasets[0].data = [
+      this.bloodTypeStatistic.zeroPositive, 
+      this.bloodTypeStatistic.zeroNegative, 
+      this.bloodTypeStatistic.aPositive, 
+      this.bloodTypeStatistic.aNegative, 
+      this.bloodTypeStatistic.bPositive, 
+      this.bloodTypeStatistic.bNegative, 
+      this.bloodTypeStatistic.abPositive, 
+      this.bloodTypeStatistic.abNegative
+    ];
+
+    this.graphsLoaded = this.genderGraphLoaded() && this.bloodTypeGraphLoaded();
+  }
 
   public barChartData: ChartData<'bar', number[], string> = {
     labels: [ 'Male', 'Female' ],
     datasets: [
       { 
-      data: [ 65, 59 ], 
+      data: [], 
       backgroundColor: [
         'rgba(39, 221, 245, 0.5)',
         'rgba(245, 39, 148, 0.5)'
@@ -27,11 +71,20 @@ export class GraphStatisticsComponent implements OnInit {
     ]
   };
   public barChartOptions: ChartConfiguration['options'] = {
-    responsive: false,
+    responsive: true,
     plugins: {
       legend: {
         display: false
-      }
+      },
+      datalabels: {
+        formatter: (value, ctx) => {
+          if (ctx.chart.data.labels) {
+            if(ctx.chart.data.datasets[0].data[ctx.dataIndex] == 0) return '';
+            else return ctx.chart.data.datasets[0].data[ctx.dataIndex];
+          }
+          else return '';
+        },
+      },
     }
   };
   public barChartPlugins = [ DatalabelsPlugin ];
@@ -40,7 +93,7 @@ export class GraphStatisticsComponent implements OnInit {
     labels: [ '0+ ', '0- ', 'A+ ', 'A- ', 'B+ ', 'B- ', 'AB+ ', 'AB- ' ],
     datasets: [
       { 
-      data: [ 500, 300, 100, 200, 150, 400, 800, 600 ], 
+      data: [], 
       backgroundColor: [
         'rgba(39, 221, 245, 0.5)',
         'rgba(245, 39, 148, 0.5)',
@@ -76,17 +129,31 @@ export class GraphStatisticsComponent implements OnInit {
           if (ctx.chart.data.labels) {
             if(ctx.chart.data.datasets[0].data[ctx.dataIndex] == 0) return '';
             else return ctx.chart.data.labels[ctx.dataIndex];
-          }
+          } 
+          else return '';
         },
       },
     }
   };
   public pieChartPlugins = [ DatalabelsPlugin ];
 
-  constructor() {
+  genderGraphLoaded(): boolean{
+    return (
+      this.genderStatistic.male != 0 || 
+      this.genderStatistic.female != 0
+    );
   }
-
-  ngOnInit() {
+  
+  bloodTypeGraphLoaded(): boolean{
+    return(
+      this.bloodTypeStatistic.zeroPositive != 0 ||
+      this.bloodTypeStatistic.zeroNegative != 0 ||
+      this.bloodTypeStatistic.aPositive != 0 ||
+      this.bloodTypeStatistic.aNegative != 0 ||
+      this.bloodTypeStatistic.bPositive != 0 ||
+      this.bloodTypeStatistic.bNegative != 0 ||
+      this.bloodTypeStatistic.abPositive != 0 ||
+      this.bloodTypeStatistic.abNegative != 0
+    );
   }
-
 }
