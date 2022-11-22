@@ -1,5 +1,4 @@
 export class FreeSpaceForTransfer {
-
     startTime: Date;
     endTime: Date;
 

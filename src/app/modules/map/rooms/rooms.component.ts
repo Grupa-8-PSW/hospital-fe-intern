@@ -45,7 +45,7 @@ export class SignatureComponent implements OnInit {
   days = 0;
   hours = 0;
   minutes = 0;
-  freeSpaceList: FreeSpaceForTransfer[];
+
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
@@ -324,7 +324,6 @@ export class SignatureComponent implements OnInit {
     alert("SCEDULE !");
     this.roomsService.getFreeSpaceList(this.equipmentTransferDTO).subscribe(res => {
       console.log(res);
-      console.log(this.equipmentTransferDTO);
     })
 
   }
