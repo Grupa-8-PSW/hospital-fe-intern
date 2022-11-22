@@ -15,7 +15,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     CommonModule,
     RouterModule,
     MatMenuModule,
-    MatStepperModule
+    MatStepperModule,
   ],
   exports: [
     HeaderComponent,

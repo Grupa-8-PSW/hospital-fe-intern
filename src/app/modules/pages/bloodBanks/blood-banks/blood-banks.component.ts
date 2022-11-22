@@ -8,8 +8,7 @@ import { BloodBank } from 'src/app/model/bloodBank.model';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { BloodBankNews } from 'src/app/model/bloodBankNews';
 import { BloodBankNewsService } from '../services/blood-bank-news.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @Component({
   selector: 'app-blood-banks',
