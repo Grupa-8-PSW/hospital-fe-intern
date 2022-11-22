@@ -15,8 +15,7 @@ export class ViewTreatmentHistoryComponent implements OnInit {
   public treatmentHistory? : TreatmentHistory;
   isActive: boolean = true;
   submitted = false;
-
-
+  id: number = 0;
 
   constructor(private treatmentHistoryService: TreatmentHistoryService, private router: Router,  private route: ActivatedRoute) { }
 
@@ -24,9 +23,14 @@ export class ViewTreatmentHistoryComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.treatmentHistoryService.getTreatmentHistoryById(params['id']).subscribe(res => {
         this.treatmentHistory = res;
+        this.id = params['id'];
      //   this.dataSource.data = this.treatmentHistory;
      })
    });
  }
+
+ public discharge() : void {
+  this.router.navigate([`/treatmentHistory/dischargePatient/${this.id}`])
+}
 
 }

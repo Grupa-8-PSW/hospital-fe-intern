@@ -13,7 +13,7 @@ import { TreatmentHistoryService } from '../treatment-history.service';
 export class ViewAllTreatmentHistoriesComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<TreatmentHistory>();
-  public displayedColumns = ['starts', 'Patient Id', 'edit'];
+  public displayedColumns = ['Patient', 'Room', 'Bed','starts', 'end', 'edit'];
   public treatmentHistories: TreatmentHistory[] = [];
 
   constructor(private treatmentHistoryService: TreatmentHistoryService, private router: Router,  private route: ActivatedRoute) { }
@@ -34,10 +34,11 @@ export class ViewAllTreatmentHistoriesComponent implements OnInit {
   }
 
   addExamination() {
+    this.router.navigate([`/treatmentHistory/create`])
   }
 
   public viewTreatmentHistory(id: number) : void {
-    this.router.navigate([`/???examinations/edit/${id}`])
+    this.router.navigate([`/treatmentHistory/view/${id}`])
   }
 
 }

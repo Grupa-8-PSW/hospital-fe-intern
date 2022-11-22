@@ -19,7 +19,6 @@ export class DischargePatientComponent implements OnInit {
   submitingError: string | null = null;
   // Mock data
   treatmentHistory?: TreatmentHistory;
- // patient?: Patient[] = [];
  
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +32,7 @@ export class DischargePatientComponent implements OnInit {
 
     this.dischargeForm = new FormGroup({
       date: new FormControl<moment.Moment | null>(null, [Validators.required]),
+      dischargeReason: new FormControl('', [Validators.required])
     });
 
     this.treatmentHistoryService.getTreatmentHistoryById(Number(this.id)).subscribe({
@@ -67,24 +67,17 @@ export class DischargePatientComponent implements OnInit {
         startDate: this.treatmentHistory?.startDate,
         endDate: this.date.value.format("MM/DD/yyyy"),
         active: this.treatmentHistory?.active,  //ili false?
-        dischargeReason: "", //bice polje
+        dischargeReason: String(this.dischargeReason.value),
         patientId: Number(this.treatmentHistory?.patientId),
         bedId: Number(this.treatmentHistory?.bedId),
         reason: String(this.treatmentHistory?.reason),
         roomId: Number(this.treatmentHistory?.roomId)
-        //doctorId: this.examination?.doctorId!,
-        //patientId: Number(this.patient.value),
-        //startTime: this.date.value.format("DD/MM/yyyy HH:mm"),
-        //duration: Number(this.duration.value)
+        
       };
       this.treatmentHistoryService.finishTreatmentHistory(treatmentHistory).subscribe({
         next: (res) => {
           console.log(res);
-         // const timeMoment = moment(treatmentHistory.startTime, 'DD/MM/YYYY');
-          // const date = timeMoment.date();
-          // const month = timeMoment.month();
-          // const year = timeMoment.month();
-          // const str = date + '/' + month + '/' + year;
+        
           this.router.navigate([`/treatmentHistory/view/${treatmentHistory.id}`]); //mozda this.
         },
         error: (err) => {
@@ -100,7 +93,9 @@ export class DischargePatientComponent implements OnInit {
     return this.dischargeForm.controls['date'] as FormControl;
   }
 
-
+  get dischargeReason() : FormControl {
+    return this.dischargeForm.controls['dischargeReason'] as FormControl;
+  }
 
 
 }
