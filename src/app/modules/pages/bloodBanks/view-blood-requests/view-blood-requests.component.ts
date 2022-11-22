@@ -31,7 +31,7 @@ export class ViewBloodRequestsComponent {
       const result = res.filter((r: any) => {
         return r.status === 2;
       })
-      this.requests = result;
+      this.requests = res;
     })
   }
 
