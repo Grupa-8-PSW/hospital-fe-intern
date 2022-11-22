@@ -14,6 +14,7 @@ import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe
 import { ViewAllTreatmentHistoriesComponent } from "./modules/treatment-history/view-all-treatment-histories/view-all-treatment-histories.component";
 import { ViewTreatmentHistoryComponent } from "./modules/treatment-history/view-treatment-history/view-treatment-history.component";
 import { BloodComponent } from "./modules/pages/blood/blood.component";
+import { ViewBloodRequestsComponent } from "./modules/pages/bloodBanks/view-blood-requests/view-blood-requests.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,13 +27,7 @@ const routes: Routes = [
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
-  { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
-  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent},
-  { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
-  { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
-  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
-  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
-  { path: 'blood', component: BloodComponent}
+  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent}
 ];
 
 

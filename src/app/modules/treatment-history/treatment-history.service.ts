@@ -5,13 +5,19 @@ import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
 
+import Room from 'src/app/model/room';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TreatmentHistoryService {
 
-  treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory/`;
+
+  treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory`;
+  roomUrl = `${environment.apiUrL}/map/floor/rooms/Room/free`;
+
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(
@@ -34,9 +40,9 @@ export class TreatmentHistoryService {
     );
   }
 
+
   createTreatmentHistory(treatmentHistory: TreatmentHistory): Observable<any> {
     return this.http.post(this.treatmentHistoryUrl, treatmentHistory, { headers: this.headers });
   }
 
-  
 }

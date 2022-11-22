@@ -10,18 +10,19 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MaterialModule } from "./material/material.module";
 import { ExaminationModule } from "./modules/examination/examination.module";
+import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { HospitalModule } from "./modules/hospital/hospital.module";
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 import { PagesModule } from "./modules/pages/pages.module";
 import { SharedModule } from "./modules/shared/shared.module";
-
-import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { BloodModule } from "./modules/blood/blood.module";
+import { DatePipe } from '@angular/common';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateBloodBankComponent,
+    CreateBloodBankComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +39,12 @@ import { BloodModule } from "./modules/blood/blood.module";
     ExaminationModule,
     FlexLayoutModule,
     TreatmentHistoryModule,
-    BloodModule
+    BloodModule,
+
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

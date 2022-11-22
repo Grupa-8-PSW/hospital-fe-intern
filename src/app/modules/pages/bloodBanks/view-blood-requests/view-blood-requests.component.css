@@ -1,0 +1,10 @@
+table {
+    width: 80%;
+    margin: 0 auto 0 auto;
+    margin-top: 2rem;
+}
+
+.full-width {
+    font-size: 14px;
+    width: 100%;
+}
