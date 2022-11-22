@@ -10,6 +10,8 @@ import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ViewBloodRequestsComponent } from './bloodBanks/view-blood-requests/view-blood-requests.component';
+import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DialogComponent,
     CalendarComponent,
     ScheduleDialogComponent,
+    ViewBloodRequestsComponent,
+    BloodTypePipe,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="requests" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let req"> {{req.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amountL">
+        <th mat-header-cell *matHeaderCellDef> Amount[l] </th>
+        <td mat-cell *matCellDef="let req"> {{req.amountL}} l </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let req"> {{req.type | bloodType}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reason">
+        <th mat-header-cell *matHeaderCellDef> Reason </th>
+        <td mat-cell *matCellDef="let req"> {{req.reason}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+        <th mat-header-cell *matHeaderCellDef> Date Created </th>
+        <td mat-cell *matCellDef="let req"> {{req.creationDate | date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef> Approve </th>
+        <td mat-cell *matCellDef="let req"> <button mat-button style="background-color: rgb(22, 223, 22);">Approve</button> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reject">
+        <th mat-header-cell *matHeaderCellDef> Reject </th>
+        <td mat-cell *matCellDef="let req"> <button mat-button style="background-color: red;">Reject</button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let reqrow; columns: displayedColumns"></tr>
+</table>
