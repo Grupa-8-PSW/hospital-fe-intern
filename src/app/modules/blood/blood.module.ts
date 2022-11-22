@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BloodRequestComponent } from './blood-request/blood-request.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { BloodRequestListComponent } from './blood-request-list/blood-request-list.component';
+import { BloodRequestEditDialogComponent } from './blood-request-edit-dialog/blood-request-edit-dialog.component';
 
 
 
@@ -12,7 +13,8 @@ import { BloodRequestListComponent } from './blood-request-list/blood-request-li
   declarations: [
     BloodListComponent,
     BloodRequestComponent,
-    BloodRequestListComponent
+    BloodRequestListComponent,
+    BloodRequestEditDialogComponent
   ],
   imports: [
     CommonModule,
