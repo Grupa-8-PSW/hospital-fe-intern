@@ -55,14 +55,14 @@ export class BuildingComponent implements OnInit {
     })
 
 
-    this.buildingService.getAllRooms().subscribe(res => {
-      this.rooms = res;
+    // this.buildingService.getAllRooms().subscribe(res => {
+    //   this.rooms = res;
 
-      for (let i = 0; i < this.rooms.length; i++) {
-        let roomId = this.rooms[i].id;
-        let roomName = this.rooms[i].name;
-      }
-    })
+    //   for (let i = 0; i < this.rooms.length; i++) {
+    //     let roomId = this.rooms[i].id;
+    //     let roomName = this.rooms[i].name;
+    //   }
+    // })
 
     // let buildings = [
     //   { x: 100, y: 100, width: 450, height: 150, color: 'gray', name: 'One' },
@@ -79,12 +79,17 @@ export class BuildingComponent implements OnInit {
 
   }
 
+  public searchRooms(name: string): void {
+    this.buildingService.searchRooms(name).subscribe(res => {
+      this.rooms = res;
+    });
+  }
+
   selectedRoom(roomId: number) {
     this.buildingService.getAllRooms().subscribe(res => {
       this.rooms = res;
       this.rooms[roomId].color = "red";
     })
   }
-
 
 }

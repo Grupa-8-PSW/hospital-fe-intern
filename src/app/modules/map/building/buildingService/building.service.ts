@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Building } from '../../model/building.model';
@@ -26,4 +26,12 @@ export class BuildingService {
   getAllRooms() {
     return this.http.get<Room[]>(this.apiHost + 'api/map/floor/rooms/Room', { headers: this.headers });
   }
+
+  searchRooms(name: string) {
+    const url = this.apiHost + 'api/map/floor/rooms/Room/search';
+    let queryParams = new HttpParams().append("name", name);
+
+    return this.http.get<Room[]>(url, { params: queryParams });
+  }
+
 }
