@@ -5,9 +5,10 @@ import { BloodBankService } from '../services/blood-bank.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BloodBank } from 'src/app/model/bloodBank.model';
-import { BloodBankNewsService } from '../services/blood-bank-news.service';
+import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { BloodBankNews } from 'src/app/model/bloodBankNews';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { BloodBankNewsService } from '../services/blood-bank-news.service';
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @Component({
   selector: 'app-blood-banks',
@@ -16,13 +17,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 })
 export class BloodBanksComponent implements OnInit {
 
-  
+
   public dataSource = new MatTableDataSource<BloodBank>();
   public displayedColumns = ['name', 'email', 'serverAddress', 'action'];
   public bloodBanks: BloodBank[] = [];
   public bloodBanksNews: BloodBankNews[] = [];
 
-  constructor(private bloodBankService: BloodBankService, 
+  constructor(private bloodBankService: BloodBankService,
     private router: Router, private dialog: MatDialog, private bloodBankNewsService: BloodBankNewsService) { }
 
   ngOnInit(): void {
@@ -32,6 +33,24 @@ export class BloodBanksComponent implements OnInit {
     })
     this.getAllNews();
   }
+
+  public schedule() {
+    this.dialog.open(ScheduleDialogComponent, {
+      width: '50%',
+      height: '80%'
+    })
+  }
+
+  public generate(): void{
+    this.bloodBankNewsService.generate().subscribe(data=>{
+        let fileName = 'bloodconsumptionreport';
+        let blob: Blob = data.body as Blob;
+        let a = document.createElement('a');
+        a.download=fileName;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+    }
+  )}
 
   public addBloodBank() {
     this.router.navigate(['/bloodBanks/add']);

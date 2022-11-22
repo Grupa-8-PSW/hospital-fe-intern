@@ -8,7 +8,14 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
+
+import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+
+import { BloodModule } from '../blood/blood.module';
+import { BloodComponent } from './blood/blood.component';
+
 
 @NgModule({
   declarations: [
@@ -17,13 +24,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
+    ScheduleDialogComponent,
+    BloodComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BloodModule
   ]
 })
 export class PagesModule { }

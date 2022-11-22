@@ -10,6 +10,9 @@ import { HospitalModule } from '../hospital/hospital.module';
 import { DischargePatientComponent } from './discharge-patient/discharge-patient.component';
 import { PrescribeTherapyComponent } from './prescribe-therapy/prescribe-therapy.component';
 
+
+
+
 @NgModule({
   declarations: [
     CreateTreatmentHistoryComponent,

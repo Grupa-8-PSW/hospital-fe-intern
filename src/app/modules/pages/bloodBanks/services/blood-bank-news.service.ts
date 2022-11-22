@@ -13,6 +13,7 @@ export class BloodBankNewsService {
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
 
+
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<BloodBankNews[]> {
@@ -25,6 +26,14 @@ export class BloodBankNewsService {
 
   publishNews(news: BloodBankNews) {
     return this.http.put<any>(this.apiHost + 'api/BloodBankNews/publishNews', news, {headers: this.headers})
+  }
+
+  generate(): Observable<any> {
+    const requestOptions: Object = {
+      observe: 'response',
+      responseType: 'blob'
+    }
+    return this.http.get<any>(this.apiHost + 'api/BloodConsumptionConfiguration/generatePdf', requestOptions);
   }
 
 }

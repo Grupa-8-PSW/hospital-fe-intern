@@ -10,6 +10,5 @@ export default interface TreatmentHistory {
   patientId: number,
   bedId?: number,
   reason: string,
-  roomId: number
-  patient?: Patient //?
+  patient: Patient
 }
