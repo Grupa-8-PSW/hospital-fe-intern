@@ -50,9 +50,8 @@ export class ViewBloodRequestsComponent {
         })
         request[0].status = 1;
         this.service.changeRequestStatus(request[0]).subscribe(res=> {
-          this.reRender();
+          window.location.reload();
        });
-      // this.requests.pop(this.requests[req]);
       }
       else {
         request = this.requests.filter(req => {
@@ -60,7 +59,7 @@ export class ViewBloodRequestsComponent {
         })
         request[0].status = 0;
         this.service.changeRequestStatus(request[0]).subscribe(res=> {
-          this.reRender();
+          window.location.reload();
        });
 
       }
