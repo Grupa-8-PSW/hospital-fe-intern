@@ -1,3 +1,4 @@
+import { NgxRerenderModule } from 'ngx-rerender';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -8,10 +9,15 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
+
 import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ViewBloodRequestsComponent } from './bloodBanks/view-blood-requests/view-blood-requests.component';
 import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
+
+
+import { BloodModule } from '../blood/blood.module';
+import { BloodComponent } from './blood/blood.component';
 
 
 @NgModule({
@@ -22,6 +28,7 @@ import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
     DialogComponent,
     CalendarComponent,
     ScheduleDialogComponent,
+    BloodComponent,
     ViewBloodRequestsComponent,
     BloodTypePipe,
   ],
@@ -30,7 +37,9 @@ import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BloodModule,
+    NgxRerenderModule
   ]
 })
 export class PagesModule { }

@@ -57,9 +57,7 @@
         <button type="submit" class="btn btn-primary me-3" *ngIf="isAddMode">{{submitted ? "Creating..." : "Create"}}</button>
         <button type="submit" class="btn btn-primary me-3" *ngIf="!isAddMode">{{submitted ? "Saving..." : "Save"}}</button>
       </div>
-      <div class="error-block" *ngIf="submitingError">
-        {{submitingError}}
-      </div>
+     
     </form>
   </div>
 </div>

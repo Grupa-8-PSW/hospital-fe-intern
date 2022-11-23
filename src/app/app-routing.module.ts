@@ -8,6 +8,12 @@ import { CalendarComponent } from "./modules/pages/calendar/calendar.component";
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
 import { CheckBloodCountComponent } from "./modules/hospital/check-blood-count/check-blood-count.component";
+import { CreateTreatmentHistoryComponent } from "./modules/treatment-history/create-treatment-history/create-treatment-history.component";
+import { DischargePatientComponent } from "./modules/treatment-history/discharge-patient/discharge-patient.component";
+import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe-therapy/prescribe-therapy.component";
+import { ViewAllTreatmentHistoriesComponent } from "./modules/treatment-history/view-all-treatment-histories/view-all-treatment-histories.component";
+import { ViewTreatmentHistoryComponent } from "./modules/treatment-history/view-treatment-history/view-treatment-history.component";
+import { BloodComponent } from "./modules/pages/blood/blood.component";
 import { ViewBloodRequestsComponent } from "./modules/pages/bloodBanks/view-blood-requests/view-blood-requests.component";
 
 const routes: Routes = [
@@ -21,7 +27,7 @@ const routes: Routes = [
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
-  { path: 'viewBloodRequests', component: ViewBloodRequestsComponent}
+  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent}
 ];
 
 

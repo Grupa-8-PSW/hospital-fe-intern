@@ -1,0 +1,13 @@
+<h2 class="text-center">Available Blood In Hospital</h2>
+<table mat-table [dataSource]="bloodList" style="width: 100%;">
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let blood"> {{blood.type}} </td>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> Quantity [Liters] </th>
+    <td mat-cell *matCellDef="let blood"> {{blood.quantity}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="['type', 'quantity']"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: ['type', 'quantity']"></tr>
+</table>
