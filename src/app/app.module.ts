@@ -19,6 +19,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { DoctorModule } from "./modules/doctor/doctor.module";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { BloodModule } from "./modules/blood/blood.module";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     NgChartsModule,
     DoctorModule,
     TreatmentHistoryModule,
-    FlexLayoutModule, 
+    BloodModule,
+    FlexLayoutModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('token')

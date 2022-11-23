@@ -25,7 +25,6 @@ export class CreateTreatmentHistoryComponent implements OnInit {
   treatmentHistory?: TreatmentHistory;
   patients: Patient[] = [];
   rooms: Room[] = [];
-  reason: string = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -38,13 +37,13 @@ export class CreateTreatmentHistoryComponent implements OnInit {
     this.treatmentHistoryForm = new FormGroup({
       patient: new FormControl<string>('default', [this.noOptionSelectedValidator("patient")]),
       room: new FormControl<string>('default', [this.noOptionSelectedValidator("room")]),
-      reason: new FormControl<string>('', { updateOn: 'submit' }),
-
+      reason: new FormControl('', [Validators.required])
     });
 
     this.loading = true;
 
-      this.patientService.getAllPatients().subscribe({
+      //this.patientService.getAllPatients().subscribe({
+        this.treatmentHistoryService.getPatientsWithoutActiveTreatment().subscribe({
         next: (patients) => {
           this.patients = patients;
           this.loading = false;
@@ -79,7 +78,7 @@ export class CreateTreatmentHistoryComponent implements OnInit {
 
     const treatmentHistory : TreatmentHistory = {
       patientId: Number(this.patient.value),
-      reason : String(this.reason),  //popravi!
+      reason : String(this.reason.value),
       roomId: Number(this.room.value)
     };
 
@@ -107,6 +106,10 @@ export class CreateTreatmentHistoryComponent implements OnInit {
 
   get room() : FormControl {
     return this.treatmentHistoryForm.controls['room'] as FormControl;
+  }
+
+  get reason() : FormControl {
+    return this.treatmentHistoryForm.controls['reason'] as FormControl;
   }
 
   noOptionSelectedValidator(name: string): ValidatorFn {

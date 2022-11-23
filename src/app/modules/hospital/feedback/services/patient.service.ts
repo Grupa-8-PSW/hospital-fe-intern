@@ -24,6 +24,9 @@ export class PatientService {
     return this.http.get<Patient>(this.patientUrl + id);
   }
 
+  /*getPatientsWithoutActiveTreatment() : Observable<Patient[]> {
+    return this.http.get<Patient[]>(this.patientUrl + "withoutActiveTreatment");
+  }*/
   getStatistic() : Observable<Statistic> {
     return this.http.get<Statistic>(this.patientUrl + '/statistic');
   }
@@ -32,3 +35,4 @@ export class PatientService {
     return this.http.get<Statistic>(this.patientUrl + '/statistic/doctor/' + id);
   }
 }
+

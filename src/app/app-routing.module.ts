@@ -13,6 +13,8 @@ import { DischargePatientComponent } from "./modules/treatment-history/discharge
 import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe-therapy/prescribe-therapy.component";
 import { ViewAllTreatmentHistoriesComponent } from "./modules/treatment-history/view-all-treatment-histories/view-all-treatment-histories.component";
 import { ViewTreatmentHistoryComponent } from "./modules/treatment-history/view-treatment-history/view-treatment-history.component";
+import { BloodComponent } from "./modules/pages/blood/blood.component";
+import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,10 +24,12 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
-  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent},
+  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
-  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent}
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
+  { path: 'blood', component: BloodComponent}
 ];
 
 

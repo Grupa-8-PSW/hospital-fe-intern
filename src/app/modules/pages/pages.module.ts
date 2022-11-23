@@ -9,8 +9,10 @@ import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.componen
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { PatientModule } from '../patient/patient.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BloodModule } from '../blood/blood.module';
+import { BloodComponent } from './blood/blood.component';
+import { PatientModule } from '../patient/patient.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
+    BloodComponent,
     StatisticsComponent,
   ],
   imports: [
@@ -26,8 +29,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
+    FlexLayoutModule,
+    BloodModule,
     PatientModule,
-    FlexLayoutModule
   ]
 })
+
 export class PagesModule { }
