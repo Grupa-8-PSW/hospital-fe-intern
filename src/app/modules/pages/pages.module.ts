@@ -8,6 +8,7 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BloodModule } from '../blood/blood.module';
 import { BloodComponent } from './blood/blood.component';
 
@@ -25,6 +26,7 @@ import { BloodComponent } from './blood/blood.component';
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
+    FlexLayoutModule,
     BloodModule
   ]
 })

@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
-  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent},
+  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},

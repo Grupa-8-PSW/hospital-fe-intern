@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import TreatmentHistory from 'src/app/model/treatmentHistory';
+import { TreatmentHistoryService } from '../treatment-history.service';
 
 @Component({
   selector: 'app-view-treatment-history',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewTreatmentHistoryComponent implements OnInit {
 
-  constructor() { }
+ // public dataSource = new MatTableDataSource<TreatmentHistory>();
+  public treatmentHistory? : TreatmentHistory;
+  isActive: boolean = true;
+  submitted = false;
+  id: number = 0;
+
+  constructor(private treatmentHistoryService: TreatmentHistoryService, private router: Router,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
+    this.route.params.subscribe((params: Params) => {
+      this.treatmentHistoryService.getTreatmentHistoryById(params['id']).subscribe(res => {
+        this.treatmentHistory = res;
+        this.id = params['id'];
+     //   this.dataSource.data = this.treatmentHistory;
+     })
+   });
+ }
+
+ public discharge() : void {
+  this.router.navigate([`/treatmentHistory/dischargePatient/${this.id}`])
+}
 
 }
