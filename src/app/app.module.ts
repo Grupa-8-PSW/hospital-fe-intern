@@ -10,8 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
 import { FormsModule } from "@angular/forms";
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
-import {ToastrModule} from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
+import { NgChartsModule } from 'ng2-charts';
+import { DoctorModule } from "./modules/doctor/doctor.module";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
@@ -32,6 +34,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FormsModule,
     ToastrModule.forRoot(),
     ExaminationModule,
+    NgChartsModule,
+    DoctorModule,
     TreatmentHistoryModule,
     FlexLayoutModule
   ],

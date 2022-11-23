@@ -1,0 +1,114 @@
+<div class="row g-0 mt-3">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10 text-center">
+        <h2>Statistics for doctor</h2>
+        <select [(ngModel)]="selectedDoctor" (change)="displayStatisticForSelectedDoctor()" >
+            <option *ngFor="let doctor of doctors" [value]="doctor.id">
+                {{doctor.firstName}} {{doctor.lastName}}
+            </option>
+        </select>
+    </div>
+    <div class="col-md-1">
+      
+    </div>
+</div>
+
+<div class="row g-0 mt-5 mb-5">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-2 text-center" *ngIf="graphsLoaded">
+        <h2>Patients by age</h2>
+        <canvas baseChart width="300" height="300" 
+            [type]="'doughnut'"
+            [data]="doughnutChartData"
+            [options]="doughnutChartOptions"
+            [plugins]="doughnutChartPlugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">0-18</th>
+                <th scope="col">19-64</th>
+                <th scope="col">65+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ageStatistic.zeroToEighteen}}</td>
+                <td>{{ageStatistic.nineteenToSixtyFour}}</td>
+                <td>{{ageStatistic.sixtyFivePlus}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-2 text-center" *ngIf="graphsLoaded">
+        <h2 class="mb-3">Patients by gender</h2>
+        <canvas baseChart width="500" height="500" 
+            [type]="'bar'"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Male</th>
+                <th scope="col">Female</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{genderStatistic.male}}</td>
+                <td>{{genderStatistic.female}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-2 text-center" *ngIf="graphsLoaded">
+        <h2>Patients by blood type</h2>
+        <canvas baseChart width="300" height="300"
+            [type]="'pie'" 
+            [data]="pieChartData"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">0+</th>
+                <th scope="col">0-</th>
+                <th scope="col">A+</th>
+                <th scope="col">A-</th>
+                <th scope="col">B+</th>
+                <th scope="col">B-</th>
+                <th scope="col">AB+</th>
+                <th scope="col">AB-</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{bloodTypeStatistic.zeroPositive}}</td>
+                <td>{{bloodTypeStatistic.zeroNegative}}</td>
+                <td>{{bloodTypeStatistic.aPositive}}</td>
+                <td>{{bloodTypeStatistic.aNegative}}</td>
+                <td>{{bloodTypeStatistic.bPositive}}</td>
+                <td>{{bloodTypeStatistic.bNegative}}</td>
+                <td>{{bloodTypeStatistic.abPositive}}</td>
+                <td>{{bloodTypeStatistic.abNegative}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2">
+        
+    </div>
+</div>
