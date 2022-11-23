@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { BloodBanksComponent } from "./modules/pages/bloodBanks/blood-banks/blood-banks.component";
@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
-  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent}
+  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent},
+  { path: 'blood', component: BloodComponent}
 ];
 
 

@@ -23,7 +23,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatTimepickerModule } from 'mat-timepicker';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -46,7 +47,9 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     FormsModule,
     MatMomentDateModule,
     MatDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatTimepickerModule,
@@ -67,7 +70,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     FormsModule,
     MatMomentDateModule,
     MatDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
   ],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
