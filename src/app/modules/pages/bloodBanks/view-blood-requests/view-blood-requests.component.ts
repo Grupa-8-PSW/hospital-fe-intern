@@ -8,6 +8,7 @@ import { BloodRequestServiceService } from '../services/blood-request-service.se
 import { MatTableDataSource } from '@angular/material/table';
 import { BloodTypePipe } from '../pipes/blood-type.pipe';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ViewBloodRequestsComponent {
 
   requests: any[] = [];
   trigger: number = 0;
-  displayedColumns: string[] = ['id', 'amountL', 'type', 'reason', 'creationDate', 'approve', 'reject'];
+  displayedColumns: string[] = ['id', 'doctorId','amountL', 'type', 'reason', 'creationDate', 'approve', 'reject'];
+  doctors: any[] = [];
 
   dataSource = new MatTableDataSource(this.requests);
 
@@ -31,12 +33,20 @@ export class ViewBloodRequestsComponent {
       const result = res.filter((r: any) => {
         return r.status === 2;
       })
-      this.requests = res;
+      this.requests = result;
+      this.service.getAllDoctors().subscribe(res => {
+        this.doctors = res;
+      })
     })
   }
 
-  reRender(){
-    this.trigger ++;
+  getDoctorNameById(id: number): string{
+    const doctor = this.doctors.find((doctor) => doctor.id === id);
+    if(!doctor){
+      return '';
+    }
+
+    return doctor.firstName + " " + doctor.lastName;
   }
 
   changeStatusOfRequest(event: Event, id: any){

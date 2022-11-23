@@ -1,8 +1,12 @@
-<div *mcRerender="trigger">
-<table mat-table [dataSource]="requests" class="mat-elevation-z8">
+<table mat-table [dataSource]="requests" class="mat-elevation-z8" *ngIf="getDoctorNameById(1)">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> # </th>
         <td mat-cell *matCellDef="let req"> {{req.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doctorId">
+        <th mat-header-cell *matHeaderCellDef> Doctor </th>
+        <td mat-cell *matCellDef="let req"> {{getDoctorNameById(req.doctorId)}} </td>
     </ng-container>
 
     <ng-container matColumnDef="amountL">
@@ -38,4 +42,3 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let reqrow; columns: displayedColumns"></tr>
 </table>
-</div>
