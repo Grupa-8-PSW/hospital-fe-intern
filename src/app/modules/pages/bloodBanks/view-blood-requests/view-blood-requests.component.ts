@@ -8,6 +8,8 @@ import { BloodRequestServiceService } from '../services/blood-request-service.se
 import { MatTableDataSource } from '@angular/material/table';
 import { BloodTypePipe } from '../pipes/blood-type.pipe';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { WrongRequestDialogComponent } from '../wrong-request-dialog/wrong-request-dialog.component';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class ViewBloodRequestsComponent {
   dataSource = new MatTableDataSource(this.requests);
 
   constructor(private service: BloodRequestServiceService,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.service.getBloodRequests().subscribe(res => {
@@ -67,10 +70,14 @@ export class ViewBloodRequestsComponent {
         request = this.requests.filter(req => {
           return req.id === id;
         })
-        request[0].status = 3;
-        this.service.changeRequestStatus(request[0]).subscribe(res=> {
-          window.location.reload();
-       });
+        this.dialog.open(WrongRequestDialogComponent, {
+          width: '50%',
+          height: '50%',
+          data:{
+            id: id,
+            request: request[0]
+          }
+        })
       }
   }
 

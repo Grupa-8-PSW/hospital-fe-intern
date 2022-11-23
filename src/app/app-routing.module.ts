@@ -15,6 +15,7 @@ import { ViewAllTreatmentHistoriesComponent } from "./modules/treatment-history/
 import { ViewTreatmentHistoryComponent } from "./modules/treatment-history/view-treatment-history/view-treatment-history.component";
 import { BloodComponent } from "./modules/pages/blood/blood.component";
 import { ViewBloodRequestsComponent } from "./modules/pages/bloodBanks/view-blood-requests/view-blood-requests.component";
+import { WrongRequestDialogComponent } from "./modules/pages/bloodBanks/wrong-request-dialog/wrong-request-dialog.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
