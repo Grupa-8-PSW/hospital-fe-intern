@@ -29,4 +29,12 @@ export class BloodRequestServiceService {
         console.log(request.creationDate);
     return this.http.put<any>(this.apiHost + 'api/BloodUnitRequest', request, {headers: this.headers})
   }
+
+  getDoctorById(id: number): Observable<any> {
+    return this.http.get(this.apiHost + id, {headers: this.headers});
+  }
+
+  getAllDoctors(): Observable<any> {
+    return this.http.get(this.apiHost + "getAllDoctors", {headers: this.headers});
+  }
 }

@@ -1,21 +1,41 @@
-<h2 class="text-center">Blood Unit Requests</h2>
-<table mat-table [dataSource]="bloodRequestList" style="width: 100%;">
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef> Type </th>
-    <td mat-cell *matCellDef="let bloodRequest"> {{getTypeByValue(bloodRequest.type)}} </td>
-  </ng-container>
-  <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef> Quantity [Liters] </th>
-    <td mat-cell *matCellDef="let bloodRequest"> {{bloodRequest.amountL}}</td>
-  </ng-container>
-  <ng-container matColumnDef="creationDate">
-    <th mat-header-cell *matHeaderCellDef> Creation Date </th>
-    <td mat-cell *matCellDef="let bloodRequest"> {{bloodRequest.creationDate}}</td>
-  </ng-container>
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let bloodRequest"> {{getStatusByValue(bloodRequest.status)}}</td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="['type', 'amount', 'creationDate', 'status']"></tr>
-  <tr mat-row *matRowDef="let myRowData; columns: ['type', 'amount', 'creationDate', 'status']"></tr>
-</table>
+<div class="container">
+  <h2 class="text-center">Blood Unit Requests</h2>
+  <table mat-table [dataSource]="bloodRequestList" style="width: 100%;">
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let bloodRequest"> {{getTypeByValue(bloodRequest.type)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Quantity [Liters] </th>
+      <td mat-cell *matCellDef="let bloodRequest"> {{bloodRequest.amountL}}</td>
+    </ng-container>
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> Delivery Date </th>
+      <td mat-cell *matCellDef="let bloodRequest"> {{bloodRequest.creationDate | date}}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef > Status </th>
+      <td mat-cell *matCellDef="let bloodRequest">
+         <div *ngIf="checkIfUnclear(bloodRequest)">
+          {{getStatusByValue(bloodRequest.status)}}
+         </div>
+         <div *ngIf="!checkIfUnclear(bloodRequest)">
+          <a (click)="viewManagerComment(bloodRequest)">UNCLEAR (view details)</a>
+         </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let bloodRequest">
+        <div *ngIf="checkIfEditable(bloodRequest)">
+          <button mat-icon-button color="warn" (click)="editBloodRequest(bloodRequest)">
+            <mat-icon >edit</mat-icon>
+          </button>
+        </div> 
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['type', 'amount', 'creationDate', 'status', 'action']"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: ['type', 'amount', 'creationDate', 'status', 'action']"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[4]"></mat-paginator>
+</div>

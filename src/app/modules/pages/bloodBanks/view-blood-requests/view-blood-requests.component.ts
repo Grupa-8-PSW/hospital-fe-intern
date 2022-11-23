@@ -10,6 +10,8 @@ import { BloodTypePipe } from '../pipes/blood-type.pipe';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { WrongRequestDialogComponent } from '../wrong-request-dialog/wrong-request-dialog.component';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -20,8 +22,9 @@ import { WrongRequestDialogComponent } from '../wrong-request-dialog/wrong-reque
 export class ViewBloodRequestsComponent {
 
   requests: any[] = [];
-  displayedColumns: string[] = ['id', 'amountL', 'type', 'reason', 'creationDate', 'approve','wrong' , 'reject'];
   trigger: number = 0;
+  displayedColumns: string[] = ['id', 'doctorId','amountL', 'type', 'reason', 'creationDate', 'approve','wrong' , 'reject'];
+  doctors: any[] = [];
 
   dataSource = new MatTableDataSource(this.requests);
 
@@ -35,11 +38,19 @@ export class ViewBloodRequestsComponent {
         return r.status === 2;
       })
       this.requests = result;
+      this.service.getAllDoctors().subscribe(res => {
+        this.doctors = res;
+      })
     })
   }
 
-  reRender(){
-    this.trigger ++;
+  getDoctorNameById(id: number): string{
+    const doctor = this.doctors.find((doctor) => doctor.id === id);
+    if(!doctor){
+      return '';
+    }
+
+    return doctor.firstName + " " + doctor.lastName;
   }
 
   changeStatusOfRequest(event: Event, id: any){
