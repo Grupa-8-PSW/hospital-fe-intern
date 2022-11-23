@@ -87,6 +87,12 @@ export class BuildingComponent implements OnInit {
     });
   }
 
+  public searchEquipment(name: string, amount: string): void {
+    this.buildingService.searchEquipment(name, Number(amount)).subscribe(res => {
+      this.rooms = res;
+    });
+  }
+
   selectedRoom(roomId: number, floorId: number) {
 
     this.router.navigate(['map/floor/rooms/' + floorId + '/' + roomId]);

@@ -34,4 +34,13 @@ export class BuildingService {
     return this.http.get<Room[]>(url, { params: queryParams });
   }
 
+  searchEquipment(name: string, amount: number) {
+    const url = this.apiHost + 'api/Equipment/search';
+    let queryParams = new HttpParams()
+      .append("name", name)
+      .append("amount", amount);
+
+    return this.http.get<Room[]>(url, { params: queryParams });
+  }
+
 }
