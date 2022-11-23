@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
+import Therapy from 'src/app/model/therapy';
+import MedicalDrugs from 'src/app/model/medicalDrugs';
 
 
 @Injectable({
@@ -12,7 +14,8 @@ import TreatmentHistory from 'src/app/model/treatmentHistory';
 export class TreatmentHistoryService {
 
   treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory/`;
-  therapyUrl = `${environment.apiUrL}/TreatmentHistory/Therapy`;
+  therapyUrl = `${environment.apiUrL}/Therapy`;
+  medicalDrugsUrl = `${environment.apiUrL}/internal/MedicalDrugs`;
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(
@@ -37,6 +40,14 @@ export class TreatmentHistoryService {
 
   createTreatmentHistory(treatmentHistory: TreatmentHistory): Observable<any> {
     return this.http.post(this.treatmentHistoryUrl, treatmentHistory, { headers: this.headers });
+  }
+
+  createTherapy(therapy: Therapy): Observable<any> {
+    return this.http.post(this.therapyUrl, therapy, { headers: this.headers });
+  }
+
+  getAllMedicalDrugs(): Observable<MedicalDrugs[]>{
+    return this.http.get<MedicalDrugs[]>(this.medicalDrugsUrl);
   }
 
   

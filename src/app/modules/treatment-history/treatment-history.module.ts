@@ -7,6 +7,7 @@ import { ViewTreatmentHistoryComponent } from './view-treatment-history/view-tre
 import { HospitalModule } from '../hospital/hospital.module';
 import { DischargePatientComponent } from './discharge-patient/discharge-patient.component';
 import { PrescribeTherapyComponent } from './prescribe-therapy/prescribe-therapy.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -21,7 +22,8 @@ import { PrescribeTherapyComponent } from './prescribe-therapy/prescribe-therapy
   imports: [
     CommonModule,
     MaterialModule,
-    HospitalModule
+    HospitalModule,
+    MatRadioModule
   ]
 })
 export class TreatmentHistoryModule { }
