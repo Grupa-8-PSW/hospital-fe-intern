@@ -1,6 +1,6 @@
-<div class="container">
+<div class="containerm">
+    <h1 class="display-1">BloodBanks</h1>
     <div class="table-header">
-        <p class="table-title">Blood banks</p>
         <button mat-fab color="primary" mat-mini-fab matTooltip="New blood bank" matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" (click)="addBloodBank()">
             <mat-icon>add</mat-icon>
           </button>
@@ -30,4 +30,35 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+</div>
+<div class="container">
+  <div class="row">
+      <h1 class="display-1">News</h1>
+      <div fxLayout="row wrap space-evenly" fxLayoutGap="15px grid">
+          <div [fxFlex]="(100/3) + '%'"  fxFlex.xs="100%" class="zoom" fxFlex.sm="33%" *ngFor="let bbNews of bloodBanksNews">
+            <mat-card  class="mat-elevation-z19 border align card-background">
+              <img style="height: 200px; width: 300px" class="mt-1 mh-200 mw-200" mat-card-image mat-card-s-image src={{bbNews.imgSrc}}>
+              <mat-card-content>
+                <mat-card-title class="text-center fs-5 fw-bold">{{bbNews.bloodBank.name}}</mat-card-title>
+                <p>
+                  <mat-card-content>{{bbNews.subject}}</mat-card-content>
+                </p>
+                <div class="card-content">
+                  <p>{{bbNews.text}}</p>
+                </div>
+                <div class="row">
+                  <div class="col-sm-7" *ngIf="!bbNews.published">
+                    <button mat-raised-button color="warn" class="mt-3" (click)="publishNews(bbNews)">Publish</button>
+                  </div>
+                  <div class="col-sm-7" *ngIf="bbNews.published">
+                    <p class="text-success"><mat-card-content class="mt-3">Published</mat-card-content></p>
+                  </div>
+                  <div class="col-sm-1" *ngIf="!bbNews.published">
+                    <button mat-raised-button color="primary" class="mt-3" (click)="archiveNews(bbNews)" >Archive</button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
 </div>

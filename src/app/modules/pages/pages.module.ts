@@ -10,6 +10,7 @@ import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { PatientModule } from '../patient/patient.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PatientModule } from '../patient/patient.module';
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
-    PatientModule
+    PatientModule,
+    FlexLayoutModule
   ]
 })
 export class PagesModule { }

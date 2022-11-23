@@ -9,7 +9,8 @@ import Statistic from 'src/app/model/statistic.model';
   providedIn: 'root'
 })
 export class PatientService {
-  patientUrl = `${environment.apiUrL}/Patient`;
+
+  patientUrl = `${environment.apiUrL}/internal/Patient/`;
 
   constructor(
     private http: HttpClient
