@@ -37,10 +37,13 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
+    this.userClaims = null;
     this.loginSource.next(false);
   }
 
   getUserRole(): string {
+    if (!this.userClaims)
+      return '';
     return this.userClaims.role;
   }
 
