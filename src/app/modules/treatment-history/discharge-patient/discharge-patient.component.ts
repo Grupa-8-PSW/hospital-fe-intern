@@ -13,12 +13,11 @@ import { TreatmentHistoryService } from '../treatment-history.service';
 })
 export class DischargePatientComponent implements OnInit {
   dischargeForm!: FormGroup;
-  //workingDaysFilter = workingDaysFilter;
   id?: string;
   submitted = false;
   submitingError: string | null = null;
-  // Mock data
   treatmentHistory?: TreatmentHistory;
+  todayDate:Date = new Date();
  
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +44,6 @@ export class DischargePatientComponent implements OnInit {
     });
 
   }
-
 
   onSubmit(e : Event) {
     this.submitingError = null;

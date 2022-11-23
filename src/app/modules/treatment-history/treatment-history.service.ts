@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
 import Room from 'src/app/model/room';
+import Patient from 'src/app/model/patient';
 
 
 @Injectable({
@@ -48,6 +49,10 @@ export class TreatmentHistoryService {
   //move to room service
   getFreeRooms() : Observable<Room[]> {
     return this.http.get<Room[]>(this.roomUrl);
+  }
+
+  getPatientsWithoutActiveTreatment() : Observable<Patient[]> {
+    return this.http.get<Patient[]>(this.treatmentHistoryUrl + "/withoutActiveTreatment");
   }
 
 }
