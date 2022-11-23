@@ -34,11 +34,16 @@
         <td mat-cell *matCellDef="let req"> <button mat-button (click)="changeStatusOfRequest($event, req.id)" style="background-color: rgb(22, 223, 22);">Approve</button> </td>
     </ng-container>
 
+    <ng-container matColumnDef="wrong">
+        <th mat-header-cell *matHeaderCellDef> Unclear </th>
+        <td mat-cell *matCellDef="let req"> <button mat-button (click)="changeStatusOfRequest($event, req.id)" style="background-color: #FAD02C;">Return back</button> </td>
+    </ng-container>
+
     <ng-container matColumnDef="reject">
         <th mat-header-cell *matHeaderCellDef> Reject </th>
         <td mat-cell *matCellDef="let req"> <button mat-button (click)="changeStatusOfRequest($event, req.id)" style="background-color: red;">Reject</button> </td>
     </ng-container>
-
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let reqrow; columns: displayedColumns"></tr>
 </table>

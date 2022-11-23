@@ -1,5 +1,6 @@
 export enum BloodUnitRequestStatus{
     REJECTED,
     APPROVED,
-    WAITING
+    WAITING,
+    REVIEWAGAIN
 }
