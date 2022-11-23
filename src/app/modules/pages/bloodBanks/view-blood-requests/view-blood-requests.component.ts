@@ -8,7 +8,10 @@ import { BloodRequestServiceService } from '../services/blood-request-service.se
 import { MatTableDataSource } from '@angular/material/table';
 import { BloodTypePipe } from '../pipes/blood-type.pipe';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { WrongRequestDialogComponent } from '../wrong-request-dialog/wrong-request-dialog.component';
 import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -20,13 +23,14 @@ export class ViewBloodRequestsComponent {
 
   requests: any[] = [];
   trigger: number = 0;
-  displayedColumns: string[] = ['id', 'doctorId','amountL', 'type', 'reason', 'creationDate', 'approve', 'reject'];
+  displayedColumns: string[] = ['id', 'doctorId','amountL', 'type', 'reason', 'creationDate', 'approve','wrong' , 'reject'];
   doctors: any[] = [];
 
   dataSource = new MatTableDataSource(this.requests);
 
   constructor(private service: BloodRequestServiceService,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.service.getBloodRequests().subscribe(res => {
@@ -63,7 +67,7 @@ export class ViewBloodRequestsComponent {
           window.location.reload();
        });
       }
-      else {
+      else if(element.innerHTML === 'Reject') {
         request = this.requests.filter(req => {
           return req.id === id;
         })
@@ -72,6 +76,19 @@ export class ViewBloodRequestsComponent {
           window.location.reload();
        });
 
+      }
+      else {
+        request = this.requests.filter(req => {
+          return req.id === id;
+        })
+        this.dialog.open(WrongRequestDialogComponent, {
+          width: '50%',
+          height: '50%',
+          data:{
+            id: id,
+            request: request[0]
+          }
+        })
       }
   }
 

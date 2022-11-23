@@ -17,14 +17,15 @@ import { PagesModule } from "./modules/pages/pages.module";
 import { SharedModule } from "./modules/shared/shared.module";
 import { BloodModule } from "./modules/blood/blood.module";
 import { DatePipe } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateBloodBankComponent
+    CreateBloodBankComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     NgxMaterialTimepickerModule,
