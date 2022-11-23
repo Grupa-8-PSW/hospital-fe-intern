@@ -15,6 +15,8 @@ import { ExaminationModule } from "./modules/examination/examination.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { JwtInterceptor } from "./modules/auth/helpers/jwt.interceptor";
 import { JwtModule } from "@auth0/angular-jwt";
+import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { JwtModule } from "@auth0/angular-jwt";
     FormsModule,
     ToastrModule.forRoot(),
     ExaminationModule,
+    TreatmentHistoryModule,
+    FlexLayoutModule, 
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('token')
