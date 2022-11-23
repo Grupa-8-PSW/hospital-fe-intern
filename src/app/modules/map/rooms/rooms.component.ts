@@ -56,6 +56,7 @@ export class SignatureComponent implements OnInit {
   public datas = [];
   public niz = [];
   public equipmentTransferDTO: EquipmentTransferDTO;
+  public AllTermins: FreeSpaceForTransfer[] = [];
 
 
   ngOnInit(): void {
@@ -70,6 +71,7 @@ export class SignatureComponent implements OnInit {
       startDate: null,
       endDate: null,
       duration: null,
+      equipmentName: null,
     }
 
     this.canvas = new fabric.Canvas("canvas", {
@@ -213,9 +215,11 @@ export class SignatureComponent implements OnInit {
     })
   }
 
-  moveEquipmentForm(event) {
+  moveEquipmentForm(event, selectedEquipment) {
     event.preventDefault();
     this.canMoveForm = true;
+    this.equipmentTransferDTO.equipmentName = selectedEquipment;
+    console.log(this.equipmentTransferDTO.equipmentName);
   }
 
   onChange(value) {
@@ -228,7 +232,7 @@ export class SignatureComponent implements OnInit {
 
   onChange2(value) {
     this.hours = value.value;
-    this.equipmentTransferDTO.duration = this.hours + this.days * 24;
+    this.equipmentTransferDTO.duration = this.hours;
   }
 
   getStartDate(startDate) {
@@ -322,10 +326,12 @@ export class SignatureComponent implements OnInit {
   scheduleMoving(event) {
     event.preventDefault();
     alert("SCEDULE !");
-    this.roomsService.getFreeSpaceList(this.equipmentTransferDTO).subscribe(res => {
-      console.log(res);
-    })
+  }
 
+  getTermins() {
+    this.roomsService.getFreeSpaceList(this.equipmentTransferDTO).subscribe(res => {
+      this.AllTermins = res;
+    })
   }
 
   getAmount(amount: number) {
@@ -335,6 +341,11 @@ export class SignatureComponent implements OnInit {
 
   selectRoom(selectedRoomId: number) {
     this.equipmentTransferDTO.toRoomId = selectedRoomId;
+  }
+
+  selectTermin(selectedTerminStartTime, selectedTerminEndTime) {
+    console.log(selectedTerminStartTime.value);
+    console.log(selectedTerminEndTime.value);
   }
 
 }

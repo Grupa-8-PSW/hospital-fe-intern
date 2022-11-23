@@ -5,4 +5,5 @@ export interface EquipmentTransferDTO {
     startDate: Date;
     endDate: Date;
     duration: number;
+    equipmentName: string;
 }

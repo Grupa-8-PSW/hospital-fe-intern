@@ -123,6 +123,7 @@ tr:hover {
     top: 200px;
     left: 400px;
     align-items: center;
+    padding-right: 50px;
 }
 
 .buttons {
@@ -212,24 +213,40 @@ tr:hover {
     height: 350px;
     margin-left: 10px;
 }
-.mat-form-field-hint-wrapper ng-tns-c75-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted{
+
+.mat-form-field-hint-wrapper ng-tns-c75-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted {
     background-color: #d61462;
 }
 
-.durationLabel{
+.durationLabel {
     margin-top: 50px;
     margin-left: 250px;
     font-size: 24px;
 }
 
-.inputDuration1{
+.inputDuration1 {
     margin-left: 50px;
 }
 
-.inputDuration2{
+.inputDuration2 {
     margin-left: 60px;
 }
 
-.inputDuration3{
+.inputDuration3 {
     margin-left: 32px;
+}
+
+.terminsTable {
+    margin-top: 50px;
+    margin-left: 100px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    overflow-y: auto;
+    height: 320px;
+}
+
+.gap {
+    width: 25%;
 }

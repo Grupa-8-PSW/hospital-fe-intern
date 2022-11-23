@@ -74,7 +74,7 @@
                     <th scope="col" *ngIf="stateAprooved">{{equip.name}}</th>
                     <th scope="col" *ngIf="stateAprooved">{{equip.amount}}</th>
                     <th scope="col"><button class="moveButton"
-                            (click)="moveEquipmentForm($event); getAmount(equip.amount)">Move</button></th>
+                            (click)="moveEquipmentForm($event,equip.name); getAmount(equip.amount)">Move</button></th>
                 </tr>
             </thead>
             <tbody>
@@ -140,9 +140,18 @@
             <input class="inputDuration3" type="text" id="input">
         </div>
     </div>
-    <div class="buttons">
-        <button class="backButton" (click)="removePercent($event)">Back</button>
-        <button class="nextButton" (click)="addPercent($event)">Next</button>
+    <div *ngIf="percentIsSixty">
+        <div class="buttons">
+            <button class="backButton" (click)="removePercent($event)">Back</button>
+            <button class="nextButton" (click)="addPercent($event); getTermins()">Next</button>
+        </div>
+    </div>
+
+    <div *ngIf="!percentIsSixty">
+        <div class="buttons">
+            <button class="backButton" (click)="removePercent($event)">Back</button>
+            <button class="nextButton" (click)="addPercent($event)">Next</button>
+        </div>
     </div>
 
     <div *ngIf="percentIsHun">
@@ -152,6 +161,27 @@
             <label class="percentLabel">{{percent / 25}}</label>
         </div>
         <label class="mainLabelMove">Lista slobodnih termina:</label>
+        <div class="terminsTable">
+            <thead>
+                <tr>
+                    <th scope="col">Start time for re-order:</th>
+                    <th class="gap"></th>
+                    <th scope="col">End time for re-order:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let termins of AllTermins; let i index"
+                    (click)="selectTermin(termins.startTime,termins.endTime)">
+                    <td>
+                        <h3>{{termins.startTime}}</h3>
+                    </td>
+                    <td class="gap"></td>
+                    <td>
+                        <h3>{{termins.endTime}}</h3>
+                    </td>
+                </tr>
+            </tbody>
+        </div>
         <div class="buttons">
             <button class="backButton" (click)="removePercent($event)">Back</button>
             <button class="nextButton" (click)="scheduleMoving($event)">Scedule</button>
