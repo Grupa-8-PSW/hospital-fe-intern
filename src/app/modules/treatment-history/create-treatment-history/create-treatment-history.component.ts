@@ -42,7 +42,8 @@ export class CreateTreatmentHistoryComponent implements OnInit {
 
     this.loading = true;
 
-      this.patientService.getAllPatients().subscribe({
+      //this.patientService.getAllPatients().subscribe({
+        this.treatmentHistoryService.getPatientsWithoutActiveTreatment().subscribe({
         next: (patients) => {
           this.patients = patients;
           this.loading = false;

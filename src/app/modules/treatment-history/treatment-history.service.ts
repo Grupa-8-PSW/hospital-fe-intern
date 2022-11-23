@@ -7,6 +7,7 @@ import TreatmentHistory from 'src/app/model/treatmentHistory';
 import Room from 'src/app/model/room';
 import Therapy from 'src/app/model/therapy';
 import MedicalDrugs from 'src/app/model/medicalDrugs';
+import Patient from 'src/app/model/patient';
 
 
 @Injectable({
@@ -66,6 +67,10 @@ export class TreatmentHistoryService {
 
   getAllMedicalDrugs(): Observable<MedicalDrugs[]>{
     return this.http.get<MedicalDrugs[]>(this.medicalDrugsUrl);
+  }
+
+  getPatientsWithoutActiveTreatment() : Observable<Patient[]> {
+    return this.http.get<Patient[]>(this.treatmentHistoryUrl + "/withoutActiveTreatment");
   }
 
 }
