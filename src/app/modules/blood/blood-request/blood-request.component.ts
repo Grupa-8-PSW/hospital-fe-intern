@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Form, ValidatorFn, AbstractControl, ValidationErrors, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import { ToastrService } from 'ngx-toastr';
 import { BloodService } from '../blood.service';
 import { BloodType } from '../model/BloodType';
 import BloodUnitRequest from '../model/BloodUnitRequest';
@@ -15,9 +16,11 @@ export class BloodRequestComponent implements OnInit {
   bloodRequestForm!: FormGroup;
   bloodTypes = Object.values(BloodType);
   submittingError: string | null = null;
+  pending = false;
 
   constructor(
-    private bloodService: BloodService
+    private bloodService: BloodService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -49,13 +52,18 @@ export class BloodRequestComponent implements OnInit {
       creationDate: this.deliveryDate.value.format('DD/MM/YYYY')
     };
 
-    console.log(bloodRequest);
-
+    this.pending = true;
+    this.submittingError = null;
     this.bloodService.createBloodRequest(bloodUnitRequest).subscribe({
       next: (res) => {
         console.log(res);
+        this.pending = false;
+        this.toastr.success('Blood requeste created successfully', '');
         },
       error: (err) => {
+        console.log(err);
+        this.submittingError = 'Error creating blood request.';
+        this.pending = false;
        }
       });
   }
