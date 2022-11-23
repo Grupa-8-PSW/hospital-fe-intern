@@ -5,7 +5,9 @@ export default interface Therapy {
   whenPrescribed?: Moment,
   amount: number,
   reason: string,
-  prescribedId: number,
+  prescribedId?: number,
+  therapyType: string,
+  therapySubject: string,
   doctorId: number,
   treatmentHistoryId: number
 }

@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
 import Room from 'src/app/model/room';
+import Therapy from 'src/app/model/therapy';
+import MedicalDrugs from 'src/app/model/medicalDrugs';
 
 
 @Injectable({
@@ -14,7 +16,8 @@ export class TreatmentHistoryService {
 
   treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory`;
   roomUrl = `${environment.apiUrL}/map/floor/rooms/Room/free`;
-
+  therapyUrl = `${environment.apiUrL}/Therapy`;
+  medicalDrugsUrl = `${environment.apiUrL}/internal/MedicalDrugs`;
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(
@@ -56,4 +59,13 @@ export class TreatmentHistoryService {
       responseType: 'blob'
     });
   }
+
+  createTherapy(therapy: Therapy): Observable<any> {
+    return this.http.post(this.therapyUrl, therapy, { headers: this.headers });
+  }
+
+  getAllMedicalDrugs(): Observable<MedicalDrugs[]>{
+    return this.http.get<MedicalDrugs[]>(this.medicalDrugsUrl);
+  }
+
 }
