@@ -13,6 +13,7 @@ import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-bloo
 import { ToastrModule } from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
 import { NgChartsModule } from 'ng2-charts';
+import { DoctorModule } from "./modules/doctor/doctor.module";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     ToastrModule.forRoot(),
     ExaminationModule,
-    NgChartsModule
+    NgChartsModule,
+    DoctorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

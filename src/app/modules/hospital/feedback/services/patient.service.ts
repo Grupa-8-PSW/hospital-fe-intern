@@ -26,4 +26,8 @@ export class PatientService {
   getStatistic() : Observable<Statistic> {
     return this.http.get<Statistic>(this.patientUrl + '/statistic');
   }
+
+  getPatientStatisticForSelectedDoctor(id: number): Observable<Statistic> {
+    return this.http.get<Statistic>(this.patientUrl + '/statistic/doctor/' + id);
+  }
 }

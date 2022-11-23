@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import Patient from 'src/app/model/patient';
 import PatientAgeStatistic from 'src/app/model/patient-age-statistic.model';
-import { PatientService } from '../../hospital/feedback/services/patient.service';
 
 @Component({
   selector: 'app-patients-list',
