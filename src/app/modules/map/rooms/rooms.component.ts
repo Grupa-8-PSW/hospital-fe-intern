@@ -325,7 +325,9 @@ export class SignatureComponent implements OnInit {
 
   scheduleMoving(event) {
     event.preventDefault();
-    alert("SCEDULE !");
+    this.equipmentsService.addEquipmentTrasfer(this.equipmentTransferDTO).subscribe(res =>{
+      console.log(res);
+    })
   }
 
   getTermins() {
@@ -346,6 +348,9 @@ export class SignatureComponent implements OnInit {
   selectTermin(selectedTerminStartTime, selectedTerminEndTime) {
     console.log(selectedTerminStartTime.value);
     console.log(selectedTerminEndTime.value);
+    this.equipmentTransferDTO.startDate = selectedTerminStartTime;
+    this.equipmentTransferDTO.endDate = selectedTerminEndTime;
+
   }
 
 }

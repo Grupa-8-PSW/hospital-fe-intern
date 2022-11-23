@@ -25,4 +25,8 @@ export class RoomsService {
     getFreeSpaceList(dto: EquipmentTransferDTO): Observable<FreeSpaceForTransfer[]> {
         return this.http.post<FreeSpaceForTransfer[]>(this.apiHost + 'api/map/floor/rooms/Room/get/transferedEquipment', dto);
     }
+
+    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO ):  Observable<EquipmentTransferDTO>{
+        return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/map/floor/rooms/Room/post/transferedEquipment', equipTransfer);
+    }
 }

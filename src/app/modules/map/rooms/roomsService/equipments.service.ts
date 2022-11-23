@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Equipment } from '../../model/equipment.model';
+import { EquipmentTransferDTO } from '../../model/equipmentTransferDTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -19,5 +20,7 @@ export class EquipmentsService {
     getEquipmentsByRoomId(id): Observable<Equipment[]> {
         return this.http.get<Equipment[]>(this.apiHost + 'api/Equipment/' + id, { headers: this.headers });
     }
-
+    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO ):  Observable<EquipmentTransferDTO>{
+        return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/Equipment', equipTransfer);
+    }
 }
