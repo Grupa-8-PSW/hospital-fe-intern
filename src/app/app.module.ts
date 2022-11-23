@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
@@ -10,8 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./modules/shared/shared.module";
 import { FormsModule } from "@angular/forms";
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
-import {ToastrModule} from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { ExaminationModule } from "./modules/examination/examination.module";
+import { AuthModule } from "./modules/auth/auth.module";
+import { JwtInterceptor } from "./modules/auth/helpers/jwt.interceptor";
+import { JwtModule } from "@auth0/angular-jwt";
+import { NgChartsModule } from 'ng2-charts';
+import { DoctorModule } from "./modules/doctor/doctor.module";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BloodModule } from "./modules/blood/blood.module";
@@ -29,15 +34,25 @@ import { BloodModule } from "./modules/blood/blood.module";
     MaterialModule,
     PagesModule,
     HospitalModule,
+    AuthModule,
     SharedModule,
     FormsModule,
     ToastrModule.forRoot(),
     ExaminationModule,
+    NgChartsModule,
+    DoctorModule,
     TreatmentHistoryModule,
+    BloodModule,
     FlexLayoutModule,
-    BloodModule
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token')
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

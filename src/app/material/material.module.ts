@@ -55,7 +55,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule,
     MatMomentDateModule,
     MatDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
