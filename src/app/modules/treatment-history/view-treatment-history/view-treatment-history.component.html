@@ -24,12 +24,16 @@
         <div class="mb-3 col-12" *ngIf="!treatmentHistory?.active">
             <label for = "treatmentHistory">Reason of discharge: {{treatmentHistory?.dischargeReason}}</label>
         </div>
-       
-    
+
+
         <div class="buttons-wrapper mt-4">
             <button (click)="discharge()" class="btn btn-primary me-3" *ngIf="treatmentHistory?.active">{{submitted ? "Finishing..." : "Finish treatment"}}</button>
-            <button class="btn btn-primary me-3" *ngIf="!treatmentHistory?.active">{{submitted ? "Generating pdf..." : "Generate pdf"}}</button>
+            <button (click)="downloadReport()" class="btn btn-primary me-3" [disabled]="downloading"
+             *ngIf="!treatmentHistory?.active">{{downloading ? "Downloading report..." : "Download report"}}</button>
+            <div class="error-block" *ngIf="errorDownloading">
+              {{ errorDownloading }}
+            </div>
         </div>
-        
+
     </div>
 </div>

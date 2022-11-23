@@ -40,7 +40,7 @@
           Please select delivery date
         </span>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary" [disabled]="pending">{{ pending ? 'Creating...' : 'Create'}}</button>
       <div class="error-block" *ngIf="submittingError">
         {{submittingError}}
       </div>

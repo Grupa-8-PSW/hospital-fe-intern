@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
@@ -44,10 +44,16 @@ export class TreatmentHistoryService {
   finishTreatmentHistory(treatmentHistory: TreatmentHistory): Observable<any> {
     return this.http.put(this.treatmentHistoryUrl + "/finish/" + treatmentHistory.id, treatmentHistory, { headers: this.headers });
   }
- 
+
   //move to room service
   getFreeRooms() : Observable<Room[]> {
     return this.http.get<Room[]>(this.roomUrl);
   }
 
+  downloadReport(treatmentHistoryId: number) {
+    return this.http.get(`${this.treatmentHistoryUrl}/generateReport/${treatmentHistoryId}`, {
+      observe: 'response',
+      responseType: 'blob'
+    });
+  }
 }
