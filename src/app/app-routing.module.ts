@@ -14,6 +14,7 @@ import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe
 import { ViewAllTreatmentHistoriesComponent } from "./modules/treatment-history/view-all-treatment-histories/view-all-treatment-histories.component";
 import { ViewTreatmentHistoryComponent } from "./modules/treatment-history/view-treatment-history/view-treatment-history.component";
 import { BloodComponent } from "./modules/pages/blood/blood.component";
+import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
