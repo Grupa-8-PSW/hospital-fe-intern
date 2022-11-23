@@ -1,0 +1,80 @@
+<div class="row g-0 mt-3">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-4 text-center" *ngIf="graphsLoaded">
+        <h2 class="me-4">Patients by gender</h2>
+        <canvas baseChart width="450" height="450" 
+            [type]="'bar'"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Male</th>
+                <th scope="col">Female</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{genderStatistic.male}}</td>
+                <td>{{genderStatistic.female}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2">
+      
+    </div>
+    <div class="col-md-4 text-center" *ngIf="graphsLoaded">
+        <h2 class="me-4">Patients by blood type</h2>
+        <canvas baseChart width="400" height="400"
+            [type]="'pie'" 
+            [data]="pieChartData"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">0+</th>
+                <th scope="col">0-</th>
+                <th scope="col">A+</th>
+                <th scope="col">A-</th>
+                <th scope="col">B+</th>
+                <th scope="col">B-</th>
+                <th scope="col">AB+</th>
+                <th scope="col">AB-</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{bloodTypeStatistic.zeroPositive}}</td>
+                <td>{{bloodTypeStatistic.zeroNegative}}</td>
+                <td>{{bloodTypeStatistic.aPositive}}</td>
+                <td>{{bloodTypeStatistic.aNegative}}</td>
+                <td>{{bloodTypeStatistic.bPositive}}</td>
+                <td>{{bloodTypeStatistic.bNegative}}</td>
+                <td>{{bloodTypeStatistic.abPositive}}</td>
+                <td>{{bloodTypeStatistic.abNegative}}</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    <div class="col-md-1">
+      
+    </div>
+</div>
+<div class="row g-0 mt-3">
+    <div class="col-md-1">
+        
+    </div>
+    <div class="col-md-10">
+        
+    </div>
+    <div class="col-md-1">
+        
+    </div>
+</div>
