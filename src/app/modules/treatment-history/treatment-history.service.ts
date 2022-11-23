@@ -12,6 +12,7 @@ import TreatmentHistory from 'src/app/model/treatmentHistory';
 export class TreatmentHistoryService {
 
   treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory/`;
+  therapyUrl = `${environment.apiUrL}/TreatmentHistory/Therapy`;
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(

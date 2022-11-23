@@ -42,7 +42,7 @@ export class BloodRequestComponent implements OnInit {
       when: this.deliveryDate.value.format('DD/MM/YYYY')
     };
     const bloodUnitRequest : BloodUnitRequest = {
-      id: 1,
+      id: 0,
       type: this.getBlodTypeName(this.bloodType.value).toString(),
       amount: this.amount.value,
       reason: this.reason.value,
