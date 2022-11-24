@@ -1,0 +1,47 @@
+<h1>Edit Blood Request</h1>
+<div mat-dialog-content>
+   <form [formGroup]="bloodRequestEditForm">
+    <div class="mb-3">
+        <label for="bloodType" class="form-label">Blood Type</label>
+        <select name="bloodType" id="bloodType" class="form-control" formControlName="bloodType">
+          <option value="default" disabled>Select blood type</option>
+          <option *ngFor="let bloodType of bloodTypes" [value]="bloodType">{{ bloodType }}</option>
+        </select>
+        <span class="error-block" *ngIf="!bloodType.valid && bloodType.touched">
+          Please select blood type
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" name="amount" class="form-control" min="0" max="5000" formControlName="amount">
+        <span class="error-block" *ngIf="!amount.valid && amount.touched">
+          Please select amount
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="reason" class="form-label">Reason</label>
+        <textarea name="reason" class="form-control" formControlName="reason"></textarea>
+        <span class="error-block" *ngIf="!reason.valid && reason.touched">
+          Please select reason
+        </span>
+      </div>
+      <div class="mb-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose delivery date</mat-label>
+          <input matInput [matDatepicker]="dp" [formControl]="deliveryDate" (dateChange)="dateChanged()" formControlName="deliveryDate" class="datepicker">
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
+        <span class="error-block" *ngIf="!deliveryDate.valid && deliveryDate.touched">
+          Please select delivery date
+        </span>
+      </div>
+      <div class="mb-3">
+        <button mat-raised-button color="warn" (click)="editBloodRequest()">Check</button>
+          <button ml-5 mat-raised-button color="primary" style="margin-left: 10px;" (click)="close()">Close</button>
+          <div class="error-block" *ngIf="submittingError">
+            {{submittingError}}
+          </div>
+      </div>
+   </form>
+</div>

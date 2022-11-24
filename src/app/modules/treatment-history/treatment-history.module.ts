@@ -11,6 +11,9 @@ import { DischargePatientComponent } from './discharge-patient/discharge-patient
 import { PrescribeTherapyComponent } from './prescribe-therapy/prescribe-therapy.component';
 import {MatRadioModule} from '@angular/material/radio';
 
+
+
+
 @NgModule({
   declarations: [
     CreateTreatmentHistoryComponent,

@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { BloodService } from '../blood.service';
 import { BloodType } from '../model/BloodType';
 import BloodUnitRequest from '../model/BloodUnitRequest';
+import { BloodUnitRequestStatus } from '../model/BloodUnitRequestStatus';
+
 
 @Component({
   selector: 'app-blood-request',
@@ -16,11 +18,14 @@ export class BloodRequestComponent implements OnInit {
   bloodRequestForm!: FormGroup;
   bloodTypes = Object.values(BloodType);
   submittingError: string | null = null;
+
+
   pending = false;
 
   constructor(
     private bloodService: BloodService,
     private toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -45,11 +50,14 @@ export class BloodRequestComponent implements OnInit {
       when: this.deliveryDate.value.format('DD/MM/YYYY')
     };
     const bloodUnitRequest : BloodUnitRequest = {
-      id: 0,
+      id: null,
       type: this.getBlodTypeName(this.bloodType.value).toString(),
-      amount: this.amount.value,
+      amountL: this.amount.value,
       reason: this.reason.value,
-      creationDate: this.deliveryDate.value.format('DD/MM/YYYY')
+      creationDate: this.deliveryDate.value.format('DD/MM/YYYY'),
+      status: BloodUnitRequestStatus.WAITING,
+      managerComment: '',
+      doctorId: 1,
     };
 
     this.pending = true;

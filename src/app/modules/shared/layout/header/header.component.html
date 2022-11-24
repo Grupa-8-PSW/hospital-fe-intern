@@ -22,7 +22,7 @@
         <li *ngIf="userRole==='Manager'" class="nav-item">
           <a class="nav-link" routerLink="/bloodBanks" routerLinkActive="active" >Blood banks</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/blood" routerLinkActive="active" >Blood</a>
         </li>
         <li class="nav-item">

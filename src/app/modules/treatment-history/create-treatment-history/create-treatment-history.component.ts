@@ -6,14 +6,11 @@ import Room from 'src/app/model/room';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
 import { PatientService } from '../../hospital/feedback/services/patient.service';
 import { TreatmentHistoryService } from '../treatment-history.service';
-
-
 @Component({
   selector: 'app-create-treatment-history',
   templateUrl: './create-treatment-history.component.html',
   styleUrls: ['./create-treatment-history.component.css']
 })
-
 export class CreateTreatmentHistoryComponent implements OnInit {
   treatmentHistoryForm!: FormGroup;
   id?: string;

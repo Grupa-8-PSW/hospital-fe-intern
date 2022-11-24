@@ -10,15 +10,14 @@ import BloodUnitRequest from './model/BloodUnitRequest';
   providedIn: 'root'
 })
 export class BloodService {
+  
   baseUrl = `${environment.apiUrL}/internal/Blood`
   baseUrlBloodUnitRequest = `${environment.apiUrL}/internal/BloodUnitRequest`
+  baseUrlUpdateUnclearRequest = `${environment.apiUrL}/internal/BloodUnitRequest/updateUnclearRequest`
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(
     private http: HttpClient
   ) { }
-
-
-  
 
   createBloodRequest(bloodRequest: BloodUnitRequest): Observable<any> {
     return this.http.post(this.baseUrlBloodUnitRequest, bloodRequest, { headers: this.headers });
@@ -28,6 +27,13 @@ export class BloodService {
     return this.http.get<Blood[]>(this.baseUrl).pipe();
   }
 
+  getAllBloodRequests() : Observable<BloodUnitRequest[]>{
+    return this.http.get<BloodUnitRequest[]>(this.baseUrlBloodUnitRequest).pipe();
+  }
+
+  updateBloodRequest(bloodUnitRequest : BloodUnitRequest) : Observable<any> {
+    return this.http.put(this.baseUrlUpdateUnclearRequest, bloodUnitRequest, {headers: this.headers});
+  }
   
 }
 
