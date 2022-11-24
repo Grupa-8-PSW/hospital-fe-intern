@@ -9,26 +9,27 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Home</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/calendar" routerLinkActive="active" >Examinations</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Manager'" class="nav-item">
           <a class="nav-link feedbacks-menu-trigger-btn" [matMenuTriggerFor]="menu">Feedbacks</a>
           <mat-menu class="bg-primary feedback-menu" #menu="matMenu">
             <a class="nav-link text-secondary" mat-menu-item routerLink="/feedback/display">Display</a>
             <a class="nav-link text-secondary" mat-menu-item routerLink="/feedback/approval">Approvals</a>
           </mat-menu>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Manager'" class="nav-item">
           <a class="nav-link" routerLink="/bloodBanks" routerLinkActive="active" >Blood banks</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/blood" routerLinkActive="active" >Blood</a>
         </li>
       </ul>
       <div class="account-button-group">
-        <button class="btn btn-danger text-light me-3">Login</button>
-        <button class="btn btn-danger text-light">Register</button>
+        <button *ngIf="isLogged" class="btn btn-danger text-light me-3" (click)="logout()">Logout</button>
+        <button *ngIf="!isLogged" class="btn btn-danger text-light me-3" routerLink="/auth/login">Login</button>
+        <button *ngIf="!isLogged" class="btn btn-danger text-light">Register</button>
       </div>
       <!-- <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

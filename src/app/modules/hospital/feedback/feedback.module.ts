@@ -4,9 +4,12 @@ import { FeedbackApprovalComponent } from './feedback-approval/feedback-approval
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FeedbackDisplayComponent } from './feedback-display/feedback-display.component';
+import { AuthGuard } from 'src/app/modules/auth/helpers/auth.guard';
+import { RoleGuard } from 'src/app/modules/auth/helpers/role.guard';
 
 const routes: Routes = [
-  { path: 'feedback/approval', component: FeedbackApprovalComponent }
+  { path: 'feedback/approval', component: FeedbackApprovalComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']} },
+  { path: 'feedback/display', component : FeedbackDisplayComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']} },
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
@@ -10,6 +10,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MaterialModule } from "./material/material.module";
 import { ExaminationModule } from "./modules/examination/examination.module";
+import { AuthModule } from "./modules/auth/auth.module";
+import { JwtInterceptor } from "./modules/auth/helpers/jwt.interceptor";
+import { JwtModule } from "@auth0/angular-jwt";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
 import { HospitalModule } from "./modules/hospital/hospital.module";
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
@@ -34,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     PagesModule,
     HospitalModule,
+    AuthModule,
     SharedModule,
     FormsModule,
     ToastrModule.forRoot(),
@@ -41,10 +45,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     TreatmentHistoryModule,
     BloodModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token')
+      }
+    }),
 
   ],
   providers: [
     DatePipe,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
