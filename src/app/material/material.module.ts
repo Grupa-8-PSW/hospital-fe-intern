@@ -72,6 +72,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatDatepickerModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},

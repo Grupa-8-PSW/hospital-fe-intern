@@ -9,15 +9,17 @@ import { ToastrModule } from "ngx-toastr";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MaterialModule } from "./material/material.module";
+import { HospitalModule } from "./modules/hospital/hospital.module";
+import { PagesModule } from "./modules/pages/pages.module";
+import { SharedModule } from "./modules/shared/shared.module";
+import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 import { ExaminationModule } from "./modules/examination/examination.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { JwtInterceptor } from "./modules/auth/helpers/jwt.interceptor";
 import { JwtModule } from "@auth0/angular-jwt";
+import { NgChartsModule } from 'ng2-charts';
+import { DoctorModule } from "./modules/doctor/doctor.module";
 import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-history.module";
-import { HospitalModule } from "./modules/hospital/hospital.module";
-import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
-import { PagesModule } from "./modules/pages/pages.module";
-import { SharedModule } from "./modules/shared/shared.module";
 import { BloodModule } from "./modules/blood/blood.module";
 import { DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,6 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToastrModule.forRoot(),
     ExaminationModule,
     FlexLayoutModule,
+    NgChartsModule,
+    DoctorModule,
     TreatmentHistoryModule,
     BloodModule,
     JwtModule.forRoot({

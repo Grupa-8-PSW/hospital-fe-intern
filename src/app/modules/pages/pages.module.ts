@@ -20,6 +20,9 @@ import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
 import { BloodModule } from '../blood/blood.module';
 import { BloodComponent } from './blood/blood.component';
 
+import { StatisticsComponent } from './statistics/statistics.component';
+
+import { PatientModule } from '../patient/patient.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { BloodComponent } from './blood/blood.component';
     BloodComponent,
     ViewBloodRequestsComponent,
     BloodTypePipe,
+    BloodComponent,
+    StatisticsComponent,
   ],
   imports: [
     FormsModule,
@@ -41,7 +46,9 @@ import { BloodComponent } from './blood/blood.component';
     HospitalModule,
     FlexLayoutModule,
     BloodModule,
-    NgxRerenderModule
+    NgxRerenderModule,
+    PatientModule,
   ]
 })
+
 export class PagesModule { }

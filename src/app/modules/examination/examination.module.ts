@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }  },
 ];
 
+
 @NgModule({
   declarations: [
     CreateEditExaminationComponent

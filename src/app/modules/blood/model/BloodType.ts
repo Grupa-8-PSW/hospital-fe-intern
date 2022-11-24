@@ -1,5 +1,5 @@
-export enum BloodType{
-  ZERO_POSITIVE = "0 +", 
+export enum BloodType {
+  ZERO_POSITIVE = "0 +",
   ZERO_NEGATIVE = "0 -",
   A_POSITIVE = "A +",
   A_NEGATIVE = "A -",
