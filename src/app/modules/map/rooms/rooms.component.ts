@@ -11,6 +11,8 @@ import { Form } from '../model/form.model';
 import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { disableDebugTools } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-rooms',
@@ -26,12 +28,15 @@ export class SignatureComponent implements OnInit {
   roomId: number;
   stateAprooved = true;
   canMoveForm = false;
+  canRenoveteForm = false;
   percent = 0;
+  renovatePercent = 0;
   percentIsHun = false;
   percentIsZero = true;
   percentIsTwenty = false;
   percentIsFourty = false;
   percentIsSixty = false;
+  percentIsEighty = false;
   value = 0;
   startDate: Date | null;
   endDate: Date | null;
@@ -41,8 +46,10 @@ export class SignatureComponent implements OnInit {
   days: number;
   hours: number;
   eqAmouont: number;
-
-
+  startDateRenovate: Date;
+  endDateRenovate: Date;
+  daysRenovate: number;
+  hoursRenovate: number;
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
@@ -218,6 +225,11 @@ export class SignatureComponent implements OnInit {
     console.log(this.equipmentTransferDTO.equipmentName);
   }
 
+  startRenovateForm(event) {
+    event.preventDefault();
+    this.canRenoveteForm = true;
+  }
+
   onChange(quantity) {
     this.value = quantity.value; // KOLICINA KOJU UNESEMO
   }
@@ -241,7 +253,6 @@ export class SignatureComponent implements OnInit {
 
   addPercent(event) {
     event.preventDefault();
-
 
     if (this.percent < 100) {
       this.percent = this.percent + 25;
@@ -310,6 +321,98 @@ export class SignatureComponent implements OnInit {
     }
   }
 
+  addPercentRenovate(event) {
+    event.preventDefault();
+
+    if (this.renovatePercent < 100) {
+      this.renovatePercent = this.renovatePercent + 20;
+    }
+
+    if (this.renovatePercent > 0) {
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+
+    if (this.renovatePercent === 20) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 40) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+
+    if (this.renovatePercent === 60) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 80) {
+      this.percentIsEighty = true;
+      this.percentIsSixty = false;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+    }
+    if (this.renovatePercent === 100) {
+      this.percentIsHun = true;
+    }
+  }
+
+  removePercentRenovate(event) {
+    event.preventDefault();
+    this.percentIsHun = false;
+    if (this.renovatePercent > 0) {
+      this.renovatePercent = this.renovatePercent - 20;
+    }
+    if (this.renovatePercent === 20) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 40) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 60) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 80) {
+      this.percentIsSixty = false;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = true;
+    }
+    if (this.renovatePercent === 0) {
+      this.percentIsZero = true;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+  }
+
   scheduleMoving(event) {
     event.preventDefault();
     this.equipmentsService.addEquipmentTrasfer(this.equipmentTransferDTO).subscribe(res => {
@@ -337,6 +440,30 @@ export class SignatureComponent implements OnInit {
     console.log(selectedTerminEndTime);
     this.equipmentTransferDTO.startDate = selectedTerminStartTime;
     this.equipmentTransferDTO.endDate = selectedTerminEndTime;
+  }
+
+  getStartDateForRenovate(startDate) {
+    this.startDateRenovate = startDate;
+  }
+
+  getEndDateForRenovate(endDate) {
+    this.endDateRenovate = endDate;
+  }
+
+  DurationInDaysRenovate(days) {
+    this.daysRenovate = days.value;
+  }
+
+  DurationInHoursRenovate(hours) {
+    this.hoursRenovate = hours.value;
+  }
+
+  getTerminsRenovate() {
+    //TO DO
+  }
+
+  scheduleRenovate(nesto) {
+    console.log(this.renovatePercent);
   }
 
   validationsForAmount = new FormGroup({

@@ -1,5 +1,107 @@
 <div class="wholeApp">
     <canvas id="canvas" height="400" width="600"></canvas>
+    <button class="renovateButton" (click)="startRenovateForm($event)">Start renovate</button>
+
+    <form *ngIf="canRenoveteForm" class="renovateForm" [formGroup]="validationsForAmount">
+        <div *ngIf="!percentIsHun">
+            <mat-progress-bar mode="determinate" value={{renovatePercent}} class="progressBar">
+            </mat-progress-bar>
+            <div>
+                <label class="percentLabel">{{renovatePercent / 20}}</label>
+            </div>
+            <div *ngIf="percentIsZero">
+                <label class="mainLabelMove">Odaberite vrstu renoviranja:</label>
+                <div class="checkBoxes">
+                    <button class="buttonsRenovate">Spajanje prostorija</button>
+                    <button class="buttonsRenovate2">Razdvajanje prostorija</button>
+                </div>
+            </div>
+            <div *ngIf="percentIsTwenty">
+                <label class="mainLabelMove">Odaberite sobu/sobe:</label>
+            </div>
+            <div *ngIf="percentIsFourty">
+                <label class="mainLabelMove">Datum od do:</label>
+                <div class="calendars">
+                    <div (click)="getStartDateForRenovate(startDate)">
+                        <mat-card class="demo-inline-calendar-card">
+                            <mat-calendar [(selected)]="startDate"></mat-calendar>
+                        </mat-card>
+                    </div>
+                    <div (click)="getEndDateForRenovate(endDate)">
+                        <mat-card class="demo-inline-calendar-card2">
+                            <mat-calendar [(selected)]="endDate"></mat-calendar>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="percentIsEighty">
+                <label class="mainLabelMove">Infro o novim prostorijama:</label>
+            </div>
+        </div>
+        <div *ngIf="percentIsSixty" [formGroup]="validationsForAmount">
+            <label class="mainLabelMove">Unos trajanja renoviranja:</label>
+            <div>
+                <label class="durationLabel">Dani:</label>
+                <input class="inputDuration1" (keyup)="DurationInDaysRenovate($event.target)" type="text" id="input"
+                    formControlName="days">
+            </div>
+            <div>
+                <label class="durationLabel">Sati:</label>
+                <input class="inputDuration2" (keyup)="DurationInHoursRenovate($event.target)" type="text" id="input"
+                    formControlName="hours">
+            </div>
+        </div>
+        <div *ngIf="percentIsSixty">
+            <div class="buttons">
+                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                <button class="nextButton" (click)="addPercentRenovate($event); getTerminsRenovate()">Next</button>
+            </div>
+        </div>
+
+        <div *ngIf="!percentIsSixty">
+            <div class="buttons">
+                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+            </div>
+        </div>
+
+        <div *ngIf="percentIsHun">
+            <mat-progress-bar mode="determinate" value={{renovatePercent}} class="progressBar">
+            </mat-progress-bar>
+            <div>
+                <label class="percentLabel">{{renovatePercent / 20}}</label>
+            </div>
+            <label class="mainLabelMove">Lista slobodnih termina:</label>
+            <div class="terminsTable">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Re-order start:</th>
+                            <th class="gap"></th>
+                            <th scope="col">Re-order end:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let termins of AllTermins; let i index"
+                            (click)="selectTermin(termins.startTime,termins.endTime)">
+                            <td>
+                                <h3>{{termins.startTime}}</h3>
+                            </td>
+                            <td class="gap"></td>
+                            <td>
+                                <h3>{{termins.endTime}}</h3>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="buttons">
+                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                <button class="nextButton" (click)="addPercentRenovate($event)">Scedule</button>
+            </div>
+        </div>
+    </form>
+
 
     <body class="body" style="color: white;">
         <form class="roomForm" *ngIf="state">
@@ -59,32 +161,63 @@
     </body>
 </div>
 
-<form class="equipmentForm" *ngIf="state">
-    <div>
-        <label class="mainLabel">Equipments:</label>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Item Id:</th>
-                    <th scope="col">Item name:</th>
-                    <th scope="col">Amount:</th>
-                </tr>
-                <tr *ngFor="let equip of equipments; let i index">
-                    <th scope="col" *ngIf="stateAprooved">{{equip.equipmentId}}</th>
-                    <th scope="col" *ngIf="stateAprooved">{{equip.name}}</th>
-                    <th scope="col" *ngIf="stateAprooved">{{equip.amount}}</th>
-                    <th scope="col"><button class="moveButton"
-                            (click)="moveEquipmentForm($event,equip.name); getAmount(equip.amount)">Move</button></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
+<div class="bottomForms">
+    <form class="shedulesForm" *ngIf="state">
+        <div>
+            <label class="mainLabel">Schedules for room:</label>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Type:</th>
+                        <th scope="col">Start time:</th>
+                        <th scope="col">End time:</th>
+                    </tr>
+                    <tr *ngFor="let equip of equipments; let i index">
+                        <th scope="col">{{"TYPE"}}</th>
+                        <th scope="col">{{"10/12/2022nes20:00:00ne"}}</th>
+                        <th scope="col">{{"10/12/2022nes20:00:00ne"}}</th>
+                        <th scope="col"><button class="moveButton">Cancel</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
 
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</form>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <form class="equipmentForm" *ngIf="state">
+        <div>
+            <label class="mainLabel">Equipments:</label>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Item Id:</th>
+                        <th scope="col">Item name:</th>
+                        <th scope="col">Amount:</th>
+                    </tr>
+                    <tr *ngFor="let equip of equipments; let i index">
+                        <th scope="col" *ngIf="stateAprooved">{{equip.equipmentId}}</th>
+                        <th scope="col" *ngIf="stateAprooved">{{equip.name}}</th>
+                        <th scope="col" *ngIf="stateAprooved">{{equip.amount}}</th>
+                        <th scope="col"><button class="moveButton"
+                                (click)="moveEquipmentForm($event,equip.name); getAmount(equip.amount)">Move</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
 
 <form *ngIf="canMoveForm" class="canMoveForm" [formGroup]="validationsForAmount">
     <div *ngIf="!percentIsHun">
