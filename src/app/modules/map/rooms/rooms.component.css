@@ -6,14 +6,14 @@
 }
 
 #canvas {
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .roomForm {
     margin-left: 100px;
     margin-right: 50px;
     width: 500px;
-    height: 390px;
+    height: 420px;
     border-radius: 8px;
     background-color: #c2185b;
     color: white;
@@ -72,23 +72,9 @@ tr:hover {
     margin-left: 20px;
 }
 
-.equipmentForm {
-    margin-top: 100px;
-    margin-left: 300px;
-    margin-bottom: 100px;
-    width: 800px;
-    height: 400px;
-    border-radius: 8px;
-    background-color: #c2185b;
-    color: white;
-    padding-right: 50px;
-    padding-left: 50px;
-    position: relative;
-}
-
 .mainLabel {
     font-size: 32px;
-    margin-left: 250px;
+    margin-left: 100px;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -112,8 +98,8 @@ tr:hover {
 }
 
 .canMoveForm {
-    width: 700px;
-    height: 550px;
+    width: 780px;
+    height: 600px;
     border-radius: 8px;
     background-color: rgb(255, 252, 252);
     color: black;
@@ -122,11 +108,15 @@ tr:hover {
     border-width: thick;
     top: 200px;
     left: 400px;
+    align-items: center;
+    padding-right: 50px;
 }
 
 .buttons {
-    margin-top: 328px;
+    position: absolute;
+    bottom: 30px;
     text-align: center;
+    left: 46px;
 }
 
 .nextButton {
@@ -134,7 +124,7 @@ tr:hover {
     width: 100px;
     height: 50px;
     font-size: 22px;
-    margin-left: 370px;
+    margin-left: 400px;
     border-radius: 5px;
 }
 
@@ -143,7 +133,7 @@ tr:hover {
     width: 100px;
     height: 50px;
     font-size: 22px;
-    margin-left: 10px;
+    margin-left: 30px;
     border-radius: 5px;
 }
 
@@ -151,7 +141,7 @@ tr:hover {
     margin-top: 20px;
     height: 30px;
     width: 350px;
-    margin-left: 190px;
+    margin-left: 210px;
     color: black;
 }
 
@@ -168,12 +158,194 @@ tr:hover {
 }
 
 .percentLabel {
-    margin-left: 350px;
+    margin-left: 378px;
     font-size: 15px;
 }
 
 .mainLabelMove {
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 24px;
-    margin-left: 240px;
+    margin-left: 280px;
+}
+
+.textbox {
+    position: absolute;
+    left: auto;
+    margin-left: 290px;
+}
+
+.roomDestination {
+    font-size: 100px;
+    overflow-y: auto;
+    height: 320px;
+    margin-top: 30px;
+}
+
+.calendars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.demo-inline-calendar-card {
+    width: 300px;
+    height: 350px;
+    margin-right: 10px;
+}
+
+.demo-inline-calendar-card2 {
+    width: 300px;
+    height: 350px;
+    margin-left: 10px;
+}
+
+.mat-form-field-hint-wrapper ng-tns-c75-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted {
+    background-color: #d61462;
+}
+
+.durationLabel {
+    margin-top: 50px;
+    margin-left: 250px;
+    font-size: 24px;
+}
+
+.inputDuration1 {
+    margin-left: 50px;
+}
+
+.inputDuration2 {
+    margin-left: 60px;
+}
+
+.inputDuration3 {
+    margin-left: 32px;
+}
+
+.terminsTable {
+    margin-top: 50px;
+    margin-left: 100px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    overflow-y: auto;
+    height: 320px;
+    color: white;
+}
+
+.gap {
+    width: 25%;
+}
+
+input.ng-invalid {
+    background-color: rgb(247, 186, 186);
+}
+
+input.ng-valid {
+    border-left: 5px solid rgb(177, 244, 177);
+}
+
+.bottomForms {
+    display: flex;
+    justify-content: center;
+}
+
+.shedulesForm {
+    margin-bottom: 100px;
+    width: 750px;
+    height: 460px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    position: relative;
+}
+
+.equipmentForm {
+    margin-left: 100px;
+    margin-bottom: 100px;
+    width: 500px;
+    height: 460px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    position: relative;
+}
+
+.renovateButton {
+    position: absolute;
+    top: 513px;
+    font-size: 20px;
+    background-color: #c2185b;
+    border-color: white;
+    color: white;
+    width: 602px;
+    height: 60px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.renovateForm {
+    width: 780px;
+    height: 600px;
+    border-radius: 8px;
+    background-color: rgb(255, 252, 252);
+    color: black;
+    position: absolute;
+    border-color: black;
+    border-width: thick;
+    top: 50px;
+    left: 400px;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.buttonsRenovate {
+    margin-top: 150px;
+    margin-left: 100px;
+    font-size: 20px;
+    background-color: #c2185b;
+    border-color: white;
+    color: white;
+    width: 180px;
+    height: 80px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonsRenovate2 {
+    margin-top: 150px;
+    margin-left: 180px;
+    font-size: 20px;
+    background-color: #c2185b;
+    border-color: white;
+    color: white;
+    width: 180px;
+    height: 80px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonsRenovate:hover {
+    background-color: #f44336
+}
+
+.buttonsRenovate:active {
+    background-color: #c2185b;
+    box-shadow: 0 5px #c2185b;
+    transform: translateY(4px);
+}
+
+.buttonsRenovate2:hover {
+    background-color: #f44336
+}
+
+.buttonsRenovate2:active {
+    background-color: #c2185b;
+    box-shadow: 0 5px #c2185b;
+    transform: translateY(4px);
 }

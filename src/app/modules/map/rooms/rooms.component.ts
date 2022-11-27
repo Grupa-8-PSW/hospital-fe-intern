@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { fabric } from "fabric";
 import { Router, RouterLinkActive } from '@angular/router';
 import { Room } from '../model/rooms.model';
+import { EquipmentTransferDTO } from '../model/equipmentTransferDTO.model';
+import { FreeSpaceForTransfer } from '../model/freeSpaceForTransfer.model';
 import { RoomsService } from './roomsService/rooms.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsService } from './roomsService/forms.service';
 import { Form } from '../model/form.model';
 import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { disableDebugTools } from '@angular/platform-browser';
 
 
 @Component({
@@ -24,31 +28,60 @@ export class SignatureComponent implements OnInit {
   roomId: number;
   stateAprooved = true;
   canMoveForm = false;
+  canRenoveteForm = false;
   percent = 0;
+  renovatePercent = 0;
   percentIsHun = false;
   percentIsZero = true;
   percentIsTwenty = false;
   percentIsFourty = false;
   percentIsSixty = false;
   percentIsEighty = false;
-
-
+  value = 0;
+  startDate: Date | null;
+  endDate: Date | null;
+  roomType: string;
+  praviNiz: string;
+  minDate = new Date()
+  days: number;
+  hours: number;
+  eqAmouont: number;
+  startDateRenovate: Date;
+  endDateRenovate: Date;
+  daysRenovate: number;
+  hoursRenovate: number;
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
 
   public rooms: Room[] = [];
+  public allRooms: Room[] = [];
   public forms: Form[] = [];
   public equipments: Equipment[] = [];
   public datas = [];
+  public niz = [];
+  public equipmentTransferDTO: EquipmentTransferDTO;
+  public AllTermins: FreeSpaceForTransfer[] = [];
 
   ngOnInit(): void {
 
     this.id = this._Activatedroute.snapshot.paramMap.get("floorId");
     this.roomId = parseInt(this._Activatedroute.snapshot.paramMap.get("roomId"));
 
+    this.equipmentTransferDTO = {
+      amount: null,
+      fromRoomId: null,
+      toRoomId: null,
+      startDate: null,
+      endDate: null,
+      duration: null,
+      equipmentName: null,
+    }
 
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
+    });
+    this.roomsService.getRooms().subscribe(res => {
+      this.allRooms = res;
     });
 
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
@@ -59,8 +92,6 @@ export class SignatureComponent implements OnInit {
 
         // console.log(this.rooms[this.roomId].floorId);
         // 
-
-
         let id = this.rooms[i].id;
         let x = this.rooms[i].x;
         let y = this.rooms[i].y;
@@ -70,6 +101,20 @@ export class SignatureComponent implements OnInit {
         let name = this.rooms[i].name;
 
 
+        if (this.rooms[i].type === 0) {
+          this.roomType = "OTHER"
+        } else if (this.rooms[i].type === 1) {
+          this.roomType = "RECOVERY"
+        } else if (this.rooms[i].type === 2) {
+          this.roomType = "CAFETERIA"
+        } else if (this.rooms[i].type === 3) {
+          this.roomType = "OPERATIONS"
+        } else if (this.rooms[i].type === 4) {
+          this.roomType = "STORAGE ROOM"
+        }
+
+        this.niz[i] = this.roomType;
+        this.praviNiz
 
         if (this.rooms[i].id === this.roomId) {
           rc = "#ff1a1a"
@@ -101,6 +146,8 @@ export class SignatureComponent implements OnInit {
         this.canvas.add(rectangle);
 
         rectangle.on('mousedown', () => {
+          this.equipmentTransferDTO.fromRoomId = id;
+          this.praviNiz = this.niz[i];
           this.state = false;
           if (this.state === false) {
             this.state = true;
@@ -171,9 +218,37 @@ export class SignatureComponent implements OnInit {
     })
   }
 
-  moveEquipmentForm(event) {
+  moveEquipmentForm(event, selectedEquipment) {
     event.preventDefault();
     this.canMoveForm = true;
+    this.equipmentTransferDTO.equipmentName = selectedEquipment;
+    console.log(this.equipmentTransferDTO.equipmentName);
+  }
+
+  startRenovateForm(event) {
+    event.preventDefault();
+    this.canRenoveteForm = true;
+  }
+
+  onChange(quantity) {
+    this.value = quantity.value; // KOLICINA KOJU UNESEMO
+  }
+
+  onChange1(days) {
+    this.days = days.value;
+  }
+
+  onChange2(hours) {
+    this.hours = hours.value;
+    this.equipmentTransferDTO.duration = this.hours;
+  }
+
+  getStartDate(startDate) {
+    this.equipmentTransferDTO.startDate = startDate;
+  }
+
+  getEndDate(endDate) {
+    this.equipmentTransferDTO.endDate = endDate;
   }
 
   addPercent(event) {
@@ -188,7 +263,6 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
 
     if (this.percent === 25) {
@@ -196,21 +270,19 @@ export class SignatureComponent implements OnInit {
       this.percentIsZero = false;
       this.percentIsFourty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 50) {
       this.percentIsFourty = true;
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
+
     if (this.percent === 75) {
       this.percentIsSixty = true;
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 100) {
       this.percentIsHun = true;
@@ -228,23 +300,111 @@ export class SignatureComponent implements OnInit {
       this.percentIsZero = false;
       this.percentIsFourty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 50) {
       this.percentIsFourty = true;
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 75) {
       this.percentIsSixty = true;
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
-      this.percentIsEighty = false;
     }
     if (this.percent === 0) {
+      this.percentIsZero = true;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+    }
+  }
+
+  addPercentRenovate(event) {
+    event.preventDefault();
+
+    if (this.renovatePercent < 100) {
+      this.renovatePercent = this.renovatePercent + 20;
+    }
+
+    if (this.renovatePercent > 0) {
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+
+    if (this.renovatePercent === 20) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 40) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+
+    if (this.renovatePercent === 60) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 80) {
+      this.percentIsEighty = true;
+      this.percentIsSixty = false;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+    }
+    if (this.renovatePercent === 100) {
+      this.percentIsHun = true;
+    }
+  }
+
+  removePercentRenovate(event) {
+    event.preventDefault();
+    this.percentIsHun = false;
+    if (this.renovatePercent > 0) {
+      this.renovatePercent = this.renovatePercent - 20;
+    }
+    if (this.renovatePercent === 20) {
+      this.percentIsTwenty = true;
+      this.percentIsZero = false;
+      this.percentIsFourty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 40) {
+      this.percentIsFourty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsSixty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 60) {
+      this.percentIsSixty = true;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = false;
+    }
+    if (this.renovatePercent === 80) {
+      this.percentIsSixty = false;
+      this.percentIsZero = false;
+      this.percentIsTwenty = false;
+      this.percentIsFourty = false;
+      this.percentIsEighty = true;
+    }
+    if (this.renovatePercent === 0) {
       this.percentIsZero = true;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
@@ -255,6 +415,61 @@ export class SignatureComponent implements OnInit {
 
   scheduleMoving(event) {
     event.preventDefault();
-    alert("SCEDULE !");
+    this.equipmentsService.addEquipmentTrasfer(this.equipmentTransferDTO).subscribe(res => {
+      console.log(res);
+    })
   }
+
+  getTermins() {
+    this.roomsService.getFreeSpaceList(this.equipmentTransferDTO).subscribe(res => {
+      this.AllTermins = res;
+    })
+  }
+
+  getAmount(amount: number) {
+    this.equipmentTransferDTO.amount = amount;
+    this.eqAmouont = amount;
+  }
+
+  selectRoom(selectedRoomId: number) {
+    this.equipmentTransferDTO.toRoomId = selectedRoomId;
+  }
+
+  selectTermin(selectedTerminStartTime, selectedTerminEndTime) {
+    console.log(selectedTerminStartTime);
+    console.log(selectedTerminEndTime);
+    this.equipmentTransferDTO.startDate = selectedTerminStartTime;
+    this.equipmentTransferDTO.endDate = selectedTerminEndTime;
+  }
+
+  getStartDateForRenovate(startDate) {
+    this.startDateRenovate = startDate;
+  }
+
+  getEndDateForRenovate(endDate) {
+    this.endDateRenovate = endDate;
+  }
+
+  DurationInDaysRenovate(days) {
+    this.daysRenovate = days.value;
+  }
+
+  DurationInHoursRenovate(hours) {
+    this.hoursRenovate = hours.value;
+  }
+
+  getTerminsRenovate() {
+    //TO DO
+  }
+
+  scheduleRenovate(nesto) {
+    console.log(this.renovatePercent);
+  }
+
+  validationsForAmount = new FormGroup({
+    amount: new FormControl('', [Validators.required, Validators.max(2), Validators.pattern("^[0-9]*$")]),   // TREBA IZMENITI 2 SA eq.Amount al mi ne ide od ruke nesto
+    days: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+    hours: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.max(24)])
+  })
+
 }

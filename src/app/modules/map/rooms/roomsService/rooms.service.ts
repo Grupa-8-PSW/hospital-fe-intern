@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Room } from '../../model/rooms.model';
+import { EquipmentTransferDTO } from '../../model/equipmentTransferDTO.model';
+import { FreeSpaceForTransfer } from '../../model/freeSpaceForTransfer.model';
 
 @Injectable({
     providedIn: 'root'
@@ -20,4 +22,11 @@ export class RoomsService {
         return this.http.get<Room[]>(this.apiHost + 'api/map/floor/rooms/Room/get/by/floor/' + id, { headers: this.headers });
     }
 
+    getFreeSpaceList(dto: EquipmentTransferDTO): Observable<FreeSpaceForTransfer[]> {
+        return this.http.post<FreeSpaceForTransfer[]>(this.apiHost + 'api/map/floor/rooms/Room/get/transferedEquipment', dto);
+    }
+
+    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO ):  Observable<EquipmentTransferDTO>{
+        return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/map/floor/rooms/Room/post/transferedEquipment', equipTransfer);
+    }
 }

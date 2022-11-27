@@ -13,7 +13,12 @@ import { FloorsComponent } from './modules/map/floors/floors.component';
 import { BuildingService } from "./modules/map/building/buildingService/building.service";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BuildingComponent } from "./modules/map/building/building.component";
-import { BuildingResolveService } from "./modules/map/building/building.resolve.service";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -23,17 +28,23 @@ import { BuildingResolveService } from "./modules/map/building/building.resolve.
     BuildingComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    MatInputModule,
     PagesModule,
     HospitalModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
-  providers: [BuildingService,BuildingResolveService],
+  providers: [BuildingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ export class Form {
     startHourSunday: number = 0;
     endHourSunday: number = 0;
 
+
     public constructor(obj?: any) {
         if (obj) {
             this.roomId = obj.roomId;
