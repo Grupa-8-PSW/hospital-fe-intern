@@ -20,7 +20,7 @@ export class EquipmentsService {
     getEquipmentsByRoomId(id): Observable<Equipment[]> {
         return this.http.get<Equipment[]>(this.apiHost + 'api/Equipment/' + id, { headers: this.headers });
     }
-    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO ):  Observable<EquipmentTransferDTO>{
+    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO): Observable<EquipmentTransferDTO> {
         return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/Equipment', equipTransfer);
     }
 }

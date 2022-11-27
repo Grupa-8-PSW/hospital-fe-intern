@@ -86,7 +86,7 @@
     </div>
 </form>
 
-<form *ngIf="canMoveForm" class="canMoveForm">
+<form *ngIf="canMoveForm" class="canMoveForm" [formGroup]="validationsForAmount">
     <div *ngIf="!percentIsHun">
         <mat-progress-bar mode="determinate" value={{percent}} class="progressBar">
         </mat-progress-bar>
@@ -96,7 +96,7 @@
         <div *ngIf="percentIsZero">
             <label class="mainLabelMove">Odaberite kolicinu:</label>
             <div class="textbox">
-                <input (keyup)="onChange($event.target)" type="text" id="input">
+                <input (keyup)="onChange($event.target)" type="text" id="input" formControlName="amount">
             </div>
         </div>
         <div *ngIf="percentIsTwenty">
@@ -125,19 +125,17 @@
             </div>
         </div>
     </div>
-    <div *ngIf="percentIsSixty">
+    <div *ngIf="percentIsSixty" [formGroup]="validationsForAmount">
         <label class="mainLabelMove">Unos trajanja premeštanja:</label>
         <div>
             <label class="durationLabel">Dani:</label>
-            <input class="inputDuration1" (keyup)="onChange1($event.target)" type="text" id="input">
+            <input class="inputDuration1" (keyup)="onChange1($event.target)" type="text" id="input"
+                formControlName="days">
         </div>
         <div>
             <label class="durationLabel">Sati:</label>
-            <input class="inputDuration2" (keyup)="onChange2($event.target)" type="text" id="input">
-        </div>
-        <div>
-            <label class="durationLabel">Minuti:</label>
-            <input class="inputDuration3" type="text" id="input">
+            <input class="inputDuration2" (keyup)="onChange2($event.target)" type="text" id="input"
+                formControlName="hours">
         </div>
     </div>
     <div *ngIf="percentIsSixty">
@@ -162,25 +160,27 @@
         </div>
         <label class="mainLabelMove">Lista slobodnih termina:</label>
         <div class="terminsTable">
-            <thead>
-                <tr>
-                    <th scope="col">Start time for re-order:</th>
-                    <th class="gap"></th>
-                    <th scope="col">End time for re-order:</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let termins of AllTermins; let i index"
-                    (click)="selectTermin(termins.startTime,termins.endTime)">
-                    <td>
-                        <h3>{{termins.startTime}}</h3>
-                    </td>
-                    <td class="gap"></td>
-                    <td>
-                        <h3>{{termins.endTime}}</h3>
-                    </td>
-                </tr>
-            </tbody>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Re-order start:</th>
+                        <th class="gap"></th>
+                        <th scope="col">Re-order end:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let termins of AllTermins; let i index"
+                        (click)="selectTermin(termins.startTime,termins.endTime)">
+                        <td>
+                            <h3>{{termins.startTime}}</h3>
+                        </td>
+                        <td class="gap"></td>
+                        <td>
+                            <h3>{{termins.endTime}}</h3>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="buttons">
             <button class="backButton" (click)="removePercent($event)">Back</button>

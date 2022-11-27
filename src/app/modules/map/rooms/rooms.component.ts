@@ -10,9 +10,7 @@ import { FormsService } from './roomsService/forms.service';
 import { Form } from '../model/form.model';
 import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
-import { formatPercent } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms',
@@ -34,17 +32,16 @@ export class SignatureComponent implements OnInit {
   percentIsTwenty = false;
   percentIsFourty = false;
   percentIsSixty = false;
-  percentIsEighty = false;
-  eqAmouont = 0;
   value = 0;
   startDate: Date | null;
   endDate: Date | null;
   roomType: string;
   praviNiz: string;
   minDate = new Date()
-  days = 0;
-  hours = 0;
-  minutes = 0;
+  days: number;
+  hours: number;
+  eqAmouont: number;
+
 
 
   constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
@@ -57,7 +54,6 @@ export class SignatureComponent implements OnInit {
   public niz = [];
   public equipmentTransferDTO: EquipmentTransferDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
-
 
   ngOnInit(): void {
 
@@ -222,16 +218,16 @@ export class SignatureComponent implements OnInit {
     console.log(this.equipmentTransferDTO.equipmentName);
   }
 
-  onChange(value) {
-    this.value = value.value;
+  onChange(quantity) {
+    this.value = quantity.value; // KOLICINA KOJU UNESEMO
   }
 
-  onChange1(value) {
-    this.days = value.value;
+  onChange1(days) {
+    this.days = days.value;
   }
 
-  onChange2(value) {
-    this.hours = value.value;
+  onChange2(hours) {
+    this.hours = hours.value;
     this.equipmentTransferDTO.duration = this.hours;
   }
 
@@ -245,13 +241,7 @@ export class SignatureComponent implements OnInit {
 
   addPercent(event) {
     event.preventDefault();
-    if (this.eqAmouont < this.value || this.value <= 0) {
-      alert("Uneli ste losu kolicinu");
-    }
-    if (this.days < 0 || this.hours < 0 || this.minutes < 0) {
-      alert("No no!!!! Dont't use negative time")
-    }
-    this.minutes = this.days * 1440 + this.hours * 60 + this.minutes;
+
 
     if (this.percent < 100) {
       this.percent = this.percent + 25;
@@ -284,9 +274,6 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
     }
     if (this.percent === 100) {
-      if (this.minutes == 0) {
-        alert("You can't teleport equipment bro!!!");
-      }
       this.percentIsHun = true;
     }
   }
@@ -325,7 +312,7 @@ export class SignatureComponent implements OnInit {
 
   scheduleMoving(event) {
     event.preventDefault();
-    this.equipmentsService.addEquipmentTrasfer(this.equipmentTransferDTO).subscribe(res =>{
+    this.equipmentsService.addEquipmentTrasfer(this.equipmentTransferDTO).subscribe(res => {
       console.log(res);
     })
   }
@@ -346,11 +333,16 @@ export class SignatureComponent implements OnInit {
   }
 
   selectTermin(selectedTerminStartTime, selectedTerminEndTime) {
-    console.log(selectedTerminStartTime.value);
-    console.log(selectedTerminEndTime.value);
+    console.log(selectedTerminStartTime);
+    console.log(selectedTerminEndTime);
     this.equipmentTransferDTO.startDate = selectedTerminStartTime;
     this.equipmentTransferDTO.endDate = selectedTerminEndTime;
-
   }
+
+  validationsForAmount = new FormGroup({
+    amount: new FormControl('', [Validators.required, Validators.max(2), Validators.pattern("^[0-9]*$")]),   // TREBA IZMENITI 2 SA eq.Amount al mi ne ide od ruke nesto
+    days: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+    hours: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.max(24)])
+  })
 
 }

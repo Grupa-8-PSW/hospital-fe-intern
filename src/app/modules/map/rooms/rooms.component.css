@@ -245,8 +245,17 @@ tr:hover {
     padding-right: 50px;
     overflow-y: auto;
     height: 320px;
+    color: white;
 }
 
 .gap {
     width: 25%;
+}
+
+input.ng-invalid {
+    background-color: rgb(247, 186, 186);
+}
+
+input.ng-valid {
+    border-left: 5px solid rgb(177, 244, 177);
 }
