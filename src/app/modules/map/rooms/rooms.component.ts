@@ -12,6 +12,8 @@ import { Equipment } from '../model/equipment.model';
 import { EquipmentsService } from './roomsService/equipments.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { disableDebugTools } from '@angular/platform-browser';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -24,6 +26,8 @@ export class SignatureComponent implements OnInit {
   roomNum = null;
   canvas: any;
   state = false;
+  mergeState = false;
+  separateState = false;
   id = null;
   roomId: number;
   stateAprooved = true;
@@ -50,11 +54,21 @@ export class SignatureComponent implements OnInit {
   endDateRenovate: Date;
   daysRenovate: number;
   hoursRenovate: number;
+  selectedRoom?: Room;
+  selectedTermin?: FreeSpaceForTransfer;
 
-  constructor(private router: Router, private roomsService: RoomsService, private _Activatedroute: ActivatedRoute, private formsService: FormsService, private equipmentsService: EquipmentsService) { }
+  constructor(
+    private router: Router,
+    private roomsService: RoomsService,
+    private _Activatedroute: ActivatedRoute,
+    private formsService: FormsService,
+    private equipmentsService: EquipmentsService,
+    public dialog: MatDialog
+  ) { }
 
   public rooms: Room[] = [];
   public allRooms: Room[] = [];
+  public roomsByFloorId: Room[] = [];
   public forms: Form[] = [];
   public equipments: Equipment[] = [];
   public datas = [];
@@ -86,6 +100,7 @@ export class SignatureComponent implements OnInit {
 
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
       this.rooms = res;
+      this.roomsByFloorId = res;
 
 
       for (let i = 0; i < this.rooms.length; i++) {
@@ -431,15 +446,17 @@ export class SignatureComponent implements OnInit {
     this.eqAmouont = amount;
   }
 
-  selectRoom(selectedRoomId: number) {
+  selectRoom(selectedRoomId: number, room: Room) {
     this.equipmentTransferDTO.toRoomId = selectedRoomId;
+    this.selectedRoom = room;
   }
 
-  selectTermin(selectedTerminStartTime, selectedTerminEndTime) {
+  selectTermin(selectedTerminStartTime, selectedTerminEndTime, termins: FreeSpaceForTransfer) {
     console.log(selectedTerminStartTime);
     console.log(selectedTerminEndTime);
     this.equipmentTransferDTO.startDate = selectedTerminStartTime;
     this.equipmentTransferDTO.endDate = selectedTerminEndTime;
+    this.selectedTermin = termins;
   }
 
   getStartDateForRenovate(startDate) {
@@ -463,7 +480,18 @@ export class SignatureComponent implements OnInit {
   }
 
   scheduleRenovate(nesto) {
+    this.dialog.closeAll();
     console.log(this.renovatePercent);
+  }
+
+  MergingRooms() {
+    this.mergeState = true;
+    this.separateState = false;
+  }
+
+  SeparatingRooms() {
+    this.separateState = true;
+    this.mergeState = false;
   }
 
   validationsForAmount = new FormGroup({

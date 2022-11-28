@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
+    MatButtonToggleModule
   ],
   providers: [BuildingService],
   bootstrap: [AppComponent]

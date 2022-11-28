@@ -238,6 +238,15 @@ tr:hover {
     width: 25%;
 }
 
+.roomDestination tr.selected {
+    background-color: #c2185b;
+    color: white;
+}
+
+.terminsTable tr.selected {
+    background-color: #f44336;
+}
+
 input.ng-invalid {
     background-color: rgb(247, 186, 186);
 }
@@ -308,10 +317,9 @@ input.ng-valid {
     margin-top: 150px;
     margin-left: 100px;
     font-size: 20px;
-    background-color: #c2185b;
     border-color: white;
     color: white;
-    width: 180px;
+    width: 210px;
     height: 80px;
     border-radius: 4px;
     transition: all .2s ease-in-out;
@@ -321,10 +329,9 @@ input.ng-valid {
     margin-top: 150px;
     margin-left: 180px;
     font-size: 20px;
-    background-color: #c2185b;
     border-color: white;
     color: white;
-    width: 180px;
+    width: 230px;
     height: 80px;
     border-radius: 4px;
     transition: all .2s ease-in-out;
@@ -334,18 +341,15 @@ input.ng-valid {
     background-color: #f44336
 }
 
-.buttonsRenovate:active {
-    background-color: #c2185b;
-    box-shadow: 0 5px #c2185b;
-    transform: translateY(4px);
-}
-
 .buttonsRenovate2:hover {
     background-color: #f44336
 }
 
-.buttonsRenovate2:active {
+.mat-button-toggle {
+    background-color: rgb(247, 186, 186);
+    color: black;
+}
+
+.mat-button-toggle-checked {
     background-color: #c2185b;
-    box-shadow: 0 5px #c2185b;
-    transform: translateY(4px);
 }

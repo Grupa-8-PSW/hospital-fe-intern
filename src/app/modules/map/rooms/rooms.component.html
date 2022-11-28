@@ -12,12 +12,36 @@
             <div *ngIf="percentIsZero">
                 <label class="mainLabelMove">Odaberite vrstu renoviranja:</label>
                 <div class="checkBoxes">
-                    <button class="buttonsRenovate">Spajanje prostorija</button>
-                    <button class="buttonsRenovate2">Razdvajanje prostorija</button>
+                    <mat-button-toggle class="buttonsRenovate" (click)="MergingRooms()">Spajanje prostorija
+                    </mat-button-toggle>
+                    <mat-button-toggle class="buttonsRenovate2" (click)="SeparatingRooms()">Razdvajanje prostorija
+                    </mat-button-toggle>
                 </div>
             </div>
             <div *ngIf="percentIsTwenty">
-                <label class="mainLabelMove">Odaberite sobu/sobe:</label>
+                <div *ngIf="mergeState">
+                    <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
+                    <div class="roomDestination">
+                        <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
+                            (click)="selectRoom(room.id, room)">
+                            <td>
+                                <h3>{{room.name}}</h3>
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+                <div *ngIf="separateState">
+                    <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
+                    <div class="roomDestination">
+                        <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
+                            (click)="selectRoom(room.id, room)">
+                            <td>
+                                <h3>{{room.name}}</h3>
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+
             </div>
             <div *ngIf="percentIsFourty">
                 <label class="mainLabelMove">Datum od do:</label>
@@ -83,7 +107,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let termins of AllTermins; let i index"
-                            (click)="selectTermin(termins.startTime,termins.endTime)">
+                            (click)="selectTermin(termins.startTime,termins.endTime, termins)">
                             <td>
                                 <h3>{{termins.startTime}}</h3>
                             </td>
@@ -96,8 +120,10 @@
                 </table>
             </div>
             <div class="buttons">
-                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
-                <button class="nextButton" (click)="addPercentRenovate($event)">Scedule</button>
+                <button class="backButton" [mat-dialog-close] (click)="removePercentRenovate($event)">Back</button>
+                <mat-dialog-actions>
+                    <button class="nextButton" mat-dialog-close (click)="addPercentRenovate($event)">Scedule</button>
+                </mat-dialog-actions>
             </div>
         </div>
     </form>
@@ -235,7 +261,8 @@
         <div *ngIf="percentIsTwenty">
             <label class="mainLabelMove">Odaberite destinaciju:</label>
             <div class="roomDestination">
-                <tr *ngFor="let room of allRooms; let i index" (click)="selectRoom(room.id)">
+                <tr [class.selected]="room === selectedRoom" *ngFor="let room of allRooms; let i index"
+                    (click)="selectRoom(room.id, room)">
                     <td>
                         <h3>{{room.name}}</h3>
                     </td>
@@ -302,8 +329,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let termins of AllTermins; let i index"
-                        (click)="selectTermin(termins.startTime,termins.endTime)">
+                    <tr *ngFor="let termins of AllTermins; let i index" [class.selected]="termins === selectedTermin"
+                        (click)="selectTermin(termins.startTime,termins.endTime, termins)">
                         <td>
                             <h3>{{termins.startTime}}</h3>
                         </td>
