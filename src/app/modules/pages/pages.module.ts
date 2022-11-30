@@ -23,6 +23,7 @@ import { BloodComponent } from './blood/blood.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 
 import { PatientModule } from '../patient/patient.module';
+import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PatientModule } from '../patient/patient.module';
     BloodTypePipe,
     BloodComponent,
     StatisticsComponent,
+    UrgentRequestComponent,
   ],
   imports: [
     FormsModule,
