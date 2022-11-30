@@ -23,14 +23,18 @@ import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-hi
 import { BloodModule } from "./modules/blood/blood.module";
 import { DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TendersComponent } from './modules/pages/tenders/tenders.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateBloodBankComponent,
+    TendersComponent,
   ],
   imports: [
     ReactiveFormsModule,
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     NgxMaterialTimepickerModule,
