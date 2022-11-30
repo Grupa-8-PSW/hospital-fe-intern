@@ -18,6 +18,10 @@ export class BloodBankService {
     return this.http.post<any>(this.apiHost + 'api/BloodBanks/', bloodBank, {'headers': this.headers});
   }
 
+  sendRequest(bloodBank: any): Observable<any> {
+    return this.http.post<any>(this.apiHost + 'api/BloodUnitUrgentRequest/', bloodBank, {'headers': this.headers});
+  }
+
   getBloodBanks(): Observable<BloodBank[]> {
     return this.http.get<BloodBank[]>(this.apiHost + 'api/BloodBanks', {headers: this.headers});
   }
