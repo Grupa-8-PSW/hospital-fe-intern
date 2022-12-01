@@ -27,6 +27,6 @@
     <h1>Tender preview</h1>
     <p style="margin-left: 1rem">From: {{dateRange.start | date}}</p>
     <p style="margin-left: 1rem;">To: {{dateRange.end | date}}</p>
-    <p style="margin-left: 1rem;" *ngFor="let item of blood">{{item.type.toString() | bloodType}}, {{item.quantity}}l</p>
+    <p style="margin-left: 1rem;" *ngFor="let item of blood">{{item.bloodType.toString() | bloodType}}, {{item.quantity}}l</p>
 </div>
   

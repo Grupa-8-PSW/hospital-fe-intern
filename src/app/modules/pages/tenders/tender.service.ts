@@ -13,6 +13,7 @@ export class TenderService {
   constructor(private http: HttpClient) { }
 
   public createTender(tender: Tender): void {
+    console.log(tender);
     this.http.post(this.apiHost + 'api/Tender', tender, {headers: this.headers}).subscribe(res => {
       console.log('Sent!');
     })
