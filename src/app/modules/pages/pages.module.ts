@@ -18,6 +18,7 @@ import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
 
 import { BloodModule } from '../blood/blood.module';
 import { BloodComponent } from './blood/blood.component';
+import { TendersComponent } from './tenders/tenders.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { BloodComponent } from './blood/blood.component';
     BloodComponent,
     ViewBloodRequestsComponent,
     BloodTypePipe,
+    TendersComponent,
   ],
   imports: [
     CommonModule,

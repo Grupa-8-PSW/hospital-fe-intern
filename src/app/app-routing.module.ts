@@ -15,6 +15,7 @@ import { ViewAllTreatmentHistoriesComponent } from "./modules/treatment-history/
 import { ViewTreatmentHistoryComponent } from "./modules/treatment-history/view-treatment-history/view-treatment-history.component";
 import { BloodComponent } from "./modules/pages/blood/blood.component";
 import { ViewBloodRequestsComponent } from "./modules/pages/bloodBanks/view-blood-requests/view-blood-requests.component";
+import { TendersComponent } from "./modules/pages/tenders/tenders.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
-  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent}
+  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent},
+  { path: 'tenders', component: TendersComponent}
 ];
 
 
