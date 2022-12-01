@@ -4,7 +4,6 @@ import { BloodBanksComponent } from "./modules/pages/bloodBanks/blood-banks/bloo
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 import { CalendarComponent } from "./modules/pages/calendar/calendar.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
-import { CheckBloodCountComponent } from "./modules/hospital/check-blood-count/check-blood-count.component";
 import { AuthGuard } from "./modules/auth/helpers/auth.guard";
 import { RoleGuard } from "./modules/auth/helpers/role.guard";
 import { StatisticsComponent } from "./modules/pages/statistics/statistics.component";
@@ -25,7 +24,6 @@ const routes: Routes = [
 
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
-  { path: 'checkBlood', component: CheckBloodCountComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
@@ -33,7 +31,6 @@ const routes: Routes = [
   { path: 'blood', component: BloodComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
