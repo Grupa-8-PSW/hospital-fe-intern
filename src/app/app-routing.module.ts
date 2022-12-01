@@ -18,7 +18,8 @@ import { WrongRequestDialogComponent } from "./modules/pages/bloodBanks/wrong-re
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
-import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";
+import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
-  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  { path: 'view/bloodRequest', component: ViewBloodRequestsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] },
+  { path: 'tenders', component: TendersComponent}},
   { path: 'blood', component: BloodComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
