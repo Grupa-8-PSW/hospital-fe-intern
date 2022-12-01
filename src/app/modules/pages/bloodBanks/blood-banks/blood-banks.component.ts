@@ -1,3 +1,4 @@
+import { UrgentRequestComponent } from './../urgent-request/urgent-request.component';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -31,7 +32,7 @@ export class BloodBanksComponent implements OnInit {
       this.bloodBanks = res;
       this.dataSource.data = this.bloodBanks;
     })
-    // this.getAllNews();
+    this.getAllNews();
   }
 
   public schedule() {
@@ -41,16 +42,13 @@ export class BloodBanksComponent implements OnInit {
     })
   }
 
-  public generate(): void{
-    this.bloodBankNewsService.generate().subscribe(data=>{
-        let fileName = 'bloodconsumptionreport';
-        let blob: Blob = data.body as Blob;
-        let a = document.createElement('a');
-        a.download=fileName;
-        a.href = window.URL.createObjectURL(blob);
-        a.click();
-    }
-  )}
+  public urgentRequestDialog(){
+    this.dialog.open(UrgentRequestComponent, {
+      width: '20%',
+      height: '20%'
+    })
+  }
+
 
   public addBloodBank() {
     this.router.navigate(['/bloodBanks/add']);

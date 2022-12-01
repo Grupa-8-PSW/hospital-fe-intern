@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+
+<div mat-dialog-actions>
+<p>URGENT REQUEST</p>
+      <div class="stepHolder">
+        <mat-form-field appearance="fill">
+          <mat-label>Blood banks</mat-label>
+          <mat-select [(ngModel)]= "selectedBloodBank">
+              <mat-option *ngFor="let bloodBank of bloodBanks" [value]="bloodBank">{{bloodBank.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+      <div>
+          <button mat-button  mat-dialog-close (click)="sendRequest()">Done</button>
+      </div>
+</div>
+</div>

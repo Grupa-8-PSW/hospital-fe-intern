@@ -1,4 +1,10 @@
+.urgentRequest{
+    margin: auto;
+    left: 5%;
+    top: 10%;
+    position: fixed;
 
+}
 
 .scheduleReport {
     margin: auto;
@@ -6,6 +12,8 @@
     top: 10%;
     position: fixed;
 }
+
+
 
 
 

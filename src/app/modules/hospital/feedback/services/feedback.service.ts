@@ -16,9 +16,11 @@ export class FeedbackService {
   getPublicFeedback(): Observable<Feedback[]> {
     return this.http.get<Feedback[]>(this.apiHost + 'api/internal/Feedback/public', { headers: this.headers });
   }
+
   getAllFeedbacks(): Observable<Feedback[]>{
-    return this.http.get<Feedback[]>(this.apiHost+'api/internal/Feedback',{headers:this.headers});
+    return this.http.get<Feedback[]>(this.apiHost+'api/internal/Feedback', {headers:this.headers});
   }
+
   changeStatus(id: number, status: FeedbackStatus): Observable<any> {
     return this.http.put<any>(this.apiHost + 'api/internal/Feedback/' + id + '/status?feedbackStatus=' + status, { headers: this.headers });
   }

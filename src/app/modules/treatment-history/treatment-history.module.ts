@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HospitalModule } from '../hospital/hospital.module';
 import { DischargePatientComponent } from './discharge-patient/discharge-patient.component';
 import { PrescribeTherapyComponent } from './prescribe-therapy/prescribe-therapy.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -27,7 +28,8 @@ import { PrescribeTherapyComponent } from './prescribe-therapy/prescribe-therapy
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    HospitalModule
+    HospitalModule,
+    MatRadioModule
   ]
 })
 export class TreatmentHistoryModule { }

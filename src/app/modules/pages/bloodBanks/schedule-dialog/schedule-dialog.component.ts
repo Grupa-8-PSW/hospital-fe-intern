@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { BloodConsumptionReport } from 'src/app/model/BloodConsumptionReport';
 import { ScheduleReportsService } from '../services/schedule-reports.service';
 import { DOCUMENT } from '@angular/common'; 
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Moment } from 'moment';
+import { ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-schedule-dialog',
@@ -15,6 +16,7 @@ import { Moment } from 'moment';
 })
 
 export class ScheduleDialogComponent implements OnInit {
+
 
   public bloodConsumptionReport: BloodConsumptionReport = new BloodConsumptionReport();
   public startTime: any;
@@ -26,13 +28,15 @@ export class ScheduleDialogComponent implements OnInit {
   public ConsumptionPeriodHours: any;
   public ConsumptionPeriodDays: any;
   public ConsumptionPeriodMonths:any = 0;
+  public errorMessage: string = '';
 
   constructor(
     private router: Router,
     private reportService: ScheduleReportsService,
     private _formBuilder: FormBuilder,
     @Inject(DOCUMENT) document: Document,
-    private dateAdapter: DateAdapter<Date>) {
+    private dateAdapter: DateAdapter<Date>,
+    private toastr: ToastrService) {
       
       document.getElementById('el');
       this.dateAdapter.setLocale('en-GB');
@@ -44,6 +48,24 @@ export class ScheduleDialogComponent implements OnInit {
     this.startDate = date;
     
   }            
+
+  sssad() {
+    window.alert(this.startDate);
+  }
+  
+  isLinear = true;
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+    
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+
+  thirdFormGroup = this._formBuilder.group({
+    sCtrll: ['', Validators.required],
+  });
+  
       
   showDiv = {
     daily : false,
@@ -74,8 +96,13 @@ export class ScheduleDialogComponent implements OnInit {
       this.bloodConsumptionReport.startTime = this.startTime;
     
       this.reportService.createReport(this.bloodConsumptionReport).subscribe((res => {
- 
-    }));
+        this.toastr.success('Blood consumption configuration is setted', 'success');
+
+    }),
+    (err) => {
+      this.errorMessage = err;
+      this.toastr.error('Something went wrong.. Not corectly data input.', 'error');
+    });
 
   } 
 

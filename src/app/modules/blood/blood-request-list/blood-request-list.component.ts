@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { BloodRequestEditDialogComponent, ManagerCommentDialogComponent } from '../blood-request-edit-dialog/blood-request-edit-dialog.component';
 import { BloodService } from '../blood.service';
 import { BloodType } from '../model/BloodType';
 import BloodUnitRequest from '../model/BloodUnitRequest';
@@ -10,40 +15,55 @@ import { BloodUnitRequestStatus } from '../model/BloodUnitRequestStatus';
   styleUrls: ['./blood-request-list.component.css']
 })
 export class BloodRequestListComponent {
-
-  bloodRequestList: BloodUnitRequest[] = [];
-
+  
+  bloodTypes = Object.values(BloodType);
+  bloodRequestList = new MatTableDataSource<BloodUnitRequest>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  BloodUnitRequestStatus: any;
   constructor(
-    private bloodService: BloodService
-  ) { }
-
-  ngOnInit(): void {
-    this.bloodService.getAllBloodRequests().subscribe({
-      next: (data) => {
-        this.bloodRequestList = data;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
-
-  getStatusByValue(value: number) {
-     return BloodUnitRequestStatus[value];
+    private bloodService: BloodService,
+    private dialog: MatDialog
+    ) { }
+    
+    ngOnInit(): void {
+      this.getAllBloodRequests();
+    }
+    
+    getAllBloodRequests() {
+      this.bloodService.getAllBloodRequests().subscribe((data) => {
+        this.bloodRequestList.data = data;
+        this.bloodRequestList.paginator = this.paginator;
+      });
+    }
+    
+    getStatusByValue(value: number) {
+      return BloodUnitRequestStatus[value];
+    }
+    
+    getTypeByValue(bt: number) {
+      return (this.bloodTypes as any)[bt];
     }
 
-  getTypeByValue(bt: number) {
-    switch(bt) {
-      case 0: return "ZERO_POSITIVE"
-      case 1: return "ZERO_NEGATIVE"
-      case 2: return "A_POSITIVE"
-      case 3: return "A_NEGATIVE"
-      case 4: return "B_POSITIVE"
-      case 5: return "B_NEGATIVE"
-      case 6: return "AB_POSITIVE"
-      case 7: return "AB_NEGATIVE"
-      default: return ""
-    }
+  editBloodRequest(request: BloodUnitRequest) {
+    this.dialog.open(BloodRequestEditDialogComponent, {
+      width: '20%',
+      data: request
+    }).afterClosed().subscribe(res => {
+      this.getAllBloodRequests();
+    })
+  }
+  checkIfUnclear(bloodRequest: BloodUnitRequest): boolean {
+    return bloodRequest.status != BloodUnitRequestStatus.REVIEWAGAIN;
   }
 
+  viewManagerComment(bloodRequest: BloodUnitRequest) {
+    this.dialog.open(ManagerCommentDialogComponent, {
+      width: '40%',
+      data: bloodRequest.managerComment,
+    })
+  }
+
+  checkIfEditable(bloodRequest: BloodUnitRequest): boolean {
+    return bloodRequest.status == BloodUnitRequestStatus.REVIEWAGAIN || bloodRequest.status == BloodUnitRequestStatus.WAITING;
+  }
 }

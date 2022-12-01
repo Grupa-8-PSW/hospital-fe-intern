@@ -9,17 +9,17 @@ import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.compon
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
-
+import { FormsModule } from '@angular/forms';
 import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ViewBloodRequestsComponent } from './bloodBanks/view-blood-requests/view-blood-requests.component';
 import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
-
-
 import { BloodModule } from '../blood/blood.module';
 import { BloodComponent } from './blood/blood.component';
 import { TendersComponent } from './tenders/tenders.component';
-
+import { StatisticsComponent } from './statistics/statistics.component'
+import { PatientModule } from '../patient/patient.module';
+import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 
 @NgModule({
   declarations: [
@@ -33,15 +33,21 @@ import { TendersComponent } from './tenders/tenders.component';
     ViewBloodRequestsComponent,
     BloodTypePipe,
     TendersComponent,
+    BloodComponent,
+    StatisticsComponent,
+    UrgentRequestComponent,
   ],
   imports: [
+    FormsModule,
     CommonModule,
     AppRoutingModule,
     MaterialModule,
     HospitalModule,
     FlexLayoutModule,
     BloodModule,
-    NgxRerenderModule
+    NgxRerenderModule,
+    PatientModule
   ]
 })
+
 export class PagesModule { }
