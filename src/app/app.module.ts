@@ -23,11 +23,15 @@ import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-hi
 import { BloodModule } from "./modules/blood/blood.module";
 import { DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BlockingUsersComponent } from './modules/pages/blocking-users/blocking-users.component';
+import { UnblockingUsersComponent } from './modules/pages/unblocking-users/unblocking-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateBloodBankComponent,
+    BlockingUsersComponent,
+    UnblockingUsersComponent
   ],
   imports: [
     ReactiveFormsModule,

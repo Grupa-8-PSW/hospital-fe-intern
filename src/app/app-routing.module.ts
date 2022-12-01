@@ -19,6 +19,8 @@ import { WrongRequestDialogComponent } from "./modules/pages/bloodBanks/wrong-re
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
+import { BlockingUsersComponent } from "./modules/pages/blocking-users/blocking-users.component";
+import { UnblockingUsersComponent } from "./modules/pages/unblocking-users/unblocking-users.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -39,8 +41,9 @@ const routes: Routes = [
   { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
-  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent}
-
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'malicious-users/block', component: BlockingUsersComponent},
+  { path: 'malicious-users/unblock', component: UnblockingUsersComponent}
 ];
 
 

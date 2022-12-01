@@ -31,6 +31,13 @@
         <li class="navitem">
           <a class="nav-link" routerLink="/statistics" routerLinkActive="active" >Statistics</a>
         </li>
+        <li  class="nav-item">
+          <a class="nav-link feedbacks-menu-trigger-btn" [matMenuTriggerFor]="menu">Malicious users</a>
+          <mat-menu class="bg-primary feedback-menu" #menu="matMenu">
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/malicious-users/block">Block</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/malicious-users/unblock">Unblock</a>
+          </mat-menu>
+        </li>
       </ul>
       <div class="account-button-group">
         <button *ngIf="isLogged" class="btn btn-danger text-light me-3" (click)="logout()">Logout</button>
