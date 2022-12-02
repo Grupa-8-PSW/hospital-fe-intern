@@ -12,6 +12,7 @@ export class UrgentRequestComponent implements OnInit{
 
   public bloodBanks: BloodBank[] = [];
   public selectedBloodBank!: BloodBank;
+  public protocol: any;
   constructor(private bloodBankService: BloodBankService){
 
   }
@@ -23,9 +24,11 @@ export class UrgentRequestComponent implements OnInit{
   }
 
   public sendRequest(){
-    this.bloodBankService.sendRequest(this.selectedBloodBank).subscribe(res => {
-
+    if(this.protocol === "GRPC"){
+    this.bloodBankService.sendRequestGrpc(this.selectedBloodBank).subscribe(res => {
     })
+  }else this.bloodBankService.sendRequestHttp(this.selectedBloodBank).subscribe(res => {
+  })
   }
 
   ngOnInit(): void {

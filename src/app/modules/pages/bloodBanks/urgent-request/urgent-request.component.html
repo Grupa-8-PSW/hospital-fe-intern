@@ -8,6 +8,12 @@
           <mat-select [(ngModel)]= "selectedBloodBank">
               <mat-option *ngFor="let bloodBank of bloodBanks" [value]="bloodBank">{{bloodBank.name}}</mat-option>
           </mat-select>
+          <br/>
+          <br/>
+          <mat-label>Protocol</mat-label>
+          <mat-select [(ngModel)]= "protocol">
+            <mat-option *ngFor="let index of ['GRPC', 'HTTP']" [value]="index">{{index}}</mat-option>
+          </mat-select>
         </mat-form-field>
         </div>
       <div>
