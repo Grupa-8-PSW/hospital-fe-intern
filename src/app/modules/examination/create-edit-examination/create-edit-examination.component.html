@@ -17,7 +17,8 @@
         <select name="patient" class="form-control" formControlName="patient">
           <option value="default" disabled>Select Patient</option>
           <option *ngFor="let patient of patients" [value]="patient.id">
-            {{patient.id}}
+            {{patient.firstName}} {{patient.lastName}} <hr/>
+            {{patient.pin}}
           </option>
         </select>
         <span class="error-block" *ngIf="!patient.valid && patient.touched">
@@ -57,7 +58,7 @@
         <button type="submit" class="btn btn-primary me-3" *ngIf="isAddMode">{{submitted ? "Creating..." : "Create"}}</button>
         <button type="submit" class="btn btn-primary me-3" *ngIf="!isAddMode">{{submitted ? "Saving..." : "Save"}}</button>
       </div>
-     
+
     </form>
   </div>
 </div>
