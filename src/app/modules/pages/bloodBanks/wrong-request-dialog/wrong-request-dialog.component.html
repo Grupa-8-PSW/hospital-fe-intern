@@ -1,0 +1,20 @@
+<div class="card-footer py-3 border-0" >
+    <div class="d-flex flex-start w-100">
+      <div class="form-outline w-100">
+        <div>
+            <h1>Reason of not approving</h1>
+        </div>
+        <textarea class="form-control" rows="4" #myArea  name="myArea" cols="40" id="myArea"  style="color: black;"  >
+        </textarea>
+    </div>
+    </div>
+    <div class="float-end mt-2 pt-1" style="align-items: center; margin: 20px; margin-right: 80px;">
+        <button type="button" (click)="close()"  class="btn btn-outline-primary btn-sm" style="align-items: center; margin: 20px;"> Cancel</button>
+        <button type="button" (click)="changeStatusOfRequest(myArea.value)" style="background-color: #FAD02C;" class="btn btn-primary btn-sm">Return back</button>
+    </div>
+ 
+  </div> 
+  <div>
+
+  </div>
+

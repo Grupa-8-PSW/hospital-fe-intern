@@ -28,11 +28,11 @@ export class PatientService {
     return this.http.get<Patient[]>(this.patientUrl + "withoutActiveTreatment");
   }*/
   getStatistic() : Observable<Statistic> {
-    return this.http.get<Statistic>(this.patientUrl + '/statistic');
+    return this.http.get<Statistic>(this.patientUrl + 'statistic');
   }
 
   getPatientStatisticForSelectedDoctor(id: number): Observable<Statistic> {
-    return this.http.get<Statistic>(this.patientUrl + '/statistic/doctor/' + id);
+    return this.http.get<Statistic>(this.patientUrl + 'statistic/doctor/' + id);
   }
 }
 

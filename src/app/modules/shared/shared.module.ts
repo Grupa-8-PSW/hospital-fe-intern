@@ -4,7 +4,9 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import {MatMenuModule} from '@angular/material/menu';
-
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -12,9 +14,12 @@ import {MatMenuModule} from '@angular/material/menu';
     FooterComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
   ],
   exports: [
     HeaderComponent,

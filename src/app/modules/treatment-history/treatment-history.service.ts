@@ -4,16 +4,19 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import TreatmentHistory from 'src/app/model/treatmentHistory';
+
 import Room from 'src/app/model/room';
 import Therapy from 'src/app/model/therapy';
 import MedicalDrugs from 'src/app/model/medicalDrugs';
 import Patient from 'src/app/model/patient';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class TreatmentHistoryService {
+
 
   treatmentHistoryUrl = `${environment.apiUrL}/TreatmentHistory`;
   roomUrl = `${environment.apiUrL}/map/floor/rooms/Room/free`;

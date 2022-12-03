@@ -19,10 +19,19 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from "@angular/material-mo
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as moment from 'moment';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatTimepickerModule } from 'mat-timepicker';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [],
   imports: [
+    MatTimepickerModule,
     CommonModule,
+    NgxMaterialTimepickerModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,
@@ -32,30 +41,37 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatOptionModule,
     MatDialogModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatMomentDateModule,
-    MatDatepickerModule,
-    MatProgressSpinnerModule
-  ],
-  exports: [
-    CommonModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatCardModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatDialogModule,
+    MatStepperModule,
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
     MatMomentDateModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
+  exports: [
+    MatTimepickerModule,
+    CommonModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatCardModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatDialogModule,
+    NgxMaterialTimepickerModule,
+    MatStepperModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatMomentDateModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
     MatSelectModule
   ],
   providers: [
@@ -68,7 +84,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         dateInput: "DD/MM/YYYY"
       }
     }},
-    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}}
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {strict: true}},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class MaterialModule {}
