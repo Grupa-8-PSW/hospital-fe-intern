@@ -25,7 +25,7 @@
         <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/blood" routerLinkActive="active" >Blood</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/treatmentHistory/viewAll" routerLinkActive="active" >Treatments</a>
         </li>
         <li class="navitem">

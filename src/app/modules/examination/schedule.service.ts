@@ -31,7 +31,7 @@ export class ScheduleService {
     );
   }
 
-  createExamination(examination: Examination): Observable<any> {
+  createExamination(examination: object): Observable<any> {
     return this.http.post(this.examinationUrl, examination, { headers: this.headers });
   }
 

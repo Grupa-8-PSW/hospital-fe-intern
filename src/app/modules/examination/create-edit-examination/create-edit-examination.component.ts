@@ -8,6 +8,7 @@ import Examination from '../../../model/examination';
 import { ScheduleService } from '../schedule.service';
 import { PatientService } from '../../hospital/feedback/services/patient.service';
 import * as moment from 'moment';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-create-edit-examination',
@@ -36,7 +37,8 @@ export class CreateEditExaminationComponent implements OnInit {
     private route: ActivatedRoute,
     private scheduleService: ScheduleService,
     private patientService: PatientService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   async ngOnInit() {
@@ -118,13 +120,11 @@ export class CreateEditExaminationComponent implements OnInit {
       return;
     };
     this.submitted = true;
-    console.log(parseAndSetTime(this.date.value, this.startTime.value));
-    console.log(this.date.value);
     if (this.isAddMode) {
-      const examination : Examination = {
-        doctorId: 1,
+      const startTime = parseAndSetTime(this.date.value, this.startTime.value);
+      const examination : object = {
         patientId: Number(this.patient.value),
-        startTime: this.date.value.format("DD/MM/yyyy HH:mm"),
+        startTime: startTime?.format("DD/MM/YYYY HH:mm"),
         duration: Number(this.duration.value)
       };
       console.log(examination);

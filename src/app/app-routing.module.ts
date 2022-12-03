@@ -35,12 +35,13 @@ const routes: Routes = [
   { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
   { path: 'statistics', component: StatisticsComponent },
-  { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
-  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
-  { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
-  { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
-  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent}
-
+  { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}, //treatment id
+  { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]}
 ];
 
 
