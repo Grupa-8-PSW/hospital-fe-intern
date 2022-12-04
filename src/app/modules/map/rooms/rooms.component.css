@@ -346,10 +346,57 @@ input.ng-valid {
 }
 
 .mat-button-toggle {
-    background-color: rgb(247, 186, 186);
+    background-color: white;
     color: black;
+    border: 3px solid black;
 }
 
 .mat-button-toggle-checked {
     background-color: #c2185b;
+}
+
+.mergeRoomsForm {
+    margin-left: 30px;
+    font-size: 24px;
+    text-align: right;
+    display: inline-block;
+    align-items: center;
+}
+
+.mergeLabel {
+    margin-top: 15px;
+}
+
+.mergeTextBox {
+    margin-top: 15px;
+    height: 32px;
+}
+
+.buttonRoom1 {
+    margin-left: 5px;
+    font-size: 16px;
+    border-color: white;
+    color: black;
+    width: 100px;
+    height: 60px;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonRoom2 {
+    font-size: 16px;
+    border-color: white;
+    color: black;
+    width: 100px;
+    height: 60px;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonRoom1:hover {
+    background-color: #f44336
+}
+
+.buttonRoom2:hover {
+    background-color: #f44336
 }

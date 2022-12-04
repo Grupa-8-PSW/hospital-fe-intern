@@ -56,6 +56,8 @@ export class SignatureComponent implements OnInit {
   hoursRenovate: number;
   selectedRoom?: Room;
   selectedTermin?: FreeSpaceForTransfer;
+  room1 = false;
+  room2 = false;
 
   constructor(
     private router: Router,
@@ -102,11 +104,8 @@ export class SignatureComponent implements OnInit {
       this.rooms = res;
       this.roomsByFloorId = res;
 
-
       for (let i = 0; i < this.rooms.length; i++) {
 
-        // console.log(this.rooms[this.roomId].floorId);
-        // 
         let id = this.rooms[i].id;
         let x = this.rooms[i].x;
         let y = this.rooms[i].y;
@@ -233,27 +232,27 @@ export class SignatureComponent implements OnInit {
     })
   }
 
-  moveEquipmentForm(event, selectedEquipment) {
+  moveEquipmentForm(event, selectedEquipment) {  //FORMA KOJA SE OTVARA KADA KLIKNEMO DUGME MOVE
     event.preventDefault();
     this.canMoveForm = true;
     this.equipmentTransferDTO.equipmentName = selectedEquipment;
     console.log(this.equipmentTransferDTO.equipmentName);
   }
 
-  startRenovateForm(event) {
+  startRenovateForm(event) {    //FORMA KOJA SE OTVARA KADA KLIKNEMO DUGME RENOVATE ZA RENOVIRANJE SOBA
     event.preventDefault();
     this.canRenoveteForm = true;
   }
 
   onChange(quantity) {
-    this.value = quantity.value; // KOLICINA KOJU UNESEMO
+    this.value = quantity.value; //KOLICINA KOJU UNESEMO
   }
 
-  onChange1(days) {
+  onChange1(days) {   //DANI POTREBNI ZA MOVE EQUIPMENT
     this.days = days.value;
   }
 
-  onChange2(hours) {
+  onChange2(hours) {  //SATI POTREBNI ZA MOVE EQUIPMENT
     this.hours = hours.value;
     this.equipmentTransferDTO.duration = this.hours;
   }
@@ -266,6 +265,7 @@ export class SignatureComponent implements OnInit {
     this.equipmentTransferDTO.endDate = endDate;
   }
 
+  //LUDOST
   addPercent(event) {
     event.preventDefault();
 
@@ -452,13 +452,12 @@ export class SignatureComponent implements OnInit {
   }
 
   selectTermin(selectedTerminStartTime, selectedTerminEndTime, termins: FreeSpaceForTransfer) {
-    console.log(selectedTerminStartTime);
-    console.log(selectedTerminEndTime);
     this.equipmentTransferDTO.startDate = selectedTerminStartTime;
     this.equipmentTransferDTO.endDate = selectedTerminEndTime;
     this.selectedTermin = termins;
   }
 
+  // ZA RENOVIRANJE
   getStartDateForRenovate(startDate) {
     this.startDateRenovate = startDate;
   }
@@ -499,5 +498,15 @@ export class SignatureComponent implements OnInit {
     days: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
     hours: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.max(24)])
   })
+
+  room1Selected() {
+    this.room1 = true;
+    this.room2 = false;
+  }
+
+  room2Selected() {
+    this.room1 = false;
+    this.room2 = true;
+  }
 
 }
