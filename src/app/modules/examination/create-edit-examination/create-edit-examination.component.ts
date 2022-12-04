@@ -22,7 +22,7 @@ export class CreateEditExaminationComponent implements OnInit {
   isAddMode: boolean = true;
   loading = false;
   submitted = false;
-  submitingError: string | null = null;
+  submittingError: string | null = null;
   fetchingError: string | null = null;
   // Mock data
   examination?: Examination;
@@ -114,12 +114,12 @@ export class CreateEditExaminationComponent implements OnInit {
   }
 
   onSubmit(e : Event) {
-    this.submitingError = null;
+    this.submitted = true;
+    this.submittingError = null;
     if (!this.examinationForm.valid) {
-      this.submitingError = "All fields must be valid.";
+      this.submittingError = "All fields must be valid.";
       return;
     };
-    this.submitted = true;
     if (this.isAddMode) {
       const startTime = parseAndSetTime(this.date.value, this.startTime.value);
       const examination : object = {
@@ -135,7 +135,7 @@ export class CreateEditExaminationComponent implements OnInit {
         },
         error: (err) => {
           console.log(err);
-          this.submitingError = "Error creating examination, calendar full for that time";
+          this.submittingError = "Error creating examination, calendar full for that time";
           this.submitted = false;
         }
       });
@@ -143,7 +143,7 @@ export class CreateEditExaminationComponent implements OnInit {
       const startTime = parseAndSetTime(this.date.value, this.startTime.value);
       if (!startTime) {
         console.log("Failed to parse date and time");
-        this.submitingError = "Failed to parse date and time";
+        this.submittingError = "Failed to parse date and time";
         return;
       }
       const examination : Examination = {
@@ -165,7 +165,7 @@ export class CreateEditExaminationComponent implements OnInit {
         },
         error: (err) => {
           console.log(err);
-          this.submitingError = "Error rescheduling examination";
+          this.submittingError = "Error rescheduling examination";
           this.submitted = false;
         }
       });
