@@ -6,7 +6,7 @@
     <div class="card-text">
       <div>Duration: <span class="ms-2">{{consilium.duration}} minutes</span></div>
     </div>
-    <button class="btn btn-primary mt-3" (click)="openModal(modalTemplate, consilium.participants)">Participants</button>
+    <button class="btn btn-primary mt-3" (click)="openModal(modalTemplate, consilium.doctors)">Participants</button>
   </div>
   <div class="card-footer text-muted">
     {{consilium.from.format("LL")}} - {{consilium.to.format("LL")}}

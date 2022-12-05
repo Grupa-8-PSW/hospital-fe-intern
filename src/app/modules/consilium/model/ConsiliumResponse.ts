@@ -6,5 +6,5 @@ export default interface ConsiliumResponse {
   from: string;
   to: string;
   duration: number;
-  participants: Doctor[];
+  doctors: Doctor[];
 }

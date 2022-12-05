@@ -12,6 +12,7 @@ export class ConsiliumsComponent implements OnInit {
   consiliums$!: Observable<Consilium[]>;
   pastConsiliums$!: Observable<Consilium[]>;
   futureConsiliums$!: Observable<Consilium[]>;
+  pending = false;
 
   constructor(
     private consiliumService: ConsiliumService
@@ -19,7 +20,9 @@ export class ConsiliumsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.consiliums$ = this.consiliumService.GetAllConsiliums().pipe();
+    this.pending = true;
+
+    this.consiliums$ = this.consiliumService.GetAllConsiliums();
 
     this.pastConsiliums$ = this.consiliums$.pipe(
       map((consiliums) => consiliums.filter(consilium => consilium.to.isBefore()))
@@ -28,6 +31,8 @@ export class ConsiliumsComponent implements OnInit {
     this.futureConsiliums$ = this.consiliums$.pipe(
       map((consiliums) => consiliums.filter(consilium => consilium.to.isAfter()))
     );
+
+    this.pending = false;
   }
 
 
