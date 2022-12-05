@@ -7,5 +7,5 @@ export default interface Consilium {
   from: Moment;
   to: Moment;
   duration: number;
-  participants: Doctor[];
+  doctors: Doctor[];
 }

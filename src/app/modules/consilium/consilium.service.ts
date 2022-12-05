@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import Consilium from './model/Consilium';
 import ConsiliumResponse from './model/ConsiliumResponse';
 
@@ -9,14 +10,14 @@ import ConsiliumResponse from './model/ConsiliumResponse';
   providedIn: 'root'
 })
 export class ConsiliumService {
-  url = "http://localhost:3000/consiliums";
+  baseUrl = `${environment.apiUrL}/internal/Consilium`;
 
   constructor(
     private http: HttpClient
   ) { }
 
   GetAllConsiliums(): Observable<Consilium[]> {
-    return this.http.get<ConsiliumResponse[]>(this.url).pipe(
+    return this.http.get<ConsiliumResponse[]>(this.baseUrl).pipe(
       map((consiliums) => this.toClient(consiliums))
     );
   }
@@ -29,7 +30,7 @@ export class ConsiliumService {
         from: moment(consilium.from),
         to: moment(consilium.to),
         duration: consilium.duration,
-        participants: consilium.participants
+        doctors: consilium.doctors
       }
     });
   }
