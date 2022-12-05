@@ -1,0 +1,28 @@
+<div class="card" [class.transparent]="consilium.to.isBefore()">
+  <div class="card-header py-3 bg-primary text-light">
+    {{consilium.subject}}
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <div>Duration: <span class="ms-2">{{consilium.duration}} minutes</span></div>
+    </div>
+    <button class="btn btn-primary mt-3" (click)="openModal(modalTemplate, consilium.participants)">Participants</button>
+  </div>
+  <div class="card-footer text-muted">
+    {{consilium.from.format("LL")}} - {{consilium.to.format("LL")}}
+  </div>
+</div>
+
+<ng-template #modalTemplate>
+  <div class="modal-header text-light bg-primary">
+    <h2 class="modal-title">Participants</h2>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let participant of selectedParticipants">
+      {{ participant.firstName }} {{ participant.lastName }}
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,24 @@
+<div class="container-lg">
+  <!-- Future consiliums-->
+  <div class="mt-3">
+    <h2 class="text-center">Future Consiliums</h2>
+    <div class="row g-4">
+      <div *ngFor="let consilium of futureConsiliums$ | async" class="col-sm-6 col-md-5 col-lg-4">
+          <app-single-consilium  [consilium]="consilium"></app-single-consilium>
+      </div>
+    </div>
+  </div>
+
+  <!-- Past consiliums -->
+  <div class="mt-5 mb-2">
+    <h2 class="text-center">Past Consiliums</h2>
+    <div class="row g-4">
+      <div *ngFor="let consilium of pastConsiliums$ | async" class="col-sm-6 col-md-5 col-lg-4">
+          <app-single-consilium  [consilium]="consilium"></app-single-consilium>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

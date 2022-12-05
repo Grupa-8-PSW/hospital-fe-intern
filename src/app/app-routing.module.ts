@@ -19,6 +19,7 @@ import { WrongRequestDialogComponent } from "./modules/pages/bloodBanks/wrong-re
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
+import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -41,7 +42,8 @@ const routes: Routes = [
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
-  { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]}
+  { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]},
+  { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}
 ];
 
 
