@@ -23,6 +23,8 @@ import { BloodComponent } from './blood/blood.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 
 import { PatientModule } from '../patient/patient.module';
+import { ConsiliumsComponent } from './consiliums/consiliums.component';
+import { ConsiliumModule } from '../consilium/consilium.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { PatientModule } from '../patient/patient.module';
     BloodTypePipe,
     BloodComponent,
     StatisticsComponent,
+    ConsiliumsComponent,
   ],
   imports: [
     FormsModule,
@@ -48,6 +51,7 @@ import { PatientModule } from '../patient/patient.module';
     BloodModule,
     NgxRerenderModule,
     PatientModule,
+    ConsiliumModule
   ]
 })
 
