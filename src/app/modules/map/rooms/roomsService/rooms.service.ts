@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Room } from '../../model/rooms.model';
 import { EquipmentTransferDTO } from '../../model/equipmentTransferDTO.model';
 import { FreeSpaceForTransfer } from '../../model/freeSpaceForTransfer.model';
+import { RoomForSeparateDTO } from '../../model/roomForSeparateDTO.model';
+import { SeparatedRooms } from '../../model/separatedRooms.model';
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +28,11 @@ export class RoomsService {
         return this.http.post<FreeSpaceForTransfer[]>(this.apiHost + 'api/map/floor/rooms/Room/get/transferedEquipment', dto);
     }
 
-    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO ):  Observable<EquipmentTransferDTO>{
+    addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO): Observable<EquipmentTransferDTO> {
         return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/map/floor/rooms/Room/post/transferedEquipment', equipTransfer);
+    }
+
+    getSeparatedRooms(dto: RoomForSeparateDTO): Observable<SeparatedRooms[]> {
+        return this.http.post<SeparatedRooms[]>(this.apiHost + 'api/map/floor/rooms/Room/get/separatedRooms', dto);
     }
 }

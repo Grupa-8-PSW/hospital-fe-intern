@@ -13,6 +13,7 @@ import { EquipmentsService } from './roomsService/equipments.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { disableDebugTools } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { RoomForSeparateDTO } from '../model/roomForSeparateDTO.model';
 
 
 
@@ -76,6 +77,7 @@ export class SignatureComponent implements OnInit {
   public datas = [];
   public niz = [];
   public equipmentTransferDTO: EquipmentTransferDTO;
+  public roomForSeparateDTO: RoomForSeparateDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
 
   ngOnInit(): void {
@@ -458,12 +460,22 @@ export class SignatureComponent implements OnInit {
   }
 
   // ZA RENOVIRANJE
+  selectedRoomsForSeparating(selectedRoomId: number, room: Room) {
+    console.log(selectedRoomId);
+    console.log(room);
+    this.roomForSeparateDTO.oldRoom = room;
+  }
+  // TREBA DODATI ROOMID2 U NOVI DTO I TREBA SKONTATI KAKO MULTI SELECT DA ODRADIM DA UZMEM I ROOMID2 i ROOM2
+  selectedRoomForMerge(selectedRoomId: number, room: Room, selectedRoomId2: number, room2: Room) {
+    console.log(selectedRoomId);
+    console.log(room);
+  }
   getStartDateForRenovate(startDate) {
-    this.startDateRenovate = startDate;
+    this.roomForSeparateDTO.startDate = startDate.value;
   }
 
   getEndDateForRenovate(endDate) {
-    this.endDateRenovate = endDate;
+    this.roomForSeparateDTO.endDate = endDate.value;
   }
 
   DurationInDaysRenovate(days) {
@@ -471,16 +483,27 @@ export class SignatureComponent implements OnInit {
   }
 
   DurationInHoursRenovate(hours) {
-    this.hoursRenovate = hours.value;
+    this.roomForSeparateDTO.hours = hours.value;
   }
 
   getTerminsRenovate() {
-    //TO DO
+    //TREBA DODATI U DTO-OVE SELEKTOVAN TERMIN
   }
 
-  scheduleRenovate(nesto) {
-    this.dialog.closeAll();
-    console.log(this.renovatePercent);
+  newSeparatedRoom(newMergedRoom) {
+    this.roomForSeparateDTO.newRoomName = newMergedRoom.value;
+  }
+
+  newSeparatedRoomType(newMergedRoomType) {
+    this.roomForSeparateDTO.newRoomType = newMergedRoomType.value;
+  }
+
+  ScheduleForMerginRooms() {
+    if (this.mergeState == true) {
+      //stavim sveu MergeRoomDTO i servis 
+    } else if (this.separateState == true) {
+      //stavim sve u SeparateRoomDTO i servis
+    }
   }
 
   MergingRooms() {

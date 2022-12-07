@@ -23,7 +23,7 @@
                     <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectRoom(room.id, room)">
+                            (click)="selectedRoomsForSeparating(room.id, room)">
                             <td>
                                 <h3>{{room.name}}</h3>
                             </td>
@@ -34,7 +34,7 @@
                     <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectRoom(room.id, room)">
+                            (click)="selectedRoomForMerge(room.id, room, room.id, room)">
                             <td>
                                 <h3>{{room.name}}</h3>
                             </td>
@@ -121,20 +121,10 @@
             <div *ngIf="mergeState">
                 <label class="mainLabelMove">Informacije o novoj prostoriji:</label>
                 <div class="mergeRoomsForm">
-                    <label class="mergeLabel">Unesite x kordinatu sobe:</label>
-                    <input type="text" class="mergeTextBox">
-                    <label class="mergeLabel">Unesite y kordinatu sobe:</label>
-                    <input type="text" class="mergeTextBox">
-                    <label class="mergeLabel">Unesite sirinu sobe:</label>
-                    <input type="text" class="mergeTextBox">
-                    <label class="mergeLabel">Unesite visinu sobe:</label>
-                    <input type="text" class="mergeTextBox">
-                    <label class="mergeLabel">Unesite boju sobe:</label>
-                    <input type="text" class="mergeTextBox">
                     <label class="mergeLabel">Unesite ime sobe:</label>
-                    <input type="text" class="mergeTextBox">
+                    <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom($event.target)">
                     <label class="mergeLabel">Unesite tip sobe:</label>
-                    <input type="text" class="mergeTextBox">
+                    <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoomType($event.target)">
                 </div>
             </div>
             <div *ngIf="separateState">
@@ -143,16 +133,6 @@
                 <button class="buttonRoom2" (click)="room2Selected()">Soba 2</button>
                 <div *ngIf="room1">
                     <div class="mergeRoomsForm">
-                        <label class="mergeLabel">Unesite x kordinatu sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite y kordinatu sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite sirinu sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite visinu sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite boju sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
                         <label class="mergeLabel">Unesite ime sobe 1:</label>
                         <input type="text" class="mergeTextBox">
                         <label class="mergeLabel">Unesite tip sobe 1:</label>
@@ -161,16 +141,6 @@
                 </div>
                 <div *ngIf="room2">
                     <div class="mergeRoomsForm">
-                        <label class="mergeLabel">Unesite x kordinatu sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite y kordinatu sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite sirinu sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite visinu sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
-                        <label class="mergeLabel">Unesite boju sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
                         <label class="mergeLabel">Unesite ime sobe 2:</label>
                         <input type="text" class="mergeTextBox">
                         <label class="mergeLabel">Unesite tip sobe 2:</label>
@@ -179,9 +149,9 @@
                 </div>
             </div>
             <div class="buttons">
-                <button class="backButton" [mat-dialog-close] (click)="removePercentRenovate($event)">Back</button>
+                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
                 <mat-dialog-actions>
-                    <button class="nextButton" mat-dialog-close (click)="addPercentRenovate($event)">Scedule</button>
+                    <button class="nextButton" (click)="ScheduleForMerginRooms()">Scedule</button>
                 </mat-dialog-actions>
             </div>
         </div>
