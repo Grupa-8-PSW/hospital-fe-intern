@@ -36,8 +36,8 @@ export class PatientService {
   getPatientStatisticForSelectedDoctor(id: number): Observable<Statistic> {
     return this.http.get<Statistic>(this.patientUrl + 'statistic/doctor/' + id);
   }
-  blockAccess(email: string): Observable<any> {
-    return this.http.put<any>(this.authUrl + 'blockPatientAccess/'+ email , {'headers': this.headers});
+  manageAccess(email: string,type : string): Observable<any> {
+    return this.http.put<any>(this.authUrl + 'manageAccess/'+type+'/'+email , {'headers': this.headers});
   }
 }
 

@@ -18,9 +18,9 @@ export class BlockingUsersComponent {
       this.patients = res;
     });
   }
-  blockAccess(index: number, email: string): void {
-    this.patientService.blockAccess(email).subscribe(res=>{
-      delete this.patients[index];
+  manageAccess(index: number, email: string): void {
+    this.patientService.manageAccess(email,'block').subscribe(res=>{
+      this.patients[index].lastName+='    [[Patient blocked]]';
     })
   }
 }
