@@ -45,7 +45,7 @@ export class BloodBanksComponent implements OnInit {
   public urgentRequestDialog(){
     this.dialog.open(UrgentRequestComponent, {
       width: '20%',
-      height: '20%'
+      height: '30%'
     })
   }
 
