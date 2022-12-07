@@ -1,19 +1,13 @@
 <div class="container mt-3">
+  <ng-template ngFor let-item [ngForOf]="patients" let-i="index">
       <mat-card>
-          <mat-card-title >Marko Markovic</mat-card-title>
-          <mat-card-content>Cancelled appointments : 5</mat-card-content>
+          <mat-card-title >{{item.firstName}} {{item.lastName}}</mat-card-title>
+          <mat-card-content>Cancelled appointments : TODO</mat-card-content>
           <mat-card-actions align="end">
               <button  mat-raised-button color="primary">View patient info</button>
-              <button  mat-raised-button color="warn" >Block</button>
+              <button  mat-raised-button color="warn" (click)="blockAccess(i, item.email)">Block</button>
           </mat-card-actions>
       </mat-card>
       <br>
-      <mat-card>
-        <mat-card-title >Nemanja Pekovic</mat-card-title>
-        <mat-card-content>Cancelled appointments : 3</mat-card-content>
-        <mat-card-actions align="end">
-            <button  mat-raised-button color="primary">View patient info</button>
-            <button  mat-raised-button color="warn" >Block</button>
-        </mat-card-actions>
-    </mat-card>
+  </ng-template>
 </div>

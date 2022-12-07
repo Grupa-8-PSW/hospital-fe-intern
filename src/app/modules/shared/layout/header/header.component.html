@@ -34,7 +34,7 @@
         <li class="navitem">
           <a class="nav-link" routerLink="/statistics" routerLinkActive="active" >Statistics</a>
         </li>
-        <li  class="nav-item">
+        <li *ngIf="userRole==='Manager'" class="nav-item">
           <a class="nav-link feedbacks-menu-trigger-btn" [matMenuTriggerFor]="menu">Malicious users</a>
           <mat-menu class="bg-primary feedback-menu" #menu="matMenu">
             <a class="nav-link text-secondary" mat-menu-item routerLink="/malicious-users/block">Block</a>

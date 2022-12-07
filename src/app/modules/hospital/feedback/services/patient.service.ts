@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Patient from 'src/app/model/patient';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import Statistic from 'src/app/model/statistic.model';
 
@@ -11,6 +11,8 @@ import Statistic from 'src/app/model/statistic.model';
 export class PatientService {
 
   patientUrl = `${environment.apiUrL}/internal/Patient/`;
+  authUrl = `${environment.apiUrL}/Auth/`;
+  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(
     private http: HttpClient
@@ -33,6 +35,9 @@ export class PatientService {
 
   getPatientStatisticForSelectedDoctor(id: number): Observable<Statistic> {
     return this.http.get<Statistic>(this.patientUrl + 'statistic/doctor/' + id);
+  }
+  blockAccess(email: string): Observable<any> {
+    return this.http.put<any>(this.authUrl + 'blockPatientAccess/'+ email , {'headers': this.headers});
   }
 }
 
