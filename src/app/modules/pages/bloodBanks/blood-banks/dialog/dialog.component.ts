@@ -19,19 +19,16 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.bloodTypeForm = this.formBuilder.group({
-      bloodType : ['', Validators.required],
+      bloodType : [''],
       quantity: ['']
     })
   }
   checkForBlood() {
-    console.log(this.data)
-    console.log(this.bloodTypeForm.value.bloodType)
     if(this.bloodTypeForm.value.quantity !== ''){
       var type = this.bloodTypeForm.value.bloodType;
       var quant = this.bloodTypeForm.value.quantity;
       var stat = false;
       this.api.checkBlood(this.data, type, quant).subscribe((res => {
-        console.log(res);
         stat = res;
         var success = document.getElementById('mess2');
         var fail = document.getElementById('mess1');
@@ -42,15 +39,20 @@ export class DialogComponent implements OnInit {
           fail?.setAttribute('style', 'color: red; display: block;');
           success?.setAttribute('style', 'color: green; display: none;');
         }
+        window.alert("Blood amount checking successful!");
       }),
       (err) => {
+        window.alert(err.error);
         this.errorMessage = err;
         this.toastr.error(err.error, 'Status: ' + + err.status);
       });
     } else {
       var type = this.bloodTypeForm.value.bloodType;
+      console.log(type + '-----')
+      if(!type) {
+        type = "";
+      }
       this.api.checkBloodAvailabilty(this.data, type).subscribe((res => {
-        console.log(res);
         var success = document.getElementById('mess2');
         var fail = document.getElementById('mess1');
         if(res){
@@ -60,8 +62,10 @@ export class DialogComponent implements OnInit {
           fail?.setAttribute('style', 'color: red; display: block;');
           success?.setAttribute('style', 'color: green; display: none;');
         }
+        window.alert("Blood amount checking successful!");
       }),
       (err) => {
+        window.alert(err.error);
         this.errorMessage = err;
         this.toastr.error(err.error, 'Status: ' + + err.status);
       })
