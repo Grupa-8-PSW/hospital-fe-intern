@@ -20,6 +20,7 @@ import { ExaminationsComponent } from "./modules/pages/examinations/examinations
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
 import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
+import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -43,7 +44,8 @@ const routes: Routes = [
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]},
-  { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}
+  { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'examinations/do', component: DoExaminationComponent}
 ];
 
 

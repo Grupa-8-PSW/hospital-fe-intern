@@ -1,0 +1,41 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-stepper [linear]="isLinear" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Select symptoms</ng-template>
+        <mat-form-field appearance="fill">
+            <mat-label>Symptoms</mat-label>
+            <mat-select formControlName="symptoms" multiple>
+              <mat-option *ngFor="let symptom of allSymptoms" [value]="symptom.id">{{symptom.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" label="Fill out report">
+      <form [formGroup]="secondFormGroup">
+          <mat-form-field  appearance="fill" style="width: 300px;">
+            <textarea matInput rows="20" cols="500" formControlName="record"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="done()">Done</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  
