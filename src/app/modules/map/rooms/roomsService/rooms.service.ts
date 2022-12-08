@@ -32,6 +32,6 @@ export class RoomsService {
     }
 
     getShedulesDTO(id: number): Observable<ShedulesDTO>{
-        return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/shedules' + id, { headers: this.headers } );
+        return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/schedules/' + id, { headers: this.headers } );
     }
 }
