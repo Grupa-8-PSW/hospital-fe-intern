@@ -25,12 +25,14 @@ import { DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TendersComponent } from './modules/pages/tenders/tenders.component';
 import { MatCardModule } from '@angular/material/card';
+import { TenderOffersComponent } from './modules/pages/tenders/tender-offers/tender-offers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateBloodBankComponent,
     TendersComponent,
+    TenderOffersComponent,
   ],
   imports: [
     ReactiveFormsModule,

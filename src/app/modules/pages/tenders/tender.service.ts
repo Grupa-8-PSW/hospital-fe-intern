@@ -11,9 +11,12 @@ export class TenderService {
 
   constructor(private http: HttpClient) { }
 
-  createOffer(off: any): Observable<any> {
-    return this.http.post<any>(this.apiHost + 'api/TenderOffer/', off, {'headers': this.headers});
-  
+  getTenders(): Observable<any> {
+      return this.http.get<any>(this.apiHost + 'api/Tender/getAllForOffers/',  {'headers': this.headers});
   }
+
+  getOffersForTender(id: any): Observable<any> {
+    return this.http.get<any>(this.apiHost + 'getOffersForTender?tenderID='+ id,  {'headers': this.headers});
+   }
 
 }
