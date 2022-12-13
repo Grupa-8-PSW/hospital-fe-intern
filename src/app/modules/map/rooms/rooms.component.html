@@ -32,21 +32,25 @@
                 </div>
                 <div *ngIf="mergeState">
                     <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
-                    <div class="roomDestination">
-                        <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectedRoom1ForMerge(room.id, room)">
-                            <td>
-                                <h3>{{room.name}}</h3>
-                            </td>
-                        </tr>
-                    </div>
-                    <div class="roomDestination">
-                        <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectedRoom2ForMerge(room.id, room)">
-                            <td>
-                                <h3>{{room.name}}</h3>
-                            </td>
-                        </tr>
+                    <div class="roomDestinations">
+                        <div class="roomDestination">
+                            <tr [class.selected]="room === selectedRoom"
+                                *ngFor="let room of roomsByFloorId; let i index"
+                                (click)="selectedRoom1ForMerge(room.id, room)">
+                                <td>
+                                    <h3>{{room.name}}</h3>
+                                </td>
+                            </tr>
+                        </div>
+                        <div class="roomDestination2">
+                            <tr [class.selected]="room === selectedRoom2"
+                                *ngFor="let room of roomsByFloorId; let i index"
+                                (click)="selectedRoom2ForMerge(room.id, room)">
+                                <td>
+                                    <h3>{{room.name}}</h3>
+                                </td>
+                            </tr>
+                        </div>
                     </div>
                 </div>
 
@@ -137,9 +141,7 @@
             </div>
             <div *ngIf="separateState">
                 <label class="mainLabelMove">Informacije o novim prostorijama:</label>
-                <button class="buttonRoom1" (click)="room1Selected()">Soba 1</button>
-                <button class="buttonRoom2" (click)="room2Selected()">Soba 2</button>
-                <div *ngIf="room1">
+                <div>
                     <div class="mergeRoomsForm">
                         <label class="mergeLabel">Unesite ime sobe 1:</label>
                         <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom($event.target)">
@@ -147,7 +149,7 @@
                         <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoomType($event.target)">
                     </div>
                 </div>
-                <div *ngIf="room2">
+                <div>
                     <div class="mergeRoomsForm">
                         <label class="mergeLabel">Unesite ime sobe 2:</label>
                         <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom2($event.target)">
