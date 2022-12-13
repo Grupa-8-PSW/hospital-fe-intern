@@ -19,7 +19,7 @@
         <input type="number" class="form-control" placeholder="Quantity" id="quant" [(ngModel)]="quantity">
         <label for="quant">Quantity</label>
         <button type="button" class="btn btn-primary" style="margin-left: 4rem; margin-top: 0.2rem;" (click)="addBlood()">Add blood</button>
-        <button type="button" class="btn btn-primary" style="display: block;" (click)="createTender()">Create</button>
+        <button type="button" class="btn btn-primary" style="display: block;" id="submit" (click)="createTender()">Create</button>
       </div>
 </div>
 
@@ -28,5 +28,14 @@
     <p style="margin-left: 1rem">From: {{dateRange.start | date}}</p>
     <p style="margin-left: 1rem;">To: {{dateRange.end | date}}</p>
     <p style="margin-left: 1rem;" *ngFor="let item of blood">{{item.bloodType.toString() | bloodType}}, {{item.quantity}}l</p>
+</div>
+
+<div class="allTenders">
+    <div class="table-header">
+        <p class="table-title">All tenders</p>
+        <button mat-fab color="primary" id="allTenders"  mat-mini-fab matTooltip="Create bew tender" matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" >
+            <mat-icon (click)="allTend()">assignment</mat-icon>
+        </button>
+    </div>
 </div>
   

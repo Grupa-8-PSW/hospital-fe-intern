@@ -1,9 +1,16 @@
-<div class="container my-3">
+<div class="allTenders">
+      <p class="table-title">All tenders</p>
+      <button mat-fab color="primary" id="createTender"  mat-mini-fab matTooltip="See all active tenders" matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" >
+          <mat-icon (click)="createNewTender()" >add</mat-icon>
+      </button>
+</div>
+
+<div class="form">
     <div>
       <div class="container">
         <div fxLayout="row wrap space-evenly" fxLayoutGap="15px grid">
           <div  fxFlex.xs="100%" fxFlex.sm="33%"  *ngFor="let off of offers "  >
-            <mat-card  class="mat-elevation-z19 border align card-background">
+            <mat-card id="offerCard" class="mat-elevation-z19 border align card-background">
                 <mat-card-content >
                    <div>
                         <div *ngFor="let b of off.bloodAmounts ">

@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { map } from 'lodash';
 import { BloodAmount } from 'src/app/model/bloodAmount';
 import { BloodType } from 'src/app/model/patient';
@@ -80,7 +81,7 @@ export class AllTendersComponent {
   // ];
 
   constructor(@Inject(DOCUMENT) document: Document,
-              private ts: TenderService, private dialog: MatDialog) {
+              private ts: TenderService, private dialog: MatDialog, private router: Router) {
     
   }
 
@@ -99,5 +100,9 @@ export class AllTendersComponent {
         id: off.tenderID
       } 
     })
+  }
+
+  createNewTender() {
+    this.router.navigate(['/tenders']);
   }
 }
