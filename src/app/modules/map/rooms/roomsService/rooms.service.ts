@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { Room } from '../../model/rooms.model';
 import { EquipmentTransferDTO } from '../../model/equipmentTransferDTO.model';
 import { FreeSpaceForTransfer } from '../../model/freeSpaceForTransfer.model';
+
 import { RoomForSeparateDTO } from '../../model/roomForSeparateDTO.model';
 import { SeparatedRooms } from '../../model/separatedRooms.model';
 import { RoomsForMergeDTO } from '../../model/RoomsForMergeDTO.model';
 import { MergedRoom } from '../../model/mergedRoom.model';
+import { ShedulesDTO } from '../../model/shedulesDTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -34,11 +36,15 @@ export class RoomsService {
         return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/map/floor/rooms/Room/post/transferedEquipment', equipTransfer);
     }
 
+
     getSeparatedRooms(dto: RoomForSeparateDTO): Observable<SeparatedRooms> {
         return this.http.post<SeparatedRooms>(this.apiHost + 'api/map/floor/rooms/Room/get/separatedRooms', dto);
     }
 
     getMergedRoom(dto: RoomsForMergeDTO): Observable<MergedRoom> {
         return this.http.post<MergedRoom>(this.apiHost + 'api/map/floor/rooms/Room/get/mergedRoom', dto);
+
+    getShedulesDTO(id: number): Observable<ShedulesDTO>{
+        return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/schedules/' + id, { headers: this.headers } );
     }
 }

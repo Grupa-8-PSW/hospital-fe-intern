@@ -78,6 +78,7 @@ export class SignatureComponent implements OnInit {
   public equipments: Equipment[] = [];
   public datas = [];
   public niz = [];
+  public schedulesDTO;
   public equipmentTransferDTO: EquipmentTransferDTO;
   public roomForSeparateDTO: RoomForSeparateDTO;
   public roomForMergeDTO: RoomsForMergeDTO;
@@ -121,6 +122,8 @@ export class SignatureComponent implements OnInit {
     this.roomsService.getRooms().subscribe(res => {
       this.allRooms = res;
     });
+
+
 
     this.roomsService.getRoomByFloorId(this.id).subscribe(res => {
       this.rooms = res;
@@ -219,6 +222,10 @@ export class SignatureComponent implements OnInit {
 
               }
             })
+            this.roomsService.getShedulesDTO(id).subscribe(res => {
+              this.schedulesDTO = res;
+              console.log(this.schedulesDTO);
+            });
 
             this.equipmentsService.getEquipmentsByRoomId(id).subscribe(res => {
               this.equipments = res;
