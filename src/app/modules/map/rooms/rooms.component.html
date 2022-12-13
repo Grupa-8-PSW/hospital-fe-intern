@@ -217,18 +217,22 @@
 </div>
 
 <div class="bottomForms">
+    
     <form class="shedulesForm" *ngIf="state">
-        <div>
-            <label class="mainLabel">Schedules for room:</label>
+        <div class="shedules-button-group">
+            <button class="btn btn-danger text-light me-2"(click)="showExeminationss()">Examinations</button>
+            <button class="btn btn-danger text-light">Equipment transfers</button>
+          </div>
+        <div *ngIf ="showExaminations">
+            <label class="mainLabel">Examinations:</label>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Type:</th>
                         <th scope="col">Start time:</th>
                         <th scope="col">End time:</th>
                     </tr>
-                    <tr *ngFor="let equip of equipments; let i index">
-                        <th scope="col">{{"TYPE"}}</th>
+                    <tr *ngFor="let equip of equipments">
+
                         <th scope="col">{{"10/12/2022nes20:00:00ne"}}</th>
                         <th scope="col">{{"10/12/2022nes20:00:00ne"}}</th>
                         <th scope="col"><button class="moveButton">Cancel</button>

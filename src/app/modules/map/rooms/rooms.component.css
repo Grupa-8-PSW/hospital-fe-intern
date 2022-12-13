@@ -74,7 +74,7 @@ tr:hover {
 
 .mainLabel {
     font-size: 32px;
-    margin-left: 100px;
+    /* margin-left: 30px; */
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -258,6 +258,7 @@ input.ng-valid {
 .bottomForms {
     display: flex;
     justify-content: center;
+    vertical-align: top;
 }
 
 .shedulesForm {
@@ -399,4 +400,8 @@ input.ng-valid {
 
 .buttonRoom2:hover {
     background-color: #f44336
+}
+
+.shedules-button-group{
+    margin-top: 10px;
 }

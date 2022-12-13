@@ -60,6 +60,7 @@ export class SignatureComponent implements OnInit {
   selectedTermin?: FreeSpaceForTransfer;
   room1 = false;
   room2 = false;
+  showExaminations = false;
 
   constructor(
     private router: Router,
@@ -570,6 +571,10 @@ export class SignatureComponent implements OnInit {
   room2Selected() {
     this.room1 = false;
     this.room2 = true;
+  }
+
+  showExeminationss(){
+    this.showExaminations = true;
   }
 
 }
