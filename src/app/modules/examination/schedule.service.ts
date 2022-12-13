@@ -42,4 +42,11 @@ export class ScheduleService {
   getExaminationsByDate(day:number, month:number, year:number): Observable<Examination[]> {
     return this.http.get<Examination[]>(this.examinationUrl + day + '/' + month + "/" + year, {headers: this.headers});
   }
+
+  downloadReport(examinationId: number) {
+    return this.http.get(`${this.examinationUrl}${examinationId}/generateReport`,  {
+      observe: 'response',
+      responseType: 'blob'
+    });
+  }
 }
