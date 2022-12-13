@@ -20,6 +20,7 @@ import { TendersComponent } from './tenders/tenders.component';
 import { StatisticsComponent } from './statistics/statistics.component'
 import { PatientModule } from '../patient/patient.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
+import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-reque
     BloodComponent,
     StatisticsComponent,
     UrgentRequestComponent,
+    MonthlySubscriptionComponent,
   ],
   imports: [
     FormsModule,

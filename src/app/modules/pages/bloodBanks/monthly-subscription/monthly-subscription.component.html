@@ -1,0 +1,28 @@
+<h1>Create a monthly subscription</h1>
+<div class="form">
+    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+        <input placeholder="Select date" [(ngModel)]="date" type="date" id="d1" class="form-control" name="fromDate" >
+        <label for="d1">Select date</label>
+        <select name="bank" [(ngModel)]="selectedBank" class="form-select" id="bank">
+            <option [value]="i" *ngFor="let item of bloodBanks; let i = index">{{item.name}}</option>
+        </select>
+        <label for="bank">Select a bank</label>
+        <select name="" [(ngModel)]="type" class="form-select" id="bloodGroup">
+            <option value="ZERO_POSITIVE">0+</option>
+            <option value="ZERO_NEGATIVE">0-</option>
+            <option value="A_POSITIVE">A+</option>
+            <option value="A_NEGATIVE">A-</option>
+            <option value="B_POSITIVE">B+</option>
+            <option value="B_NEGATIVE">B-</option>
+            <option value="AB_POSITIVE">AB+</option>
+            <option value="AB_NEGATIVE">AB-</option>
+        </select>
+        <label for="bloodGroup">Select blood type</label>
+        <input type="number" [(ngModel)]="quantity" class="form-control" placeholder="Quantity" id="quant">
+        <label for="quant">Quantity</label>
+        <div style="display: block; margin-top: 1rem;">
+            <button type="button" class="btn btn-primary" (click)="addBlood()" style="margin-right: 2px;">Add blood</button>
+            <button type="button" class="btn btn-primary" (click)="createSubscription()">Create</button>
+        </div>    
+    </div>
+</div>
