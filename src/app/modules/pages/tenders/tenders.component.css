@@ -26,3 +26,11 @@ h1{
     border: 1px solid black;
     border-radius: 25px;
 }
+
+.allTenders{
+    float: left;
+    position: relative;
+    top: -20rem;
+    
+    margin-left: 30px;
+}

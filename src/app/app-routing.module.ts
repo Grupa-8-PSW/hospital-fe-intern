@@ -18,8 +18,9 @@ import { WrongRequestDialogComponent } from "./modules/pages/bloodBanks/wrong-re
 import { ExaminationsComponent } from "./modules/pages/examinations/examinations.component";
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
+import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
+import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-tenders.component";
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -35,11 +36,20 @@ const routes: Routes = [
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
   { path: 'statistics', component: StatisticsComponent },
+  { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}, //treatment id
+  { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]},
+  { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
   { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }}
 
 ];

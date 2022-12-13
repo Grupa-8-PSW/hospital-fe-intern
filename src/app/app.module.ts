@@ -23,14 +23,20 @@ import { TreatmentHistoryModule } from "./modules/treatment-history/treatment-hi
 import { BloodModule } from "./modules/blood/blood.module";
 import { DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { AllTendersComponent } from './modules/pages/tenders/all-tenders/all-tenders.component';
+import { TenderOffersComponent } from './modules/pages/tenders/tender-offers/tender-offers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateBloodBankComponent,
+    TenderOffersComponent,
+    AllTendersComponent
   ],
   imports: [
     ReactiveFormsModule,
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     NgxMaterialTimepickerModule,

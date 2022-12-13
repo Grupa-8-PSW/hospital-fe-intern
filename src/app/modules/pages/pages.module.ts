@@ -19,6 +19,8 @@ import { BloodComponent } from './blood/blood.component';
 import { TendersComponent } from './tenders/tenders.component';
 import { StatisticsComponent } from './statistics/statistics.component'
 import { PatientModule } from '../patient/patient.module';
+import { ConsiliumsComponent } from './consiliums/consiliums.component';
+import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 
 @NgModule({
@@ -35,6 +37,7 @@ import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-reque
     TendersComponent,
     BloodComponent,
     StatisticsComponent,
+    ConsiliumsComponent,
     UrgentRequestComponent,
   ],
   imports: [
@@ -46,7 +49,8 @@ import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-reque
     FlexLayoutModule,
     BloodModule,
     NgxRerenderModule,
-    PatientModule
+    PatientModule,
+    ConsiliumModule
   ]
 })
 

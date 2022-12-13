@@ -6,7 +6,7 @@
   <div class="card-header bg-secondary text-dark fs-3 py-4">
     <h2 *ngIf="isAddMode">Create Examination</h2>
     <h2 *ngIf="!isAddMode">Edit Examination</h2>
-    <button class="back-arrow bg-primary border-light" (click)="goBack()">
+    <button id="backButton" class="back-arrow bg-primary border-light" (click)="goBack()">
       <mat-icon class="text-primary text-light">arrow_back</mat-icon>
     </button>
   </div>
@@ -17,10 +17,11 @@
         <select name="patient" class="form-control" formControlName="patient">
           <option value="default" disabled>Select Patient</option>
           <option *ngFor="let patient of patients" [value]="patient.id">
-            {{patient.id}}
+            {{patient.firstName}} {{patient.lastName}} <hr/>
+            {{patient.pin}}
           </option>
         </select>
-        <span class="error-block" *ngIf="!patient.valid && patient.touched">
+        <span id="patientError" class="error-block" *ngIf="!patient.valid && (patient.touched || submitted)">
           Please select patient
         </span>
       </div>
@@ -32,14 +33,14 @@
           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
           <mat-datepicker #dp></mat-datepicker>
         </mat-form-field>
-        <div class="error-block" *ngIf="!date.valid && date.touched">
+        <div class="error-block" *ngIf="!isAddMode && (!date.valid && (date.touched || submitted))">
           Please select date
         </div>
       </div>
       <div class="mb-3 col-12">
         <label for="startTime" class="form-label">Start Time</label>
         <input type="time" name="startTime" class="form-control" formControlName="startTime">
-        <span class="error-block" *ngIf="!startTime.valid && startTime.touched">
+        <span id="startTimeError" class="error-block" *ngIf="!startTime.valid && (startTime.touched || submitted)">
           Please select start time
         </span>
       </div>
@@ -49,15 +50,18 @@
           <option value="default" disabled>Select duration</option>
           <option *ngFor="let timeStamp of getDurationTimeStamps()" [value]="timeStamp">{{timeStamp}} minutes</option>
         </select>
-        <span class="error-block" *ngIf="!duration.valid && duration.touched">
+        <span id="durationError" class="error-block" *ngIf="!duration.valid && (duration.touched || submitted)">
           Please select duration
         </span>
       </div>
       <div class="buttons-wrapper mt-4">
-        <button type="submit" class="btn btn-primary me-3" *ngIf="isAddMode">{{submitted ? "Creating..." : "Create"}}</button>
+        <button id="createExamination" type="submit"
+          class="btn btn-primary me-3" *ngIf="isAddMode">{{submitted ? "Creating..." : "Create"}}</button>
         <button type="submit" class="btn btn-primary me-3" *ngIf="!isAddMode">{{submitted ? "Saving..." : "Save"}}</button>
       </div>
-     
+      <div id="submitError" class="error-block" *ngIf="submittingError">
+        {{ submittingError }}
+      </div>
     </form>
   </div>
 </div>
