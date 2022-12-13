@@ -14,7 +14,7 @@ export class BlockingUsersComponent {
   }
 
   ngOnInit(): void {
-    this.patientService.getAllPatients().subscribe(res => {
+    this.patientService.getMalicious().subscribe(res => {
       this.patients = res;
     });
   }
