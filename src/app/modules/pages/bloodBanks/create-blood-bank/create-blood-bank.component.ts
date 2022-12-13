@@ -25,11 +25,13 @@ export class CreateBloodBankComponent{
     this.bloodBankService.createBloodBank(this.bloodBank).subscribe((res => {
       this.router.navigate(['/bloodBanks']);
       this.toastr.success('Blood bank "' + this.bloodBank.name + '" is registered', 'Registration success !');
+      window.alert("Registration success!")
       }),
 
       (err) => {
         this.errorMessage = err;
         this.toastr.error(err.error, 'Status: ' + + err.status);
+        window.alert(err.error)
       });
 
   }

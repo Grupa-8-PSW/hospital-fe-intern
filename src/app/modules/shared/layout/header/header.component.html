@@ -38,6 +38,9 @@
         <li class="navitem">
           <a class="nav-link" routerLink="/statistics" routerLinkActive="active" >Statistics</a>
         </li>
+        <li class="navitem">
+          <a class="nav-link" routerLink="/view/bloodRequest" id="viewRequests" routerLinkActive="active">View Blood Requests</a>
+        </li>
       </ul>
       <div class="account-button-group">
         <button *ngIf="isLogged" class="btn btn-danger text-light me-3" (click)="logout()">Logout</button>

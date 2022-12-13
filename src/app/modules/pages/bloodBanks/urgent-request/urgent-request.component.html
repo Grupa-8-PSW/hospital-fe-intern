@@ -1,0 +1,22 @@
+<div mat-dialog-content>
+
+<h3 style="text-align: center;">URGENT REQUEST</h3>
+        <div mat-dialog-actions class="container mb-2 justify-content-center">
+        <mat-form-field appearance="fill">
+          <mat-label>Blood banks</mat-label>
+          <mat-select [(ngModel)]= "selectedBloodBank">
+              <mat-option *ngFor="let bloodBank of bloodBanks" [value]="bloodBank">{{bloodBank.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Protocol</mat-label>
+            <mat-select [(ngModel)]= "protocol">
+              <mat-option *ngFor="let index of ['GRPC', 'HTTP']" [value]="index">{{index}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      <div class="container">
+        <button mat-button  mat-dialog-close (click)="sendRequest()">Done</button>
+      </div>
+
+</div>
