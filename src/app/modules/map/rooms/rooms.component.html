@@ -20,7 +20,7 @@
             </div>
             <div *ngIf="percentIsTwenty">
                 <div *ngIf="separateState">
-                    <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
+                    <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
                             (click)="selectedRoomForSeparating(room.id, room)">
@@ -31,10 +31,18 @@
                     </div>
                 </div>
                 <div *ngIf="mergeState">
-                    <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
+                    <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectedRoomsForMerge(room.id, room, room.id, room)">
+                            (click)="selectedRoom1ForMerge(room.id, room)">
+                            <td>
+                                <h3>{{room.name}}</h3>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="roomDestination">
+                        <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
+                            (click)="selectedRoom2ForMerge(room.id, room)">
                             <td>
                                 <h3>{{room.name}}</h3>
                             </td>

@@ -483,10 +483,12 @@ export class SignatureComponent implements OnInit {
     this.roomForSeparateDTO.oldRoomId = room.id;
   }
   // TREBA DODATI ROOMID2 U NOVI DTO I TREBA SKONTATI KAKO MULTI SELECT DA ODRADIM DA UZMEM I ROOMID2 i ROOM2
-  selectedRoomsForMerge(selectedRoomId: number, room: Room, selectedRoomId2: number, room2: Room) {
+  selectedRoom1ForMerge(selectedRoomId: number, room: Room) {
     this.roomForMergeDTO.oldRoom1Id = room.id;
-    this.roomForMergeDTO.oldRoom2Id = room2.id;
+  }
 
+  selectedRoom2ForMerge(selectedRoomId: number, room: Room) {
+    this.roomForMergeDTO.oldRoom2Id = room.id;
   }
   getStartDateForRenovate(startDateRenovate) {
 
@@ -509,11 +511,11 @@ export class SignatureComponent implements OnInit {
   }
 
   newMergedRoom(newMergedRoom) {
-    this.roomForMergeDTO.newRoomName = newMergedRoom;
+    this.roomForMergeDTO.newRoomName = newMergedRoom.value;
   }
 
   newMergedRoomType(newMergedRoomType) {
-    this.roomForMergeDTO.newRoomType = newMergedRoomType;
+    this.roomForMergeDTO.newRoomType = newMergedRoomType.value;
   }
 
   newSeparatedRoom(newMergedRoom) {
@@ -535,7 +537,9 @@ export class SignatureComponent implements OnInit {
   ScheduleForMerginRooms() {
     if (this.mergeState == true) {
       //stavim sveu MergeRoomDTO i servis 
+      console.log(this.roomForMergeDTO);
       this.roomsService.getMergedRoom(this.roomForMergeDTO).subscribe(res => {
+        console.log("MERGOVANA SOBA:");
         console.log(res);
       })
     } else if (this.separateState == true) {
