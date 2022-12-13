@@ -1,0 +1,67 @@
+form {
+    margin: 20px auto;
+    width: 420px;
+  }
+  .form-row {
+    padding: 5px 10px;
+  }
+  label {
+    display: block;
+    margin: 3px 0;
+  }
+  .form-row input {
+    padding: 3px 1px;
+    width: 100%;
+  }
+  input.currency {
+    text-align: right;
+    padding-right: 15px;
+  }
+  .input-group .form-control {
+    float: none;
+  }
+  .input-group .input-buttons {
+    position: relative;
+    z-index: 3;
+  }
+  
+  
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+    }
+  
+    mat-toolbar {
+      justify-content: space-between;
+  }
+  
+  .content {
+      padding: 16px;
+  }
+  
+  .content > mat-card {
+      margin-bottom: 16px;
+  }
+  
+  .align{
+    width: 350px;
+    align-items: center;
+    padding-left: 50px;
+  }
+  
+  .card-background{
+    background-color: #EDEDED;
+  }
+  
+  .container my-3{
+  margin: 3%;
+  }
+  
+  
+  
+  

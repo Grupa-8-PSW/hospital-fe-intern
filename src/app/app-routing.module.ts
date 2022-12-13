@@ -20,6 +20,7 @@ import { ExaminationsComponent } from "./modules/pages/examinations/examinations
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
 import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
+import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-tenders.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -43,7 +44,14 @@ const routes: Routes = [
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]},
-  { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}
+  { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
+  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
+  { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
+  { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'allTenders', component: AllTendersComponent}
+
 ];
 
 
