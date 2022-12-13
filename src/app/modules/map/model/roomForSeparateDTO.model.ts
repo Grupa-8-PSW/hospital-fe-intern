@@ -2,11 +2,10 @@ import { FreeSpaceForTransfer } from "./freeSpaceForTransfer.model";
 import { Room } from "./rooms.model";
 
 export interface RoomForSeparateDTO {
-    oldRoom: Room;
-    startDate: Date;
-    endDate: Date;
-    hours: number;
-    termins: FreeSpaceForTransfer;
-    newRoomName: string;
-    newRoomType: string;
+    oldRoomId: number;
+    //termins: FreeSpaceForTransfer;
+    newRoom1Name: string;
+    newRoom1Type: string;
+    newRoom2Name: string;
+    newRoom2Type: string;
 }

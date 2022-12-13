@@ -19,22 +19,22 @@
                 </div>
             </div>
             <div *ngIf="percentIsTwenty">
-                <div *ngIf="mergeState">
+                <div *ngIf="separateState">
                     <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectedRoomsForSeparating(room.id, room)">
+                            (click)="selectedRoomForSeparating(room.id, room)">
                             <td>
                                 <h3>{{room.name}}</h3>
                             </td>
                         </tr>
                     </div>
                 </div>
-                <div *ngIf="separateState">
+                <div *ngIf="mergeState">
                     <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectedRoomForMerge(room.id, room, room.id, room)">
+                            (click)="selectedRoomsForMerge(room.id, room, room.id, room)">
                             <td>
                                 <h3>{{room.name}}</h3>
                             </td>
@@ -46,14 +46,14 @@
             <div *ngIf="percentIsFourty">
                 <label class="mainLabelMove">Datum od do:</label>
                 <div class="calendars">
-                    <div (click)="getStartDateForRenovate(startDate)">
+                    <div (click)="getStartDateForRenovate(startDateRenovate)">
                         <mat-card class="demo-inline-calendar-card">
-                            <mat-calendar [(selected)]="startDate"></mat-calendar>
+                            <mat-calendar [(selected)]="startDateRenovate"></mat-calendar>
                         </mat-card>
                     </div>
-                    <div (click)="getEndDateForRenovate(endDate)">
+                    <div (click)="getEndDateForRenovate(endDateRenovate)">
                         <mat-card class="demo-inline-calendar-card2">
-                            <mat-calendar [(selected)]="endDate"></mat-calendar>
+                            <mat-calendar [(selected)]="endDateRenovate"></mat-calendar>
                         </mat-card>
                     </div>
                 </div>
@@ -121,10 +121,10 @@
             <div *ngIf="mergeState">
                 <label class="mainLabelMove">Informacije o novoj prostoriji:</label>
                 <div class="mergeRoomsForm">
-                    <label class="mergeLabel">Unesite ime sobe:</label>
-                    <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom($event.target)">
-                    <label class="mergeLabel">Unesite tip sobe:</label>
-                    <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoomType($event.target)">
+                    <label class="mergeLabel">Unesite ime nove sobe:</label>
+                    <input type="text" class="mergeTextBox" (keyup)="newMergedRoom($event.target)">
+                    <label class="mergeLabel">Unesite tip nove sobe:</label>
+                    <input type="text" class="mergeTextBox" (keyup)="newMergedRoomType($event.target)">
                 </div>
             </div>
             <div *ngIf="separateState">
@@ -134,17 +134,17 @@
                 <div *ngIf="room1">
                     <div class="mergeRoomsForm">
                         <label class="mergeLabel">Unesite ime sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
+                        <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom($event.target)">
                         <label class="mergeLabel">Unesite tip sobe 1:</label>
-                        <input type="text" class="mergeTextBox">
+                        <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoomType($event.target)">
                     </div>
                 </div>
                 <div *ngIf="room2">
                     <div class="mergeRoomsForm">
                         <label class="mergeLabel">Unesite ime sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
+                        <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom2($event.target)">
                         <label class="mergeLabel">Unesite tip sobe 2:</label>
-                        <input type="text" class="mergeTextBox">
+                        <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom2Type($event.target)">
                     </div>
                 </div>
             </div>

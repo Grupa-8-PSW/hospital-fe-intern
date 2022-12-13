@@ -14,6 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { disableDebugTools } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RoomForSeparateDTO } from '../model/roomForSeparateDTO.model';
+import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
 
 
 
@@ -51,8 +52,8 @@ export class SignatureComponent implements OnInit {
   days: number;
   hours: number;
   eqAmouont: number;
-  startDateRenovate: Date;
-  endDateRenovate: Date;
+  startDateRenovate: Date | null;
+  endDateRenovate: Date | null;
   daysRenovate: number;
   hoursRenovate: number;
   selectedRoom?: Room;
@@ -78,6 +79,7 @@ export class SignatureComponent implements OnInit {
   public niz = [];
   public equipmentTransferDTO: EquipmentTransferDTO;
   public roomForSeparateDTO: RoomForSeparateDTO;
+  public roomForMergeDTO: RoomsForMergeDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
 
   ngOnInit(): void {
@@ -94,6 +96,23 @@ export class SignatureComponent implements OnInit {
       duration: null,
       equipmentName: null,
     }
+
+    this.roomForSeparateDTO = {
+      oldRoomId: null,
+      //  termins: null,
+      newRoom1Name: null,
+      newRoom1Type: null,
+      newRoom2Name: null,
+      newRoom2Type: null,
+    }
+
+    this.roomForMergeDTO = {
+      oldRoom1Id: null,
+      oldRoom2Id: null,
+      newRoomName: null,
+      newRoomType: null
+    }
+
 
     this.canvas = new fabric.Canvas("canvas", {
       isDrawingMode: false
@@ -460,22 +479,21 @@ export class SignatureComponent implements OnInit {
   }
 
   // ZA RENOVIRANJE
-  selectedRoomsForSeparating(selectedRoomId: number, room: Room) {
-    console.log(selectedRoomId);
-    console.log(room);
-    this.roomForSeparateDTO.oldRoom = room;
+  selectedRoomForSeparating(selectedRoomId: number, room: Room) {
+    this.roomForSeparateDTO.oldRoomId = room.id;
   }
   // TREBA DODATI ROOMID2 U NOVI DTO I TREBA SKONTATI KAKO MULTI SELECT DA ODRADIM DA UZMEM I ROOMID2 i ROOM2
-  selectedRoomForMerge(selectedRoomId: number, room: Room, selectedRoomId2: number, room2: Room) {
-    console.log(selectedRoomId);
-    console.log(room);
+  selectedRoomsForMerge(selectedRoomId: number, room: Room, selectedRoomId2: number, room2: Room) {
+    this.roomForMergeDTO.oldRoom1Id = room.id;
+    this.roomForMergeDTO.oldRoom2Id = room2.id;
+
   }
-  getStartDateForRenovate(startDate) {
-    this.roomForSeparateDTO.startDate = startDate.value;
+  getStartDateForRenovate(startDateRenovate) {
+
   }
 
-  getEndDateForRenovate(endDate) {
-    this.roomForSeparateDTO.endDate = endDate.value;
+  getEndDateForRenovate(endDateRenovate) {
+
   }
 
   DurationInDaysRenovate(days) {
@@ -483,26 +501,48 @@ export class SignatureComponent implements OnInit {
   }
 
   DurationInHoursRenovate(hours) {
-    this.roomForSeparateDTO.hours = hours.value;
+
   }
 
   getTerminsRenovate() {
     //TREBA DODATI U DTO-OVE SELEKTOVAN TERMIN
   }
 
+  newMergedRoom(newMergedRoom) {
+    this.roomForMergeDTO.newRoomName = newMergedRoom;
+  }
+
+  newMergedRoomType(newMergedRoomType) {
+    this.roomForMergeDTO.newRoomType = newMergedRoomType;
+  }
+
   newSeparatedRoom(newMergedRoom) {
-    this.roomForSeparateDTO.newRoomName = newMergedRoom.value;
+    this.roomForSeparateDTO.newRoom1Name = newMergedRoom.value;
   }
 
   newSeparatedRoomType(newMergedRoomType) {
-    this.roomForSeparateDTO.newRoomType = newMergedRoomType.value;
+    this.roomForSeparateDTO.newRoom1Type = newMergedRoomType.value;
+  }
+
+  newSeparatedRoom2(newMergedRoom2) {
+    this.roomForSeparateDTO.newRoom2Name = newMergedRoom2.value;
+  }
+
+  newSeparatedRoom2Type(newMergedRoom2Type) {
+    this.roomForSeparateDTO.newRoom2Type = newMergedRoom2Type.value;
   }
 
   ScheduleForMerginRooms() {
     if (this.mergeState == true) {
       //stavim sveu MergeRoomDTO i servis 
+      this.roomsService.getMergedRoom(this.roomForMergeDTO).subscribe(res => {
+        console.log(res);
+      })
     } else if (this.separateState == true) {
       //stavim sve u SeparateRoomDTO i servis
+      this.roomsService.getSeparatedRooms(this.roomForSeparateDTO).subscribe(res => {
+        console.log(res);
+      })
     }
   }
 
