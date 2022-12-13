@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Room } from '../../model/rooms.model';
 import { EquipmentTransferDTO } from '../../model/equipmentTransferDTO.model';
 import { FreeSpaceForTransfer } from '../../model/freeSpaceForTransfer.model';
+import { ShedulesDTO } from '../../model/shedulesDTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -28,5 +29,9 @@ export class RoomsService {
 
     addEquipmentTrasfer(equipTransfer: EquipmentTransferDTO ):  Observable<EquipmentTransferDTO>{
         return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/map/floor/rooms/Room/post/transferedEquipment', equipTransfer);
+    }
+
+    getShedulesDTO(id: number): Observable<ShedulesDTO>{
+        return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/schedules/' + id, { headers: this.headers } );
     }
 }
