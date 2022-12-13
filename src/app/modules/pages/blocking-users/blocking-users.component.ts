@@ -8,19 +8,25 @@ import { PatientService } from '../../hospital/feedback/services/patient.service
 })
 export class BlockingUsersComponent {
 
-  public patients: Patient[] = [];
-
+  public blockedPatients: Patient[] = [];
+  public unblockedPatients: Patient[] = [];
   constructor(private patientService: PatientService) {
   }
 
   ngOnInit(): void {
-    this.patientService.getMalicious().subscribe(res => {
-      this.patients = res;
+    this.patientService.getMalicious('blocked').subscribe(res => {
+      this.blockedPatients = res;
+    });
+    this.patientService.getMalicious('unblocked').subscribe(res => {
+      this.unblockedPatients = res;
     });
   }
-  manageAccess(index: number, email: string): void {
-    this.patientService.manageAccess(email,'block').subscribe(res=>{
-      this.patients[index].lastName+='    [[Patient blocked]]';
+  manageAccess(index: number, email: string,type : string): void {
+    this.patientService.manageAccess(email,type).subscribe(res=>{
+      if(type=='block')this.unblockedPatients[index].lastName+='    [[Patient blocked]]';
+      if(type=='unblock')this.blockedPatients[index].lastName+='    [[Patient unblocked]]';
     })
+    window.location.reload();
   }
+
 }

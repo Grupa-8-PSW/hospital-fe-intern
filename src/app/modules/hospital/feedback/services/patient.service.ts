@@ -21,8 +21,8 @@ export class PatientService {
   getAllPatients() : Observable<Patient[]> {
     return this.http.get<Patient[]>(this.patientUrl);
   }
-  getMalicious():Observable<Patient[]>{
-    return this.http.get<Patient[]>(this.patientUrl+'malicious');
+  getMalicious(type : string):Observable<Patient[]>{
+    return this.http.get<Patient[]>(this.authUrl+'MaliciousPatients/'+type);
   }
   getPatientById(id: number): Observable<Patient> {
     return this.http.get<Patient>(this.patientUrl + id);

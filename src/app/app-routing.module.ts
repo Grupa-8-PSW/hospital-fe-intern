@@ -20,7 +20,6 @@ import { ExaminationsComponent } from "./modules/pages/examinations/examinations
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
 import { BlockingUsersComponent } from "./modules/pages/blocking-users/blocking-users.component";
-import { UnblockingUsersComponent } from "./modules/pages/unblocking-users/unblocking-users.component";
 import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
 
 const routes: Routes = [
@@ -39,7 +38,6 @@ const routes: Routes = [
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'malicious-users/block', component: BlockingUsersComponent},
-  { path: 'malicious-users/unblock', component: UnblockingUsersComponent},
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}, //treatment id
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
