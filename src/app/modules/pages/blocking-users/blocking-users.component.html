@@ -1,20 +1,20 @@
 <div class="container mt-3">
-  <ng-template ngFor let-item [ngForOf]="blockedPatients" let-i="index">
-      <mat-card>
+  <ng-template  ngFor let-item [ngForOf]="blockedPatients" let-i="index">
+      <mat-card name="unblockTable">
           <mat-card-title >{{item.firstName}} {{item.lastName}}</mat-card-title>
           <mat-card-content>{{item.email}}</mat-card-content>
           <mat-card-actions align="end">
-              <button  mat-raised-button color="warn" (click)="manageAccess(i, item.email,'unblock')">Unblock</button>
+              <button  mat-raised-button color="warn" name="unblockButton" (click)="manageAccess(i, item.email,'unblock')">Unblock</button>
           </mat-card-actions>
       </mat-card>
       <br>
   </ng-template>
-  <ng-template ngFor let-item [ngForOf]="unblockedPatients" let-i="index">
-    <mat-card>
+  <ng-template   ngFor let-item [ngForOf]="unblockedPatients" let-i="index">
+    <mat-card name="blockTable">
         <mat-card-title >{{item.firstName}} {{item.lastName}}</mat-card-title>
         <mat-card-content>{{item.email}}</mat-card-content>
         <mat-card-actions align="end">
-            <button  mat-raised-button color="primary" (click)="manageAccess(i, item.email,'block')">Block</button>
+            <button  mat-raised-button color="primary" name="blockButton" (click)="manageAccess(i, item.email,'block')">Block</button>
         </mat-card-actions>
     </mat-card>
     <br>

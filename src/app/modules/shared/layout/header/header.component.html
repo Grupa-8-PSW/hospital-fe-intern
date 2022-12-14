@@ -40,7 +40,8 @@
       </ul>
       <div class="account-button-group">
         <button *ngIf="isLogged" class="btn btn-danger text-light me-3" (click)="logout()">Logout</button>
-        <button *ngIf="!isLogged" class="btn btn-danger text-light me-3" routerLink="/auth/login">Login</button>
+        <button  *ngIf="isLogged" class="btn btn-danger text-light me-3" name="malicious" routerLink="/malicious-users/block">Malicious</button>
+        <button *ngIf="!isLogged" class="btn btn-danger text-light me-3" name="login" routerLink="/auth/login">Login</button>
         <button *ngIf="!isLogged" class="btn btn-danger text-light">Register</button>
       </div>
       <!-- <form class="d-flex">

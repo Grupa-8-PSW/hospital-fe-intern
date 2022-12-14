@@ -23,10 +23,14 @@ export class BlockingUsersComponent {
   }
   manageAccess(index: number, email: string,type : string): void {
     this.patientService.manageAccess(email,type).subscribe(res=>{
-      if(type=='block')this.unblockedPatients[index].lastName+='    [[Patient blocked]]';
-      if(type=='unblock')this.blockedPatients[index].lastName+='    [[Patient unblocked]]';
+      if(res){
+        alert('Patient sucessfully '+type+'ed.');
+        window.location.reload();
+      } else {
+        alert('Error.');
+      }
     })
-    window.location.reload();
+ //   window.location.reload();
   }
 
 }
