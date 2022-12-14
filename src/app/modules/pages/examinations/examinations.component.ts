@@ -13,7 +13,7 @@ export class ExaminationsComponent implements OnInit {
   showAddExamination: boolean = false;
 
   public dataSource = new MatTableDataSource<Examination>();
-  public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit'];
+  public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit', 'doExamination'];
   public examinations: Examination[] = [];
 
   constructor(private scheduleService: ScheduleService, private router: Router,  private route: ActivatedRoute) { }
@@ -48,5 +48,10 @@ export class ExaminationsComponent implements OnInit {
 
   public handleEdit(id: number) : void {
     this.router.navigate([`/examinations/edit/${id}`])
+  }
+
+  public doExamination(id: number) : void {
+    this.router.navigate([`/examinations/do`])
+    //this.router.navigate([`/examinations/do/${id}`])
   }
 }

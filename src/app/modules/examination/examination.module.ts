@@ -8,6 +8,8 @@ import { ExaminationsComponent } from '../pages/examinations/examinations.compon
 import { AuthGuard } from '../auth/helpers/auth.guard';
 import { RoleGuard } from '../auth/helpers/role.guard';
 import { DoExaminationComponent } from './do-examination/do-examination.component';
+import { PrescriptionComponent } from './prescription/prescription.component';
+import { PrescriptionItemComponent } from './prescription-item/prescription-item.component';
 
 const routes: Routes = [
   { path: 'examinations', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
@@ -20,7 +22,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CreateEditExaminationComponent,
-    DoExaminationComponent
+    DoExaminationComponent,
+    PrescriptionComponent,
+    PrescriptionItemComponent
   ],
   imports: [
     CommonModule,

@@ -4,9 +4,9 @@ import Symptom from "./symptom"
 export default interface ExaminationDone {
     id?: number,
     examinationId: number,
-    examination: Examination,
+    examination?: Examination,
     record: string,
-    symptoms: Symptom[]
-    //prescriptions
+    symptoms: Symptom[] | null,
+    prescriptions?: any
   }
   

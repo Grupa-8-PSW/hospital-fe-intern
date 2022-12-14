@@ -35,7 +35,8 @@ const routes: Routes = [
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  //{ path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  { path: 'calendar', component: CalendarComponent},
   { path: 'statistics', component: StatisticsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}, //treatment id

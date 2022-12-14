@@ -5,13 +5,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import Symptom from 'src/app/model/symptom';
+import ExaminationDone from 'src/app/model/examination-done';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
   examinationUrl = `${environment.apiUrL}/Examination/`;
-  examinationDoneUrl = `${environment.apiUrL}/ExaminationDone/`;
+  examinationDoneUrl = `${environment.apiUrL}/ExaminationDone`;
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(
@@ -46,6 +47,11 @@ export class ScheduleService {
   }
 
   getAllSymptoms() : Observable<Symptom[]> {
-    return this.http.get<Symptom[]>(this.examinationDoneUrl + 'symptoms');
+    return this.http.get<Symptom[]>(this.examinationDoneUrl + '/symptoms');
   }
+
+  createExaminationDone(examinationDone: ExaminationDone): Observable<any> {
+    return this.http.post(this.examinationDoneUrl, examinationDone, { headers: this.headers });
+  }
+
 }
