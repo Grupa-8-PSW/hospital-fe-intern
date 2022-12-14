@@ -22,9 +22,10 @@ import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.compo
 import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-tenders.component";
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
 import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
+import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
-
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
@@ -36,6 +37,9 @@ const routes: Routes = [
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  //{ path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  { path: 'calendar', component: CalendarComponent},
   { path: 'statistics', component: StatisticsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}, //treatment id
@@ -54,6 +58,7 @@ const routes: Routes = [
   { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}}
   { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }}
+  { path: 'examinations/do', component: DoExaminationComponent}
 ];
 
 
