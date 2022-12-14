@@ -15,6 +15,9 @@ import { disableDebugTools } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RoomForSeparateDTO } from '../model/roomForSeparateDTO.model';
 import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
+import { ShedulesDTO } from '../model/shedulesDTO.model';
+import { ExaminationDTO } from '../model/examinationDTO.model';
+import { DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
 
 
 
@@ -61,6 +64,8 @@ export class SignatureComponent implements OnInit {
   room1 = false;
   room2 = false;
   showExaminations = false;
+  showTransferEquipments = false;
+
 
   constructor(
     private router: Router,
@@ -78,11 +83,13 @@ export class SignatureComponent implements OnInit {
   public equipments: Equipment[] = [];
   public datas = [];
   public niz = [];
-  public schedulesDTO;
+  public schedulesDTO: ShedulesDTO;
   public equipmentTransferDTO: EquipmentTransferDTO;
   public roomForSeparateDTO: RoomForSeparateDTO;
   public roomForMergeDTO: RoomsForMergeDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
+  public transfers: EquipmentTransferDTO []
+  public examinations: ExaminationDTO [];
 
   ngOnInit(): void {
 
@@ -224,7 +231,12 @@ export class SignatureComponent implements OnInit {
             })
             this.roomsService.getShedulesDTO(id).subscribe(res => {
               this.schedulesDTO = res;
+              this.transfers = this.schedulesDTO.equipmentTransferDTOs
+              this.examinations = this.schedulesDTO.examinationDTOs
               console.log(this.schedulesDTO);
+              console.log(this.examinations);
+              const now = new Date();
+              console.log(now);
             });
 
             this.equipmentsService.getEquipmentsByRoomId(id).subscribe(res => {
@@ -580,8 +592,27 @@ export class SignatureComponent implements OnInit {
     this.room2 = true;
   }
 
-  showExeminationss(){
+  showExemination(){
     this.showExaminations = true;
+    this.showTransferEquipments = false;
+  }
+
+  showTransferEquipment(){
+    this.showTransferEquipments = true;
+    this.showExaminations = false;
+  }
+
+  cancelExe(event,examination){
+    const now = new Date();
+    if(examination.startDate + (24*60*60*1000) < now){
+      alert("Ne moze te otkazati 24h pre pregleda")
+    }
+    
+      else{  
+        this.roomsService.deleteExe(examination.id).subscribe(res=>{})
+        window.location.reload();
+      }
+    
   }
 
 }

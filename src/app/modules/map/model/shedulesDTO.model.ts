@@ -3,6 +3,6 @@ import { ExaminationDTO } from "./examinationDTO.model";
 
 
 export class ShedulesDTO{
-    equipmentTransferDTO: EquipmentTransferDTO[];
-    examinationsDTO: ExaminationDTO[];
+    equipmentTransferDTOs: EquipmentTransferDTO[];
+    examinationDTOs: ExaminationDTO[];
 }
