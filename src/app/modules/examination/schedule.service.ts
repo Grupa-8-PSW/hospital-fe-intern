@@ -54,4 +54,10 @@ export class ScheduleService {
     return this.http.post(this.examinationDoneUrl, examinationDone, { headers: this.headers });
   }
 
+  downloadReport(examinationId: number) {
+    return this.http.get(`${this.examinationUrl}${examinationId}/generateReport`,  {
+      observe: 'response',
+      responseType: 'blob'
+    });
+  }
 }

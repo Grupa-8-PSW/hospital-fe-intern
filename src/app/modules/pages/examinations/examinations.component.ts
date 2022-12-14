@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ScheduleService } from '../../examination/schedule.service';
 import Examination from '../../../model/examination';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-examinations',
@@ -11,6 +12,8 @@ import Examination from '../../../model/examination';
 })
 export class ExaminationsComponent implements OnInit {
   showAddExamination: boolean = false;
+  errorDownloadingReport: string | null = null;
+  downloading = false;
 
   public dataSource = new MatTableDataSource<Examination>();
   public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit', 'doExamination'];
@@ -50,8 +53,33 @@ export class ExaminationsComponent implements OnInit {
     this.router.navigate([`/examinations/edit/${id}`])
   }
 
+<<<<<<< HEAD
   public doExamination(id: number) : void {
     this.router.navigate([`/examinations/do`])
     //this.router.navigate([`/examinations/do/${id}`])
+=======
+  showReport(id: number): void {
+    this.errorDownloadingReport = null;
+    this.downloading = true;
+    this.scheduleService.downloadReport(id).subscribe({
+      next: (response) => {
+        this.downloading = false;
+        console.log(response);
+        const blob = response.body as Blob;
+        const fileUrl = URL.createObjectURL(blob);
+        window.open(fileUrl);
+      },
+      error: (err) => {
+        this.downloading = false;
+        console.log(err);
+        this.errorDownloadingReport = "Error downloading report.";
+      }
+    })
+  }
+
+  examinationStarted(date: Date) {
+    const now = moment();
+    return now.isAfter(date);
+>>>>>>> e8248473916180b5dcd563d79fa68fc8f3475494
   }
 }
