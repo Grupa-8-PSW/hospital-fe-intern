@@ -229,13 +229,13 @@
                 <thead>
                     <tr>
                         <th scope="col">Start time:</th>
-                        <th scope="col">End time:</th>
+                        <th scope="col">Duration:</th>
                     </tr>
                     <tr *ngFor="let exemination of examinations">
 
                         <th scope="col">{{exemination.startTime}}</th>
                         <th scope="col">{{exemination.duration}}</th>
-                        <th scope="col"><button class="moveButton">Cancel</button>
+                        <th scope="col"><button class="moveButton" (click)="cancelExe($event,exemination)">Cancel</button>
                         </th>
                     </tr>
                 </thead>
@@ -252,7 +252,7 @@
                     <tr *ngFor="let transfer of transfers">
 
                         <th scope="col">{{transfer.startDate}}</th>
-                        <th scope="col">{{transfer.endDate}}</th>
+                        <th scope="col">{{transfer.endDate }}</th>
                         <th scope="col"><button class="moveButton">Cancel</button>
                         </th>
                     </tr>

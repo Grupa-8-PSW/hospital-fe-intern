@@ -17,6 +17,7 @@ import { RoomForSeparateDTO } from '../model/roomForSeparateDTO.model';
 import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
 import { ShedulesDTO } from '../model/shedulesDTO.model';
 import { ExaminationDTO } from '../model/examinationDTO.model';
+import { DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
 
 
 
@@ -233,7 +234,9 @@ export class SignatureComponent implements OnInit {
               this.transfers = this.schedulesDTO.equipmentTransferDTOs
               this.examinations = this.schedulesDTO.examinationDTOs
               console.log(this.schedulesDTO);
-              console.log(this.examinations)
+              console.log(this.examinations);
+              const now = new Date();
+              console.log(now);
             });
 
             this.equipmentsService.getEquipmentsByRoomId(id).subscribe(res => {
@@ -597,6 +600,19 @@ export class SignatureComponent implements OnInit {
   showTransferEquipment(){
     this.showTransferEquipments = true;
     this.showExaminations = false;
+  }
+
+  cancelExe(event,examination){
+    const now = new Date();
+    if(examination.startDate + (24*60*60*1000) < now){
+      alert("Ne moze te otkazati 24h pre pregleda")
+    }
+    
+      else{  
+        this.roomsService.deleteExe(examination.id).subscribe(res=>{})
+        window.location.reload();
+      }
+    
   }
 
 }
