@@ -78,7 +78,7 @@ export class CreateTreatmentHistoryComponent implements OnInit {
       reason : String(this.reason.value),
       roomId: Number(this.room.value)
     };
-
+    
     //const roomId : number = this.room.value
 
     console.log(treatmentHistory);

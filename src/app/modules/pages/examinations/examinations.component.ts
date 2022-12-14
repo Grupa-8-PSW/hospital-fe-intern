@@ -16,7 +16,7 @@ export class ExaminationsComponent implements OnInit {
   downloading = false;
 
   public dataSource = new MatTableDataSource<Examination>();
-  public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit'];
+  public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit', 'doExamination'];
   public examinations: Examination[] = [];
 
   constructor(private scheduleService: ScheduleService, private router: Router,  private route: ActivatedRoute) { }
@@ -53,7 +53,12 @@ export class ExaminationsComponent implements OnInit {
     this.router.navigate([`/examinations/edit/${id}`])
   }
 
-  showReport(id: number): void {
+  public doExamination(id: number) : void {
+    this.router.navigate([`/examinations/do`])
+    //this.router.navigate([`/examinations/do/${id}`])
+  }
+
+  public showReport(id: number): void {
     this.errorDownloadingReport = null;
     this.downloading = true;
     this.scheduleService.downloadReport(id).subscribe({
