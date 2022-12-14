@@ -1,20 +1,22 @@
 <div class="general">
-  <div id="paper">
-  </div>
+    <div id="paper" class="paper">
+    </div>
 
     <body class="body" style="color: white;">
         <form class="roomForm">
             <div class="labels">
                 <div class="moveLabel">
-                  <form class="form-inline">
-                    <input #query type="text" class="form-control mb-2 mr-sm-2" placeholder="Search Rooms">
-                    <button type="button" class="btn btn-primary mb-2" (click)="searchRooms(query.value)">Search</button>
-                  </form>
-                  <form class="form-inline">
-                    <input #equip type="text" class="form-control mb-2 mr-sm-2" placeholder="Search Equipment">
-                    <input #amount type="number" class="form-control mb-2 mr-sm-2" placeholder="Amount">
-                    <button type="button" class="btn btn-primary mb-2" (click)="searchEquipment(equip.value, amount.value)">Search</button>
-                  </form>
+                    <form class="form-inline">
+                        <input #query type="text" class="form-control mb-2 mr-sm-2" placeholder="Search Rooms">
+                        <button type="button" class="btn btn-primary mb-2"
+                            (click)="searchRooms(query.value)">Search</button>
+                    </form>
+                    <form class="form-inline">
+                        <input #equip type="text" class="form-control mb-2 mr-sm-2" placeholder="Search Equipment">
+                        <input #amount type="number" class="form-control mb-2 mr-sm-2" placeholder="Amount">
+                        <button type="button" class="btn btn-primary mb-2"
+                            (click)="searchEquipment(equip.value, amount.value)">Search</button>
+                    </form>
                 </div>
                 <div class="moveLabel2">
                     <table class="table table-striped">

@@ -1,5 +1,5 @@
 <div class="wholeApp">
-    <canvas id="canvas" height="400" width="600"></canvas>
+    <canvas id="canvas" class="canvas" height="400" width="600"></canvas>
     <button class="renovateButton" (click)="startRenovateForm($event)">Start renovate</button>
 
     <form *ngIf="canRenoveteForm" class="renovateForm" [formGroup]="validationsForAmount">
@@ -16,6 +16,10 @@
                     </mat-button-toggle>
                     <mat-button-toggle class="buttonsRenovate2" (click)="SeparatingRooms()">Razdvajanje prostorija
                     </mat-button-toggle>
+                </div>
+                <div class="buttons">
+                    <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                    <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
                 </div>
             </div>
             <div *ngIf="percentIsTwenty">
@@ -53,7 +57,10 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="buttons">
+                    <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                    <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+                </div>
             </div>
             <div *ngIf="percentIsFourty">
                 <label class="mainLabelMove">Datum od do:</label>
@@ -68,6 +75,10 @@
                             <mat-calendar [(selected)]="endDateRenovate"></mat-calendar>
                         </mat-card>
                     </div>
+                </div>
+                <div class="buttons">
+                    <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                    <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
                 </div>
             </div>
         </div>
@@ -87,14 +98,8 @@
         <div *ngIf="percentIsSixty">
             <div class="buttons">
                 <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
-                <button class="nextButton" (click)="addPercentRenovate($event); getTerminsRenovate()">Next</button>
-            </div>
-        </div>
-
-        <div *ngIf="!percentIsSixty">
-            <div class="buttons">
-                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
-                <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+                <button class="nextButton" id="NEXT" name="NEXT"
+                    (click)="addPercentRenovate($event); getTerminsRenovate()">Next</button>
             </div>
         </div>
         <div *ngIf="percentIsEighty">
@@ -121,6 +126,10 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="buttons">
+                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
             </div>
         </div>
 
