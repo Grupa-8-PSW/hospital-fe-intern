@@ -10,21 +10,19 @@ import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.componen
 import { HospitalModule } from '../hospital/hospital.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FormsModule } from '@angular/forms';
-
 import { ScheduleDialogComponent } from './bloodBanks/schedule-dialog/schedule-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ViewBloodRequestsComponent } from './bloodBanks/view-blood-requests/view-blood-requests.component';
 import { BloodTypePipe } from './bloodBanks/pipes/blood-type.pipe';
-
-
 import { BloodModule } from '../blood/blood.module';
 import { BloodComponent } from './blood/blood.component';
-
-import { StatisticsComponent } from './statistics/statistics.component';
-
+import { TendersComponent } from './tenders/tenders.component';
+import { StatisticsComponent } from './statistics/statistics.component'
 import { PatientModule } from '../patient/patient.module';
 import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
+import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
+import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +35,12 @@ import { ConsiliumModule } from '../consilium/consilium.module';
     BloodComponent,
     ViewBloodRequestsComponent,
     BloodTypePipe,
+    TendersComponent,
     BloodComponent,
     StatisticsComponent,
     ConsiliumsComponent,
+    UrgentRequestComponent,
+    MonthlySubscriptionComponent,
   ],
   imports: [
     FormsModule,

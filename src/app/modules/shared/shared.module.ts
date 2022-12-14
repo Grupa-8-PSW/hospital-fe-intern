@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent
   ],
   imports: [
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

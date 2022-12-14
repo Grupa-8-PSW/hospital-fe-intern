@@ -1,0 +1,36 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+h1{
+    color: #c2185b;
+    max-width: 30%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.form{
+    margin: 0 auto;
+    max-width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.tenderPreview{
+    width: 30%;
+    height: 60%;
+    float: right;
+    position: relative;
+    top: -20rem;
+    right: 1rem;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+.allTenders{
+    float: left;
+    position: relative;
+    top: -20rem;
+    
+    margin-left: 30px;
+}
