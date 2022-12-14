@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import Blood from 'src/app/model/blood';
 import { BloodType } from 'src/app/model/bloodType';
 import DateRange from 'src/app/model/dateRange';
@@ -20,7 +21,11 @@ export class TendersComponent {
   ngOnInit(): void {
   }
 
-  constructor(private service: TenderService){
+  constructor(private service: TenderService,  private router: Router){
+  }
+
+  allTend(): void {
+    this.router.navigate(['/allTenders']);
   }
 
   addBlood(): void {
@@ -28,6 +33,11 @@ export class TendersComponent {
   }
 
   createTender(): void {
+    if(this.type == '' ) {
+      window.alert('Type is empty!');
+    }
+    // window.alert(JSON.stringify(this.dateRange))
     this.service.createTender(new Tender(TenderStatus['Active' as keyof typeof TenderStatus], this.dateRange, this.blood));
+    
   }
 }

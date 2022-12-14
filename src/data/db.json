@@ -26,5 +26,55 @@
       "FirstName": "Miroslav",
       "LastName": "Milovanovic"
     }
+  ],
+  "consiliums": [
+    {
+      "id": 1,
+      "subject": "Sastanak u vezi jako bolesni pacijenata",
+      "from": "2022-10-20",
+      "to": "2022-10-30",
+      "duration": "90",
+      "participants": [
+        {
+          "id": 1,
+          "firstName": "Zeljko",
+          "lastName": "Babic"
+        },
+        {
+          "id": 2,
+          "firstName": "Bora",
+          "lastName": "Stevanovic"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "subject": "Hitan sastanak",
+      "from": "2023-01-10",
+      "to": "2023-01-15",
+      "duration": "75",
+      "participants": [
+        {
+          "id": 1,
+          "firstName": "Zeljko",
+          "lastName": "Babic"
+        },
+        {
+          "id": 2,
+          "firstName": "Bora",
+          "lastName": "Stevanovic"
+        },
+        {
+          "id": 3,
+          "firstName": "Slavica",
+          "lastName": "Todorovic"
+        },
+        {
+          "id": 4,
+          "firstName": "Zorana",
+          "lastName": "Petrovic"
+        }
+      ]
+    }
   ]
 }

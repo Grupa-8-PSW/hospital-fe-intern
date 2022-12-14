@@ -19,6 +19,8 @@ import { BloodComponent } from './blood/blood.component';
 import { TendersComponent } from './tenders/tenders.component';
 import { StatisticsComponent } from './statistics/statistics.component'
 import { PatientModule } from '../patient/patient.module';
+import { ConsiliumsComponent } from './consiliums/consiliums.component';
+import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
 
@@ -36,6 +38,7 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     TendersComponent,
     BloodComponent,
     StatisticsComponent,
+    ConsiliumsComponent,
     UrgentRequestComponent,
     MonthlySubscriptionComponent,
   ],
@@ -48,7 +51,8 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     FlexLayoutModule,
     BloodModule,
     NgxRerenderModule,
-    PatientModule
+    PatientModule,
+    ConsiliumModule
   ]
 })
 
