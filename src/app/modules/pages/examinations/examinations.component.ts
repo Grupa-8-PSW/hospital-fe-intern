@@ -53,12 +53,12 @@ export class ExaminationsComponent implements OnInit {
     this.router.navigate([`/examinations/edit/${id}`])
   }
 
-<<<<<<< HEAD
   public doExamination(id: number) : void {
     this.router.navigate([`/examinations/do`])
     //this.router.navigate([`/examinations/do/${id}`])
-=======
-  showReport(id: number): void {
+  }
+
+  public showReport(id: number): void {
     this.errorDownloadingReport = null;
     this.downloading = true;
     this.scheduleService.downloadReport(id).subscribe({
@@ -80,6 +80,5 @@ export class ExaminationsComponent implements OnInit {
   examinationStarted(date: Date) {
     const now = moment();
     return now.isAfter(date);
->>>>>>> e8248473916180b5dcd563d79fa68fc8f3475494
   }
 }
