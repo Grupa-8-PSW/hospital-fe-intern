@@ -22,6 +22,7 @@ import { PatientModule } from '../patient/patient.module';
 import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
+import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-reque
     StatisticsComponent,
     ConsiliumsComponent,
     UrgentRequestComponent,
+    MonthlySubscriptionComponent,
   ],
   imports: [
     FormsModule,

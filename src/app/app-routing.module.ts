@@ -21,6 +21,7 @@ import { CreateEditExaminationComponent } from "./modules/examination/create-edi
 import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
 import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-tenders.component";
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
+import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
 
@@ -49,9 +50,10 @@ const routes: Routes = [
   { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}}
   { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }}
-
 ];
 
 
