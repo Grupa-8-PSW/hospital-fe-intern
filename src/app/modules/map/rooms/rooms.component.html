@@ -220,9 +220,9 @@
     
     <form class="shedulesForm" *ngIf="state">
         <div class="shedules-button-group">
-            <button class="btn btn-danger text-light me-2"(click)="showExeminationss()">Examinations</button>
-            <button class="btn btn-danger text-light">Equipment transfers</button>
-          </div>
+            <button class="btn btn-danger text-light me-2"(click)="showExemination()">Examinations</button>
+            <button class="btn btn-danger text-light" (click)="showTransferEquipment()">Equipment transfers</button>
+        </div>
         <div *ngIf ="showExaminations">
             <label class="mainLabel">Examinations:</label>
             <table class="table table-striped">
@@ -231,19 +231,32 @@
                         <th scope="col">Start time:</th>
                         <th scope="col">End time:</th>
                     </tr>
-                    <tr *ngFor="let equip of equipments">
+                    <tr *ngFor="let exemination of examinations">
 
-                        <th scope="col">{{"10/12/2022nes20:00:00ne"}}</th>
-                        <th scope="col">{{"10/12/2022nes20:00:00ne"}}</th>
+                        <th scope="col">{{exemination.startTime}}</th>
+                        <th scope="col">{{exemination.duration}}</th>
                         <th scope="col"><button class="moveButton">Cancel</button>
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+            </table>
+        </div>
+        <div *ngIf ="showTransferEquipments">
+            <label class="mainLabel">Transfer Equipments:</label>
+            <table class="table table-striped">
+                <thead>
                     <tr>
-
+                        <th scope="col">Start time:</th>
+                        <th scope="col">End time:</th>
                     </tr>
-                </tbody>
+                    <tr *ngFor="let transfer of transfers">
+
+                        <th scope="col">{{transfer.startDate}}</th>
+                        <th scope="col">{{transfer.endDate}}</th>
+                        <th scope="col"><button class="moveButton">Cancel</button>
+                        </th>
+                    </tr>
+                </thead>
             </table>
         </div>
     </form>

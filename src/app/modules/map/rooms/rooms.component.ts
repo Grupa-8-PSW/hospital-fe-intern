@@ -15,6 +15,8 @@ import { disableDebugTools } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RoomForSeparateDTO } from '../model/roomForSeparateDTO.model';
 import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
+import { ShedulesDTO } from '../model/shedulesDTO.model';
+import { ExaminationDTO } from '../model/examinationDTO.model';
 
 
 
@@ -61,6 +63,8 @@ export class SignatureComponent implements OnInit {
   room1 = false;
   room2 = false;
   showExaminations = false;
+  showTransferEquipments = false;
+
 
   constructor(
     private router: Router,
@@ -78,11 +82,13 @@ export class SignatureComponent implements OnInit {
   public equipments: Equipment[] = [];
   public datas = [];
   public niz = [];
-  public schedulesDTO;
+  public schedulesDTO: ShedulesDTO;
   public equipmentTransferDTO: EquipmentTransferDTO;
   public roomForSeparateDTO: RoomForSeparateDTO;
   public roomForMergeDTO: RoomsForMergeDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
+  public transfers: EquipmentTransferDTO []
+  public examinations: ExaminationDTO [];
 
   ngOnInit(): void {
 
@@ -224,7 +230,10 @@ export class SignatureComponent implements OnInit {
             })
             this.roomsService.getShedulesDTO(id).subscribe(res => {
               this.schedulesDTO = res;
+              this.transfers = this.schedulesDTO.equipmentTransferDTOs
+              this.examinations = this.schedulesDTO.examinationDTOs
               console.log(this.schedulesDTO);
+              console.log(this.examinations)
             });
 
             this.equipmentsService.getEquipmentsByRoomId(id).subscribe(res => {
@@ -580,8 +589,14 @@ export class SignatureComponent implements OnInit {
     this.room2 = true;
   }
 
-  showExeminationss(){
+  showExemination(){
     this.showExaminations = true;
+    this.showTransferEquipments = false;
+  }
+
+  showTransferEquipment(){
+    this.showTransferEquipments = true;
+    this.showExaminations = false;
   }
 
 }

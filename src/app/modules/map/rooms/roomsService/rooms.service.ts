@@ -43,6 +43,7 @@ export class RoomsService {
 
     getMergedRoom(dto: RoomsForMergeDTO): Observable<MergedRoom> {
         return this.http.post<MergedRoom>(this.apiHost + 'api/map/floor/rooms/Room/get/mergedRoom', dto);
+    }
 
     getShedulesDTO(id: number): Observable<ShedulesDTO>{
         return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/schedules/' + id, { headers: this.headers } );
