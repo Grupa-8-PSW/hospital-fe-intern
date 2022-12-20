@@ -1,0 +1,80 @@
+{
+  "examinations": [
+    {
+      "doctorId": 1,
+      "patientId": 1,
+      "startTime": "2022-10-20T18:00:00.000Z",
+      "duration": 90,
+      "id": 1
+    },
+    {
+      "doctorId": 1,
+      "patientId": 2,
+      "startTime": "2022-10-04T14:50:00.000Z",
+      "duration": 105,
+      "id": 2
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "FirstName": "Dragan",
+      "LastName": "Todorovic"
+    },
+    {
+      "id": 2,
+      "FirstName": "Miroslav",
+      "LastName": "Milovanovic"
+    }
+  ],
+  "consiliums": [
+    {
+      "id": 1,
+      "subject": "Sastanak u vezi jako bolesni pacijenata",
+      "from": "2022-10-20",
+      "to": "2022-10-30",
+      "duration": "90",
+      "participants": [
+        {
+          "id": 1,
+          "firstName": "Zeljko",
+          "lastName": "Babic"
+        },
+        {
+          "id": 2,
+          "firstName": "Bora",
+          "lastName": "Stevanovic"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "subject": "Hitan sastanak",
+      "from": "2023-01-10",
+      "to": "2023-01-15",
+      "duration": "75",
+      "participants": [
+        {
+          "id": 1,
+          "firstName": "Zeljko",
+          "lastName": "Babic"
+        },
+        {
+          "id": 2,
+          "firstName": "Bora",
+          "lastName": "Stevanovic"
+        },
+        {
+          "id": 3,
+          "firstName": "Slavica",
+          "lastName": "Todorovic"
+        },
+        {
+          "id": 4,
+          "firstName": "Zorana",
+          "lastName": "Petrovic"
+        }
+      ]
+    }
+  ]
+}

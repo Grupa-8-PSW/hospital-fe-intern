@@ -10,7 +10,7 @@ import { SeparatedRooms } from '../../model/separatedRooms.model';
 import { RoomsForMergeDTO } from '../../model/RoomsForMergeDTO.model';
 import { MergedRoom } from '../../model/mergedRoom.model';
 import { ShedulesDTO } from '../../model/shedulesDTO.model';
-import { setupTestingRouterInternal } from '@angular/router/testing';
+import { setupTestingRouter } from '@angular/router/testing';
 import { ExaminationDTO } from '../../model/examinationDTO.model';
 
 @Injectable({

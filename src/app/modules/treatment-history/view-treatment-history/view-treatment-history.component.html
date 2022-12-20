@@ -1,0 +1,39 @@
+<div class="card fs-6 text-dark col-4 mx-auto mt-5" >
+    <div class="card-header bg-secondary text-dark fs-3 py-4">
+        <h2>History of treatment</h2>
+    </div>
+    <div class="card-body">
+        <div class="mb-3 col-12">
+            <label for = "treatmentHistory">Patient: {{treatmentHistory?.patient?.firstName}} {{treatmentHistory?.patient?.lastName}}</label>
+        </div>
+        <div class="mb-3 col-12">
+            <label for = "treatmentHistory">Date of starting treatment: {{treatmentHistory?.startDate}}</label>
+        </div>
+        <div class="mb-3 col-12">
+            <label for = "treatmentHistory">Reason for starting treatment: {{treatmentHistory?.reason}}</label>
+        </div>
+        <div class="mb-3 col-12">
+            <label for = "treatmentHistory">Room number: {{treatmentHistory?.roomId}}</label>
+        </div>
+        <div class="mb-3 col-12">
+            <label for = "treatmentHistory">Bed number: {{treatmentHistory?.bedId}}</label>
+        </div>
+        <div class="mb-3 col-12" *ngIf="!treatmentHistory?.active">
+            <label for = "treatmentHistory">Date of finishing treatment: {{treatmentHistory?.endDate}}</label>
+        </div>
+        <div class="mb-3 col-12" *ngIf="!treatmentHistory?.active">
+            <label for = "treatmentHistory">Reason of discharge: {{treatmentHistory?.dischargeReason}}</label>
+        </div>
+
+
+        <div class="buttons-wrapper mt-4">
+            <button (click)="discharge()" class="btn btn-primary me-3" *ngIf="treatmentHistory?.active">{{submitted ? "Finishing..." : "Finish treatment"}}</button>
+            <button (click)="downloadReport()" class="btn btn-primary me-3" [disabled]="downloading"
+             *ngIf="!treatmentHistory?.active">{{downloading ? "Downloading report..." : "Download report"}}</button>
+            <div class="error-block" *ngIf="errorDownloading">
+              {{ errorDownloading }}
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,98 @@
+.urgentRequest{
+    margin: auto;
+    left: 5%;
+    top: 10%;
+    position: fixed;
+
+}
+
+.scheduleReport {
+    margin: auto;
+    left: 10%;
+    top: 10%;
+    position: fixed;
+}
+
+.createBloodBanks{
+  margin: auto;
+  left: 15%;
+  position: fixed;
+}
+
+
+
+
+
+.containerm {
+
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 3px;
+    border: #c2185b 2px solid;
+    background-color: white;
+}
+
+table {
+    width: 100%;
+}
+
+.table-title {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+
+}
+
+.cell-center {
+    text-align: center;
+}
+
+.clickable:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.table-header {
+    display: flex;
+}
+
+
+
+
+th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    }
+
+    mat-toolbar {
+      justify-content: space-between;
+  }
+
+  .content {
+      padding: 16px;
+  }
+
+  .content > mat-card {
+      margin-bottom: 16px;
+  }
+
+  .align{
+    width: 350px;
+    align-items: center;
+    padding-left: 50px;
+  }
+
+  .zoom {
+    transition: transform .3s; /* Animation */
+  }
+
+  .zoom:hover {
+    transform: scale(1.07); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }

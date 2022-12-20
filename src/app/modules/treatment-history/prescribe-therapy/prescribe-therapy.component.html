@@ -1,0 +1,53 @@
+<div class="card fs-6 text-dark">
+    <div class="card-header bg-secondary text-dark fs-3 py-4">
+      Create Therapy
+    </div>
+    <div class="card-body">
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="therapyTypeMode" (change)="therapyTypeChanged($event)">
+        <mat-radio-button value="BLOOD_THERAPY">Blood</mat-radio-button>
+        <mat-radio-button value="MEDICAL_DRUG_THERAPY">Medical drugs</mat-radio-button>
+    </mat-radio-group>
+      <form [formGroup]="therapyForm" (submit)="onSubmit($event)">
+        <div *ngIf="therapyTypeMode == 'BLOOD_THERAPY'" class="mb-3">
+          <label for="bloodType" class="form-label">Blood Type</label>
+          <select name="bloodType" id="bloodType" class="form-control" formControlName="bloodType">
+            <option value="default" disabled>Select blood type</option>
+            <option *ngFor="let bloodType of bloodTypes" [value]="bloodType">{{ bloodType }}</option>
+          </select>
+          <span class="error-block" *ngIf="!bloodType.valid && bloodType.touched">
+            Please select blood type
+          </span>
+        </div>
+        <div *ngIf="therapyTypeMode == 'MEDICAL_DRUG_THERAPY'" class="mb-3">
+            <label for="MedicalDrug" class="form-label">Medical Drug</label>
+            <select name="medicalDrug" id="medicalDrug" class="form-control" formControlName="medicalDrug">
+              <option value="default" disabled>Select Medicine</option>
+              <option *ngFor="let medicalDrug of medicalDrugs" [value]="medicalDrug.code">{{ medicalDrug.name }}</option>
+            </select>
+            <span class="error-block" *ngIf="!medicalDrug.valid && medicalDrug.touched">
+              Please select Medicine
+            </span>
+        </div>
+        <div class="mb-3">
+          <label for="amount" class="form-label">Amount</label>
+          <input type="number" name="amount" class="form-control" min="0" max="5000" formControlName="amount">
+          <span class="error-block" *ngIf="!amount.valid && amount.touched">
+            Please select amount
+          </span>
+        </div>
+        <div class="mb-3">
+          <label for="reason" class="form-label">Reason</label>
+          <textarea name="reason" class="form-control" formControlName="reason"></textarea>
+          <span class="error-block" *ngIf="!reason.valid && reason.touched">
+            Please select reason
+          </span>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Create</button>
+        <div class="error-block" *ngIf="submittingError">
+          {{submittingError}}
+        </div>
+      </form>
+    </div>
+  </div>
+  

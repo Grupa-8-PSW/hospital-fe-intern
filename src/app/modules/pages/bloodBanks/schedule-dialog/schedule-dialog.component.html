@@ -1,0 +1,223 @@
+<mat-stepper  [linear]="isLinear" #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Choose start date and time</ng-template>
+        
+        <div class="stepHolder">
+            <mat-form-field appearance="fill"  >
+                <mat-label>Date</mat-label>
+                <input [min]="startDate"   matInput [(ngModel)]="startDate"  [matDatepicker]="picker1" required/>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker  #picker1></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Time</mat-label>
+                <input [min]="startTime" [(ngModel)]="startTime" name="sds" matTimepicker #t1="matTimepicker" />
+                <mat-hint>HH:MM</mat-hint>
+                <mat-datepicker-toggle matSuffix></mat-datepicker-toggle>
+            </mat-form-field>
+            <br>
+            <br>
+            <br>
+            <div class="stepHolder">
+                <button mat-button matStepperNext (click)="startDateNext()">Next</button>
+            </div>
+        </div>
+    </mat-step>
+    
+    <mat-step>
+        <form>
+            <ng-template matStepLabel>Frequency and consumption period</ng-template>
+            <div class="stepHolder">
+                <div class="buttonsPeriod">
+                    <p>Frequency</p>
+                    <div class="btn-group">
+                        <div id="dailyDiv" class="btn btn-dark"
+                            (click)="showDiv.daily = true;showDiv.weekly = false;showDiv.monthly = false; showDiv.annual=false; clickedDaily()">
+                            Daily
+                        </div>
+                        <div id="weeklyDiv" class="btn btn-dark"
+                        (click)="showDiv.daily = false;showDiv.weekly = true;showDiv.monthly = false; showDiv.annual=false; clickedWeekly()">
+                            Weekly
+                        </div>
+                        <div id="monthlyDiv" class="btn btn-dark" (click)="showDiv.daily = false;showDiv.weekly = false;showDiv.monthly = true; showDiv.annual=false; clickedMonthly()">
+                            Monthly
+                        </div>
+                        <div id="annualDiv" class="btn btn-dark" (click)="showDiv.daily = false;showDiv.weekly = false;showDiv.monthly = false; showDiv.annual=true; clickedAnnual()">
+                            Custom
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <div *ngIf="showDiv.daily" class="stepHolder">
+                    <br>
+                    <br>
+                    <mat-card-content>Consumption period for last:</mat-card-content>
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Hours</mat-label>
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodHours">
+                            <mat-option *ngFor="let index of [0,1,2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
+                        
+                        
+                    </mat-form-field>
+                    <br>
+                    <div class="stepHolder">
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </div>
+
+                <div *ngIf="showDiv.weekly" class="stepHolder">
+                    <br>
+                    <br>
+                    <mat-card-content>Consumption period for last:</mat-card-content>
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Days</mat-label>
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodDays">
+                            <mat-option value="1">1</mat-option>
+                            <mat-option value="2">2</mat-option>
+                            <mat-option value="3">3</mat-option>
+                            <mat-option value="4">4</mat-option>
+                            <mat-option value="5">5</mat-option>
+                            <mat-option value="6">6</mat-option>
+                            
+                            </mat-select>
+                        </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Hours</mat-label>
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodHours">
+                            <mat-option *ngFor="let index of [0, 1, 2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
+                        
+                        
+                    </mat-form-field>
+                    <br>
+                    <div class="stepHolder">
+                        <button mat-button matStepperNext (click)="WeeklyNext()">Next</button>
+                    </div>
+                </div>
+
+                <div *ngIf="showDiv.monthly" class="stepHolder">
+                    <br>
+                    <br>
+                    <mat-card-content>Consumption period for last:</mat-card-content>
+                    <br>  
+                    <mat-form-field appearance="fill">
+                        <mat-label>Days</mat-label>
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodDays">
+                            <mat-option *ngFor="let index of [0,1,2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
+                        </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Hours</mat-label>
+                        <mat-select name="sssass" [(ngModel)] = "ConsumptionPeriodHours">
+                            <mat-option *ngFor="let index of [0, 1, 2,3,4,5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+                            20, 21, 22, 23, 24]" [value]="index">{{index}}</mat-option>
+                        </mat-select>
+                        
+                        
+                    </mat-form-field>
+                    <br>
+                    <div class="stepHolder">
+                        <button mat-button matStepperNext (click)="MonthlyNext()" >Next</button>
+                    </div>
+                </div>
+                
+                <div *ngIf="showDiv.annual" class="stepHolder">
+                    <br>
+                    <br>
+                    <div >
+                        <mat-card-content>Custom Frequency:</mat-card-content>
+                        <br>  
+                        <mat-form-field appearance="fill">
+                            <mat-label>Months</mat-label>
+                            <input  
+                                min="0"
+                                name="ss"
+                                matInput
+                                type="number"
+                                [(ngModel)]="customFrequencyMonths"
+                                >
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="fill">
+                            <mat-label>Days</mat-label>
+                            <input
+                                min="0"
+                                max="31"
+                                name="ss"
+                                [(ngModel)]="customFrequencyDays"
+                                type="number"
+                                matInput/>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div >
+                        <mat-card-content>Custom Period:</mat-card-content>
+                        <br>  
+                        <mat-form-field appearance="fill">
+                            <mat-label>Months</mat-label>
+                            <input  
+                                min="0"
+                                name="ss"
+                                matInput
+                                type="number"
+                                [(ngModel)]="ConsumptionPeriodMonths"
+                                >
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Days</mat-label>
+                                <input  
+                                    min="0"
+                                    max="31"
+                                    name="ss"
+                                    matInput
+                                    type="number"
+                                    [(ngModel)]="ConsumptionPeriodDays"
+                                    >
+                                </mat-form-field>
+                    
+                    <br>
+                    <div class="stepHolder">
+                        <button mat-button matStepperNext (click)="nextCustomPeriod()">Next</button>
+                    </div>    
+                    </div>
+                </div> 
+               
+        </form>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <mat-card>
+            <mat-card-header> You are now set everything. </mat-card-header>
+            <mat-card-content>
+                <br>
+                <p>Report start sending at: </p>
+                <p>    Date: {{startDate}}</p>
+                <p>    Time: {{startTime}}</p>
+                <p>    Frequency: {{frequencyPeriodInHours}} hours</p>
+                <br>
+                <p>Consumption period:</p>
+                <p>last {{ConsumptionPeriodHours}} hours </p>
+                
+                <br>
+            </mat-card-content>
+        </mat-card>
+        <div>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="schedule()" mat-dialog-close>Done</button>
+        </div>
+    </mat-step>
+</mat-stepper>
