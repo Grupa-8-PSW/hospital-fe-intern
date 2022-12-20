@@ -420,6 +420,22 @@ input.ng-valid {
     background-color: #f44336
 }
 
-.shedules-button-group{
+.shedules-button-group {
     margin-top: 10px;
+}
+
+/* ============================================ DOCTOR EXAMINATION GRAPH  =========================================*/
+
+
+.doctorExaminationGraph {
+    margin-left: 200px;
+    margin-bottom: 100px;
+    width: 750px;
+    height: 460px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    position: relative;
 }

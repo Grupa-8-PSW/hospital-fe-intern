@@ -18,6 +18,7 @@ import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
 import { ShedulesDTO } from '../model/shedulesDTO.model';
 import { ExaminationDTO } from '../model/examinationDTO.model';
 import { DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
+import { Chart } from 'chart.js';
 
 
 
@@ -66,6 +67,9 @@ export class SignatureComponent implements OnInit {
   room2 = false;
   showExaminations = false;
   showTransferEquipments = false;
+  monthlyExaminations = false;
+  yearlyExaminations = false;
+  public chart: any;
 
 
   constructor(
@@ -89,8 +93,8 @@ export class SignatureComponent implements OnInit {
   public roomForSeparateDTO: RoomForSeparateDTO;
   public roomForMergeDTO: RoomsForMergeDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
-  public transfers: EquipmentTransferDTO []
-  public examinations: ExaminationDTO [];
+  public transfers: EquipmentTransferDTO[]
+  public examinations: ExaminationDTO[];
 
   ngOnInit(): void {
 
@@ -600,27 +604,77 @@ export class SignatureComponent implements OnInit {
     this.room2 = true;
   }
 
-  showExemination(){
+  showExemination() {
     this.showExaminations = true;
     this.showTransferEquipments = false;
   }
 
-  showTransferEquipment(){
+  showTransferEquipment() {
     this.showTransferEquipments = true;
     this.showExaminations = false;
   }
 
-  cancelExe(event,examination){
+  cancelExe(event, examination) {
     const now = new Date();
-    if(examination.startDate + (24*60*60*1000) < now){
+    if (examination.startDate + (24 * 60 * 60 * 1000) < now) {
       alert("Ne moze te otkazati 24h pre pregleda")
     }
-    
-      else{  
-        this.roomsService.deleteExe(examination.id).subscribe(res=>{})
-        window.location.reload();
+
+    else {
+      this.roomsService.deleteExe(examination.id).subscribe(res => { })
+      window.location.reload();
+    }
+
+  }
+
+  // =========================== DOCTOR EXAMINATIONS GRAPHS ===========================================
+
+  showMonthlyExaminations() {
+    this.monthlyExaminations = true;
+    this.yearlyExaminations = false;
+    //zovem beck da mi dobavi ove podatke
+
+    let myChart = new Chart("monthlyExaminationsId", {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
       }
-    
+    });
+  }
+
+  showYearlyExaminations() {
+    this.yearlyExaminations = true;
+    this.monthlyExaminations = false;
+    //zovem beck da mi dobavi ove podatke
   }
 
 }
+
