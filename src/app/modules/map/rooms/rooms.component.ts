@@ -60,6 +60,7 @@ export class SignatureComponent implements OnInit {
   daysRenovate: number;
   hoursRenovate: number;
   selectedRoom?: Room;
+  selectedRoom2?: Room;
   selectedTermin?: FreeSpaceForTransfer;
   room1 = false;
   room2 = false;
@@ -501,12 +502,17 @@ export class SignatureComponent implements OnInit {
   // ZA RENOVIRANJE
   selectedRoomForSeparating(selectedRoomId: number, room: Room) {
     this.roomForSeparateDTO.oldRoomId = room.id;
+    this.selectedRoom = room;
   }
   // TREBA DODATI ROOMID2 U NOVI DTO I TREBA SKONTATI KAKO MULTI SELECT DA ODRADIM DA UZMEM I ROOMID2 i ROOM2
-  selectedRoomsForMerge(selectedRoomId: number, room: Room, selectedRoomId2: number, room2: Room) {
+  selectedRoom1ForMerge(selectedRoomId: number, room: Room) {
     this.roomForMergeDTO.oldRoom1Id = room.id;
-    this.roomForMergeDTO.oldRoom2Id = room2.id;
+    this.selectedRoom = room;
+  }
 
+  selectedRoom2ForMerge(selectedRoomId: number, room: Room) {
+    this.roomForMergeDTO.oldRoom2Id = room.id;
+    this.selectedRoom2 = room;
   }
   getStartDateForRenovate(startDateRenovate) {
 
@@ -529,38 +535,40 @@ export class SignatureComponent implements OnInit {
   }
 
   newMergedRoom(newMergedRoom) {
-    this.roomForMergeDTO.newRoomName = newMergedRoom;
+    this.roomForMergeDTO.newRoomName = newMergedRoom.value;
   }
 
   newMergedRoomType(newMergedRoomType) {
-    this.roomForMergeDTO.newRoomType = newMergedRoomType;
+    this.roomForMergeDTO.newRoomType = newMergedRoomType.value;
   }
 
-  newSeparatedRoom(newMergedRoom) {
-    this.roomForSeparateDTO.newRoom1Name = newMergedRoom.value;
+  newSeparatedRoom(newSeparatedRoom) {
+    this.roomForSeparateDTO.newRoom1Name = newSeparatedRoom.value;
   }
 
-  newSeparatedRoomType(newMergedRoomType) {
-    this.roomForSeparateDTO.newRoom1Type = newMergedRoomType.value;
+  newSeparatedRoomType(newSeparatedRoom) {
+    this.roomForSeparateDTO.newRoom1Type = newSeparatedRoom.value;
   }
 
-  newSeparatedRoom2(newMergedRoom2) {
-    this.roomForSeparateDTO.newRoom2Name = newMergedRoom2.value;
+  newSeparatedRoom2(newSeparatedRoom) {
+    this.roomForSeparateDTO.newRoom2Name = newSeparatedRoom.value;
   }
 
-  newSeparatedRoom2Type(newMergedRoom2Type) {
-    this.roomForSeparateDTO.newRoom2Type = newMergedRoom2Type.value;
+  newSeparatedRoom2Type(newSeparatedRoom) {
+    this.roomForSeparateDTO.newRoom2Type = newSeparatedRoom.value;
   }
 
   ScheduleForMerginRooms() {
     if (this.mergeState == true) {
       //stavim sveu MergeRoomDTO i servis 
       this.roomsService.getMergedRoom(this.roomForMergeDTO).subscribe(res => {
+        console.log("MERGOVANA SOBA:");
         console.log(res);
       })
     } else if (this.separateState == true) {
       //stavim sve u SeparateRoomDTO i servis
       this.roomsService.getSeparatedRooms(this.roomForSeparateDTO).subscribe(res => {
+        console.log("SEPARATOVANA SOBA!!!");
         console.log(res);
       })
     }
