@@ -64,7 +64,7 @@ export class ViewBloodRequestsComponent {
         })
         request[0].status = 1;
         this.service.changeRequestStatus(request[0]).subscribe(res=> {
-          window.location.reload();
+          this.ngOnInit();
        });
       }
       else if(element.innerHTML === 'Reject') {
@@ -73,7 +73,7 @@ export class ViewBloodRequestsComponent {
         })
         request[0].status = 0;
         this.service.changeRequestStatus(request[0]).subscribe(res=> {
-          window.location.reload();
+          this.ngOnInit();
        });
 
       }

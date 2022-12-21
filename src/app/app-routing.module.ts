@@ -4,7 +4,6 @@ import { BloodBanksComponent } from "./modules/pages/bloodBanks/blood-banks/bloo
 import { CreateBloodBankComponent } from "./modules/pages/bloodBanks/create-blood-bank/create-blood-bank.component";
 import { CalendarComponent } from "./modules/pages/calendar/calendar.component";
 import { HomeComponent } from "./modules/pages/home/home.component";
-import { CheckBloodCountComponent } from "./modules/hospital/check-blood-count/check-blood-count.component";
 import { AuthGuard } from "./modules/auth/helpers/auth.guard";
 import { RoleGuard } from "./modules/auth/helpers/role.guard";
 import { StatisticsComponent } from "./modules/pages/statistics/statistics.component";
@@ -20,22 +19,25 @@ import { ExaminationsComponent } from "./modules/pages/examinations/examinations
 import { FeedbackDisplayComponent } from "./modules/hospital/feedback/feedback-display/feedback-display.component";
 import { CreateEditExaminationComponent } from "./modules/examination/create-edit-examination/create-edit-examination.component";
 import { ConsiliumsComponent } from "./modules/pages/consiliums/consiliums.component";
+import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-tenders.component";
+import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
+import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
-
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
-  { path: 'checkBlood', component: CheckBloodCountComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
   { path: 'examinations/edit/:id', component: CreateEditExaminationComponent },
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent },
   { path: 'view/bloodRequest', component: ViewBloodRequestsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  { path: 'tenders', component: TendersComponent},
   { path: 'blood', component: BloodComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  //{ path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  // { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent},
   { path: 'statistics', component: StatisticsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
@@ -46,6 +48,15 @@ const routes: Routes = [
   { path: 'examinations/:day/:month/:year', component: ExaminationsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'blood', component: BloodComponent, canActivate: [AuthGuard]},
   { path: 'consiliums', component: ConsiliumsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
+  { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent},
+  { path: 'treatmentHistory/dischargePatient/:id', component: DischargePatientComponent}, //treatment id
+  { path: 'treatmentHistory/presctibeTherapy/:id', component: PrescribeTherapyComponent},
+  { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
+  { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
+  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}},
+  { path: 'allTenders', component: AllTendersComponent},
+  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'examinations/do', component: DoExaminationComponent}
 ];
 
