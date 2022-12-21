@@ -54,8 +54,10 @@ export class ScheduleService {
     return this.http.post(this.examinationDoneUrl, examinationDone, { headers: this.headers });
   }
 
-  downloadReport(examinationId: number) {
-    return this.http.get(`${this.examinationUrl}${examinationId}/generateReport`,  {
+  downloadReport(examinationId: number, includeReport: boolean , includeSymptoms: boolean, includePrescriptions: boolean) {
+    const url = `${this.examinationUrl}${examinationId}/generateReport?includeReport=${includeReport}&includeSymptoms=${includeSymptoms}
+      &includePrescriptions=${includePrescriptions}`;
+    return this.http.get(url,  {
       observe: 'response',
       responseType: 'blob'
     });

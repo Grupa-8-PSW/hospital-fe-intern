@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ScheduleService } from '../../examination/schedule.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import Examination from '../../../model/examination';
 import * as moment from 'moment';
 
@@ -14,12 +15,22 @@ export class ExaminationsComponent implements OnInit {
   showAddExamination: boolean = false;
   errorDownloadingReport: string | null = null;
   downloading = false;
+  modalRef?: BsModalRef;
+  includeReport = false;
+  includeSymptoms = false;
+  includePrescriptions = false;
+  selectedExaminationId: number | null = null;
 
   public dataSource = new MatTableDataSource<Examination>();
   public displayedColumns = ['starts', 'duration', 'Patient Id', 'edit', 'doExamination'];
   public examinations: Examination[] = [];
 
-  constructor(private scheduleService: ScheduleService, private router: Router,  private route: ActivatedRoute) { }
+  constructor(
+    private scheduleService: ScheduleService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private modalService: BsModalService
+  ) { }
 
   ngOnInit(): void {
      this.route.params.subscribe((params: Params) => {
@@ -58,10 +69,13 @@ export class ExaminationsComponent implements OnInit {
     //this.router.navigate([`/examinations/do/${id}`])
   }
 
-  public showReport(id: number): void {
+  public showReport(): void {
+    if (!this.selectedExaminationId) return;
+
     this.errorDownloadingReport = null;
     this.downloading = true;
-    this.scheduleService.downloadReport(id).subscribe({
+    this.scheduleService.downloadReport(this.selectedExaminationId, this.includeReport,
+      this.includeSymptoms, this.includePrescriptions).subscribe({
       next: (response) => {
         this.downloading = false;
         console.log(response);
@@ -74,11 +88,18 @@ export class ExaminationsComponent implements OnInit {
         console.log(err);
         this.errorDownloadingReport = "Error downloading report.";
       }
-    })
+    });
+    this.modalRef?.hide();
   }
 
   examinationStarted(date: Date) {
     const now = moment();
     return now.isAfter(date);
   }
+
+  openModal(template: TemplateRef<any>, examinationId: number) {
+    this.modalRef = this.modalService.show(template);
+    this.selectedExaminationId = examinationId;
+  }
 }
+

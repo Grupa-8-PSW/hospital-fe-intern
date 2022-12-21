@@ -37,8 +37,7 @@ const routes: Routes = [
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
-  { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  //{ path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
+  // { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent},
   { path: 'statistics', component: StatisticsComponent },
   { path: 'treatmentHistory/create', component: CreateTreatmentHistoryComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
@@ -55,9 +54,9 @@ const routes: Routes = [
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}}
+  { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}},
   { path: 'allTenders', component: AllTendersComponent},
-  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }}
+  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'examinations/do', component: DoExaminationComponent}
 ];
 
