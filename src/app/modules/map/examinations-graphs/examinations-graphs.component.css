@@ -1,0 +1,32 @@
+/* ============================================ DOCTOR EXAMINATION GRAPH  =========================================*/
+
+
+.doctorExaminationGraph {
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-bottom: 100px;
+    width: 750px;
+    height: 460px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    position: relative;
+}
+
+.shedules-button-group {
+    margin-top: 10px;
+}
+
+.mainLabel {
+    font-size: 32px;
+    /* margin-left: 30px; */
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.canvasYearly {
+    width: 400px;
+    height: 150px;
+}

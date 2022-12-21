@@ -21,13 +21,15 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ExaminationsGraphsComponent } from './modules/map/examinations-graphs/examinations-graphs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignatureComponent,
     FloorsComponent,
-    BuildingComponent
+    BuildingComponent,
+    ExaminationsGraphsComponent,
   ],
   imports: [
     FormsModule,

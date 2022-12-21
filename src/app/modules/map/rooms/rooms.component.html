@@ -414,18 +414,3 @@
         </div>
     </div>
 </form>
-
-<form class="doctorExaminationGraph" *ngIf="state">
-    <div class="shedules-button-group">
-        <button class="btn btn-danger text-light me-2" (click)="showMonthlyExaminations()">Monthly</button>
-        <button class="btn btn-danger text-light" (click)="showYearlyExaminations()">Yearly</button>
-    </div>
-    <div *ngIf="monthlyExaminations">
-        <label class="mainLabel">Monthly:</label>
-        <canvas id="monthlyExaminationsId" width="400" height="400"></canvas>
-    </div>
-    <div *ngIf="yearlyExaminations">
-        <label class="mainLabel">Yearly:</label>
-        <canvas id="yearlyExaminationsId" style="width:100%;max-width:700px"></canvas>
-    </div>
-</form>
