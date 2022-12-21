@@ -1,9 +1,42 @@
-<div class="text-muted">
-    <h2>Prescription:</h2>
+<div [formGroup]="listForm">
+    <ng-container formArrayName="prescriptions">
+        <ng-container *ngFor="let listForm of prescriptions.controls; let ind = index">
+            <div [formGroupName]="ind">
+
+                <div [formGroup]="prescriptionForm">
+                    <ng-container formArrayName="items">
+                        <ng-container *ngFor="let itemForm of items.controls; let index = index">
+                            <div [formGroupName]="index">
+                                <mat-form-field appearance="fill">
+                                    <mat-label for="patient">Medicines</mat-label>
+                                    <mat-select name="patient" formControlName="medicine">
+                                        <mat-option *ngFor="let medicine of allMedicalDrugs" [value]="medicine">
+                                            {{medicine.id}} {{medicine.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label for="patient">Quantity[mg]</mat-label>
+                                    <input matInput value="200" type="number" min="0" step="100" name="patient"
+                                        formControlName="quantity">
+                                </mat-form-field>
+
+
+
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <button type="button" (click)="addNewItem()" mat-fab
+                        color="primary"><mat-icon>add</mat-icon></button>
+                    <button type="button" (click)="save()" class="btn btn-primary me-3">Save prescription</button>
+
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <button type="button" (click)="addNewPrescription()">Add prescription to list</button>
+    <button type="button" (click)="saveP()" class="btn btn-primary me-3">see list</button>
+
 </div>
-<app-prescription-item></app-prescription-item>
-<div #ChildInsertionPoint></div>
-    
-<button mat-fab color="primary" (click)="addPrescriptionItemComponent()">
-<mat-icon>add</mat-icon>
-</button>

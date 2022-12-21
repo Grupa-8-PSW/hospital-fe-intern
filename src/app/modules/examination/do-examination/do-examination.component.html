@@ -1,53 +1,114 @@
-  <mat-stepper [linear]="isLinear" #stepper>
+<mat-stepper [linear]="isLinear" #stepper>
 
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Select symptoms</ng-template>
-        <mat-form-field appearance="fill">
-            <mat-label>Symptoms</mat-label>
-            <mat-select formControlName="symptoms" multiple>
-              <mat-option *ngFor="let symptom of allSymptoms" [value]="symptom">{{symptom.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div class="buttons-wrapper mt-4">
-          <button mat-button matStepperNext class="btn btn-primary me-3">Next</button>
-        </div>
-      </form>
-    </mat-step>
-
-    <mat-step [stepControl]="secondFormGroup" label="Fill out report">
-      <form [formGroup]="secondFormGroup">
-          <mat-form-field  appearance="fill" style="width: 300px;">
-            <textarea matInput rows="20" cols="500" formControlName="record"></textarea>
-        </mat-form-field>
-        <div class="buttons-wrapper mt-4">
-          <button class="btn btn-primary me-3" mat-button matStepperPrevious>Back</button>
-          <button class="btn btn-primary me-3" mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    
-    <mat-step>
-      <ng-template matStepLabel>Prescriptions</ng-template>
-      <app-prescription></app-prescription>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select symptoms</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Symptoms</mat-label>
+        <mat-select formControlName="symptoms" multiple>
+          <mat-option *ngFor="let symptom of allSymptoms" [value]="symptom">{{symptom.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <div class="buttons-wrapper mt-4">
-        <button mat-button (click)="addPrescriptionComponent()" class="btn btn-primary me-3">New prescription</button>
+        <button mat-button matStepperNext class="btn btn-primary me-3">Next</button>
       </div>
-      <div #ChildInsertionPoint></div>
-      
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Fill out report">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field appearance="fill" style="width: 300px;">
+        <textarea matInput rows="20" cols="500" formControlName="record"></textarea>
+      </mat-form-field>
       <div class="buttons-wrapper mt-4">
-        <button mat-button matStepperPrevious class="btn btn-primary me-3">Back</button>
+        <button class="btn btn-primary me-3" mat-button matStepperPrevious>Back</button>
         <button class="btn btn-primary me-3" mat-button matStepperNext>Next</button>
       </div>
-    </mat-step>
-    
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div class="buttons-wrapper mt-4">
-        <button mat-button matStepperPrevious class="btn btn-primary me-3">Back</button>
-        <button mat-button (click)="done()" class="btn btn-primary me-3">Done</button>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Prescriptions</ng-template>
+    <div [formGroup]="listForm">
+      <ng-container formArrayName="prescriptions">
+        <ng-container *ngFor="let listForm of prescriptions.controls; let ind = index">
+          <div [formGroupName]="ind">
+
+            <div [formGroup]="prescriptionForm">
+              <ng-container formArrayName="items">
+                <ng-container *ngFor="let itemForm of items.controls; let index = index">
+                  <div [formGroupName]="index">
+                    <mat-form-field appearance="fill">
+                      <mat-label for="patient">Medicines</mat-label>
+                      <mat-select name="patient" formControlName="medicine">
+                        <mat-option *ngFor="let medicine of allMedicalDrugs" [value]="medicine">
+                          {{medicine.id}} {{medicine.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                      <mat-label for="patient">Quantity[mg]</mat-label>
+                      <input matInput value="200" type="number" min="0" step="100" name="patient"
+                        formControlName="quantity">
+                    </mat-form-field>
+
+                  </div>
+                </ng-container>
+              </ng-container>
+              <div>
+                <button type="button" (click)="addNewItem()" class="btn btn-primary me-3">Add medicine</button>
+                <button type="button" (click)="save()" class="btn btn-primary me-3">Save prescription</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <button type="button" (click)="addNewPrescription()" mat-fab color="primary"><mat-icon>add</mat-icon></button>
+
+    </div>
+
+
+
+    <div class="buttons-wrapper mt-4">
+      <button mat-button matStepperPrevious class="btn btn-primary me-3">Back</button>
+      <button class="btn btn-primary me-3" mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <div class="card fs-6 text-dark col-4 mx-auto mt-5">
+
+      <div class="card-body">
+        <div class="mb-3 col-12">
+          <label>Symptoms: </label>
+          <label *ngFor="let symptom of selSymptoms">
+            <div class="mb-3 col-12">
+              {{symptom.name}},
+            </div>
+          </label>
+        </div>
+        <div class="mb-3 col-12">
+          <label>Record: {{record}}</label>
+        </div>
       </div>
-    </mat-step>
-  </mat-stepper>
-  
+
+    </div>
+    <ng-container *ngFor="let prescription of writtenPrescriptions">
+
+      <div *ngFor=" let ola of prescription.items ">
+
+        <p>sdf</p>
+
+      </div>
+    </ng-container>
+
+
+    <div class=" buttons-wrapper mt-4">
+      <button mat-button matStepperPrevious class="btn btn-primary me-3">Back</button>
+      <button mat-button (click)="done()" class="btn btn-primary me-3">Done</button>
+    </div>
+  </mat-step>
+</mat-stepper>

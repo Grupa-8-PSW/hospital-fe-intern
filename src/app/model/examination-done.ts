@@ -1,4 +1,5 @@
 import Examination from "./examination"
+import Prescription from "./prescription"
 import Symptom from "./symptom"
 
 export default interface ExaminationDone {
@@ -7,6 +8,6 @@ export default interface ExaminationDone {
     examination?: Examination,
     record: string,
     symptoms: Symptom[] | null,
-    prescriptions?: any
+    prescriptions: Prescription[] | null
   }
   

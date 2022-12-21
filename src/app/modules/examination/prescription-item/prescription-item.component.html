@@ -1,14 +1,21 @@
-<div>
-<mat-form-field appearance="fill">
-    <mat-label for="patient">Medicines</mat-label>
-    <mat-select name="patient" formControlName="patient">
-      <mat-option *ngFor="let medicine of medicalDrugs" [value]="medicine.id">
-        {{medicine.id}} {{medicine.name}}
-      </mat-option>
-    </mat-select>
-</mat-form-field>
+<ng-container [formGroup]="form">
+  <mat-card formGroupName="prescriptonItem">
 
-<mat-form-field appearance="fill">
-    <mat-label for="patient">Quantity[mg]</mat-label>
-    <input matInput value="200" type="number" min="0" step="100" name="patient" formControlName="patient1">
-</mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label for="patient">Medicines</mat-label>
+      <mat-select name="patient" formControlName="chosenMedicalDrug_fc">
+        <mat-option *ngFor="let medicine of allMedicalDrugs" [value]="medicine.id">
+          {{medicine.id}} {{medicine.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="patient">Quantity[mg]</mat-label>
+      <input matInput value="200" type="number" min="0" step="100" name="patient" formControlName="quantity_fc">
+    </mat-form-field>
+
+    <button mat-button (click)="save()" class="btn btn-primary me-3">Ok</button>
+
+  </mat-card>
+</ng-container>
