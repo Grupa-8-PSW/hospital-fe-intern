@@ -5,6 +5,7 @@ import { HomeComponent } from "./modules/pages/home/home.component";
 import { BuildingComponent } from "./modules/map/building/building.component";
 import { FloorsComponent } from "./modules/map/floors/floors.component";
 import { SignatureComponent } from "./modules/map/rooms/rooms.component";
+import{TenderChartsComponent} from "./modules/pages/tender-charts/tender-charts.component"
 
 
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'map/floor/:id', component: FloorsComponent },
   { path: 'map/floor/rooms/:floorId', component: SignatureComponent },
-  { path: 'map/floor/rooms/:floorId/:roomId', component: SignatureComponent }
+  { path: 'map/floor/rooms/:floorId/:roomId', component: SignatureComponent },
+  { path: 'tender-graphs', component: TenderChartsComponent }
 ];
 
 @NgModule({

@@ -74,7 +74,7 @@ export class SignatureComponent implements OnInit {
     private formsService: FormsService,
     private equipmentsService: EquipmentsService,
     public dialog: MatDialog
-  ) { }
+  ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false;}
 
   public rooms: Room[] = [];
   public allRooms: Room[] = [];
