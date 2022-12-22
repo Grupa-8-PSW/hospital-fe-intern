@@ -6,6 +6,7 @@ import { BloodRequestComponent } from './blood-request/blood-request.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { BloodRequestListComponent } from './blood-request-list/blood-request-list.component';
 import { BloodRequestEditDialogComponent } from './blood-request-edit-dialog/blood-request-edit-dialog.component';
+import { BloodRequestDoctorViewComponent } from './blood-request-doctor-view/blood-request-doctor-view.component';
 
 
 
@@ -14,7 +15,8 @@ import { BloodRequestEditDialogComponent } from './blood-request-edit-dialog/blo
     BloodListComponent,
     BloodRequestComponent,
     BloodRequestListComponent,
-    BloodRequestEditDialogComponent
+    BloodRequestEditDialogComponent,
+    BloodRequestDoctorViewComponent
   ],
   imports: [
     CommonModule,
