@@ -16,4 +16,9 @@ export class ChartServiceService {
     const p = {'from': startTime.toString(), 'to': endTime.toString()};
     return this.http.get(this.apiHost + 'api/Tender/getAllBloodAmountsBetweenDates', { params: p});
   }
+
+  GetBloodBetweenDatesForUrgentRequest(startTime: Date, endTime: Date): Observable<any>{
+    const p = {'from': startTime.toString(), 'to': endTime.toString()};
+    return this.http.get(this.apiHost + 'api/UrgentRequest/getData', { params: p});
+  }
 }

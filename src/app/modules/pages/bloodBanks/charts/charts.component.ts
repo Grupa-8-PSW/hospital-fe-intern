@@ -12,6 +12,7 @@ import { forEach } from 'lodash';
 export class ChartsComponent {
 
   public chart: any;
+  public chartRequest: any;
   public pieChart: any;
 
   barColors = [
@@ -26,6 +27,16 @@ export class ChartsComponent {
   endDate: Date = new Date();
   selInput: String = '';
   generate: Boolean = false;
+  bloodTypes = [
+    "0-",
+    "0+",
+    "A+",
+    "A-",
+    "B+",
+    "B-",
+    "AB+",
+    "AB-"
+  ];
 
 
   constructor(private _service: ChartServiceService) {}
@@ -42,10 +53,40 @@ export class ChartsComponent {
       const bloodTypes = this.CreateBloodTypesArray(data);
       const quantities = this.SumQuantitiesForBloodTypes(bloodTypes, data);
       this.generate = false;
-      this.createPieChart(bloodTypes, quantities);
-      this.createChart(bankNames, values);
+      if(this.chart == undefined && this.pieChart == undefined){
+        this.createPieChart(bloodTypes, quantities);
+        this.createChart(bankNames, values);
+      } else{
+        this.chart.data.datasets[0].data = values;
+        this.chart.data.labels = bankNames;
+        this.chart.update();
+      }
+
+
+    } else {
+      this.generate = true;
+      let data = await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate));
+      const quantities = this.CreateBloodQuanitites(data[0].blood);
+      this.generate = false;
+      if(this.chart == undefined){
+        this.createUrgentRequestChart(quantities);
+      } else{
+      this.chart.data.datasets[0].data = quantities;
+      this.chart.data.labels = this.bloodTypes;
+      this.chart.update();
+      }
+
     }
   }
+
+  CreateBloodQuanitites(data: any){
+    let quanitities: any[] = [];
+    data.forEach((element: { quantity: any; }) => {
+        quanitities.push(element.quantity)
+      });
+    return quanitities;
+  }
+
 
   CreateBankNamesArray(data: any): any{
     const bankNames: string[] = [];
@@ -98,45 +139,69 @@ export class ChartsComponent {
   }
 
   createChart(bankNames: any[], values: any[]){
-  
+
     this.chart = new Chart("MyChart", {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: bankNames, 
+        labels: bankNames,
 	       datasets: [
           {
-            label: "Ukupno krvi",
+            label: "Blood quantities",
             data: values,
-            backgroundColor: 'red'
+            backgroundColor: '#9C254D'
           }
         ]
       },
       options: {
-        aspectRatio: 4.5
+        aspectRatio: 2
       }
-      
+
     });
   }
+
+
+  createUrgentRequestChart(values: any[]){
+
+    this.chart = new Chart("MyChart", {
+      type: 'bar', //this denotes tha type of chart
+
+      data: {// values on X-Axis
+        labels: this.bloodTypes,
+	       datasets: [
+          {
+            label: "Blood quantities",
+            data: values,
+            backgroundColor: '#9C254D'
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 2
+      }
+
+    });
+  }
+
 
   createPieChart(bloodTypes: any[], quantities: any[]){
     this.pieChart = new Chart("MyPieChart", {
       type: 'pie', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: bloodTypes, 
+        labels: bloodTypes,
 	       datasets: [
           {
             label: "Ukupno krvi",
             data: quantities,
-            backgroundColor: ['red', 'blue', 'green', 'yellow', 'magenta']
+            backgroundColor: ['#EF4B4B', '#7ECFC0', '#90A17D', '#F2E3C9', '#EC8F6A']
           }
         ]
       },
       options: {
-        aspectRatio: 4.5
+        aspectRatio: 2
       }
-      
+
     });
   }
 
