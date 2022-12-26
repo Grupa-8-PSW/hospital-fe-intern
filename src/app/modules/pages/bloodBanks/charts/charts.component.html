@@ -1,8 +1,9 @@
-<div style="max-width: 15rem; margin: 0 auto 0 auto;"> 
+<div style="max-width: 15rem; margin: 0 auto 0 auto;">
     <h1>Blood Bank Statistics</h1>
     <select name="statsOption" id="statsOption" [(ngModel)]="selInput">
         <option disabled selected value> -- select an option -- </option>
         <option value="t">Tenders</option>
+        <option value="ur">Urgent requests</option>
     </select>
     <input type="date" style="margin-top: 5px; width: 11rem;" name="startDate" id="startDate" [(ngModel)]="startDate">
     <input type="date" style="margin-top: 5px; width: 11rem;" name="endDate" id="endDate" [(ngModel)]="endDate">
@@ -20,3 +21,4 @@
         <canvas  id="MyPieChart">{{ pieChart }}</canvas>
     </div>
 </div>
+
