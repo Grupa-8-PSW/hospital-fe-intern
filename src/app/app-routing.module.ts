@@ -23,6 +23,7 @@ import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-ten
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
 import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
+import { ChartsComponent } from "./modules/pages/bloodBanks/charts/charts.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,7 +38,7 @@ const routes: Routes = [
   { path: 'bloodBanks', component: BloodBanksComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'bloodBanks/add', component: CreateBloodBankComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
-  { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  // { path: 'checkBlood', component: CheckBloodCountComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   //{ path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] } },
   { path: 'calendar', component: CalendarComponent},
   { path: 'statistics', component: StatisticsComponent },
@@ -55,10 +56,11 @@ const routes: Routes = [
   { path: 'treatmentHistory/viewAll', component: ViewAllTreatmentHistoriesComponent},
   { path: 'treatmentHistory/view/:id', component: ViewTreatmentHistoryComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}}
+  { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}},
   { path: 'allTenders', component: AllTendersComponent},
-  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }}
-  { path: 'examinations/do', component: DoExaminationComponent}
+  { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
+  { path: 'examinations/do', component: DoExaminationComponent},
+  { path: 'bloodBanks/charts', component: ChartsComponent}
 ];
 
 
