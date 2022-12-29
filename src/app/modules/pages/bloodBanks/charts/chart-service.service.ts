@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UrgentRequestBloodBankStatistic } from 'src/app/model/urgentRequestBloodBankStatistic';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,11 @@ export class ChartServiceService {
 
   GetBloodBetweenDatesForUrgentRequest(startTime: Date, endTime: Date): Observable<any>{
     const p = {'from': startTime.toString(), 'to': endTime.toString()};
-    return this.http.get(this.apiHost + 'api/UrgentRequest/getData', { params: p});
+    return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getData', { params: p});
+  }
+
+  GetQuantitiesPerBloodTypeStatistic(startTime: Date, endTime: Date) : Observable<any> {
+    const p = {'from': startTime.toString(), 'to': endTime.toString()};
+    return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getQuantitiesPerTypeStatistic', { params: p});
   }
 }

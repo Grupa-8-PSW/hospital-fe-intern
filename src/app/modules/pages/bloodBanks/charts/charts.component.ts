@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import { ChartServiceService } from './chart-service.service';
 import { interval, firstValueFrom } from 'rxjs';
 import { forEach } from 'lodash';
+import { UrgentRequestBloodBankStatistic } from 'src/app/model/urgentRequestBloodBankStatistic';
 
 @Component({
   selector: 'app-charts',
@@ -20,7 +21,10 @@ export class ChartsComponent {
     "#00aba9",
     "#2b5797",
     "#e8c3b9",
-    "#1e7145"
+    "#1e7145",
+    "#89e133",
+    "#ff0000",
+    "#246711",
   ];
 
   startDate: Date = new Date();
@@ -64,27 +68,36 @@ export class ChartsComponent {
 
 
     } else {
-      this.generate = true;
-      let data = await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate));
-      const quantities = this.CreateBloodQuanitites(data[0].blood);
-      this.generate = false;
-      if(this.chart == undefined){
-        this.createUrgentRequestChart(quantities);
-      } else{
-      this.chart.data.datasets[0].data = quantities;
-      this.chart.data.labels = this.bloodTypes;
-      this.chart.update();
-      }
-
+      this.GenerateAllUrgentRequestBarChart();
+      this.GenerateAllUrgentRequestsPieChart();
     }
   }
 
-  CreateBloodQuanitites(data: any){
-    let quanitities: any[] = [];
-    data.forEach((element: { quantity: any; }) => {
-        quanitities.push(element.quantity)
-      });
-    return quanitities;
+  async GenerateAllUrgentRequestBarChart() : Promise<void> {
+    this.generate = true;
+      let data =  await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate))
+      console.log(data.bloodBanks)
+      this.generate = false;
+      if(this.chart == undefined){
+        this.createUrgentRequestChart(data.quantities, data.bloodBanks);
+      } else{
+      this.chart.data.datasets[0].data = data.quantities;
+      this.chart.data.labels = data.bloodBanks;
+      this.chart.update();
+      }
+  }
+
+  async GenerateAllUrgentRequestsPieChart() : Promise<void> {
+    this.generate = true;
+      let data =  await firstValueFrom(this._service.GetQuantitiesPerBloodTypeStatistic(this.startDate, this.endDate))
+      this.generate = false;
+      if(this.chart == undefined){
+        this.createPieChart(this.bloodTypes, data.quantities);
+      } else{
+      this.pieChart.data.datasets[0].data = data.quantities;
+      this.pieChart.data.labels = this.bloodTypes;
+      this.pieChart.update();
+      }
   }
 
 
@@ -149,35 +162,35 @@ export class ChartsComponent {
           {
             label: "Blood quantities",
             data: values,
-            backgroundColor: '#9C254D'
+            backgroundColor: this.barColors
           }
         ]
       },
       options: {
         aspectRatio: 2
       }
-
     });
   }
 
 
-  createUrgentRequestChart(values: any[]){
+  createUrgentRequestChart(values: any[], labels: any[]){
 
     this.chart = new Chart("MyChart", {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
-        labels: this.bloodTypes,
+        labels: labels,
 	       datasets: [
           {
             label: "Blood quantities",
             data: values,
-            backgroundColor: '#9C254D'
+            backgroundColor: this.barColors
           }
         ]
       },
       options: {
-        aspectRatio: 2
+        aspectRatio: 2,
+        
       }
 
     });
@@ -194,12 +207,12 @@ export class ChartsComponent {
           {
             label: "Ukupno krvi",
             data: quantities,
-            backgroundColor: ['#EF4B4B', '#7ECFC0', '#90A17D', '#F2E3C9', '#EC8F6A']
+            backgroundColor: this.barColors
           }
         ]
       },
       options: {
-        aspectRatio: 2
+        aspectRatio: 2,
       }
 
     });
