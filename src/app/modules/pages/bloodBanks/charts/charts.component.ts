@@ -66,16 +66,15 @@ export class ChartsComponent {
     } else {
       this.generate = true;
       let data = await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate));
-      const quantities = this.CreateBloodQuanitites(data[0].blood);
+      const quantities = data.quantities
       this.generate = false;
       if(this.chart == undefined){
         this.createUrgentRequestChart(quantities);
       } else{
       this.chart.data.datasets[0].data = quantities;
-      this.chart.data.labels = this.bloodTypes;
+      this.chart.data.labels = data.bloodBanks;
       this.chart.update();
       }
-
     }
   }
 
@@ -156,7 +155,6 @@ export class ChartsComponent {
       options: {
         aspectRatio: 2
       }
-
     });
   }
 
