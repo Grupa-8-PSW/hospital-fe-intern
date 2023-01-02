@@ -5,7 +5,7 @@ export interface RoomForSeparateDTO {
     oldRoomId: number;
     //termins: FreeSpaceForTransfer;
     newRoom1Name: string;
-    newRoom1Type: string;
+    newRoom1Type: any;
     newRoom2Name: string;
-    newRoom2Type: string;
+    newRoom2Type: any;
 }

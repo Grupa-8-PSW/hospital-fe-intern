@@ -1,5 +1,5 @@
 <div class="wholeApp">
-    <canvas id="canvas" height="400" width="600"></canvas>
+    <canvas id="canvas" class="canvas" height="400" width="600"></canvas>
     <button class="renovateButton" (click)="startRenovateForm($event)">Start renovate</button>
 
     <form *ngIf="canRenoveteForm" class="renovateForm" [formGroup]="validationsForAmount">
@@ -17,10 +17,14 @@
                     <mat-button-toggle class="buttonsRenovate2" (click)="SeparatingRooms()">Razdvajanje prostorija
                     </mat-button-toggle>
                 </div>
+                <div class="buttons">
+                    <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                    <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+                </div>
             </div>
             <div *ngIf="percentIsTwenty">
                 <div *ngIf="separateState">
-                    <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
+                    <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
                     <div class="roomDestination">
                         <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
                             (click)="selectedRoomForSeparating(room.id, room)">
@@ -31,17 +35,32 @@
                     </div>
                 </div>
                 <div *ngIf="mergeState">
-                    <label class="mainLabelMove">Odaberite sobu za razdvajanje:</label>
-                    <div class="roomDestination">
-                        <tr [class.selected]="room === selectedRoom" *ngFor="let room of roomsByFloorId; let i index"
-                            (click)="selectedRoomsForMerge(room.id, room, room.id, room)">
-                            <td>
-                                <h3>{{room.name}}</h3>
-                            </td>
-                        </tr>
+                    <label class="mainLabelMove">Odaberite sobe za spajanje:</label>
+                    <div class="roomDestinations">
+                        <div class="roomDestination">
+                            <tr [class.selected]="room === selectedRoom"
+                                *ngFor="let room of roomsByFloorId; let i index"
+                                (click)="selectedRoom1ForMerge(room.id, room)">
+                                <td>
+                                    <h3>{{room.name}}</h3>
+                                </td>
+                            </tr>
+                        </div>
+                        <div class="roomDestination2">
+                            <tr [class.selected]="room === selectedRoom2"
+                                *ngFor="let room of roomsByFloorId; let i index"
+                                (click)="selectedRoom2ForMerge(room.id, room)">
+                                <td>
+                                    <h3>{{room.name}}</h3>
+                                </td>
+                            </tr>
+                        </div>
                     </div>
                 </div>
-
+                <div class="buttons">
+                    <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                    <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+                </div>
             </div>
             <div *ngIf="percentIsFourty">
                 <label class="mainLabelMove">Datum od do:</label>
@@ -56,6 +75,10 @@
                             <mat-calendar [(selected)]="endDateRenovate"></mat-calendar>
                         </mat-card>
                     </div>
+                </div>
+                <div class="buttons">
+                    <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                    <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
                 </div>
             </div>
         </div>
@@ -75,14 +98,8 @@
         <div *ngIf="percentIsSixty">
             <div class="buttons">
                 <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
-                <button class="nextButton" (click)="addPercentRenovate($event); getTerminsRenovate()">Next</button>
-            </div>
-        </div>
-
-        <div *ngIf="!percentIsSixty">
-            <div class="buttons">
-                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
-                <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+                <button class="nextButton" id="NEXT" name="NEXT"
+                    (click)="addPercentRenovate($event); getTerminsRenovate()">Next</button>
             </div>
         </div>
         <div *ngIf="percentIsEighty">
@@ -110,6 +127,10 @@
                     </tbody>
                 </table>
             </div>
+            <div class="buttons">
+                <button class="backButton" (click)="removePercentRenovate($event)">Back</button>
+                <button class="nextButton" (click)="addPercentRenovate($event)">Next</button>
+            </div>
         </div>
 
         <div *ngIf="percentIsHun">
@@ -129,9 +150,7 @@
             </div>
             <div *ngIf="separateState">
                 <label class="mainLabelMove">Informacije o novim prostorijama:</label>
-                <button class="buttonRoom1" (click)="room1Selected()">Soba 1</button>
-                <button class="buttonRoom2" (click)="room2Selected()">Soba 2</button>
-                <div *ngIf="room1">
+                <div>
                     <div class="mergeRoomsForm">
                         <label class="mergeLabel">Unesite ime sobe 1:</label>
                         <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom($event.target)">
@@ -139,7 +158,7 @@
                         <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoomType($event.target)">
                     </div>
                 </div>
-                <div *ngIf="room2">
+                <div>
                     <div class="mergeRoomsForm">
                         <label class="mergeLabel">Unesite ime sobe 2:</label>
                         <input type="text" class="mergeTextBox" (keyup)="newSeparatedRoom2($event.target)">

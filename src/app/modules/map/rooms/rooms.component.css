@@ -174,11 +174,24 @@ tr:hover {
     margin-left: 290px;
 }
 
+.roomDestinations {
+    display: flex;
+    padding-left: 100px;
+}
+
 .roomDestination {
     font-size: 100px;
     overflow-y: auto;
     height: 320px;
-    margin-top: 30px;
+    margin-top: 70px;
+}
+
+.roomDestination2 {
+    margin-left: 50px;
+    font-size: 100px;
+    overflow-y: auto;
+    height: 320px;
+    margin-top: 70px;
 }
 
 .calendars {
@@ -239,6 +252,11 @@ tr:hover {
 }
 
 .roomDestination tr.selected {
+    background-color: #c2185b;
+    color: white;
+}
+
+.roomDestination2 tr.selected {
     background-color: #c2185b;
     color: white;
 }

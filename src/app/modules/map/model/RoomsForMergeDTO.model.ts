@@ -6,5 +6,5 @@ export interface RoomsForMergeDTO {
     oldRoom2Id: number;
     //termins: FreeSpaceForTransfer;
     newRoomName: string;
-    newRoomType: string;
+    newRoomType: any;
 }
