@@ -1,0 +1,67 @@
+.general {
+    margin-top: 60px;
+    display: flex;
+    margin-bottom: 100px;
+    margin-right: 20px;
+}
+
+.roomForm {
+    width: 350px;
+    height: 1390px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 20px;
+}
+
+
+.labels {
+    font-size: 16px;
+}
+
+.moveLabel {
+    padding-top: 35px;
+    text-align: left;
+    padding-left: 20px;
+    color: white;
+}
+
+.moveLabel2 {
+    padding-top: 0px;
+    text-align: left;
+    padding-left: 20px;
+    color: white;
+}
+
+.name {
+    margin-left: 134px;
+}
+
+.description {
+    margin-left: 95px;
+}
+
+.workHour {
+    margin-left: 108px;
+}
+
+.textbox {
+    margin-left: 52px;
+}
+
+.textbox2 {
+    margin-left: 58px;
+}
+
+.textbox3 {
+    margin-left: 68px;
+}
+
+tr:hover {
+    background-color: #f44336;
+}
+
+.descLabel {
+
+    margin-left: 20px;
+}

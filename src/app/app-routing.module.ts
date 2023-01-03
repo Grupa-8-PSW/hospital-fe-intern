@@ -23,9 +23,15 @@ import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-ten
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
 import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
+import { BuildingComponent } from "./modules/map/building/building.component";
+import { FloorsComponent } from "./modules/map/floors/floors.component";
+import { SignatureComponent } from "./modules/map/rooms/rooms.component";
+
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'map', component: BuildingComponent },
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
@@ -57,7 +63,10 @@ const routes: Routes = [
   { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}},
   { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'examinations/do', component: DoExaminationComponent}
+  { path: 'examinations/do', component: DoExaminationComponent},
+  { path: 'map/floor/:id', component: FloorsComponent },
+  { path: 'map/floor/rooms/:floorId', component: SignatureComponent },
+  { path: 'map/floor/rooms/:floorId/:roomId', component: SignatureComponent }
 ];
 
 
