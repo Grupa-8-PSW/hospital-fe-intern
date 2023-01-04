@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ChartServiceService } from './chart-service.service';
 import { interval, firstValueFrom } from 'rxjs';
-import { forEach } from 'lodash';
 
 @Component({
   selector: 'app-charts',
