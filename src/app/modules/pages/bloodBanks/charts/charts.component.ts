@@ -4,6 +4,9 @@ import { ChartServiceService } from './chart-service.service';
 import { interval, firstValueFrom } from 'rxjs';
 import { forEach } from 'lodash';
 import { UrgentRequestBloodBankStatistic } from 'src/app/model/urgentRequestBloodBankStatistic';
+import { BloodBankService } from '../services/blood-bank.service';
+import { BloodBank } from 'src/app/model/bloodBank.model';
+import { relativeTimeThreshold } from 'moment';
 
 @Component({
   selector: 'app-charts',
@@ -11,7 +14,6 @@ import { UrgentRequestBloodBankStatistic } from 'src/app/model/urgentRequestBloo
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent {
-
   public chart: any;
   public chartRequest: any;
   public pieChart: any;
@@ -31,6 +33,9 @@ export class ChartsComponent {
   endDate: Date = new Date();
   selInput: String = '';
   generate: Boolean = false;
+  bloodBanks!: BloodBank[]
+  selectedBank: any = '';
+  showPieChart: Boolean = true;
   bloodTypes = [
     "0-",
     "0+",
@@ -43,13 +48,16 @@ export class ChartsComponent {
   ];
 
 
-  constructor(private _service: ChartServiceService) {}
+  constructor(private _service: ChartServiceService, private bloodBankService : BloodBankService) {}
 
   ngOnInit(): void {
+    this.bloodBankService.getBloodBanks().subscribe(res=>{
+      this.bloodBanks = res;
+    })
   }
 
   async ShowTenderCharts(): Promise<void> {
-    if(this.selInput === 't'){
+    if(this.selInput === 't' && this.selectedBank === ''){
       this.generate = true;
       let data = await firstValueFrom(this._service.GetBloodBetweenDatesForTenders(this.startDate, this.endDate));
       const bankNames = this.CreateBankNamesArray(data);
@@ -61,22 +69,39 @@ export class ChartsComponent {
         this.createPieChart(bloodTypes, quantities);
         this.createChart(bankNames, values);
       } else{
+        this.showPieChart = true;
         this.chart.data.datasets[0].data = values;
         this.chart.data.labels = bankNames;
         this.chart.update();
       }
 
-
-    } else {
+    } else if(this.selInput === 'ur' && this.selectedBank === '') {
       this.GenerateAllUrgentRequestBarChart();
       this.GenerateAllUrgentRequestsPieChart();
+
+    } else if(this.selInput === 'ur' && this.selectedBank !== '') {
+      this.GenerateUrgentRequestBarChartForBank(this.selectedBank.id);
+      this.showPieChart = false;
     }
+  }
+
+  async GenerateUrgentRequestBarChartForBank(id: any) : Promise<void> {
+    this.generate = true;
+      let data =  await firstValueFrom(this._service.GetQuantitiesPerBloodTypeStatisticForBank(id, this.startDate, this.endDate))
+      console.log(data)
+      this.generate = false;
+      if(this.chart == undefined){
+        this.createUrgentRequestChart(data.quantities, this.bloodTypes);
+      } else{
+      this.chart.data.datasets[0].data = data.quantities;
+      this.chart.data.labels = this.bloodTypes;
+      this.chart.update();
+      }
   }
 
   async GenerateAllUrgentRequestBarChart() : Promise<void> {
     this.generate = true;
       let data =  await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate))
-      console.log(data.bloodBanks)
       this.generate = false;
       if(this.chart == undefined){
         this.createUrgentRequestChart(data.quantities, data.bloodBanks);
@@ -88,16 +113,18 @@ export class ChartsComponent {
   }
 
   async GenerateAllUrgentRequestsPieChart() : Promise<void> {
+    this.showPieChart = true;
     this.generate = true;
       let data =  await firstValueFrom(this._service.GetQuantitiesPerBloodTypeStatistic(this.startDate, this.endDate))
       this.generate = false;
-      if(this.chart == undefined){
+      if(this.pieChart == undefined){
         this.createPieChart(this.bloodTypes, data.quantities);
       } else{
       this.pieChart.data.datasets[0].data = data.quantities;
       this.pieChart.data.labels = this.bloodTypes;
       this.pieChart.update();
       }
+      console.log(this.showPieChart)
   }
 
 
@@ -198,6 +225,7 @@ export class ChartsComponent {
 
 
   createPieChart(bloodTypes: any[], quantities: any[]){
+    this.showPieChart = true;
     this.pieChart = new Chart("MyPieChart", {
       type: 'pie', //this denotes tha type of chart
 

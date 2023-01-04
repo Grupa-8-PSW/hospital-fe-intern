@@ -27,4 +27,9 @@ export class ChartServiceService {
     const p = {'from': startTime.toString(), 'to': endTime.toString()};
     return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getQuantitiesPerTypeStatistic', { params: p});
   }
+
+  GetQuantitiesPerBloodTypeStatisticForBank(id: any, startTime: Date, endTime: Date) : Observable<any> {
+    const p = {'bloodBankid' : id, 'from': startTime.toString(), 'to': endTime.toString()};
+    return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getQuantitiesPerTypeStatisticForBloodBank', { params: p});
+  }
 }
