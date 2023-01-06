@@ -41,16 +41,15 @@
         <li class="navitem">
           <a class="nav-link" routerLink="/view/bloodRequest" id="viewRequests" routerLinkActive="active">View Blood Requests</a>
         </li>
+        <li class="navitem">
+          <a class="nav-link" routerLink="/reportsAndPrescriptions" id="viewRequests" routerLinkActive="active">Reports & Prescriptions</a>
+        </li>
       </ul>
       <div class="account-button-group">
         <button *ngIf="isLogged" class="btn btn-danger text-light me-3" (click)="logout()">Logout</button>
         <button *ngIf="!isLogged" class="btn btn-danger text-light me-3" routerLink="/auth/login">Login</button>
         <button *ngIf="!isLogged" class="btn btn-danger text-light">Register</button>
       </div>
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
     </div>
   </div>
 </nav>

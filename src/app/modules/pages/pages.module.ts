@@ -23,6 +23,8 @@ import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
+import { ReportsAndPrescriptionsComponent } from './reports-and-prescriptions/reports-and-prescriptions.component';
+import { ExaminationDocumentModule } from '../examination-document/examination-document.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     ConsiliumsComponent,
     UrgentRequestComponent,
     MonthlySubscriptionComponent,
+    ReportsAndPrescriptionsComponent,
   ],
   imports: [
     FormsModule,
@@ -52,7 +55,8 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     BloodModule,
     NgxRerenderModule,
     PatientModule,
-    ConsiliumModule
+    ConsiliumModule,
+    ExaminationDocumentModule
   ]
 })
 

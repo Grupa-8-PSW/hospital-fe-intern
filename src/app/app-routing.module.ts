@@ -23,6 +23,7 @@ import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-ten
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
 import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
+import { ReportsAndPrescriptionsComponent } from "./modules/pages/reports-and-prescriptions/reports-and-prescriptions.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -57,7 +58,8 @@ const routes: Routes = [
   { path: 'bloodBanks/monthlySubscription', component: MonthlySubscriptionComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager']}},
   { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
-  { path: 'examinations/do', component: DoExaminationComponent}
+  { path: 'examinations/do', component: DoExaminationComponent},
+  { path: 'reportsAndPrescriptions', component: ReportsAndPrescriptionsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }}
 ];
 
 
