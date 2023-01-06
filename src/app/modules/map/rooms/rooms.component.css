@@ -1,0 +1,425 @@
+.wholeApp {
+    margin-left: 100px;
+    margin-top: 60px;
+    display: flex;
+    margin-bottom: 100px;
+}
+
+#canvas {
+    border: 2px solid black;
+}
+
+.roomForm {
+    margin-left: 100px;
+    margin-right: 50px;
+    width: 500px;
+    height: 420px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+}
+
+
+.labels {
+    font-size: 16px;
+}
+
+.moveLabel {
+    padding-top: 35px;
+    text-align: left;
+    padding-left: 40px;
+    color: white;
+}
+
+.moveLabel2 {
+    padding-top: 0px;
+    text-align: left;
+    padding-left: 40px;
+    color: white;
+}
+
+.name {
+    margin-left: 134px;
+}
+
+.description {
+    margin-left: 95px;
+}
+
+.workHour {
+    margin-left: 108px;
+}
+
+.textbox {
+    margin-left: 52px;
+}
+
+.textbox2 {
+    margin-left: 58px;
+}
+
+.textbox3 {
+    margin-left: 68px;
+}
+
+tr:hover {
+    background-color: #f44336;
+}
+
+.descLabel {
+
+    margin-left: 20px;
+}
+
+.mainLabel {
+    font-size: 32px;
+    /* margin-left: 30px; */
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.table-striped {
+    font-size: 18px;
+}
+
+.moveButton {
+    background-color: #c2185b;
+    border-color: white;
+    color: white;
+    width: 80px;
+    height: 40px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.moveButton:hover {
+    transform: scale(1.1);
+}
+
+.canMoveForm {
+    width: 780px;
+    height: 600px;
+    border-radius: 8px;
+    background-color: rgb(255, 252, 252);
+    color: black;
+    position: absolute;
+    border-color: black;
+    border-width: thick;
+    top: 200px;
+    left: 400px;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    left: 46px;
+}
+
+.nextButton {
+    background-color: rgb(177, 244, 177);
+    width: 100px;
+    height: 50px;
+    font-size: 22px;
+    margin-left: 400px;
+    border-radius: 5px;
+}
+
+.backButton {
+    background-color: rgb(247, 186, 186);
+    width: 100px;
+    height: 50px;
+    font-size: 22px;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+
+.progressBar {
+    margin-top: 20px;
+    height: 30px;
+    width: 350px;
+    margin-left: 210px;
+    color: black;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #f44336;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+    border-radius: 2px;
+}
+
+.percentLabel {
+    margin-left: 378px;
+    font-size: 15px;
+}
+
+.mainLabelMove {
+    margin-top: 12px;
+    font-size: 24px;
+    margin-left: 280px;
+}
+
+.textbox {
+    position: absolute;
+    left: auto;
+    margin-left: 290px;
+}
+
+.roomDestinations {
+    display: flex;
+    padding-left: 100px;
+}
+
+.roomDestination {
+    font-size: 100px;
+    overflow-y: auto;
+    height: 320px;
+    margin-top: 70px;
+}
+
+.roomDestination2 {
+    margin-left: 50px;
+    font-size: 100px;
+    overflow-y: auto;
+    height: 320px;
+    margin-top: 70px;
+}
+
+.calendars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.demo-inline-calendar-card {
+    width: 300px;
+    height: 350px;
+    margin-right: 10px;
+}
+
+.demo-inline-calendar-card2 {
+    width: 300px;
+    height: 350px;
+    margin-left: 10px;
+}
+
+.mat-form-field-hint-wrapper ng-tns-c75-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted {
+    background-color: #d61462;
+}
+
+.durationLabel {
+    margin-top: 50px;
+    margin-left: 250px;
+    font-size: 24px;
+}
+
+.inputDuration1 {
+    margin-left: 50px;
+}
+
+.inputDuration2 {
+    margin-left: 60px;
+}
+
+.inputDuration3 {
+    margin-left: 32px;
+}
+
+.terminsTable {
+    margin-top: 50px;
+    margin-left: 100px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    overflow-y: auto;
+    height: 320px;
+    color: white;
+}
+
+.gap {
+    width: 25%;
+}
+
+.roomDestination tr.selected {
+    background-color: #c2185b;
+    color: white;
+}
+
+.roomDestination2 tr.selected {
+    background-color: #c2185b;
+    color: white;
+}
+
+.terminsTable tr.selected {
+    background-color: #f44336;
+}
+
+input.ng-invalid {
+    background-color: rgb(247, 186, 186);
+}
+
+input.ng-valid {
+    border-left: 5px solid rgb(177, 244, 177);
+}
+
+.bottomForms {
+    display: flex;
+    justify-content: center;
+    vertical-align: top;
+}
+
+.shedulesForm {
+    margin-bottom: 100px;
+    width: 750px;
+    height: 460px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    position: relative;
+}
+
+.equipmentForm {
+    margin-left: 100px;
+    margin-bottom: 100px;
+    width: 500px;
+    height: 460px;
+    border-radius: 8px;
+    background-color: #c2185b;
+    color: white;
+    padding-right: 50px;
+    padding-left: 50px;
+    position: relative;
+}
+
+.renovateButton {
+    position: absolute;
+    top: 513px;
+    font-size: 20px;
+    background-color: #c2185b;
+    border-color: white;
+    color: white;
+    width: 602px;
+    height: 60px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.renovateForm {
+    width: 780px;
+    height: 600px;
+    border-radius: 8px;
+    background-color: rgb(255, 252, 252);
+    color: black;
+    position: absolute;
+    border-color: black;
+    border-width: thick;
+    top: 50px;
+    left: 400px;
+    align-items: center;
+    padding-right: 50px;
+}
+
+.buttonsRenovate {
+    margin-top: 150px;
+    margin-left: 100px;
+    font-size: 20px;
+    border-color: white;
+    color: white;
+    width: 210px;
+    height: 80px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonsRenovate2 {
+    margin-top: 150px;
+    margin-left: 180px;
+    font-size: 20px;
+    border-color: white;
+    color: white;
+    width: 230px;
+    height: 80px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonsRenovate:hover {
+    background-color: #f44336
+}
+
+.buttonsRenovate2:hover {
+    background-color: #f44336
+}
+
+.mat-button-toggle {
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+}
+
+.mat-button-toggle-checked {
+    background-color: #c2185b;
+}
+
+.mergeRoomsForm {
+    margin-left: 30px;
+    font-size: 24px;
+    text-align: right;
+    display: inline-block;
+    align-items: center;
+}
+
+.mergeLabel {
+    margin-top: 15px;
+}
+
+.mergeTextBox {
+    margin-top: 15px;
+    height: 32px;
+}
+
+.buttonRoom1 {
+    margin-left: 5px;
+    font-size: 16px;
+    border-color: white;
+    color: black;
+    width: 100px;
+    height: 60px;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonRoom2 {
+    font-size: 16px;
+    border-color: white;
+    color: black;
+    width: 100px;
+    height: 60px;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+}
+
+.buttonRoom1:hover {
+    background-color: #f44336
+}
+
+.buttonRoom2:hover {
+    background-color: #f44336
+}
+
+.shedules-button-group{
+    margin-top: 10px;
+}

@@ -5,6 +5,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ExaminationsComponent } from './examinations/examinations.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { MapComponent } from './map/map.component';
 import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.component';
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
@@ -30,6 +31,7 @@ import { ExaminationDocumentModule } from '../examination-document/examination-d
   declarations: [
     HomeComponent,
     ExaminationsComponent,
+    MapComponent,
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
