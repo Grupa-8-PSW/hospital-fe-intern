@@ -24,38 +24,40 @@ import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
+import { StatisticsModule } from "../statistics/statistics.module";
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    ExaminationsComponent,
-    MapComponent,
-    BloodBanksComponent,
-    DialogComponent,
-    CalendarComponent,
-    ScheduleDialogComponent,
-    BloodComponent,
-    ViewBloodRequestsComponent,
-    BloodTypePipe,
-    TendersComponent,
-    BloodComponent,
-    StatisticsComponent,
-    ConsiliumsComponent,
-    UrgentRequestComponent,
-    MonthlySubscriptionComponent,
-  ],
-  imports: [
-    FormsModule,
-    CommonModule,
-    AppRoutingModule,
-    MaterialModule,
-    HospitalModule,
-    FlexLayoutModule,
-    BloodModule,
-    NgxRerenderModule,
-    PatientModule,
-    ConsiliumModule
-  ]
+    declarations: [
+        HomeComponent,
+        ExaminationsComponent,
+        MapComponent,
+        BloodBanksComponent,
+        DialogComponent,
+        CalendarComponent,
+        ScheduleDialogComponent,
+        BloodComponent,
+        ViewBloodRequestsComponent,
+        BloodTypePipe,
+        TendersComponent,
+        BloodComponent,
+        StatisticsComponent,
+        ConsiliumsComponent,
+        UrgentRequestComponent,
+        MonthlySubscriptionComponent,
+    ],
+    imports: [
+        FormsModule,
+        CommonModule,
+        AppRoutingModule,
+        MaterialModule,
+        HospitalModule,
+        FlexLayoutModule,
+        BloodModule,
+        NgxRerenderModule,
+        PatientModule,
+        ConsiliumModule,
+        StatisticsModule
+    ]
 })
 
 export class PagesModule { }

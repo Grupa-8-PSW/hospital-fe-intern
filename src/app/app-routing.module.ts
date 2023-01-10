@@ -7,6 +7,7 @@ import { HomeComponent } from "./modules/pages/home/home.component";
 import { AuthGuard } from "./modules/auth/helpers/auth.guard";
 import { RoleGuard } from "./modules/auth/helpers/role.guard";
 import { StatisticsComponent } from "./modules/pages/statistics/statistics.component";
+import { MapComponent } from "./modules/pages/map/map.component";
 import { CreateTreatmentHistoryComponent } from "./modules/treatment-history/create-treatment-history/create-treatment-history.component";
 import { DischargePatientComponent } from "./modules/treatment-history/discharge-patient/discharge-patient.component";
 import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe-therapy/prescribe-therapy.component";
@@ -32,6 +33,7 @@ import { SignatureComponent } from "./modules/map/rooms/rooms.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'map', component: BuildingComponent },
+  { path: 'renovations', component: MapComponent},
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
