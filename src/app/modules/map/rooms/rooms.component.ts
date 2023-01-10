@@ -550,7 +550,7 @@ export class SignatureComponent implements OnInit {
     //TREBA DODATI U DTO-OVE SELEKTOVAN TERMIN
     console.log(this.renovateIntervalsDTO);
     this.roomsService.getRenovateIntervals(this.renovateIntervalsDTO).subscribe(res => {
-      this.AllTerminsRenovate = res;
+      this.AllTermins = res;
     })
   }
 
