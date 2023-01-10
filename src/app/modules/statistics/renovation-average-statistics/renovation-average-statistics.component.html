@@ -1,0 +1,36 @@
+<div class="row g-0 mt-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-4 text-center">
+      <h2 class="me-4">Views per page</h2>
+      <canvas baseChart width="450" height="450"
+          [type]="barChartType"
+          [data]="barChartData"
+          [options]="chartOptions"
+          [plugins]="chartPlugins">
+      </canvas>
+    </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-4 text-center">
+      <h2 class="me-4">Time per page</h2>
+      <canvas baseChart width="450" height="450"
+          [type]="'line'"
+          [data]="lineChartData"
+          [options]="chartOptions"
+          [plugins]="chartPlugins">
+      </canvas>
+    </div>
+    <div class="col-md-1"></div>
+
+</div>
+<div class="row g-0 mt-3">
+  <div class="col-md-1">
+      
+  </div>
+  <div class="col-md-10">
+      
+  </div>
+  <div class="col-md-1">
+      
+  </div>
+</div>
