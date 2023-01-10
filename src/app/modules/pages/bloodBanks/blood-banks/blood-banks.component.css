@@ -83,6 +83,10 @@ th.mat-sort-header-sorted {
       margin-bottom: 16px;
   }
 
+  .card-background{
+    background-color: gray;
+  }
+
   .align{
     width: 350px;
     align-items: center;

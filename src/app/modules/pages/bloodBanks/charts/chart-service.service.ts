@@ -23,6 +23,11 @@ export class ChartServiceService {
     return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getData', { params: p});
   }
 
+  GetBloodBetweenDatesForUrgentRequestTable(): Observable<any>{
+    //const p = {'from': startTime.toString(), 'to': endTime.toString()};
+    return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getDataTable');
+  }
+
   GetQuantitiesPerBloodTypeStatistic(startTime: Date, endTime: Date) : Observable<any> {
     const p = {'from': startTime.toString(), 'to': endTime.toString()};
     return this.http.get<any>(this.apiHost + 'api/UrgentRequest/getQuantitiesPerTypeStatistic', { params: p});

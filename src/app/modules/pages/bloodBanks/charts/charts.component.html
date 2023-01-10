@@ -1,3 +1,73 @@
+<div class="container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table ">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.bloodBankId}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="apos">
+      <th mat-header-cell *matHeaderCellDef>A+</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[0].quantity}}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="aneg">
+      <th mat-header-cell *matHeaderCellDef>A-</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[1].quantity}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="bpos">
+      <th mat-header-cell *matHeaderCellDef>B+</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[2].quantity}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="bneg">
+      <th mat-header-cell *matHeaderCellDef>B-</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[3].quantity}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="abpos">
+      <th mat-header-cell *matHeaderCellDef>AB+</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[4].quantity}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="abneg">
+      <th mat-header-cell *matHeaderCellDef>AB-</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[5].quantity}}</td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="zeropos">
+      <th mat-header-cell *matHeaderCellDef>0+</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[6].quantity}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="zeroneg">
+      <th mat-header-cell *matHeaderCellDef>0-</th>
+      <td mat-cell *matCellDef="let element">{{element.blood[7].quantity}}</td>
+    </ng-container>
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+  </table>
+</div>
+
+
 <div style="max-width: 15rem; margin: 0 auto 0 auto;">
     <h1>Blood Bank Statistics</h1>
     <select name="statsOption" id="statsOption" [(ngModel)]="selInput">
@@ -6,7 +76,7 @@
         <option value="ur">Urgent requests</option>
     </select>
     <select [(ngModel)]="selectedBank">
-        <option selected value = "">All Blood Banks</option> 
+        <option selected value = "">All Blood Banks</option>
         <option *ngFor="let obj of bloodBanks" [ngValue]="obj">{{obj.name}}</option>
     </select>
     <input type="date" style="margin-top: 5px; width: 11rem;" name="startDate" id="startDate" [(ngModel)]="startDate">
