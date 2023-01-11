@@ -12,8 +12,6 @@ import { SessionService } from '../session.service';
 export class RenovationAverageStatisticsComponent {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-  data: number[] = [];
-
   constructor(private sessionService: SessionService) { }
 
   ngOnInit(): void {
@@ -21,10 +19,14 @@ export class RenovationAverageStatisticsComponent {
       this.barChartData.datasets[0].data = res;
       this.chart?.update();
     })
+    this.sessionService.getSessionSum().subscribe(res => {
+      this.pieChartData.datasets[0].data = res;
+      this.chart?.update();
+    })
   }
 
   public barChartType: ChartType = 'bar';
-  public lineChartType: ChartType = 'line';
+  public pieChartType: ChartType = 'pie';
 
   public chartPlugins = [ DatalabelsPlugin ];
   public chartOptions: ChartConfiguration['options'] = {
@@ -49,42 +51,47 @@ export class RenovationAverageStatisticsComponent {
     datasets: [
       {
         label: '# of Views (Avg.)',
-        data: [] = this.data,
+        data: [],
         backgroundColor: [
+          'rgba(39, 221, 245, 0.5)',
           'rgba(245, 39, 148, 0.5)'
         ],
         borderColor: [
+          'rgb(39, 221, 245)',
           'rgb(245, 39, 148)'
         ],
         borderWidth: 1
       }
     ]
   };
-  public lineChartData: ChartData<'line', number[], string> = {
-    labels: ['One', 'Too', 'Tre', 'For', 'Fiv', 'Six', 'Sev'],
+  public pieChartData: ChartData<'line', number[], string> = {
+    labels: ['Type', 'Room', 'Interval', 'Duration', 'Available', 'Changes', 'Schedule'],
     datasets: [
       {
-        label: '# of Views Separation',
-        data: [12, 19, 3, 5, 2, 3, 1],
+        label: '# of Views (Total)',
+        data: [],
         backgroundColor: [
-          'rgba(39, 221, 245, 0.5)'
+          'rgba(39, 221, 245, 0.5)',
+          'rgba(245, 39, 148, 0.5)',
+          'rgba(245, 39, 39, 0.5)',
+          'rgba(245, 178, 39, 0.5)',
+          'rgba(200, 245, 39, 0.5)',
+          'rgba(88, 245, 39, 0.5)',
+          'rgba(39, 46, 245, 0.5)',
+          'rgba(117, 10, 204, 0.5)'
         ],
         borderColor: [
-          'rgb(39, 221, 245)'
+          'rgb(39, 221, 245)',
+          'rgb(245, 39, 148)',
+          'rgb(245, 39, 39)',
+          'rgb(245, 178, 39)',
+          'rgb(200, 245, 39)',
+          'rgb(88, 245, 39)',
+          'rgb(39, 46, 245)',
+          'rgb(117, 10, 204)'
         ],
         borderWidth: 1
       },
-      {
-        label: '# of Views Merger',
-        data: [20, 13, 4, 6, 5, 4, 2],
-        backgroundColor: [
-          'rgba(245, 39, 148, 0.5)'
-        ],
-        borderColor: [
-          'rgb(245, 39, 148)'
-        ],
-        borderWidth: 1
-      }
     ]
   };
 }

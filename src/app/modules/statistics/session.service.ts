@@ -19,5 +19,9 @@ import RenovationSession from "../map/model/renovation-session.model";
     getSessionAvg(): Observable<number[]> {
       return this.http.get<number[]>(this.apiHost + 'api/statistics/renovation/views/avg', { headers: this.headers });
     }
+
+    getSessionSum(): Observable<number[]> {
+      return this.http.get<number[]>(this.apiHost + 'api/statistics/renovation/views/sum', { headers: this.headers });
+    }
     
   }
