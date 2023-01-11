@@ -246,4 +246,21 @@ export class ChartsComponent {
     });
   }
 
+  generatePDF() {
+    if(this.selInput === 't') 
+    {
+      window.alert('s')
+      this._service.GetTenderStatisticPDF(this.startDate, this.endDate).subscribe(data=>{
+        let fileName = 'tender_statistic';
+        let blob: Blob = data.body as Blob;
+        let a = document.createElement('a');
+        a.download=fileName;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      }
+    )}
+     
+  }
+
 }
+

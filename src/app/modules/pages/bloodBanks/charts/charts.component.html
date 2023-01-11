@@ -1,18 +1,26 @@
-<div style="max-width: 15rem; margin: 0 auto 0 auto;">
-    <h1>Blood Bank Statistics</h1>
-    <select name="statsOption" id="statsOption" [(ngModel)]="selInput">
-        <option disabled selected value> -- select an option -- </option>
-        <option value="t">Tenders</option>
-        <option value="ur">Urgent requests</option>
-    </select>
-    <select [(ngModel)]="selectedBank">
-        <option selected value = "">All Blood Banks</option> 
-        <option *ngFor="let obj of bloodBanks" [ngValue]="obj">{{obj.name}}</option>
-    </select>
-    <input type="date" style="margin-top: 5px; width: 11rem;" name="startDate" id="startDate" [(ngModel)]="startDate">
-    <input type="date" style="margin-top: 5px; width: 11rem;" name="endDate" id="endDate" [(ngModel)]="endDate">
-    <button class="btn btn-light" style="margin-top: 5px;" (click)="ShowTenderCharts()" >Generate graphs</button>
-    <p *ngIf="generate">Generating...</p>
+<div>
+    <div style="margin-left: 10%; margin-top: 1%; " class="table-header">
+        <button mat-fab color="primary" id="createBloodBanks"  mat-mini-fab matTooltip="Generate pdf" (click)="generatePDF()" matTooltipPosition="right" aria-label="Example icon button with a bookmark icon">
+            <mat-icon>picture_as_pdf</mat-icon>
+        </button>
+    </div>
+    
+    <div style="max-width: 15rem; margin: 0 auto 0 auto;">
+        <h1>Blood Bank Statistics</h1>
+        <select name="statsOption" id="statsOption" [(ngModel)]="selInput">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="t">Tenders</option>
+            <option value="ur">Urgent requests</option>
+        </select>
+        <select [(ngModel)]="selectedBank">
+            <option selected value = "">All Blood Banks</option> 
+            <option *ngFor="let obj of bloodBanks" [ngValue]="obj">{{obj.name}}</option>
+        </select>
+        <input type="date" style="margin-top: 5px; width: 11rem;" name="startDate" id="startDate" [(ngModel)]="startDate">
+        <input type="date" style="margin-top: 5px; width: 11rem;" name="endDate" id="endDate" [(ngModel)]="endDate">
+        <button class="btn btn-light" style="margin-top: 5px;" (click)="ShowTenderCharts()" >Generate graphs</button>
+        <p *ngIf="generate">Generating...</p>
+    </div>
 </div>
 
 
