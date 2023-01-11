@@ -43,6 +43,11 @@ export class ChartServiceService {
 
   GetTenderStatisticPDF(startTime: Date, endTime: Date): Observable<any> {
     const p = {'from': startTime.toString(), 'to': endTime.toString()};
-    return this.http.get<any>(this.apiHost + 'api/Tender/getTenderStatisticPDF', { params: p});
+    const requestOptions: Object = {
+      observe: 'response',
+      responseType: 'blob',
+      params: p
+    }
+    return this.http.get<any>(this.apiHost + 'api/Tender/getTenderStatisticPDF', requestOptions);
   }
 }
