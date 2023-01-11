@@ -18,6 +18,7 @@ import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
 import { ShedulesDTO } from '../model/shedulesDTO.model';
 import { ExaminationDTO } from '../model/examinationDTO.model';
 import { DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
+import { RenovateIntervalsDTO } from '../model/renovateIntervalsDTO.model';
 
 
 
@@ -89,8 +90,10 @@ export class SignatureComponent implements OnInit {
   public roomForSeparateDTO: RoomForSeparateDTO;
   public roomForMergeDTO: RoomsForMergeDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
-  public transfers: EquipmentTransferDTO []
-  public examinations: ExaminationDTO [];
+  public transfers: EquipmentTransferDTO[]
+  public examinations: ExaminationDTO[];
+  public renovateIntervalsDTO: RenovateIntervalsDTO;
+  public AllTerminsRenovate: FreeSpaceForTransfer[] = [];
 
   ngOnInit(): void {
 
@@ -105,6 +108,14 @@ export class SignatureComponent implements OnInit {
       endDate: null,
       duration: null,
       equipmentName: null,
+    }
+
+    this.renovateIntervalsDTO = {
+      roomId: null,
+      startDate: null,
+      endDate: null,
+      duration: null,
+      roomId2: null,
     }
 
     this.roomForSeparateDTO = {
@@ -503,23 +514,28 @@ export class SignatureComponent implements OnInit {
   selectedRoomForSeparating(selectedRoomId: number, room: Room) {
     this.roomForSeparateDTO.oldRoomId = room.id;
     this.selectedRoom = room;
+    this.renovateIntervalsDTO.roomId = room.id;
   }
   // TREBA DODATI ROOMID2 U NOVI DTO I TREBA SKONTATI KAKO MULTI SELECT DA ODRADIM DA UZMEM I ROOMID2 i ROOM2
   selectedRoom1ForMerge(selectedRoomId: number, room: Room) {
     this.roomForMergeDTO.oldRoom1Id = room.id;
     this.selectedRoom = room;
+    this.renovateIntervalsDTO.roomId = room.id;
   }
 
   selectedRoom2ForMerge(selectedRoomId: number, room: Room) {
     this.roomForMergeDTO.oldRoom2Id = room.id;
     this.selectedRoom2 = room;
+    this.renovateIntervalsDTO.roomId2 = room.id;
   }
   getStartDateForRenovate(startDateRenovate) {
-
+    this.startDateRenovate = startDateRenovate;
+    this.renovateIntervalsDTO.startDate = this.startDateRenovate;
   }
 
   getEndDateForRenovate(endDateRenovate) {
-
+    this.endDateRenovate = endDateRenovate;
+    this.renovateIntervalsDTO.endDate = this.endDateRenovate;
   }
 
   DurationInDaysRenovate(days) {
@@ -527,11 +543,15 @@ export class SignatureComponent implements OnInit {
   }
 
   DurationInHoursRenovate(hours) {
-
+    this.renovateIntervalsDTO.duration = hours.value;
   }
 
   getTerminsRenovate() {
     //TREBA DODATI U DTO-OVE SELEKTOVAN TERMIN
+    console.log(this.renovateIntervalsDTO);
+    this.roomsService.getRenovateIntervals(this.renovateIntervalsDTO).subscribe(res => {
+      this.AllTermins = res;
+    })
   }
 
   newMergedRoom(newMergedRoom) {
@@ -600,27 +620,27 @@ export class SignatureComponent implements OnInit {
     this.room2 = true;
   }
 
-  showExemination(){
+  showExemination() {
     this.showExaminations = true;
     this.showTransferEquipments = false;
   }
 
-  showTransferEquipment(){
+  showTransferEquipment() {
     this.showTransferEquipments = true;
     this.showExaminations = false;
   }
 
-  cancelExe(event,examination){
+  cancelExe(event, examination) {
     const now = new Date();
-    if(examination.startDate + (24*60*60*1000) < now){
+    if (examination.startDate + (24 * 60 * 60 * 1000) < now) {
       alert("Ne moze te otkazati 24h pre pregleda")
     }
-    
-      else{  
-        this.roomsService.deleteExe(examination.id).subscribe(res=>{})
-        window.location.reload();
-      }
-    
+
+    else {
+      this.roomsService.deleteExe(examination.id).subscribe(res => { })
+      window.location.reload();
+    }
+
   }
 
 }
