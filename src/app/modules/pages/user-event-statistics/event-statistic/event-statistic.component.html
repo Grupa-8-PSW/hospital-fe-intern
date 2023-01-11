@@ -1,0 +1,48 @@
+<div class="row g-0">
+  <div class="col-md-1"></div>
+    <div class="col-md-4 text-center mt-3" *ngIf="graphLoaded">
+        <h2 class="me-4">Steps by view count</h2>
+        <canvas baseChart width="450" height="450" 
+            [type]="'bar'"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Step One</th>
+                <th scope="col">Step Two</th>
+                <th scope="col">Step Three</th>
+                <th scope="col">Step Four</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{appointmentStatistic.stepOne}}</td>
+                <td>{{appointmentStatistic.stepTwo}}</td>
+                <td>{{appointmentStatistic.stepThree}}</td>
+                <td>{{appointmentStatistic.stepFour}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4 text-center">
+      <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Average number of steps for succesfull scheduling</th>
+            <th scope="col">Average number of seconds for succesfull scheduling</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{numberOfSteps}}</td>
+            <td>{{durationOfSteps}}</td>
+          </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>

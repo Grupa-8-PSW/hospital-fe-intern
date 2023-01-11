@@ -24,6 +24,8 @@ import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
+import { EventStatisticComponent } from './user-event-statistics/event-statistic/event-statistic.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     ConsiliumsComponent,
     UrgentRequestComponent,
     MonthlySubscriptionComponent,
+    EventStatisticComponent,
   ],
   imports: [
     FormsModule,
@@ -54,7 +57,8 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     BloodModule,
     NgxRerenderModule,
     PatientModule,
-    ConsiliumModule
+    ConsiliumModule,
+    NgChartsModule,
   ]
 })
 
