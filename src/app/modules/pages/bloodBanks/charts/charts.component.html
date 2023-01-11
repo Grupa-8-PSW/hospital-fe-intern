@@ -1,17 +1,20 @@
 <div style="max-width: 15rem; margin: 0 auto 0 auto;">
     <h1>Blood Bank Statistics</h1>
-    <select name="statsOption" id="statsOption" [(ngModel)]="selInput">
+    <select name="statsOption" id="statsOption" [(ngModel)]="selInput"  (change)="displayBankList()">
         <option disabled selected value> -- select an option -- </option>
         <option value="t">Tenders</option>
         <option value="ur">Urgent requests</option>
     </select>
-    <select [(ngModel)]="selectedBank">
-        <option selected value = "">All Blood Banks</option> 
+    <select [(ngModel)]="selectedBank" *ngIf="showBankList">
+        <option selected value = "">All Blood Banks</option>
         <option *ngFor="let obj of bloodBanks" [ngValue]="obj">{{obj.name}}</option>
     </select>
     <input type="date" style="margin-top: 5px; width: 11rem;" name="startDate" id="startDate" [(ngModel)]="startDate">
     <input type="date" style="margin-top: 5px; width: 11rem;" name="endDate" id="endDate" [(ngModel)]="endDate">
-    <button class="btn btn-light" style="margin-top: 5px;" (click)="ShowTenderCharts()" >Generate graphs</button>
+
+    <button class="btn btn-light" style="margin-top: 5px; margin-right: 5px;" (click)="ShowTenderCharts()" >Generate graphs</button>
+    <button class="btn btn-light" style="margin-top: 5px;" (click)="GeneratePdf()" ><mat-icon>get_app</mat-icon></button>
+
     <p *ngIf="generate">Generating...</p>
 </div>
 
@@ -25,4 +28,3 @@
         <canvas  id="MyPieChart">{{ pieChart }}</canvas>
     </div>
 </div>
-

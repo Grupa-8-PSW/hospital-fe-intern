@@ -6,7 +6,8 @@ import { forEach } from 'lodash';
 import { UrgentRequestBloodBankStatistic } from 'src/app/model/urgentRequestBloodBankStatistic';
 import { BloodBankService } from '../services/blood-bank.service';
 import { BloodBank } from 'src/app/model/bloodBank.model';
-import { relativeTimeThreshold } from 'moment';
+import { UrgentRequestService } from '../services/urgent-request-service';
+import { BooleanInput } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-charts',
@@ -29,6 +30,7 @@ export class ChartsComponent {
     "#246711",
   ];
 
+  showBankList: Boolean = true;
   startDate: Date = new Date();
   endDate: Date = new Date();
   selInput: String = '';
@@ -47,13 +49,30 @@ export class ChartsComponent {
     "AB-"
   ];
 
+  dataSource = [];
 
-  constructor(private _service: ChartServiceService, private bloodBankService : BloodBankService) {}
+
+  constructor(private _service: ChartServiceService, private bloodBankService : BloodBankService, private urgentRequestService: UrgentRequestService) {}
 
   ngOnInit(): void {
     this.bloodBankService.getBloodBanks().subscribe(res=>{
       this.bloodBanks = res;
     })
+
+  }
+
+  displayBankList(){
+    if(this.selInput == 't'){
+      this.showBankList = false;
+    } else {
+      this.showBankList = true;
+    }
+  }
+
+  getName(id: any){
+    this.bloodBankService.getBloodBankById(id).subscribe(res=>{
+      console.log(res.name);
+    });
   }
 
   async ShowTenderCharts(): Promise<void> {
@@ -66,15 +85,15 @@ export class ChartsComponent {
       const quantities = this.SumQuantitiesForBloodTypes(bloodTypes, data);
       this.generate = false;
       if(this.chart == undefined && this.pieChart == undefined){
-        this.createPieChart(bloodTypes, quantities);
-        this.createChart(bankNames, values);
+        this.createPieChart(bankNames, values);
+        this.createChart(this.bloodTypes, quantities);
       } else{
         this.showPieChart = true;
-        this.chart.data.datasets[0].data = values;
-        this.chart.data.labels = bankNames;
+        this.chart.data.datasets[0].data = quantities;
+        this.chart.data.labels = this.bloodTypes;
         this.chart.update();
-        this.pieChart.data.datasets[0].data = quantities;
-        this.pieChart.data.labels = bloodTypes;
+        this.pieChart.data.datasets[0].data = values;
+        this.pieChart.data.labels = bankNames;
         this.pieChart.update();
       }
 
@@ -104,13 +123,13 @@ export class ChartsComponent {
 
   async GenerateAllUrgentRequestBarChart() : Promise<void> {
     this.generate = true;
-      let data =  await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate))
+      let data =  await firstValueFrom(this._service.GetQuantitiesPerBloodTypeStatistic(this.startDate, this.endDate))
       this.generate = false;
       if(this.chart == undefined){
-        this.createUrgentRequestChart(data.quantities, data.bloodBanks);
+        this.createUrgentRequestChart(data.quantities, this.bloodTypes);
       } else{
       this.chart.data.datasets[0].data = data.quantities;
-      this.chart.data.labels = data.bloodBanks;
+      this.chart.data.labels = this.bloodTypes;
       this.chart.update();
       }
   }
@@ -118,13 +137,13 @@ export class ChartsComponent {
   async GenerateAllUrgentRequestsPieChart() : Promise<void> {
     this.showPieChart = true;
     this.generate = true;
-      let data =  await firstValueFrom(this._service.GetQuantitiesPerBloodTypeStatistic(this.startDate, this.endDate))
+      let data =  await firstValueFrom(this._service.GetBloodBetweenDatesForUrgentRequest(this.startDate, this.endDate))
       this.generate = false;
       if(this.pieChart == undefined){
-        this.createPieChart(this.bloodTypes, data.quantities);
+        this.createPieChart(data.bloodBanks, data.quantities);
       } else{
       this.pieChart.data.datasets[0].data = data.quantities;
-      this.pieChart.data.labels = this.bloodTypes;
+      this.pieChart.data.labels = data.bloodBanks;
       this.pieChart.update();
       }
       console.log(this.showPieChart)
@@ -192,7 +211,7 @@ export class ChartsComponent {
           {
             label: "Blood quantities",
             data: values,
-            backgroundColor: this.barColors
+            backgroundColor: "#b91d47"
           }
         ]
       },
@@ -214,13 +233,13 @@ export class ChartsComponent {
           {
             label: "Blood quantities",
             data: values,
-            backgroundColor: this.barColors
+            backgroundColor: "#b91d47"
           }
         ]
       },
       options: {
         aspectRatio: 2,
-        
+
       }
 
     });
@@ -236,7 +255,7 @@ export class ChartsComponent {
         labels: bloodTypes,
 	       datasets: [
           {
-            label: "Ukupno krvi",
+            label: "Blood quantities",
             data: quantities,
             backgroundColor: this.barColors
           }
@@ -248,5 +267,20 @@ export class ChartsComponent {
 
     });
   }
+
+  GeneratePdf(): void{
+    if(this.selInput === 'ur'){
+    this.urgentRequestService.generate(this.startDate, this.endDate).subscribe(data=>{
+        let fileName = 'urgentrequestreport';
+        let blob: Blob = data.body as Blob;
+        let a = document.createElement('a');
+        a.download=fileName;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+    })
+  } else {
+    //generate pdf for tender
+  }
+}
 
 }
