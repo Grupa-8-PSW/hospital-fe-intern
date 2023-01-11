@@ -268,6 +268,9 @@ export class ChartsComponent {
     });
   }
 
+  // this._service.GetTenderStatisticPDF(this.startDate, this.endDate).subscribe(data=>{
+  //   let fileName = 'tender_statistic';
+
   GeneratePdf(): void{
     if(this.selInput === 'ur'){
     this.urgentRequestService.generate(this.startDate, this.endDate).subscribe(data=>{
@@ -277,10 +280,18 @@ export class ChartsComponent {
         a.download=fileName;
         a.href = window.URL.createObjectURL(blob);
         a.click();
-    })
-  } else {
-    //generate pdf for tender
+      }
+    )}
+    else {
+      this._service.GetTenderStatisticPDF(this.startDate, this.endDate).subscribe(data=>{
+        let fileName = 'report';
+        let blob: Blob = data.body as Blob;
+        let a = document.createElement('a');
+        a.download=fileName;
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
+      }
+    )}
   }
-}
+} 
 
-}
