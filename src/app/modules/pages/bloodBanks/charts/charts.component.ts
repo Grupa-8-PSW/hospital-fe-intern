@@ -73,6 +73,9 @@ export class ChartsComponent {
         this.chart.data.datasets[0].data = values;
         this.chart.data.labels = bankNames;
         this.chart.update();
+        this.pieChart.data.datasets[0].data = quantities;
+        this.pieChart.data.labels = bloodTypes;
+        this.pieChart.update();
       }
 
     } else if(this.selInput === 'ur' && this.selectedBank === '') {
