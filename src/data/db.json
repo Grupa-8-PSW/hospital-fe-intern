@@ -80,6 +80,10 @@
   "examinationDocuments": [
     {
       "report": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum purus sit amet turpis interdum, sed rhoncus ante dignissim. Nulla ut faucibus urna. Ut sodales magna eu lectus blandit, ac placerat mi ultricies. Sed eu nisl id tortor mattis porttitor ut quis turpis. Pellentesque odio risus, suscipit consectetur varius ac, ornare sed ligula. Sed eget tempor ligula. Morbi vehicula est ac ligula ultricies, vitae suscipit mi maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas venenatis mauris a elit egestas, in sollicitudin diam dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "doctor": "Dragisa Petrovic",
+      "patient": "Miroslav Prodanovic",
+      "from": "2022-10-20",
+      "to": "2022-10-30",
       "prescriptions": [
         {
           "items": [
@@ -117,6 +121,10 @@
     },
     {
       "report": "Cras consequat vulputate porta. Nulla vel sem odio. Vivamus venenatis leo non ex sollicitudin semper. Vivamus hendrerit orci quis facilisis porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus justo enim, convallis sed mauris ut, viverra sollicitudin sapien. Etiam nulla massa, laoreet maximus elementum ac, dictum sit amet leo. Curabitur a tortor quis ex rhoncus tempor a nec leo. Suspendisse ligula erat, tincidunt at risus sit amet, elementum tempor quam. Donec sodales massa non orci volutpat, vitae euismod libero elementum. Nunc aliquam felis eget finibus aliquet. Nam eleifend faucibus augue eget lobortis. In vel malesuada elit, eu bibendum lorem. Quisque dictum nibh in massa euismod tempor.",
+      "doctor": "Dragisa Petrovic",
+      "patient": "Slavica Milisavljevic",
+      "from": "2022-11-15",
+      "to": "2022-12-20",
       "prescriptions": [
         {
           "items": [

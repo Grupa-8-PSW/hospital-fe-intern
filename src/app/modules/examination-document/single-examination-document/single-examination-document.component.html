@@ -1,8 +1,11 @@
 <mat-card class="bg-primary p-4">
-  <!-- <mat-card-header>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header> -->
+  <mat-card-header>
+    <mat-card-title>{{ examinationDocument.from.format('lll')}} <-> {{examinationDocument.to.format('lll')}}</mat-card-title>
+    <mat-card-subtitle>
+      <p>Patient: {{examinationDocument.patient}}</p>
+      <p>Doctor: {{examinationDocument.doctor}}</p>
+    </mat-card-subtitle>
+  </mat-card-header>
   <mat-card-content class="text-light">
     <p>{{ examinationDocument.report }}</p>
   </mat-card-content>

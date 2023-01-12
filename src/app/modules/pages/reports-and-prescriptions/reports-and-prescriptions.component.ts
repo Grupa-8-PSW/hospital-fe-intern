@@ -12,24 +12,35 @@ export class ReportsAndPrescriptionsComponent implements OnInit {
   examinationDocuments?: ExaminationDocument[];
   fetchingExaminationDocuments = false;
   errorFetchingExaminationDocuments?: string;
+  searchText: string = '';
 
   constructor(
     private examinationDocumentService: ExaminationDocumentService
   ) { }
 
   ngOnInit(): void {
+    this.fetchExaminationDocuments();
+  }
+
+  handleSearch(e: KeyboardEvent): void {
+    if (e.key === 'Enter') {
+      this.fetchExaminationDocuments();
+    }
+  }
+
+  fetchExaminationDocuments(): void {
     this.fetchingExaminationDocuments = true;
-    this.examinationDocumentService.getAll().subscribe({
-      next: (data) => {
-        this.fetchingExaminationDocuments = false;
-        this.examinationDocuments = data;
-      },
-      error: (err) => {
-        console.log(err);
-        this.fetchingExaminationDocuments = false;
-        this.errorFetchingExaminationDocuments = err.error ? err.error.message : 'Error fetching examination documents';
-      }
-    });
+      this.examinationDocumentService.searchExaminationDocuments(this.searchText).subscribe({
+        next: (data) => {
+          this.fetchingExaminationDocuments = false;
+          this.examinationDocuments = data;
+        },
+        error: (err) => {
+          console.log(err);
+          this.fetchingExaminationDocuments = false;
+          this.errorFetchingExaminationDocuments = err.error ? err.error.message : 'Error fetching examination documents';
+        }
+      });
   }
 
 }
