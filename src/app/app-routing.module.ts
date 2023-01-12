@@ -26,6 +26,7 @@ import { DoExaminationComponent } from "./modules/examination/do-examination/do-
 import { BuildingComponent } from "./modules/map/building/building.component";
 import { FloorsComponent } from "./modules/map/floors/floors.component";
 import { SignatureComponent } from "./modules/map/rooms/rooms.component";
+import { TenderGraphsComponent } from "./modules/pages/tender-graphs/tender-graphs.component";
 
 
 
@@ -66,7 +67,8 @@ const routes: Routes = [
   { path: 'examinations/do', component: DoExaminationComponent},
   { path: 'map/floor/:id', component: FloorsComponent },
   { path: 'map/floor/rooms/:floorId', component: SignatureComponent },
-  { path: 'map/floor/rooms/:floorId/:roomId', component: SignatureComponent }
+  { path: 'map/floor/rooms/:floorId/:roomId', component: SignatureComponent },
+  { path: 'tenderGraphs', component: TenderGraphsComponent}
 ];
 
 

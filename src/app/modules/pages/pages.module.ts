@@ -24,6 +24,7 @@ import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
+import { TenderGraphsComponent } from './tender-graphs/tender-graphs.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/
     ConsiliumsComponent,
     UrgentRequestComponent,
     MonthlySubscriptionComponent,
+    TenderGraphsComponent,
   ],
   imports: [
     FormsModule,
