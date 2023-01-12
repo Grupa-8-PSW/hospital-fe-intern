@@ -86,11 +86,11 @@ export class ChartsComponent {
       this.generate = false;
       if(this.chart == undefined && this.pieChart == undefined){
         this.createPieChart(bankNames, values);
-        this.createChart(this.bloodTypes, quantities);
+        this.createChart(bloodTypes, quantities);
       } else{
         this.showPieChart = true;
         this.chart.data.datasets[0].data = quantities;
-        this.chart.data.labels = this.bloodTypes;
+        this.chart.data.labels = bloodTypes;
         this.chart.update();
         this.pieChart.data.datasets[0].data = values;
         this.pieChart.data.labels = bankNames;
