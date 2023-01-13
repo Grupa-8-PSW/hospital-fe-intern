@@ -24,6 +24,7 @@ import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-reques
 import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
 import { ChartsComponent } from "./modules/pages/bloodBanks/charts/charts.component";
+import { NewsComponent } from "./modules/pages/bloodBanks/news/news.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -60,7 +61,8 @@ const routes: Routes = [
   { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'examinations/do', component: DoExaminationComponent},
-  { path: 'bloodBanks/charts', component: ChartsComponent}
+  { path: 'bloodBanks/charts', component: ChartsComponent},
+  { path: 'bloodBanks/news', component: NewsComponent}
 ];
 
 
