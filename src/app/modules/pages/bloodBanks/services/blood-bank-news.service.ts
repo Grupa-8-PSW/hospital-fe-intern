@@ -10,7 +10,7 @@ import { BloodBankNews } from 'src/app/model/bloodBankNews';
 export class BloodBankNewsService {
 
   apiHost: string = 'http://localhost:5131/';
-  headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  headers = new HttpHeaders().set('Content-Type', 'application/json'); 
 
 
 
@@ -21,11 +21,15 @@ export class BloodBankNewsService {
   }
 
   archiveNews(news: BloodBankNews) {
-    return this.http.put<any>(this.apiHost + 'api/BloodBankNews/archiveNews', news, {headers: this.headers})
+    const headers = new HttpHeaders()
+   .append('Content-Type' , 'application/json');
+    return this.http.put<any>(this.apiHost + 'api/BloodBankNews/archiveNews', news, {headers: headers})
   }
 
   publishNews(news: BloodBankNews) {
-    return this.http.put<any>(this.apiHost + 'api/BloodBankNews/publishNews', news, {headers: this.headers})
+    const headers = new HttpHeaders()
+   .append('Content-Type' , 'application/json');
+    return this.http.put<any>(this.apiHost + 'api/BloodBankNews/publishNews', news, {headers: headers})
   }
 
   generate(): Observable<any> {

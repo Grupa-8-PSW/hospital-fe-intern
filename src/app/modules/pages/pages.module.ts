@@ -24,6 +24,9 @@ import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
 import { ChartsComponent } from './bloodBanks/charts/charts.component';
+import { NewsComponent } from './bloodBanks/news/news.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { ChartsComponent } from './bloodBanks/charts/charts.component';
     UrgentRequestComponent,
     MonthlySubscriptionComponent,
     ChartsComponent,
+    NewsComponent,
   ],
   imports: [
     FormsModule,
@@ -54,7 +58,9 @@ import { ChartsComponent } from './bloodBanks/charts/charts.component';
     BloodModule,
     NgxRerenderModule,
     PatientModule,
-    ConsiliumModule
+    ConsiliumModule,
+    NgbModule,
+    NgbCarouselModule
   ]
 })
 
