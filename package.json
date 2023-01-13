@@ -42,7 +42,7 @@
     "ng2-charts": "^4.1.1",
     "ngx-bootstrap": "^9.0.0",
     "ngx-mat-timepicker": "^14.0.8",
-    "ngx-material-timepicker": "^5.5.3",
+    "ngx-material-timepicker": "^5.5.2",
     "ngx-rerender": "^1.1.0",
     "ngx-toastr": "^15.2.2",
     "raphael": "^2.3.0",
