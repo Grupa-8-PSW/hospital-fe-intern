@@ -33,6 +33,14 @@
     background-color: white;
 }
 
+mat-card-title{
+   color: #393E46;
+}
+
+mat-card-content{
+  color: #393E46;
+}
+
 table {
     width: 100%;
 }
@@ -84,13 +92,15 @@ th.mat-sort-header-sorted {
   }
 
   .card-background{
-    background-color: gray;
+    background-color: #DDDDDD;
   }
 
   .align{
     width: 350px;
     align-items: center;
     padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom: 40px;
   }
 
   .zoom {

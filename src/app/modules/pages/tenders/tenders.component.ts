@@ -6,6 +6,8 @@ import DateRange from 'src/app/model/dateRange';
 import Tender from 'src/app/model/tender';
 import { TenderStatus } from 'src/app/model/tenderStatus';
 import { TenderService } from './tender.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-tenders',
   templateUrl: './tenders.component.html',
@@ -21,7 +23,7 @@ export class TendersComponent {
   ngOnInit(): void {
   }
 
-  constructor(private service: TenderService,  private router: Router){
+  constructor(private service: TenderService,  private router: Router, private toastr: ToastrService){
   }
 
   allTend(): void {
@@ -37,7 +39,11 @@ export class TendersComponent {
       window.alert('Type is empty!');
     }
     // window.alert(JSON.stringify(this.dateRange))
-    this.service.createTender(new Tender(TenderStatus['Active' as keyof typeof TenderStatus], this.dateRange, this.blood));
+    this.service.createTender(new Tender(TenderStatus['Active' as keyof typeof TenderStatus], this.dateRange, this.blood)).subscribe(res => {
+      console.log(res);
+    }, err => {
+      this.toastr.success("Successfully created a tender!", "Success");
+    })
     
   }
 }

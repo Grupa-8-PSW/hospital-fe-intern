@@ -1,5 +1,5 @@
-
-<div style="max-width: 15rem; margin: 0 auto 0 auto;">
+<!-- 
+<div  style="max-width: 15rem; margin: 0 auto 0 auto;">
     <h1>Blood Bank Statistics</h1>
     <select name="statsOption" id="statsOption" [(ngModel)]="selInput"  (change)="displayBankList()">
         <option disabled selected value> -- select an option -- </option>
@@ -17,15 +17,47 @@
     <button class="btn btn-light" style="margin-top: 5px;" (click)="GeneratePdf()" ><mat-icon>get_app</mat-icon></button>
 
     <p *ngIf="generate">Generating...</p>
+</div> -->
+<div style="width: 35%; height: 640px; float:left;">  
+
+    <div  style="max-width: 95rem; margin: 0 auto 0 auto; max-height: fit-content;">
+        <h1 style="font-size: 25px;">Blood Statistic</h1>
+        <div class="form">
+            <div id="date-picker-example" style="border: 1px solid #DDDDDD; background-color: #DDDDDD; padding: 14px; border-radius: 5px;" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                <label for="bloodGroup">Select type</label>
+                <select name="" class="form-select" id="bloodGroup" [(ngModel)]="selInput" (change)="displayBankList()">
+                    <option value="t">Tenders</option>
+                    <option value="ur">Urgent requests</option>
+                </select>
+                <label for="bloodGroup">Select bank</label>
+                <select name="" class="form-select" [(ngModel)]="selectedBank" >
+                    <option value="">All Blood Banks</option>
+                    <option *ngFor="let obj of bloodBanks" [ngValue]="obj">{{obj.name}}</option>
+                </select>
+                <label for="d1">From</label>
+                <input placeholder="Select date" type="date" id="d1" class="form-control" name="fromDate" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}">
+                <label for="d2">To</label>
+                <input placeholder="Select date" type="date" id="d2" class="form-control" name="toDate" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}">
+        
+                <button type="button" class="btn btn-primary" style="margin-top: 5px; margin-right: 5px;" (click)="ShowTenderCharts()" >Generate graphs</button>
+                <button class="btn btn-light" style="margin-top: 5px;" (click)="GeneratePdf()" ><mat-icon>get_app</mat-icon></button>
+
+            </div>
+        </div>
+        <p style="margin-left: 500px; margin-top: 10px;" *ngIf="generate" >Generating...</p>
+    </div>
 </div>
 
-
-<div class="float-container">
-    <div class="chart-container float-child">
-        <canvas  id="MyChart">{{ chart }}</canvas>
+<div style=" width:65%; height: 740px; float:left;">  
+    <div  style = "position: absolute; top: 15%; left:40%; margin: -15px 0 0 -15px;">
+    <div class="float-container" >
+    <div class="chart-container float-child" style ="margin: 5px; width : 65%; height: 70%;">
+        <canvas   id="MyChart">{{ chart }}</canvas>
     </div>
-
-    <div class="chart-container float-child" [hidden]="!showPieChart">
+    
+    <div style="margin: 5px" class="chart-container float-child" [hidden]="!showPieChart">
         <canvas  id="MyPieChart">{{ pieChart }}</canvas>
     </div>
+   </div> 
+   </div>
 </div>
