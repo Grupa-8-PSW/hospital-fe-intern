@@ -20,11 +20,16 @@
           </mat-menu>
         </li>
         <li *ngIf="userRole==='Manager'" class="nav-item">
-          <a class="nav-link" routerLink="/bloodBanks" routerLinkActive="active" >Blood banks</a>
+          <a class="nav-link feedbacks-menu-trigger-btn" [matMenuTriggerFor]="bankMenu" >Blood banks</a>
+          <mat-menu class="bg-primary feedback-menu" #bankMenu="matMenu">
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/bloodBanks">Display blood banks</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/tenders">Tenders</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/view/bloodRequest">Blood requests</a>
+          </mat-menu>
         </li>
-        <li *ngIf="userRole==='Manager'" class="nav-item">
+        <!-- <li *ngIf="userRole==='Manager'" class="nav-item">
           <a class="nav-link" routerLink="/tenders" routerLinkActive="active" >Tenders</a>
-        </li>
+        </li> -->
 
         <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/blood" routerLinkActive="active" >Blood</a>
@@ -35,12 +40,20 @@
         <li *ngIf="userRole==='Doctor'" class="nav-item">
           <a class="nav-link" routerLink="/consiliums" routerLinkActive="active" >Consiliums</a>
         </li>
-        <li class="navitem">
+
+        <li *ngIf="userRole==='Manager'" class="nav-item">
+          <a class="nav-link feedbacks-menu-trigger-btn" [matMenuTriggerFor]="statisticsMenu">Statistics</a>
+          <mat-menu class="bg-primary feedback-menu" #statisticsMenu="matMenu">
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/bloodBanks/charts">Blood banks</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/statistics">Doctor</a>
+          </mat-menu>
+        </li>
+        <!-- <li class="navitem">
           <a class="nav-link" routerLink="/statistics" routerLinkActive="active" >Statistics</a>
-        </li>
-        <li class="navitem">
+        </li> -->
+        <!-- <li class="navitem">
           <a class="nav-link" routerLink="/view/bloodRequest" id="viewRequests" routerLinkActive="active">View Blood Requests</a>
-        </li>
+        </li> -->
       </ul>
       <div class="account-button-group">
         <button *ngIf="isLogged" class="btn btn-danger text-light me-3" (click)="logout()">Logout</button>
