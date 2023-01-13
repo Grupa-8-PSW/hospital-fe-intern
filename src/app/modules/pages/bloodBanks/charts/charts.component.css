@@ -1,6 +1,7 @@
 .float-container {
     border: 3px solid #fff;
-    padding: 20px;
+    padding: 2px;
+
 }
 
 .float-child {
@@ -29,4 +30,45 @@
 
 .demo-row-is-clicked {
   font-weight: bold;
+}
+
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+h1{
+    color: #c2185b;
+    max-width: 30%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.form{
+    margin: 0 auto;
+    max-width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.tenderPreview{
+    color: #393E46;
+    width: 25%;
+    height: 60%;
+    float: right;
+    position: relative;
+    top: -22.5rem;
+    right: 1rem;
+    border: 1px solid #DDDDDD;
+    border-radius: 25px;
+    background-color: #DDDDDD;
+    filter: drop-shadow(5px 9px 12px #6d6d6d);
+}
+
+label{
+    color: #393E46;
+}
+
+#date-picker-example{
+    filter: drop-shadow(5px 9px 12px #6d6d6d);
 }
