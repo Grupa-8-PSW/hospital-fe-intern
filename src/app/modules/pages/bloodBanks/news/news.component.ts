@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BloodBankNews } from 'src/app/model/bloodBankNews';
 import { BloodBankNewsService } from '../services/blood-bank-news.service';
 
@@ -14,7 +15,7 @@ export class NewsComponent {
   public bloodBanksNews: BloodBankNews[] = [];
   images = [944, 1011, 984, 34, 21, 105].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
-  constructor(private router: Router, private dialog: MatDialog, private bloodBankNewsService: BloodBankNewsService) { }
+  constructor(private router: Router, private dialog: MatDialog, private bloodBankNewsService: BloodBankNewsService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllNews();
@@ -29,12 +30,14 @@ export class NewsComponent {
   publishNews(news: BloodBankNews) {
     this.bloodBankNewsService.publishNews(news).subscribe(res=> {
       this.getAllNews();
+      this.toastr.success("Successfully published news!");
     });
   }
 
   archiveNews(news: BloodBankNews) {
     this.bloodBankNewsService.archiveNews(news).subscribe(res=> {
       this.getAllNews();
+      this.toastr.success("Successfully archived news!");
     });
   }
 }
