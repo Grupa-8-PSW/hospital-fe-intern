@@ -42,10 +42,11 @@ export class BloodBanksComponent implements OnInit {
     })
   }
 
-  public urgentRequestDialog(){
+  public urgentRequestDialog(bank: BloodBank){
     this.dialog.open(UrgentRequestComponent, {
       width: '20%',
-      height: '30%'
+      height: '30%',
+      data: bank
     })
   }
 
@@ -56,7 +57,7 @@ export class BloodBanksComponent implements OnInit {
 
   checkBloodAvailability(bank: BloodBank) {
     this.dialog.open(DialogComponent, {
-      width: '20%',
+      width: '15%',
       data: bank
     })
   }

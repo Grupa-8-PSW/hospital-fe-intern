@@ -42,6 +42,8 @@ export class ViewBloodRequestsComponent {
         this.doctors = res;
       })
     })
+
+
   }
 
   getDoctorNameById(id: number): string{
