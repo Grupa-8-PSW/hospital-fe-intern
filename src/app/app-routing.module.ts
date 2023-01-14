@@ -25,9 +25,16 @@ import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
 import { ChartsComponent } from "./modules/pages/bloodBanks/charts/charts.component";
 import { NewsComponent } from "./modules/pages/bloodBanks/news/news.component";
+import { BuildingComponent } from "./modules/map/building/building.component";
+import { FloorsComponent } from "./modules/map/floors/floors.component";
+import { SignatureComponent } from "./modules/map/rooms/rooms.component";
+import { EventStatisticComponent } from "./modules/pages/user-event-statistics/event-statistic/event-statistic.component";
+
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'map', component: BuildingComponent },
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
@@ -62,7 +69,11 @@ const routes: Routes = [
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'examinations/do', component: DoExaminationComponent},
   { path: 'bloodBanks/charts', component: ChartsComponent},
-  { path: 'bloodBanks/news', component: NewsComponent}
+  { path: 'bloodBanks/news', component: NewsComponent},
+  { path: 'map/floor/:id', component: FloorsComponent },
+  { path: 'map/floor/rooms/:floorId', component: SignatureComponent },
+  { path: 'map/floor/rooms/:floorId/:roomId', component: SignatureComponent },
+  { path: 'appointment/event/statistic', component: EventStatisticComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }}
 ];
 
 
