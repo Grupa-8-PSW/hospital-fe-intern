@@ -12,6 +12,7 @@ import { MergedRoom } from '../../model/mergedRoom.model';
 import { ShedulesDTO } from '../../model/shedulesDTO.model';
 import { setupTestingRouter } from '@angular/router/testing';
 import { ExaminationDTO } from '../../model/examinationDTO.model';
+import { RenovateIntervalsDTO } from '../../model/renovateIntervalsDTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +39,9 @@ export class RoomsService {
         return this.http.post<EquipmentTransferDTO>(this.apiHost + 'api/map/floor/rooms/Room/post/transferedEquipment', equipTransfer);
     }
 
+    getRenovateIntervals(renovateIntervals: RenovateIntervalsDTO): Observable<FreeSpaceForTransfer[]> {
+        return this.http.post<FreeSpaceForTransfer[]>(this.apiHost + 'api/map/floor/rooms/Room/get/available', renovateIntervals);
+    }
 
     getSeparatedRooms(dto: RoomForSeparateDTO): Observable<SeparatedRooms> {
         return this.http.post<SeparatedRooms>(this.apiHost + 'api/map/floor/rooms/Room/get/separatedRooms', dto);
@@ -47,11 +51,11 @@ export class RoomsService {
         return this.http.post<MergedRoom>(this.apiHost + 'api/map/floor/rooms/Room/get/mergedRoom', dto);
     }
 
-    getShedulesDTO(id: number): Observable<ShedulesDTO>{
-        return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/schedules/' + id, { headers: this.headers } );
+    getShedulesDTO(id: number): Observable<ShedulesDTO> {
+        return this.http.get<ShedulesDTO>(this.apiHost + 'api/map/floor/rooms/Room/get/schedules/' + id, { headers: this.headers });
     }
 
-    deleteExe(id: number): Observable<any>{
-        return this.http.delete<any>(this.apiHost + 'api/Examination/'+ id)
+    deleteExe(id: number): Observable<any> {
+        return this.http.delete<any>(this.apiHost + 'api/Examination/' + id)
     }
 }
