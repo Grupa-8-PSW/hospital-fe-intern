@@ -39,10 +39,8 @@ export class DialogComponent implements OnInit {
           fail?.setAttribute('style', 'color: red; display: block;');
           success?.setAttribute('style', 'color: green; display: none;');
         }
-        window.alert("Blood amount checking successful!");
       }),
       (err) => {
-        window.alert(err.error);
         this.errorMessage = err;
         this.toastr.error(err.error, 'Status: ' + + err.status);
       });
@@ -62,10 +60,8 @@ export class DialogComponent implements OnInit {
           fail?.setAttribute('style', 'color: red; display: block;');
           success?.setAttribute('style', 'color: green; display: none;');
         }
-        window.alert("Blood amount checking successful!");
       }),
       (err) => {
-        window.alert(err.error);
         this.errorMessage = err;
         this.toastr.error(err.error, 'Status: ' + + err.status);
       })

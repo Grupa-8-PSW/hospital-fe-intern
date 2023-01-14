@@ -4,6 +4,7 @@ export class BloodBank {
     email: string = '';
     serverAddress: string = '';
     apiKey: string = '';
+    image: string = '';
 
     public constructor(obj?: any) {
         if (obj) {
@@ -12,6 +13,7 @@ export class BloodBank {
             this.name = obj.name;
             this.serverAddress = obj.serverAddress;
             this.apiKey = obj.apiKey;
+            this.image = obj.image;
         }
     }
 }

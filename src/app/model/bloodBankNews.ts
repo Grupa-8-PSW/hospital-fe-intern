@@ -8,6 +8,7 @@ export class BloodBankNews {
     imgSrc!: string;
     published!: boolean;
     archived!: boolean;
+    bloodBankId!: number;
 
     public constructor(obj?: any) {
         if (obj) {
@@ -18,6 +19,7 @@ export class BloodBankNews {
             this.imgSrc = obj.imgSrc;
             this.archived = obj.archived;
             this.published = obj.published;
+            this.bloodBankId = obj.bloodBankId;
         }
     }
 }
