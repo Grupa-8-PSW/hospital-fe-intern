@@ -5,6 +5,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ExaminationsComponent } from './examinations/examinations.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { MapComponent } from './map/map.component';
 import { BloodBanksComponent } from './bloodBanks/blood-banks/blood-banks.component';
 import { DialogComponent } from './bloodBanks/blood-banks/dialog/dialog.component';
 import { HospitalModule } from '../hospital/hospital.module';
@@ -27,11 +28,14 @@ import { ChartsComponent } from './bloodBanks/charts/charts.component';
 import { NewsComponent } from './bloodBanks/news/news.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventStatisticComponent } from './user-event-statistics/event-statistic/event-statistic.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     HomeComponent,
     ExaminationsComponent,
+    MapComponent,
     BloodBanksComponent,
     DialogComponent,
     CalendarComponent,
@@ -47,6 +51,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     MonthlySubscriptionComponent,
     ChartsComponent,
     NewsComponent,
+    EventStatisticComponent,
   ],
   imports: [
     FormsModule,
@@ -60,7 +65,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     PatientModule,
     ConsiliumModule,
     NgbModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgChartsModule,
   ]
 })
 
