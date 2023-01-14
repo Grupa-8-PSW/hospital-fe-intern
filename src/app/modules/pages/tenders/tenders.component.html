@@ -1,10 +1,11 @@
 <h1>Create a Tender</h1>
 <div class="form">
-    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-        <input placeholder="Select date" type="date" id="d1" class="form-control" name="fromDate" [(ngModel)]="dateRange.start" [ngModelOptions]="{standalone: true}">
+    <div id="date-picker-example" style="border: 1px solid #DDDDDD; background-color: #DDDDDD; padding: 40px; border-radius: 25px;" class="md-form md-outline input-with-post-icon datepicker" inline="true">
         <label for="d1">From</label>
-        <input placeholder="Select date" type="date" id="d2" class="form-control" name="toDate" [(ngModel)]="dateRange.end" [ngModelOptions]="{standalone: true}">
+        <input placeholder="Select date" type="date" id="d1" class="form-control" name="fromDate" [(ngModel)]="dateRange.start" [ngModelOptions]="{standalone: true}">
         <label for="d2">To</label>
+        <input placeholder="Select date" type="date" id="d2" class="form-control" name="toDate" [(ngModel)]="dateRange.end" [ngModelOptions]="{standalone: true}">
+        <label for="bloodGroup">Select blood type</label>
         <select name="" class="form-select" id="bloodGroup" [(ngModel)]="type">
             <option value="ZERO_POSITIVE">0+</option>
             <option value="ZERO_NEGATIVE">0-</option>
@@ -15,19 +16,18 @@
             <option value="AB_POSITIVE">AB+</option>
             <option value="AB_NEGATIVE">AB-</option>
         </select>
-        <label for="bloodGroup">Select blood type</label>
-        <input type="number" class="form-control" placeholder="Quantity" id="quant" [(ngModel)]="quantity">
         <label for="quant">Quantity</label>
-        <button type="button" class="btn btn-primary" style="margin-left: 4rem; margin-top: 0.2rem;" (click)="addBlood()">Add blood</button>
-        <button type="button" class="btn btn-primary" style="display: block;" id="submit" (click)="createTender()">Create</button>
+        <input type="number" class="form-control" placeholder="Quantity" id="quant" [(ngModel)]="quantity">
+        <button type="button" class="btn btn-primary" style="margin-top: 0.5rem;" (click)="addBlood()">Add blood</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 0.2rem; margin-top: 0.5rem;" id="submit" (click)="createTender()">Create</button>
       </div>
 </div>
 
 <div class="tenderPreview">
-    <h1>Tender preview</h1>
+    <h1 style="color: #393E46;">Tender preview</h1>
     <p style="margin-left: 1rem">From: {{dateRange.start | date}}</p>
     <p style="margin-left: 1rem;">To: {{dateRange.end | date}}</p>
-    <p style="margin-left: 1rem;" *ngFor="let item of blood">{{item.bloodType.toString() | bloodType}}, {{item.quantity}}l</p>
+    <p style="margin-left: 1rem;" *ngFor="let item of blood">Bloodtype: {{item.bloodType.toString() | bloodType}} Quantity: {{item.quantity}}l</p>
 </div>
 
 <div class="allTenders">

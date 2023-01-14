@@ -26,11 +26,8 @@ export class TenderService {
     return this.http.post(this.apiHost + 'acceptOffer', off, { headers: this.headers });
   }
 
-  public createTender(tender: Tender): void {
+  public createTender(tender: Tender) {
     console.log(tender);
-    this.http.post(this.apiHost + 'api/Tender', tender, {headers: this.headers}).subscribe(res => {
-      console.log('Sent!');
-      this.router.navigate(['/allTenders']);
-    })
+    return this.http.post(this.apiHost + 'api/Tender', tender, {headers: this.headers});
   }
 }

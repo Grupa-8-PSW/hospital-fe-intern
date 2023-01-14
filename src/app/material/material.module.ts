@@ -26,6 +26,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [],
@@ -51,7 +53,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSortModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
   exports: [
     MatTimepickerModule,
@@ -75,7 +78,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},

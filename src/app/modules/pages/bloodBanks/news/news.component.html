@@ -1,0 +1,26 @@
+
+<div class="container-fluid shadow-5">
+  <ngb-carousel class="mr-5 ml-5 mb-5">
+    <ng-template class="carousel-item" ngbSlide *ngFor="let news of bloodBanksNews">
+      <div class="wrapper">
+        <img class="carouselImage" [src]="news.imgSrc" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <h2>{{news.subject}}</h2>
+        <p>Blood Bank: {{news.bloodBank.name}}</p>
+        <p>{{news.text}}</p>
+        <div class="row">
+          <div class="col" *ngIf="!news.published">
+            <button mat-raised-button color="warn" class="ml-5" (click)="publishNews(news)">Publish</button>
+          </div>
+          <div class="col" *ngIf="news.published">
+            <p class="text-success"><mat-card-content >Published</mat-card-content></p>
+          </div>
+          <div class="col" *ngIf="!news.published">
+            <button mat-raised-button color="primary" class="mr-5"  (click)="archiveNews(news)" >Archive</button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
