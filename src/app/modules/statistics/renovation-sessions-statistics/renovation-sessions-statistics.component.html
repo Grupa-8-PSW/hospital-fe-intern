@@ -8,14 +8,14 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Type</th>
-          <th scope="col">Room</th>
-          <th scope="col">Interval</th>
-          <th scope="col">Duration</th>
-          <th scope="col">Available</th>
-          <th scope="col">Changes</th>
-          <th scope="col">Scheduled</th>
+          <th scope="col">Step Type</th>
+          <th scope="col">Step Room</th>
+          <th scope="col">Step Interval</th>
+          <th scope="col">Step Duration</th>
+          <th scope="col">Step Available</th>
+          <th scope="col">Step Scheduling</th>
           <th scope="col">Views Total</th>
+          <th scope="col">Time Total</th>
         </tr>
       </thead>
       <tbody>
@@ -27,8 +27,8 @@
           <td>{{item.duration}}</td>
           <td>{{item.available}}</td>
           <td>{{item.changes}}</td>
-          <td>{{item.schedule}}</td>
           <td>{{item.type + item.room + item.interval + item.duration + item.available + item.changes + item.schedule}}</td>
+          <td>{{item.seconds}}s</td>
         </tr>
       </tbody>
     </table>

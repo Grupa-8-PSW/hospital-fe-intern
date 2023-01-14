@@ -7,4 +7,5 @@ export default interface RenovationSession {
     available: number;
     changes: number;
     schedule: number;
+    seconds: number;
 }
