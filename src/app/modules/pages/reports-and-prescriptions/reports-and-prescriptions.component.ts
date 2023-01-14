@@ -11,7 +11,7 @@ import { ExaminationDocumentService } from '../../examination-document/examinati
 export class ReportsAndPrescriptionsComponent implements OnInit {
   examinationDocuments?: ExaminationDocument[];
   fetchingExaminationDocuments = false;
-  errorFetchingExaminationDocuments?: string;
+  errorFetchingExaminationDocuments?: string | null;
   searchText: string = '';
 
   constructor(
@@ -38,7 +38,7 @@ export class ReportsAndPrescriptionsComponent implements OnInit {
         error: (err) => {
           console.log(err);
           this.fetchingExaminationDocuments = false;
-          this.errorFetchingExaminationDocuments = err.error ? err.error.message : 'Error fetching examination documents';
+          this.errorFetchingExaminationDocuments = err.error.message ? err.error.message : 'Error fetching examination documents';
         }
       });
   }
