@@ -43,12 +43,6 @@ export class BloodRequestComponent implements OnInit {
       this.submittingError = 'All fields must be valid.';
       return;
     }
-    const bloodRequest = {
-      type: this.getBlodTypeName(this.bloodType.value),
-      amount: this.amount.value,
-      reason: this.reason.value,
-      when: this.deliveryDate.value.format('DD/MM/YYYY')
-    };
     const bloodUnitRequest : BloodUnitRequest = {
       id: null,
       type: this.getBlodTypeName(this.bloodType.value).toString(),
