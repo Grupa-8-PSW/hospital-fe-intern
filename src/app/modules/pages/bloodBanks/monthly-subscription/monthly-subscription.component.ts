@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import Blood from 'src/app/model/blood';
 import { BloodBank } from 'src/app/model/bloodBank.model';
 import { BloodType } from 'src/app/model/bloodType';
@@ -21,7 +22,7 @@ export class MonthlySubscriptionComponent {
   blood: Blood[] = [];
   selectedBank = 0;
 
-  constructor(private bankService: BloodBankService, private service: MonthlySubscriptionService) {}
+  constructor(private bankService: BloodBankService, private service: MonthlySubscriptionService, private toastr: ToastrService) {}
 
   ngOnInit(): void{
     this.bankService.getBloodBanks().subscribe(response => {
@@ -32,7 +33,8 @@ export class MonthlySubscriptionComponent {
   }
 
   addBlood(): void {
-    this.blood.push(new Blood(BloodType[this.type as keyof typeof BloodType], this.quantity))
+    this.blood.push(new Blood(BloodType[this.type as keyof typeof BloodType], this.quantity));
+    this.toastr.show("Added " + this.quantity + "l of " + this.type);
   }
 
   createSubscription(): void{

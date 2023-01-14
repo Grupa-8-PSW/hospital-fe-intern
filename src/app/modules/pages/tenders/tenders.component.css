@@ -17,20 +17,31 @@ h1{
 }
 
 .tenderPreview{
-    width: 30%;
+    color: #393E46;
+    width: 25%;
     height: 60%;
     float: right;
     position: relative;
-    top: -20rem;
+    top: -22.5rem;
     right: 1rem;
-    border: 1px solid black;
+    border: 1px solid #DDDDDD;
     border-radius: 25px;
+    background-color: #DDDDDD;
+    filter: drop-shadow(5px 9px 12px #6d6d6d);
 }
 
 .allTenders{
     float: left;
     position: relative;
-    top: -20rem;
+    top: -25rem;
     
     margin-left: 30px;
+}
+
+label{
+    color: #393E46;
+}
+
+#date-picker-example{
+    filter: drop-shadow(5px 9px 12px #6d6d6d);
 }

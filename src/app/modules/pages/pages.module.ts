@@ -24,6 +24,12 @@ import { ConsiliumsComponent } from './consiliums/consiliums.component';
 import { ConsiliumModule } from '../consilium/consilium.module';
 import { UrgentRequestComponent } from './bloodBanks/urgent-request/urgent-request.component';
 import { MonthlySubscriptionComponent } from './bloodBanks/monthly-subscription/monthly-subscription.component';
+import { ReportsAndPrescriptionsComponent } from './reports-and-prescriptions/reports-and-prescriptions.component';
+import { ExaminationDocumentModule } from '../examination-document/examination-document.module';
+import { ChartsComponent } from './bloodBanks/charts/charts.component';
+import { NewsComponent } from './bloodBanks/news/news.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatisticsModule } from "../statistics/statistics.module";
 import { EventStatisticComponent } from './user-event-statistics/event-statistic/event-statistic.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -46,6 +52,9 @@ import { NgChartsModule } from 'ng2-charts';
         ConsiliumsComponent,
         UrgentRequestComponent,
         MonthlySubscriptionComponent,
+    ReportsAndPrescriptionsComponent,
+    ChartsComponent,
+    NewsComponent,
         EventStatisticComponent,
   ],
     imports: [
@@ -59,6 +68,9 @@ import { NgChartsModule } from 'ng2-charts';
         NgxRerenderModule,
         PatientModule,
         ConsiliumModule,
+    ExaminationDocumentModule,
+    NgbModule,
+    NgbCarouselModule,
         StatisticsModule,
         NgChartsModule,
     ]

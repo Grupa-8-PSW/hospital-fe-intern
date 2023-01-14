@@ -1,21 +1,44 @@
-<div>
-
-    <div style="display: inline-block;" class="scheduleReport">
+<!-- <div class="scheduleReport">
+     <div style="display: inline-block;" class="scheduleReport">
         <button mat-fab color="primary" matTooltip="Schedule frequency of sending reports to Blood Banks." matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" (click)="schedule()">
             <mat-icon>schedule</mat-icon>
         </button>
 
-    <div style="display: inline-block;" class="urgentRequest">
-      <button mat-fab color="primary" matTooltip="Urgent request." matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" (click)="urgentRequestDialog()">
+     <div style="display: inline-block;" class="urgentRequest">
+     <button mat-fab color="primary" matTooltip="Urgent request." matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" (click)="urgentRequestDialog()">
           <mat-icon>ring_volume</mat-icon>
       </button>
     </div>
 
+</div> -->
 
 
+<div class="container mt-4">
+  <div fxLayout="row wrap space-evenly" fxLayoutGap="25px grid">
+    <div [fxFlex]="(100/3) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" class="zoom" *ngFor="let bloodBank of bloodBanks">
+      <mat-card class="mat-elevation-z19 border align card-background">
+        <img style="height: 200px; max-width: 300px" class="mt-1" mat-card-image mat-card-s-image src="{{bloodBank.image}}">
+        <mat-card-content>
+          <mat-card-title class="text-center fs-5 fw-bold">{{bloodBank.name}}</mat-card-title>
+          <p>
+            <mat-card-content>Email: {{bloodBank.email}}</mat-card-content>
+          </p>
+          <p>
+            <mat-card-content>Server address: {{bloodBank.serverAddress}}</mat-card-content>
+          </p>
+          <p style="display: inline-block;" class="d-flex justify-content-between">
+            <button  class="btn btn-primary justify-content-center" matTooltip="Urgent request" (click)="urgentRequestDialog(bloodBank)"><mat-icon>call</mat-icon></button>
+            <button class="btn btn-primary justify-content-center"  matTooltip="Check blood availability" (click)="checkBloodAvailability(bloodBank)"><mat-icon>help_outline</mat-icon></button>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
 
-<div class="containerm">
+
+
+<!-- <div class="containerm">
   <div class="table-header">
       <p class="table-title">Blood banks</p>
       <button mat-fab color="primary" id="createBloodBanks"  mat-mini-fab matTooltip="New blood bank" matTooltipPosition="right" aria-label="Example icon button with a bookmark icon" (click)="addBloodBank()">
@@ -80,4 +103,4 @@
             </mat-card>
           </div>
         </div>
-</div>
+</div> -->

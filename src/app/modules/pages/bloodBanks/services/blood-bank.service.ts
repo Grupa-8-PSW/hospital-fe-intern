@@ -30,6 +30,10 @@ export class BloodBankService {
     return this.http.get<BloodBank[]>(this.apiHost + 'api/BloodBanks', {headers: this.headers});
   }
 
+  getBloodBankById(id: number): Observable<any> {
+    return this.http.get(this.apiHost + 'api/BloodBanks/' + id, {headers: this.headers});
+  }
+
   checkBloodAvailabilty(bank: BloodBank, type: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('bloodBankId', bank.id);
