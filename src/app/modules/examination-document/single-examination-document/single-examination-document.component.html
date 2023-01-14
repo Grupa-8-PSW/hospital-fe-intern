@@ -1,0 +1,50 @@
+<mat-card class="bg-primary p-4">
+  <mat-card-header>
+    <mat-card-title>{{ examinationDocument.from.format('lll')}} <-> {{examinationDocument.to.format('lll')}}</mat-card-title>
+    <mat-card-subtitle>
+      <p>Patient: {{examinationDocument.patient}}</p>
+      <p>Doctor: {{examinationDocument.doctor}}</p>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="text-light">
+    <p>{{ examinationDocument.report }}</p>
+  </mat-card-content>
+  <mat-accordion>
+    <mat-expansion-panel class="bg-primary" (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title [class.text-secondary]="!panelOpenState">
+          Prescriptions
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="border-1 border-bottom" *ngFor="let prescription of examinationDocument.prescriptions">
+        <div class="py-2" *ngFor="let prescriptionItem of prescription.items">
+          <div class="row">
+            <div class="col-6">
+              Code:
+            </div>
+            <div class="col-6">
+              {{ prescriptionItem.code }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              Name:
+            </div>
+            <div class="col-6">
+              {{ prescriptionItem.name }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              Quantity:
+            </div>
+            <div class="col-6">
+              {{ prescriptionItem.quantity }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

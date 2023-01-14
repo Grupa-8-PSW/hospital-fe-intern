@@ -56,14 +56,13 @@ export class CreateEditExaminationComponent implements OnInit {
       this.pathMonth = this.route.snapshot.params['month'];
       this.pathYear = this.route.snapshot.params['year'];
       if (!this.pathDate || !this.pathMonth || !this.pathYear) {
-        // Privremeno na brzinu
         console.log('err');
         return;
       }
       this.examinationForm.get('date')?.disable();
       this.examinationForm.patchValue({
         patient: 'default',
-        date: moment(`${this.pathYear}-${this.pathMonth}-${this.pathDate}`),
+        date: moment(`${this.pathYear}-${this.pathMonth}-${this.pathDate}`, "YYYY-MM-DD"),
         startTime: null,
         duration: 'default'
       });
@@ -118,6 +117,7 @@ export class CreateEditExaminationComponent implements OnInit {
     this.submittingError = null;
     if (!this.examinationForm.valid) {
       this.submittingError = "All fields must be valid.";
+      this.submitted = false;
       return;
     };
     if (this.isAddMode) {
@@ -140,7 +140,7 @@ export class CreateEditExaminationComponent implements OnInit {
         }
       });
     } else {
-      const startTime = parseAndSetTime(this.date.value, this.startTime.value);
+      const startTime = parseAndSetTime(moment(this.date.value), this.startTime.value);
       if (!startTime) {
         console.log("Failed to parse date and time");
         this.submittingError = "Failed to parse date and time";
@@ -150,7 +150,7 @@ export class CreateEditExaminationComponent implements OnInit {
         id: this.examination?.id,
         doctorId: this.examination?.doctorId!,
         patientId: Number(this.patient.value),
-        startTime: this.date.value.format("DD/MM/yyyy HH:mm"),
+        startTime: moment(this.date.value),
         duration: Number(this.duration.value)
       };
       this.scheduleService.rescheduleExamination(examination).subscribe({
