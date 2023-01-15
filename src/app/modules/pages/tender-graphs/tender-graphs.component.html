@@ -1,29 +1,29 @@
 <div class="container">
-    <h1>Money spent on tenders</h1>
+    <h1 style="margin-top:30px">Money spent on tenders</h1>
     <div class="moneyGraph">
         <form> 
-            <input class="input" #year1 type="number" placeholder="Choose a year">
-              <button type="button" class="btn btn-primary mb-2"
-                    (click)="getGraph1(year1.value)">Search</button>
+            <input class="input"  #year1 type="number" placeholder="Choose a year">
+              <button type="button" style="margin-left:10px" class="btn btn-primary mb-2"
+                    (click)="getGraph1(year1.value)">Show</button>
             </form>
         <canvas class="money" id="money"></canvas>
     </div>
     <div class="moneyGraph">
-        <h1>Blood amount from tenders</h1>
+        <h1 style="margin-top:30px">Blood amount from tenders</h1>
        <form> 
         <input #year type="number" placeholder="Choose a year">
-        <select #bloodType name="bloodType" id="bloodType">
+        <select style="margin-left:10px" #bloodType name="bloodType" id="bloodType">
             <option value="A-">A-</option>
             <option value="A+">A+</option>
             <option value="B-">B-</option>
             <option value="B+">B+</option>
-            <option value="AB-">AB+</option>
+            <option value="AB-">AB-</option>
             <option value="AB+">AB+</option>
             <option value="0-">0-</option>
             <option value="0+">0+</option>
           </select>
-          <button type="button" class="btn btn-primary mb-2"
-                (click)="getGraph(year.value, bloodType.value)">Search</button>
+          <button type="button" style="margin-left:10px" class="btn btn-primary mb-2"
+                (click)="getGraph(year.value, bloodType.value)">Show</button>
         </form>
         <canvas class="money" id="blood"></canvas>
     </div>
