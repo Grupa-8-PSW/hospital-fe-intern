@@ -300,9 +300,6 @@ export class SignatureComponent implements OnInit {
     this.roomsService.getSessionId().subscribe(res => {
       this.sessionId = res;
       console.log(this.sessionId);
-      this.roomsService.sessionType(this.sessionId).subscribe(res => {
-        console.log(res);
-      });
     })
   }
 
