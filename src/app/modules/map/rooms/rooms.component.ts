@@ -67,6 +67,7 @@ export class SignatureComponent implements OnInit {
   room2 = false;
   showExaminations = false;
   showTransferEquipments = false;
+  sessionId : number;
 
 
   constructor(
@@ -295,6 +296,14 @@ export class SignatureComponent implements OnInit {
   startRenovateForm(event) {    //FORMA KOJA SE OTVARA KADA KLIKNEMO DUGME RENOVATE ZA RENOVIRANJE SOBA
     event.preventDefault();
     this.canRenoveteForm = true;
+    
+    this.roomsService.getSessionId().subscribe(res => {
+      this.sessionId = res;
+      console.log(this.sessionId);
+      this.roomsService.sessionType(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
+    })
   }
 
   onChange(quantity) {
@@ -410,6 +419,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionRoom(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 40) {
       this.percentIsFourty = true;
@@ -417,6 +429,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionInterval(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
 
     if (this.renovatePercent === 60) {
@@ -425,6 +440,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionDuration(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 80) {
       this.percentIsEighty = true;
@@ -432,9 +450,15 @@ export class SignatureComponent implements OnInit {
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
+      this.roomsService.sessionAvailable(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 100) {
       this.percentIsHun = true;
+      this.roomsService.sessionCreate(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
   }
 
@@ -450,6 +474,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionRoom(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 40) {
       this.percentIsFourty = true;
@@ -457,6 +484,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionInterval(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 60) {
       this.percentIsSixty = true;
@@ -464,6 +494,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionDuration(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 80) {
       this.percentIsSixty = false;
@@ -471,6 +504,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsEighty = true;
+      this.roomsService.sessionAvailable(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 0) {
       this.percentIsZero = true;
@@ -478,6 +514,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionType(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
   }
 
@@ -579,6 +618,9 @@ export class SignatureComponent implements OnInit {
   }
 
   ScheduleForMerginRooms() {
+    this.roomsService.sessionSchedule(this.sessionId).subscribe(res => {
+      console.log(res);
+    });
     if (this.mergeState == true) {
       //stavim sveu MergeRoomDTO i servis 
       this.roomsService.getMergedRoom(this.roomForMergeDTO).subscribe(res => {
