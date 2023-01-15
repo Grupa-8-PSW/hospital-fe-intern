@@ -18,6 +18,7 @@ import { RoomsForMergeDTO } from '../model/RoomsForMergeDTO.model';
 import { ShedulesDTO } from '../model/shedulesDTO.model';
 import { ExaminationDTO } from '../model/examinationDTO.model';
 import { DATE_PIPE_DEFAULT_TIMEZONE } from '@angular/common';
+import { RenovateIntervalsDTO } from '../model/renovateIntervalsDTO.model';
 
 
 
@@ -66,6 +67,7 @@ export class SignatureComponent implements OnInit {
   room2 = false;
   showExaminations = false;
   showTransferEquipments = false;
+  sessionId : number;
 
 
   constructor(
@@ -89,8 +91,10 @@ export class SignatureComponent implements OnInit {
   public roomForSeparateDTO: RoomForSeparateDTO;
   public roomForMergeDTO: RoomsForMergeDTO;
   public AllTermins: FreeSpaceForTransfer[] = [];
-  public transfers: EquipmentTransferDTO []
-  public examinations: ExaminationDTO [];
+  public transfers: EquipmentTransferDTO[]
+  public examinations: ExaminationDTO[];
+  public renovateIntervalsDTO: RenovateIntervalsDTO;
+  public AllTerminsRenovate: FreeSpaceForTransfer[] = [];
 
   ngOnInit(): void {
 
@@ -105,6 +109,14 @@ export class SignatureComponent implements OnInit {
       endDate: null,
       duration: null,
       equipmentName: null,
+    }
+
+    this.renovateIntervalsDTO = {
+      roomId: null,
+      startDate: null,
+      endDate: null,
+      duration: null,
+      roomId2: null,
     }
 
     this.roomForSeparateDTO = {
@@ -284,6 +296,11 @@ export class SignatureComponent implements OnInit {
   startRenovateForm(event) {    //FORMA KOJA SE OTVARA KADA KLIKNEMO DUGME RENOVATE ZA RENOVIRANJE SOBA
     event.preventDefault();
     this.canRenoveteForm = true;
+    
+    this.roomsService.getSessionId().subscribe(res => {
+      this.sessionId = res;
+      console.log(this.sessionId);
+    })
   }
 
   onChange(quantity) {
@@ -399,6 +416,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionRoom(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 40) {
       this.percentIsFourty = true;
@@ -406,6 +426,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionInterval(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
 
     if (this.renovatePercent === 60) {
@@ -414,6 +437,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionDuration(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 80) {
       this.percentIsEighty = true;
@@ -421,9 +447,15 @@ export class SignatureComponent implements OnInit {
       this.percentIsZero = false;
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
+      this.roomsService.sessionAvailable(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 100) {
       this.percentIsHun = true;
+      this.roomsService.sessionCreate(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
   }
 
@@ -439,6 +471,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionRoom(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 40) {
       this.percentIsFourty = true;
@@ -446,6 +481,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionInterval(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 60) {
       this.percentIsSixty = true;
@@ -453,6 +491,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionDuration(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 80) {
       this.percentIsSixty = false;
@@ -460,6 +501,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsTwenty = false;
       this.percentIsFourty = false;
       this.percentIsEighty = true;
+      this.roomsService.sessionAvailable(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
     if (this.renovatePercent === 0) {
       this.percentIsZero = true;
@@ -467,6 +511,9 @@ export class SignatureComponent implements OnInit {
       this.percentIsFourty = false;
       this.percentIsSixty = false;
       this.percentIsEighty = false;
+      this.roomsService.sessionType(this.sessionId).subscribe(res => {
+        console.log(res);
+      });
     }
   }
 
@@ -503,23 +550,28 @@ export class SignatureComponent implements OnInit {
   selectedRoomForSeparating(selectedRoomId: number, room: Room) {
     this.roomForSeparateDTO.oldRoomId = room.id;
     this.selectedRoom = room;
+    this.renovateIntervalsDTO.roomId = room.id;
   }
   // TREBA DODATI ROOMID2 U NOVI DTO I TREBA SKONTATI KAKO MULTI SELECT DA ODRADIM DA UZMEM I ROOMID2 i ROOM2
   selectedRoom1ForMerge(selectedRoomId: number, room: Room) {
     this.roomForMergeDTO.oldRoom1Id = room.id;
     this.selectedRoom = room;
+    this.renovateIntervalsDTO.roomId = room.id;
   }
 
   selectedRoom2ForMerge(selectedRoomId: number, room: Room) {
     this.roomForMergeDTO.oldRoom2Id = room.id;
     this.selectedRoom2 = room;
+    this.renovateIntervalsDTO.roomId2 = room.id;
   }
   getStartDateForRenovate(startDateRenovate) {
-
+    this.startDateRenovate = startDateRenovate;
+    this.renovateIntervalsDTO.startDate = this.startDateRenovate;
   }
 
   getEndDateForRenovate(endDateRenovate) {
-
+    this.endDateRenovate = endDateRenovate;
+    this.renovateIntervalsDTO.endDate = this.endDateRenovate;
   }
 
   DurationInDaysRenovate(days) {
@@ -527,11 +579,15 @@ export class SignatureComponent implements OnInit {
   }
 
   DurationInHoursRenovate(hours) {
-
+    this.renovateIntervalsDTO.duration = hours.value;
   }
 
   getTerminsRenovate() {
     //TREBA DODATI U DTO-OVE SELEKTOVAN TERMIN
+    console.log(this.renovateIntervalsDTO);
+    this.roomsService.getRenovateIntervals(this.renovateIntervalsDTO).subscribe(res => {
+      this.AllTermins = res;
+    })
   }
 
   newMergedRoom(newMergedRoom) {
@@ -559,6 +615,9 @@ export class SignatureComponent implements OnInit {
   }
 
   ScheduleForMerginRooms() {
+    this.roomsService.sessionSchedule(this.sessionId).subscribe(res => {
+      console.log(res);
+    });
     if (this.mergeState == true) {
       //stavim sveu MergeRoomDTO i servis 
       this.roomsService.getMergedRoom(this.roomForMergeDTO).subscribe(res => {
@@ -600,27 +659,27 @@ export class SignatureComponent implements OnInit {
     this.room2 = true;
   }
 
-  showExemination(){
+  showExemination() {
     this.showExaminations = true;
     this.showTransferEquipments = false;
   }
 
-  showTransferEquipment(){
+  showTransferEquipment() {
     this.showTransferEquipments = true;
     this.showExaminations = false;
   }
 
-  cancelExe(event,examination){
+  cancelExe(event, examination) {
     const now = new Date();
-    if(examination.startDate + (24*60*60*1000) < now){
+    if (examination.startDate + (24 * 60 * 60 * 1000) < now) {
       alert("Ne moze te otkazati 24h pre pregleda")
     }
-    
-      else{  
-        this.roomsService.deleteExe(examination.id).subscribe(res=>{})
-        window.location.reload();
-      }
-    
+
+    else {
+      this.roomsService.deleteExe(examination.id).subscribe(res => { })
+      window.location.reload();
+    }
+
   }
 
 }

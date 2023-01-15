@@ -10,15 +10,16 @@ import { Moment } from 'moment';
 })
 
 export class CalendarComponent {
-    selected?: Moment;
+    selected?: Date;
 
     constructor(private router: Router) {}
 
     public chooseDate() { //selected
+      console.log(typeof this.selected);
       if(this.selected != undefined && this.selected != null){
-        const day = this.selected.date();
-        const month = this.selected.month() + 1; // Remember this increment
-        const year = this.selected.year();
+        const day = this.selected.getDate();
+        const month = this.selected.getMonth() + 1; // Remember this increment
+        const year = this.selected.getFullYear();
 
         this.router.navigate(['/examinations/' + day + "/" + month + "/" + year]);
       }

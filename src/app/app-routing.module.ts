@@ -7,6 +7,7 @@ import { HomeComponent } from "./modules/pages/home/home.component";
 import { AuthGuard } from "./modules/auth/helpers/auth.guard";
 import { RoleGuard } from "./modules/auth/helpers/role.guard";
 import { StatisticsComponent } from "./modules/pages/statistics/statistics.component";
+import { MapComponent } from "./modules/pages/map/map.component";
 import { CreateTreatmentHistoryComponent } from "./modules/treatment-history/create-treatment-history/create-treatment-history.component";
 import { DischargePatientComponent } from "./modules/treatment-history/discharge-patient/discharge-patient.component";
 import { PrescribeTherapyComponent } from "./modules/treatment-history/prescribe-therapy/prescribe-therapy.component";
@@ -23,6 +24,7 @@ import { AllTendersComponent } from "./modules/pages/tenders/all-tenders/all-ten
 import { UrgentRequestComponent } from "./modules/pages/bloodBanks/urgent-request/urgent-request.component";import { TendersComponent } from "./modules/pages/tenders/tenders.component";
 import { MonthlySubscriptionComponent } from "./modules/pages/bloodBanks/monthly-subscription/monthly-subscription.component";
 import { DoExaminationComponent } from "./modules/examination/do-examination/do-examination.component";
+import { ReportsAndPrescriptionsComponent } from "./modules/pages/reports-and-prescriptions/reports-and-prescriptions.component";
 import { ChartsComponent } from "./modules/pages/bloodBanks/charts/charts.component";
 import { NewsComponent } from "./modules/pages/bloodBanks/news/news.component";
 import { BuildingComponent } from "./modules/map/building/building.component";
@@ -35,6 +37,7 @@ import { EventStatisticComponent } from "./modules/pages/user-event-statistics/e
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'map', component: BuildingComponent },
+  { path: 'renovations', component: MapComponent},
   { path: 'examinations', component: ExaminationsComponent },
   { path: 'feedback/display', component : FeedbackDisplayComponent},
   { path: 'examinations/create/:date/:month/:year', component: CreateEditExaminationComponent },
@@ -68,6 +71,7 @@ const routes: Routes = [
   { path: 'allTenders', component: AllTendersComponent},
   { path: 'bloodBanks/urgent', component: UrgentRequestComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Manager'] }},
   { path: 'examinations/do', component: DoExaminationComponent},
+  { path: 'reportsAndPrescriptions', component: ReportsAndPrescriptionsComponent, canActivate: [AuthGuard, RoleGuard], data: { roles: ['Doctor'] }},
   { path: 'bloodBanks/charts', component: ChartsComponent},
   { path: 'bloodBanks/news', component: NewsComponent},
   { path: 'map/floor/:id', component: FloorsComponent },

@@ -47,18 +47,17 @@
           <mat-menu class="bg-primary feedback-menu" #statisticsMenu="matMenu">
             <a class="nav-link text-secondary" mat-menu-item routerLink="/bloodBanks/charts">Blood banks</a>
             <a class="nav-link text-secondary" mat-menu-item routerLink="/statistics">Doctor</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/renovations">Renovations</a>
+            <a class="nav-link text-secondary" mat-menu-item routerLink="/appointment/event/statistic">Appointments</a>
           </mat-menu>
         </li>
         <!-- <li class="navitem">
-          <a class="nav-link" routerLink="/statistics" routerLinkActive="active" >Statistics</a>
-        </li> -->
-        <!-- <li class="navitem">
           <a class="nav-link" routerLink="/view/bloodRequest" id="viewRequests" routerLinkActive="active">View Blood Requests</a>
         </li> -->
-        <li *ngIf="userRole==='Manager'" class="nav-item">
-          <a class="nav-link" routerLink="/appointment/event/statistic" routerLinkActive="active" >Event Statistics</a>
+        <li class="navitem">
+          <a class="nav-link" routerLink="/reportsAndPrescriptions" id="viewRequests" routerLinkActive="active">Reports & Prescriptions</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="userRole==='Manager'" class="nav-item">
           <a class="nav-link" routerLink="/map" routerLinkActive="active" >Map</a>
         </li>
       </ul>
@@ -67,10 +66,6 @@
         <button *ngIf="!isLogged" class="btn btn-danger text-light me-3" routerLink="/auth/login">Login</button>
         <button *ngIf="!isLogged" class="btn btn-danger text-light">Register</button>
       </div>
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
     </div>
   </div>
 </nav>

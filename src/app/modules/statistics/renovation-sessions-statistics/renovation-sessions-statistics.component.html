@@ -1,0 +1,39 @@
+<div class="row g-0 mt-3">
+  <div class="col-md-1">
+
+  </div>
+  <div class="col-md-10 text-center">
+    <h2>Renovation Scheduling Sessions</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Step Type</th>
+          <th scope="col">Step Room</th>
+          <th scope="col">Step Interval</th>
+          <th scope="col">Step Duration</th>
+          <th scope="col">Step Available</th>
+          <th scope="col">Step Scheduling</th>
+          <th scope="col">Views Total</th>
+          <th scope="col">Time Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{item.id}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.room}}</td>
+          <td>{{item.interval}}</td>
+          <td>{{item.duration}}</td>
+          <td>{{item.available}}</td>
+          <td>{{item.changes}}</td>
+          <td>{{item.type + item.room + item.interval + item.duration + item.available + item.changes}}</td>
+          <td>{{item.seconds}}s</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-1">
+
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row g-0 mt-5 mb-5">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-2 text-center">
+        <h2>Merger average</h2>
+        <canvas baseChart width="300" height="300" 
+            [type]="barChartType"
+            [data]="barChartData"
+            [options]="chartOptions"
+            [plugins]="chartPlugins">
+        </canvas>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-2 text-center">
+        <h2 class="mb-3">Views compared</h2>
+        <canvas baseChart width="500" height="500" 
+            [type]="radarChartType"
+            [data]="radarChartData"
+            [options]="chartOptions"
+            [plugins]="chartPlugins">
+        </canvas>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-2 text-center">
+        <h2>Separation average</h2>
+        <canvas baseChart width="300" height="300"
+            [type]="lineChartType" 
+            [data]="lineChartData"
+            [options]="chartOptions"
+            [plugins]="chartPlugins">
+        </canvas>
+    </div>
+    <div class="col-md-2">
+        
+    </div>
+</div>
