@@ -2,11 +2,11 @@
   <div class="col-md-1"></div>
     <div class="col-md-4 text-center mt-3" *ngIf="graphLoaded">
         <h2 class="me-4">Steps by view count</h2>
-        <canvas baseChart width="450" height="450" 
+        <canvas baseChart width="300" height="300" 
             [type]="'bar'"
             [data]="barChartData"
             [options]="barChartOptions"
-            [plugins]="barChartPlugins">
+            [plugins]="Plugins">
         </canvas>
         <table class="table table-striped mt-3">
             <thead>
@@ -27,22 +27,105 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-4 text-center mt-3" *ngIf="graphLoaded">
+        <h2 class="me-4">Percentage of successful scheduling</h2>
+        <canvas baseChart width="300" height="300"
+            [type]="'pie'" 
+            [data]="pieChartData"
+            [options]="pieChartOptions"
+            [plugins]="Plugins">
+        </canvas>
+        <table class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Successful</th>
+                <th scope="col">Unsuccessful</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{succPercentage}}%</td>
+                <td>{{unSuccPercentage}}%</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+</div>
+<div class="row g-1">
+    <div class="col-md-1"></div>
+    <div class="col-md-4 text-center mt-3" *ngIf="graphLoaded">
+      <h2 class="me-4">Average number of steps for successful scheduling by age group</h2>
+      <canvas baseChart width="300" height="300"
+          [type]="'pie'" 
+          [data]="pieChartDataForAge"
+          [options]="pieChartOptions"
+          [plugins]="Plugins">
+      </canvas>
       <table class="table table-striped mt-3">
+          <thead>
+            <tr>
+              <th scope="col">Zero to eighteen </th>
+              <th scope="col">Nineteen to sixtyfour</th>
+              <th scope="col">Over sixtyfive</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ageStatStep.zeroToEighteen}}</td>
+              <td>{{ageStatStep.nineteenToSixtyFour}}</td>
+              <td>{{ageStatStep.sixtyFivePlus}}</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4 text-center  mt-3" *ngIf="graphLoaded">
+    <h2 class="me-4">Average secondes on each step</h2>
+    <canvas baseChart width="300" height="300" 
+        [type]="'bar'"
+        [data]="barChartForMinutesData"
+        [options]="barChartOptions"
+        [plugins]="Plugins">
+    </canvas>
+    <table class="table table-striped mt-3">
         <thead>
           <tr>
-            <th scope="col">Average number of steps for succesfull scheduling</th>
-            <th scope="col">Average number of seconds for succesfull scheduling</th>
+            <th scope="col">Step One</th>
+            <th scope="col">Step Two</th>
+            <th scope="col">Step Three</th>
+            <th scope="col">Step Four</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{{numberOfSteps}}</td>
-            <td>{{durationOfSteps}}</td>
+            <td>{{avgSecEachStep.stepOne}}</td>
+            <td>{{avgSecEachStep.stepTwo}}</td>
+            <td>{{avgSecEachStep.stepThree}}</td>
+            <td>{{avgSecEachStep.stepFour}}</td>
           </tr>
         </tbody>
-        </table>
-    </div>
-    <div class="col-md-1"></div>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm"></div>
+  <div class="col-sm">
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Average number of steps for succesfull scheduling</th>
+          <th scope="col">Average number of seconds for succesfull scheduling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{numberOfSteps}}</td>
+          <td>{{durationOfSteps}}</td>
+        </tr>
+      </tbody>
+      </table>
+  </div>
+  <div class="col-sm"></div>
 </div>
